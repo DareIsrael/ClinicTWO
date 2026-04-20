@@ -1,471 +1,13 @@
-// "use client";
-
-// import Link from 'next/link';
-// import { useState, useEffect, useRef } from 'react';
-// import Announcements from '@/components/Announcements';
-
-// export default function Home() {
-//   // Testimonial slider state
-//   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-//   const testimonials = [
-//     {
-//       id: 1,
-//       name: 'Sarah Johnson',
-//       role: 'Patient',
-//       content: 'Dr. Fagbolagun has been our family physician for over 2 years. The care and attention we receive is exceptional. Same-day appointments have been a lifesaver for our busy family.',
-//       rating: 5
-//     },
-//     {
-//       id: 2,
-//       name: 'Michael Chen',
-//       role: 'Patient',
-//       content: 'The clinic is modern, clean, and the staff is very professional. I appreciate how thorough Dr. Fagbolagun is during examinations. Highly recommended!',
-//       rating: 5
-//     },
-//     {
-//       id: 3,
-//       name: 'The Williams Family',
-//       role: 'Family Patients',
-//       content: 'From our toddler to grandparents, everyone receives excellent care. The physician takes time to explain everything clearly. Truly a family-focused practice.',
-//       rating: 5
-//     }
-//   ];
-
-//   // Auto-rotate testimonials
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-//     }, 5000);
-//     return () => clearInterval(interval);
-//   }, [testimonials.length]);
-
-//   const nextTestimonial = () => {
-//     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-//   };
-
-//   const prevTestimonial = () => {
-//     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-//   };
-
-//   // Render star rating
-//   const renderStars = (rating) => {
-//     return Array.from({ length: 5 }, (_, i) => (
-//       <svg
-//         key={i}
-//         className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
-//         fill="currentColor"
-//         viewBox="0 0 20 20"
-//       >
-//         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-//       </svg>
-//     ));
-//   };
-
-//   return (
-//     <div className="min-h-screen">
-//       {/* Hero Section */}
-//       <section className="relative min-h-screen flex items-center justify-start bg-gray-900 overflow-hidden">
-//         {/* Background Image */}
-
-//         <div
-//           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-//           style={{
-//             backgroundImage: 'url("https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")',
-//           }}
-//         >
-//           <div className="absolute inset-0 bg-sky-800/70"></div>
-//           {/* <div className="absolute inset-0 bg-white/80"></div> */}
-//         </div>
-
-//         {/* Announcements Section - Properly positioned with enough margin */}
-//         <div className="absolute top-2 left-4 right-4 z-20">
-//           <Announcements />
-//         </div>
-
-//         {/* Main Content Box - Pushed down to avoid overlap */}
-//        <div className="relative z-10 max-w-md mx-4 mb-16 lg:mx-16 xl:mx-24 bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-xl mt-40 lg:mt-44 xl:mt-48">
-
-//   {/* Header */}
-//   <div className=" mb-4 ">
-//     <h1 className="hero-heading text-3xl lg:text-3xl font-bold text-sky-800 mb-2 leading-tight">
-//       Family Doctor & Walk-In Clinic in Downtown Ottawa
-//     </h1>
-
-//     <div className="hero-heading w-16 h-1 bg-sky-800 rounded-full mb-3" style={{ animationDelay: '0.25s' }}></div>
-
-//     <p className="hero-sub text-gray-600 text-sm lg:text-base">
-//       Same-day visits. Online booking. No phone wait.
-//     </p>
-//   </div>
-
-//   {/* Call-to-Action Buttons */}
-//   <div className="hero-cta flex flex-col sm:flex-row gap-3 mt-6">
-
-//     {/* Book Appointment Button */}
-//     <Link
-//     href="/appointment"
-//     className="btn-breathe bg-gradient-to-r from-sky-600 to-sky-700 text-white px-4 py-3 rounded-lg font-semibold text-center transition-all duration-200 hover:bg-sky-900 hover:shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
-//   >
-//     Book Appointment
-//     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-//     </svg>
-//   </Link>
-
-//   {/* Call Now Button */}
-//   <a
-//     href="tel:+13438873470"
-//     className="bg-white border border-gray-300 text-sky-800 px-4 py-3 rounded-lg font-semibold text-center transition-all duration-200 hover:bg-gray-100 hover:shadow-md flex items-center justify-center gap-2 whitespace-nowrap"
-//   >
-//     Call Now
-//     <svg className="w-4 h-4 text-sky-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-//     </svg>
-//   </a>
-
-//   </div>
-
-//   {/* Accepting New Patients Notice */}
-//   <div className="mt-5">
-//     <p className="text-sky-700 font-semibold text-sm">
-//       Accepting new patients.
-//     </p>
-//   </div>
-
-// </div>
-
-//         {/* Scroll Indicator */}
-//         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-//           <div className="flex flex-col items-center text-sky-200/70">
-//             <span className="text-xs mb-1">Scroll</span>
-//             <div className="w-5 h-8 border border-sky-300/40 rounded-full flex justify-center">
-//               <div className="w-0.5 h-2 bg-sky-300/60 rounded-full mt-2 animate-bounce"></div>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Services Preview */}
-//       <section id="services" className="py-16 bg-white">
-//         <div className="max-w-6xl mx-auto px-4">
-//           <div className="text-center mb-12">
-//             <h2 className="text-2xl font-bold text-sky-900 mb-3">
-//               Our Medical Services
-//             </h2>
-//             <div className="w-12 h-0.5 bg-sky-500 rounded-full mx-auto mb-4"></div>
-//             <p className="text-sky-700 max-w-3xl mx-auto text-sm sm:text-base  leading-relaxed">
-//               At St Mary Rideau Family Clinic, we know how important it is to get the care you need quickly.
-//               We are pleased to offer comprehensive family medicine services to better serve you and your family.
-//             </p>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//             {[
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-//                   </svg>
-//                 ),
-//                 title: 'Family Medicine',
-//                 description: 'Primary care for all ages from infants to seniors'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-//                   </svg>
-//                 ),
-//                 title: 'Chronic Care',
-//                 description: 'Diabetes, hypertension and heart condition management'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-//                   </svg>
-//                 ),
-//                 title: 'Preventive Health',
-//                 description: 'Regular check-ups, vaccinations and health screenings'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-//                   </svg>
-//                 ),
-//                 title: 'Sick Notes',
-//                 description: 'Same-day school, university and work sick notes'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-//                   </svg>
-//                 ),
-//                 title: 'STI Screening',
-//                 description: 'Confidential and accurate testing for sexually transmitted infections.'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-//                   </svg>
-//                 ),
-//                 title: 'WSIB Medical Forms',
-//                 description: 'WSIB medical assessments (FAF) and form 8 completion'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-//                   </svg>
-//                 ),
-//                 title: `Driver's Medical Exams`,
-//                 description: 'Same-day MTO drivers medical exam and form filling'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-//                   </svg>
-//                 ),
-//                 title: 'Counselling',
-//                 description: 'Professional health counselling to support your physical and emotional wellbeing.'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-//                   </svg>
-//                 ),
-//                 title: 'Treatments',
-//                 description: 'Comprehensive medical treatments tailored to your health needs.'
-//               }
-//             ].map((service, index) => (
-//               <div
-//                 key={index}
-//                 className="bg-white rounded-xl p-6 border border-sky-200 hover:border-sky-400 transition-all duration-200 text-center hover:shadow-lg hover:shadow-sky-100"
-//               >
-//                 <div className="text-sky-600 mb-4 flex justify-center">
-//                   {service.icon}
-//                 </div>
-//                 <h3 className="text-lg font-semibold text-sky-900 mb-2">{service.title}</h3>
-//                 <p className="text-sky-700 text-sm leading-relaxed">{service.description}</p>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Clinic Policy & Hours Section */}
-//       <section className="py-16 bg-white">
-//         <div className="max-w-6xl mx-auto px-4">
-//           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-//             {/* Clinic Policy */}
-//             <div>
-//               <h2 className="text-2xl font-bold text-sky-900 mb-6">Clinic Policy</h2>
-//               <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-sky-200">
-//                 <div className="space-y-6">
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">Appointment Policy</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         Please arrive 10 minutes early for your appointment. Late arrivals may be asked to reschedule.
-//                       </p>
-//                     </div>
-//                   </div>
-
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">Cancellation Policy</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         24-hour notice required for appointment cancellations. Multiple no-shows may result in discharge from the clinic.
-//                       </p>
-//                     </div>
-//                   </div>
-
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">Document Fees</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         Medical forms and documents not covered by OHIP may incur fees. Please inquire at reception.
-//                       </p>
-//                     </div>
-//                   </div>
-
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">New Patients</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         New patients are welcome! Please bring your health card and any relevant medical records.
-//                       </p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Hours of Operation */}
-//             <div>
-//               <h2 className="text-2xl font-bold text-sky-900 mb-6">Hours of Operation</h2>
-//               <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-sky-200">
-//                 <div className="space-y-4 mb-6">
-//                   {[
-//                     { day: 'Monday', hours: '10:00 AM - 7:00 PM' },
-//                     { day: 'Tuesday', hours: '10:00 AM - 7:00 PM' },
-//                     { day: 'Wednesday', hours: '10:00 AM - 7:00 PM' },
-//                     { day: 'Thursday', hours: '10:00 AM - 7:00 PM' },
-//                     { day: 'Friday', hours: '10:00 AM - 5:00 PM' },
-//                     { day: 'Saturday', hours: '10:00 AM - 3:00 PM' },
-//                     { day: 'Sunday', hours: 'Closed' }
-//                   ].map((schedule, index) => (
-//                     <div key={index} className="flex justify-between items-center py-2 border-b border-sky-100 last:border-b-0">
-//                       <span className={`font-medium ${schedule.day === 'Sunday' ? 'text-red-500' : 'text-sky-800'}`}>
-//                         {schedule.day}
-//                       </span>
-//                       <span className={schedule.hours === 'Closed' ? 'text-red-500 font-medium' : 'text-sky-700'}>
-//                         {schedule.hours}
-//                       </span>
-//                     </div>
-//                   ))}
-//                 </div>
-
-//                 {/* Emergency Notice */}
-//                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-//                   <div className="flex items-start space-x-3">
-//                     <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
-//                     </svg>
-//                     <div>
-//                       <h4 className="font-semibold text-red-800 text-sm mb-1">Emergency Care</h4>
-//                       <p className="text-red-700 text-xs">
-//                         For medical emergencies, please call 911 or visit your nearest hospital emergency department.
-//                       </p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Features Section */}
-//       <section className="py-16 bg-white">
-//         <div className="max-w-4xl mx-auto px-4">
-//           <div className="text-center mb-12">
-//             <h2 className="text-2xl font-bold text-sky-900 mb-3">
-//               Why Choose Our Clinic
-//             </h2>
-//             <div className="w-12 h-0.5 bg-sky-500 rounded-full mx-auto mb-4"></div>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-//             {[
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-//                   </svg>
-//                 ),
-//                 title: 'Same-Day Appointments',
-//                 description: 'Urgent care needs addressed promptly with flexible scheduling'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-//                   </svg>
-//                 ),
-//                 title: 'Experienced Physician',
-//                 description: 'Board-certified with extensive family medicine experience'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-//                   </svg>
-//                 ),
-//                 title: 'OHIP Billed Services',
-//                 description: 'Most medical services covered by Ontario Health Insurance'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-//                   </svg>
-//                 ),
-//                 title: 'Personalized Care',
-//                 description: 'Continuity of care with your dedicated family physician'
-//               }
-//             ].map((feature, index) => (
-//               <div key={index} className="flex items-start space-x-4">
-//                 <div className="flex-shrink-0 w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                   {feature.icon}
-//                 </div>
-//                 <div>
-//                   <h3 className="text-lg font-semibold text-sky-900 mb-1">{feature.title}</h3>
-//                   <p className="text-sky-700 text-sm">{feature.description}</p>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Final CTA */}
-//       <section className="py-16 bg-sky-50">
-//         <div className="max-w-2xl mx-auto px-4 text-center">
-//           <h2 className="text-2xl font-bold text-sky-800 mb-4">
-//             Start Your Health Journey
-//           </h2>
-//           <Link
-//             href="/appointment"
-//             className="inline-block bg-white text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-all duration-200 hover:shadow-lg"
-//           >
-//             Book Appointment
-//           </Link>
-//         </div>
-//       </section>
-//     </div>
-//   );
-// }
-
+// page.js - Fixed with better Announcements positioning and increased margins
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Announcements from "@/components/Announcements";
 
 export default function Home() {
-  // Testimonial slider state
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  // New doctor announcement state
-  const [showNewDoctorAnnouncement, setShowNewDoctorAnnouncement] =
-    useState(true);
+  const [showNewDoctorAnnouncement, setShowNewDoctorAnnouncement] = useState(true);
 
   const testimonials = [
     {
@@ -494,7 +36,6 @@ export default function Home() {
     },
   ];
 
-  // Auto-rotate testimonials
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -502,22 +43,11 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-    );
-  };
-
-  // Render star rating
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
       <svg
         key={i}
-        className={`w-4 h-4 ${i < rating ? "text-yellow-400 fill-current" : "text-gray-300"}`}
+        className={`w-4 h-4 ${i < rating ? "text-yellow-400 fill-current" : "text-gray-200"}`}
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -527,645 +57,201 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-start bg-gray-900 overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")',
-          }}
-        >
-          <div className="absolute inset-0 bg-sky-800/70"></div>
-        </div>
-
-        {/* Announcements Section - Top Left */}
-        {/* <div className="absolute top-2 left-4 right-auto z-20">
-          <Announcements />
-        </div> */}
-
-        {/* Announcements Section - Centered on Mobile, Top Left on Desktop */}
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 md:left-4 md:right-auto md:translate-x-0 z-20 w-[calc(100%-2rem)] md:w-auto">
-          <Announcements />
-        </div>
-
-        {/* New Doctor Announcement - Full Screen on Mobile */}
-        {showNewDoctorAnnouncement && (
-          <>
-            {/* Mobile Full Screen Overlay */}
-            <div className="fixed inset-0 z-50 md:hidden">
-              <div
-                className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-                onClick={() => setShowNewDoctorAnnouncement(false)}
-              ></div>
-              <div className="relative h-full flex items-center justify-center p-6">
-                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh] w-full">
-                  <div className="p-6">
-                    <div className="flex items-start justify-between gap-3 mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-emerald-100 rounded-full p-2">
-                          <svg
-                            className="w-6 h-6 text-emerald-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                            />
-                          </svg>
-                        </div>
-                        <h3 className="text-[11px] sm:text-xs md:text-lg font-bold text-emerald-800 uppercase tracking-wide">
-  Welcome New Physician!
-</h3>
-                      </div>
-                      <button
-                        onClick={() => setShowNewDoctorAnnouncement(false)}
-                        className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors bg-white/50 rounded-full p-1"
-                        aria-label="Close announcement"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-
-                    <div className="space-y-4 ">
-                      <p className="text-base text-sm text-gray-700 leading-relaxed">
-                        We're pleased to welcome{" "}
-                        <span className="font-semibold text-emerald-700">
-                          Dr. Babundo Okwechime
-                        </span>{" "}
-                        to the team at St. Mary Rideau Family Clinic!
-                      </p>
-
-                      <p className="text-base text-sm text-gray-600">
-                        Beginning{" "}
-                        <span className="font-semibold">April 27, 2026</span>,
-                        Dr. Okwechime will start seeing patients for initial
-                        "meet and greet" appointments.
-                      </p>
-
-                      <p className="text-base text-sm text-gray-600">
-                        Patients interested in joining his practice are
-                        encouraged to sign up on our waitlist for a chance to be
-                        rostered.
-                      </p>
-
-                      <p className="text-base text-sm text-emerald-700 italic">
-                        We look forward to introducing you to a dedicated and
-                        compassionate new member of our clinic.
-                      </p>
-                    </div>
-
-                    <div className="mt-6">
-                      <Link
-                        href="/appointment"
-                        className="block w-full text-center bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-emerald-700 hover:to-teal-700 transition-all duration-200 shadow-md"
-                      >
-                        Book Appointment
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop Version - Top Right Corner */}
-            <div className="hidden md:block absolute top-2 right-4 z-20 max-w-sm lg:max-w-md xl:max-w-lg animate-slide-in-right">
-              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border-l-4 border-emerald-500 rounded-lg shadow-xl overflow-hidden">
-                <div className="p-3 sm:p-4">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="bg-emerald-100 rounded-full p-1">
-                          <svg
-                            className="w-4 h-4 text-emerald-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                            />
-                          </svg>
-                        </div>
-                        <h3 className="text-xs sm:text-sm font-bold text-emerald-800 uppercase tracking-wide">
-                          Welcome New Physician!
-                        </h3>
-                      </div>
-                      <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-3">
-                        We're pleased to welcome{" "}
-                        <span className="font-semibold text-emerald-700">
-                          Dr. Babundo Okwechime
-                        </span>{" "}
-                        to the team at St. Mary Rideau Family Clinic!
-                      </p>
-                      <p className="text-xs text-gray-600 mb-3">
-                        Beginning{" "}
-                        <span className="font-semibold">April 27, 2026</span>,
-                        Dr. Okwechime will start seeing patients for initial
-                        "meet and greet" appointments.
-                      </p>
-                      <p className="text-xs text-gray-600 mb-3">
-                        Patients interested in joining his practice are
-                        encouraged to sign up on our waitlist for a chance to be
-                        rostered.
-                      </p>
-                      <p className="text-xs text-emerald-700 italic">
-                        We look forward to introducing you to a dedicated and
-                        compassionate new member of our clinic.
-                      </p>
-                      <div className="mt-3">
-                        <Link
-                          href="/appointment"
-                          className="text-xs font-medium text-emerald-600 hover:text-emerald-700 transition-colors flex items-center gap-1"
-                        >
-                          Book Appointment
-                          <svg
-                            className="w-3 h-3"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => setShowNewDoctorAnnouncement(false)}
-                      className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors"
-                      aria-label="Close announcement"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
+    <div className="min-h-screen bg-white">
+      {/* New Doctor Announcement Modal - Mobile */}
+      {showNewDoctorAnnouncement && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setShowNewDoctorAnnouncement(false)}></div>
+          <div className="relative h-full flex items-center justify-center p-6">
+            <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden">
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                       </svg>
-                    </button>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900">New Physician</h3>
+                      <p className="text-xs text-gray-500">Welcome Dr. Okwechime</p>
+                    </div>
                   </div>
+                  <button onClick={() => setShowNewDoctorAnnouncement(false)} className="text-gray-400 hover:text-gray-600">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">
+                  Dr. Babundo Okwechime joins our team starting <span className="font-semibold">April 27, 2026</span>.
+                  Sign up on our waitlist to be rostered with him.
+                </p>
+                <Link href="/waitlist" className="block w-full text-center bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-colors">
+                  Join Waitlist
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Desktop Announcement Banner */}
+      {/* {showNewDoctorAnnouncement && (
+        <div className="hidden md:block bg-red-50 border-b border-red-200">
+          <div className="max-w-7xl mx-auto px-8 lg:px-12 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                  <span className="text-sm font-medium text-gray-900">Welcome Dr. Babundo Okwechime!</span>
+                </div>
+                <p className="text-sm text-gray-600">Starting April 27, 2026 — accepting new patients on waitlist</p>
+                <Link href="/waitlist" className="text-sm font-semibold text-red-600 hover:text-red-700 transition-colors">
+                  Join Waitlist →
+                </Link>
+              </div>
+              <button onClick={() => setShowNewDoctorAnnouncement(false)} className="text-gray-400 hover:text-gray-600">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )} */}
+
+      {/* Hero Section with Announcements - Fixed Positioning */}
+      <section className="relative bg-white pt-8">
+        {/* Announcements Component - Positioned without covering content */}
+        <div className="relative z-20 max-w-7xl mx-auto px-8 lg:px-12 mb-1">
+          <Announcements />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-8 lg:px-12 py-12 lg:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Content */}
+            <div>
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-700 text-sm font-medium mb-6">
+                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                Accepting New Patients
+              </div>
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight tracking-tight mb-6">
+                Family Doctor &<br />
+                Walk-In Clinic in<br />
+                <span className="text-red-600">Downtown Ottawa</span>
+              </h1>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                Same-day visits, online booking, and compassionate care for you and your family. No phone wait times.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/appointment"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 transition-all duration-200 shadow-sm hover:shadow-md"
+                >
+                  Book Appointment
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <a
+                  href="tel:+13438873470"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Call (343) 224-4070
+                </a>
+              </div>
+              <div className="flex items-center space-x-6 mt-8 pt-4 border-t border-gray-100">
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-sm text-gray-600">Same-day appointments</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span className="text-sm text-gray-600">OHIP covered</span>
                 </div>
               </div>
             </div>
-          </>
-        )}
 
-        {/* Main Content Box - Pushed down to avoid overlap */}
-        <div className="relative z-10 max-w-md mx-4 mb-16 lg:mx-16 xl:mx-24 bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-xl mt-40 lg:mt-44 xl:mt-48">
-          {/* Header */}
-          <div className="mb-4">
-            <h1 className="hero-heading text-3xl lg:text-3xl font-bold text-sky-800 mb-2 leading-tight">
-              Family Doctor & Walk-In Clinic in Downtown Ottawa
-            </h1>
-            <div
-              className="hero-heading w-16 h-1 bg-sky-800 rounded-full mb-3"
-              style={{ animationDelay: "0.25s" }}
-            ></div>
-            <p className="hero-sub text-gray-600 text-sm lg:text-base">
-              Same-day visits. Online booking. No phone wait.
-            </p>
-          </div>
-
-          {/* Call-to-Action Buttons */}
-          <div className="hero-cta flex flex-col sm:flex-row gap-3 mt-6">
-            <Link
-              href="/appointment"
-              className="btn-breathe bg-gradient-to-r from-sky-600 to-sky-700 text-white px-4 py-3 rounded-lg font-semibold text-center transition-all duration-200 hover:bg-sky-900 hover:shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
-            >
-              Book Appointment
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
-            <a
-              href="tel:+13438873470"
-              className="bg-white border border-gray-300 text-sky-800 px-4 py-3 rounded-lg font-semibold text-center transition-all duration-200 hover:bg-gray-100 hover:shadow-md flex items-center justify-center gap-2 whitespace-nowrap"
-            >
-              Call Now
-              <svg
-                className="w-4 h-4 text-sky-800"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
-          </div>
-
-          {/* Accepting New Patients Notice */}
-          <div className="mt-5">
-            <p className="text-sky-700 font-semibold text-sm">
-              Accepting new patients.
-            </p>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-          <div className="flex flex-col items-center text-sky-200/70">
-            <span className="text-xs mb-1">Scroll</span>
-            <div className="w-5 h-8 border border-sky-300/40 rounded-full flex justify-center">
-              <div className="w-0.5 h-2 bg-sky-300/60 rounded-full mt-2 animate-bounce"></div>
+            {/* Right Content - Stats Cards */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <div className="text-3xl font-bold text-red-600 mb-1">10+</div>
+                <div className="text-sm text-gray-600">Years of Service</div>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <div className="text-3xl font-bold text-red-600 mb-1">5k+</div>
+                <div className="text-sm text-gray-600">Happy Patients</div>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <div className="text-3xl font-bold text-red-600 mb-1">24/7</div>
+                <div className="text-sm text-gray-600">Online Booking</div>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <div className="text-3xl font-bold text-red-600 mb-1">0</div>
+                <div className="text-sm text-gray-600">Phone Wait Time</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section id="services" className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-sky-900 mb-3">
-              Our Medical Services
-            </h2>
-            <div className="w-12 h-0.5 bg-sky-500 rounded-full mx-auto mb-4"></div>
-            <p className="text-sky-700 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
-              At St Mary Rideau Family Clinic, we know how important it is to
-              get the care you need quickly. We are pleased to offer
-              comprehensive family medicine services to better serve you and
-              your family.
+      {/* Services Section - Increased margins */}
+      <section className="bg-red-50/30 py-20">
+        <div className="max-w-6xl mx-auto px-8 lg:px-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Medical Services</h2>
+            <div className="w-12 h-1 bg-red-600 rounded-full mx-auto mb-6"></div>
+            <p className="text-gray-600">
+              Comprehensive family medicine services to keep you and your family healthy
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                ),
-                title: "Family Medicine",
-                description:
-                  "Primary care for all ages from infants to seniors",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    />
-                  </svg>
-                ),
-                title: "Chronic Care",
-                description:
-                  "Diabetes, hypertension and heart condition management",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                    />
-                  </svg>
-                ),
-                title: "Preventive Health",
-                description:
-                  "Regular check-ups, vaccinations and health screenings",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                ),
-                title: "Sick Notes",
-                description: "Same-day school, university and work sick notes",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                    />
-                  </svg>
-                ),
-                title: "STI Screening",
-                description:
-                  "Confidential and accurate testing for sexually transmitted infections.",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                ),
-                title: "WSIB Medical Forms",
-                description:
-                  "WSIB medical assessments (FAF) and form 8 completion",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
-                    />
-                  </svg>
-                ),
-                title: `Driver's Medical Exams`,
-                description:
-                  "Same-day MTO drivers medical exam and form filling",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                    />
-                  </svg>
-                ),
-                title: "Counselling",
-                description:
-                  "Professional health counselling to support your physical and emotional wellbeing.",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-12 h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                    />
-                  </svg>
-                ),
-                title: "Treatments",
-                description:
-                  "Comprehensive medical treatments tailored to your health needs.",
-              },
+              { icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z", title: "Family Medicine", description: "Primary care for all ages from infants to seniors" },
+              { icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z", title: "Chronic Care", description: "Diabetes, hypertension and heart condition management" },
+              { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title: "Preventive Health", description: "Regular check-ups, vaccinations and health screenings" },
+              { icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z", title: "Sick Notes", description: "Same-day school, university and work sick notes" },
+              { icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4", title: "STI Screening", description: "Confidential and accurate testing" },
+              { icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z", title: "WSIB Forms", description: "WSIB medical assessments and form 8 completion" },
+              { icon: "M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z", title: "Driver's Medicals", description: "Same-day MTO drivers medical exam" },
+              { icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10", title: "Counselling", description: "Professional health counselling services" },
+              { icon: "M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z", title: "Treatments", description: "Comprehensive medical treatments" },
             ].map((service, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 border border-sky-200 hover:border-sky-400 transition-all duration-200 text-center hover:shadow-lg hover:shadow-sky-100"
-              >
-                <div className="text-sky-600 mb-4 flex justify-center">
-                  {service.icon}
+              <div key={index} className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:scale-105 transition-all duration-300">
+                  <svg className="w-6 h-6 text-red-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
+                  </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-sky-900 mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sky-700 text-sm leading-relaxed">
-                  {service.description}
-                </p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <p className="text-gray-600 text-sm">{service.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Clinic Policy & Hours Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
+      {/* Hours & Location Section - Increased margins */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Clinic Policy */}
             <div>
-              <h2 className="text-2xl font-bold text-sky-900 mb-6">
-                Clinic Policy
-              </h2>
-              <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-sky-200">
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sky-900 mb-1">
-                        Appointment Policy
-                      </h3>
-                      <p className="text-sky-700 text-sm">
-                        Please arrive 10 minutes early for your appointment.
-                        Late arrivals may be asked to reschedule.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sky-900 mb-1">
-                        Cancellation Policy
-                      </h3>
-                      <p className="text-sky-700 text-sm">
-                        24-hour notice required for appointment cancellations.
-                        Multiple no-shows may result in discharge from the
-                        clinic.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sky-900 mb-1">
-                        Document Fees
-                      </h3>
-                      <p className="text-sky-700 text-sm">
-                        Medical forms and documents not covered by OHIP may
-                        incur fees. Please inquire at reception.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sky-900 mb-1">
-                        New Patients
-                      </h3>
-                      <p className="text-sky-700 text-sm">
-                        New patients are welcome! Please bring your health card
-                        and any relevant medical records.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Hours of Operation */}
-            <div>
-              <h2 className="text-2xl font-bold text-sky-900 mb-6">
-                Hours of Operation
-              </h2>
-              <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-sky-200">
-                <div className="space-y-4 mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Hours of Operation</h2>
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="space-y-3">
                   {[
                     { day: "Monday", hours: "10:00 AM - 7:00 PM" },
                     { day: "Tuesday", hours: "10:00 AM - 7:00 PM" },
@@ -1175,52 +261,47 @@ export default function Home() {
                     { day: "Saturday", hours: "10:00 AM - 3:00 PM" },
                     { day: "Sunday", hours: "Closed" },
                   ].map((schedule, index) => (
-                    <div
-                      key={index}
-                      className="flex justify-between items-center py-2 border-b border-sky-100 last:border-b-0"
-                    >
-                      <span
-                        className={`font-medium ${schedule.day === "Sunday" ? "text-red-500" : "text-sky-800"}`}
-                      >
-                        {schedule.day}
-                      </span>
-                      <span
-                        className={
-                          schedule.hours === "Closed"
-                            ? "text-red-500 font-medium"
-                            : "text-sky-700"
-                        }
-                      >
+                    <div key={index} className="flex justify-between items-center py-2 border-b border-gray-200 last:border-0">
+                      <span className="font-medium text-gray-900">{schedule.day}</span>
+                      <span className={schedule.hours === "Closed" ? "text-red-600 font-medium" : "text-gray-600"}>
                         {schedule.hours}
                       </span>
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
 
-                {/* Emergency Notice */}
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Visit Us</h2>
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="flex items-start space-x-3 mb-4">
+                  <svg className="w-5 h-5 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <div>
+                    <p className="text-gray-900 font-medium">1280 Trim Rd, Unit B,</p>
+                    <p className="text-gray-600">Orleans, ON K4A 3N3</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3 mb-6">
+                  <svg className="w-5 h-5 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <div>
+                    <p className="text-gray-900 font-medium">Call Us</p>
+                    <a href="tel:3438873470" className="text-red-600 hover:text-red-700 transition-colors">(343) 224-4070</a>
+                  </div>
+                </div>
+                <div className="bg-red-50 rounded-xl p-4">
                   <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"
-                      />
+                    <svg className="w-5 h-5 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
                     </svg>
                     <div>
-                      <h4 className="font-semibold text-red-800 text-sm mb-1">
-                        Emergency Care
-                      </h4>
-                      <p className="text-red-700 text-xs">
-                        For medical emergencies, please call 911 or visit your
-                        nearest hospital emergency department.
-                      </p>
+                      <h4 className="font-semibold text-red-800 text-sm">Emergency Care</h4>
+                      <p className="text-red-700 text-xs mt-0.5">For emergencies, call 911 or visit your nearest hospital emergency department.</p>
                     </div>
                   </div>
                 </div>
@@ -1230,109 +311,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
+      {/* Testimonials Section - Increased margins */}
+      <section className="py-20 bg-red-50/30">
+        <div className="max-w-4xl mx-auto px-8 lg:px-12">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-sky-900 mb-3">
-              Why Choose Our Clinic
-            </h2>
-            <div className="w-12 h-0.5 bg-sky-500 rounded-full mx-auto mb-4"></div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Patients Say</h2>
+            <div className="w-12 h-1 bg-red-600 rounded-full mx-auto"></div>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
+            <div className="flex justify-center mb-6">
+              <div className="flex space-x-1">
+                {renderStars(testimonials[currentTestimonial].rating)}
+              </div>
+            </div>
+            <p className="text-gray-700 text-center text-lg leading-relaxed mb-8">
+              "{testimonials[currentTestimonial].content}"
+            </p>
+            <div className="text-center">
+              <p className="font-semibold text-gray-900">{testimonials[currentTestimonial].name}</p>
+              <p className="text-sm text-gray-500">{testimonials[currentTestimonial].role}</p>
+            </div>
+            <div className="flex justify-center space-x-2 mt-8">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                    index === currentTestimonial ? "w-6 bg-red-600" : "bg-gray-300 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Clinic Policies Section - Increased margins */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Clinic Policies</h2>
+            <div className="w-12 h-1 bg-red-600 rounded-full mx-auto mb-6"></div>
+            <p className="text-gray-600">Important information to know before your visit</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
+              { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", title: "Appointment Policy", description: "Please arrive 10 minutes early. Late arrivals may need to reschedule." },
+              { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title: "Cancellation Policy", description: "24-hour notice required. Multiple no-shows may result in discharge." },
+              { icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z", title: "Document Fees", description: "Fees may apply for forms not covered by OHIP. Inquire at reception." },
+              { icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z", title: "New Patients", description: "Bring your health card and any relevant medical records." },
+            ].map((policy, index) => (
+              <div key={index} className="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={policy.icon} />
                   </svg>
-                ),
-                title: "Same-Day Appointments",
-                description:
-                  "Urgent care needs addressed promptly with flexible scheduling",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                    />
-                  </svg>
-                ),
-                title: "Experienced Physician",
-                description:
-                  "Board-certified with extensive family medicine experience",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                    />
-                  </svg>
-                ),
-                title: "OHIP Billed Services",
-                description:
-                  "Most medical services covered by Ontario Health Insurance",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                    />
-                  </svg>
-                ),
-                title: "Personalized Care",
-                description:
-                  "Continuity of care with your dedicated family physician",
-              },
-            ].map((feature, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-                  {feature.icon}
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-sky-900 mb-1">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sky-700 text-sm">{feature.description}</p>
-                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">{policy.title}</h3>
+                <p className="text-gray-600 text-sm">{policy.description}</p>
               </div>
             ))}
           </div>
@@ -1340,22 +379,47 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-sky-50">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-sky-800 mb-4">
-            Start Your Health Journey
-          </h2>
-          <Link
-            href="/appointment"
-            className="inline-block bg-white text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-all duration-200 hover:shadow-lg"
-          >
-            Book Appointment
-          </Link>
+      <section className="bg-red-600 py-16">
+        <div className="max-w-3xl mx-auto px-8 lg:px-12 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to book your appointment?</h2>
+          <p className="text-white/90 mb-8">Join thousands of satisfied patients who trust us with their family's health.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/appointment"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-red-600 font-semibold hover:bg-gray-100 transition-all duration-200 shadow-md"
+            >
+              Book Appointment
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <a
+              href="tel:+13438873470"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-white/30 text-white font-semibold hover:bg-white/10 transition-all duration-200"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              Call Now
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Add this CSS to your global styles or component */}
       <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
         @keyframes slideInRight {
           from {
             opacity: 0;
@@ -1366,435 +430,10 @@ export default function Home() {
             transform: translateX(0);
           }
         }
-        .animate-slide-in-right {
+        .animate-slideInRight {
           animation: slideInRight 0.3s ease-out;
         }
       `}</style>
     </div>
   );
 }
-
-// "use client";
-
-// import Link from 'next/link';
-// import { useState, useEffect } from 'react';
-// import Announcements from '@/components/Announcements';
-
-// export default function Home() {
-//   // Testimonial slider state
-//   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-//   const testimonials = [
-//     {
-//       id: 1,
-//       name: 'Sarah Johnson',
-//       role: 'Patient',
-//       content: 'Dr. Fagbolagun has been our family physician for over 2 years. The care and attention we receive is exceptional. Same-day appointments have been a lifesaver for our busy family.',
-//       rating: 5
-//     },
-//     {
-//       id: 2,
-//       name: 'Michael Chen',
-//       role: 'Patient',
-//       content: 'The clinic is modern, clean, and the staff is very professional. I appreciate how thorough Dr. Fagbolagun is during examinations. Highly recommended!',
-//       rating: 5
-//     },
-//     {
-//       id: 3,
-//       name: 'The Williams Family',
-//       role: 'Family Patients',
-//       content: 'From our toddler to grandparents, everyone receives excellent care. The physician takes time to explain everything clearly. Truly a family-focused practice.',
-//       rating: 5
-//     }
-//   ];
-
-//   // Auto-rotate testimonials
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-//     }, 5000);
-//     return () => clearInterval(interval);
-//   }, [testimonials.length]);
-
-//   const nextTestimonial = () => {
-//     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-//   };
-
-//   const prevTestimonial = () => {
-//     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-//   };
-
-//   // Render star rating
-//   const renderStars = (rating) => {
-//     return Array.from({ length: 5 }, (_, i) => (
-//       <svg
-//         key={i}
-//         className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
-//         fill="currentColor"
-//         viewBox="0 0 20 20"
-//       >
-//         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-//       </svg>
-//     ));
-//   };
-
-//   return (
-//     <div className="min-h-screen">
-//       {/* Hero Section */}
-
-//       <section className="relative min-h-screen flex items-center justify-start bg-white overflow-hidden">
-
-//   {/* Announcements Section */}
-//   <div className="absolute top-2 left-4 right-4 z-20">
-//     <Announcements />
-//   </div>
-
-//   {/* Main Content */}
-//   <div className="relative z-10 max-w-2xl mx-4 lg:mx-16 xl:mx-24 mt-40 lg:mt-44 xl:mt-48">
-
-//     {/* Header Text */}
-//     <h1 className="text-3xl lg:text-4xl font-extrabold text-sky-800 mb-4 leading-tight">
-//       Family Doctor & Walk-In Clinic in Downtown Ottawa
-//     </h1>
-
-//     {/* Subtext */}
-//     <p className="text-gray-600 text-lg mb-6">
-//       Same-day visits. Online booking. No phone wait.
-//     </p>
-
-//     {/* CTA Buttons */}
-//     <div className="flex flex-col sm:flex-row gap-4 mb-4">
-
-//       {/* Book Appointment - Blue */}
-//       <Link
-//         href="/book-appointment"
-//         className="bg-sky-700 text-white px-8 py-4 rounded-lg font-semibold text-center text-lg transition-all duration-200 hover:bg-sky-900 shadow-md"
-//       >
-//         Book Appointment
-//       </Link>
-
-//       {/* Call Now - White */}
-//       <a
-//         href="tel:+1234567890"
-//         className="border border-gray-300 text-sky-900 px-8 py-4 rounded-lg font-semibold text-center text-lg transition-all duration-200 hover:bg-sky-100 shadow-sm"
-//       >
-//         Call Now
-//       </a>
-
-//     </div>
-
-//     {/* Accepting New Patients */}
-//     <p className="text-sky-800 font-medium text-base">
-//       Accepting new patients.
-//     </p>
-
-//   </div>
-
-// </section>
-
-//       {/* Services Preview */}
-//       <section id="services" className="py-16 bg-sky-50">
-//         <div className="max-w-6xl mx-auto px-4">
-//           <div className="text-center mb-12">
-//             <h2 className="text-2xl font-bold text-sky-900 mb-3">
-//               Our Medical Services
-//             </h2>
-//             <div className="w-12 h-0.5 bg-sky-500 rounded-full mx-auto mb-4"></div>
-//             <p className="text-sky-700 max-w-3xl mx-auto text-sm sm:text-base  leading-relaxed">
-//               At St Mary Rideau Family Clinic, we know how important it is to get the care you need quickly.
-//               We are pleased to offer comprehensive family medicine services to better serve you and your family.
-//             </p>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//             {[
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-//                   </svg>
-//                 ),
-//                 title: 'Family Medicine',
-//                 description: 'Primary care for all ages from infants to seniors'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-//                   </svg>
-//                 ),
-//                 title: 'Chronic Care',
-//                 description: 'Diabetes, hypertension and heart condition management'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-//                   </svg>
-//                 ),
-//                 title: 'Preventive Health',
-//                 description: 'Regular check-ups, vaccinations and health screenings'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-//                   </svg>
-//                 ),
-//                 title: 'Sick Notes',
-//                 description: 'Same-day school, university and work sick notes'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-//                   </svg>
-//                 ),
-//                 title: 'STI Screening',
-//                 description: 'Confidential and accurate testing for sexually transmitted infections.'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-//                   </svg>
-//                 ),
-//                 title: 'WSIB Medical Forms',
-//                 description: 'WSIB medical assessments (FAF) and form 8 completion'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-//                   </svg>
-//                 ),
-//                 title: `Driver's Medical Exams`,
-//                 description: 'Same-day MTO drivers medical exam and form filling'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-//                   </svg>
-//                 ),
-//                 title: 'Counselling',
-//                 description: 'Professional health counselling to support your physical and emotional wellbeing.'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-//                   </svg>
-//                 ),
-//                 title: 'Treatments',
-//                 description: 'Comprehensive medical treatments tailored to your health needs.'
-//               }
-//             ].map((service, index) => (
-//               <div
-//                 key={index}
-//                 className="bg-white rounded-xl p-6 border border-sky-200 hover:border-sky-400 transition-all duration-200 text-center hover:shadow-lg hover:shadow-sky-100"
-//               >
-//                 <div className="text-sky-600 mb-4 flex justify-center">
-//                   {service.icon}
-//                 </div>
-//                 <h3 className="text-lg font-semibold text-sky-900 mb-2">{service.title}</h3>
-//                 <p className="text-sky-700 text-sm leading-relaxed">{service.description}</p>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Clinic Policy & Hours Section */}
-//       <section className="py-16 bg-sky-50">
-//         <div className="max-w-6xl mx-auto px-4">
-//           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-//             {/* Clinic Policy */}
-//             <div>
-//               <h2 className="text-2xl font-bold text-sky-900 mb-6">Clinic Policy</h2>
-//               <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-sky-200">
-//                 <div className="space-y-6">
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">Appointment Policy</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         Please arrive 10 minutes early for your appointment. Late arrivals may be asked to reschedule.
-//                       </p>
-//                     </div>
-//                   </div>
-
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">Cancellation Policy</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         24-hour notice required for appointment cancellations. Multiple no-shows may result in discharge from the clinic.
-//                       </p>
-//                     </div>
-//                   </div>
-
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">Document Fees</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         Medical forms and documents not covered by OHIP may incur fees. Please inquire at reception.
-//                       </p>
-//                     </div>
-//                   </div>
-
-//                   <div className="flex items-start space-x-4">
-//                     <div className="flex-shrink-0 w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-//                       </svg>
-//                     </div>
-//                     <div>
-//                       <h3 className="font-semibold text-sky-900 mb-1">New Patients</h3>
-//                       <p className="text-sky-700 text-sm">
-//                         New patients are welcome! Please bring your health card and any relevant medical records.
-//                       </p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Hours of Operation */}
-//             <div>
-//               <h2 className="text-2xl font-bold text-sky-900 mb-6">Hours of Operation</h2>
-//               <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-sky-200">
-//                 <div className="space-y-4 mb-6">
-//                   {[
-//                     { day: 'Monday', hours: '4:00 PM - 8:00 PM' },
-//                     { day: 'Tuesday', hours: '10:00 AM - 7:00 PM' },
-//                     { day: 'Wednesday', hours: '4:00 PM - 8:00 PM' },
-//                     { day: 'Thursday', hours: '10:00 AM - 7:00 PM' },
-//                     // { day: 'Friday', hours: '10:00 AM - 7:00 PM' },
-//                     { day: 'Saturday', hours: '10:00 AM - 3:00 PM' },
-//                     { day: 'Sunday', hours: 'Closed' }
-//                   ].map((schedule, index) => (
-//                     <div key={index} className="flex justify-between items-center py-2 border-b border-sky-100 last:border-b-0">
-//                       <span className={`font-medium ${schedule.day === 'Sunday' ? 'text-red-500' : 'text-sky-800'}`}>
-//                         {schedule.day}
-//                       </span>
-//                       <span className={schedule.hours === 'Closed' ? 'text-red-500 font-medium' : 'text-sky-700'}>
-//                         {schedule.hours}
-//                       </span>
-//                     </div>
-//                   ))}
-//                 </div>
-
-//                 {/* Emergency Notice */}
-//                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-//                   <div className="flex items-start space-x-3">
-//                     <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
-//                     </svg>
-//                     <div>
-//                       <h4 className="font-semibold text-red-800 text-sm mb-1">Emergency Care</h4>
-//                       <p className="text-red-700 text-xs">
-//                         For medical emergencies, please call 911 or visit your nearest hospital emergency department.
-//                       </p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Features Section */}
-//       <section className="py-16 bg-sky-100">
-//         <div className="max-w-4xl mx-auto px-4">
-//           <div className="text-center mb-12">
-//             <h2 className="text-2xl font-bold text-sky-900 mb-3">
-//               Why Choose Our Clinic
-//             </h2>
-//             <div className="w-12 h-0.5 bg-sky-500 rounded-full mx-auto mb-4"></div>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-//             {[
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-//                   </svg>
-//                 ),
-//                 title: 'Same-Day Appointments',
-//                 description: 'Urgent care needs addressed promptly with flexible scheduling'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-//                   </svg>
-//                 ),
-//                 title: 'Experienced Physician',
-//                 description: 'Board-certified with extensive family medicine experience'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-//                   </svg>
-//                 ),
-//                 title: 'OHIP Billed Services',
-//                 description: 'Most medical services covered by Ontario Health Insurance'
-//               },
-//               {
-//                 icon: (
-//                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-//                   </svg>
-//                 ),
-//                 title: 'Personalized Care',
-//                 description: 'Continuity of care with your dedicated family physician'
-//               }
-//             ].map((feature, index) => (
-//               <div key={index} className="flex items-start space-x-4">
-//                 <div className="flex-shrink-0 w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center text-sky-600">
-//                   {feature.icon}
-//                 </div>
-//                 <div>
-//                   <h3 className="text-lg font-semibold text-sky-900 mb-1">{feature.title}</h3>
-//                   <p className="text-sky-700 text-sm">{feature.description}</p>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Final CTA */}
-//       <section className="py-16 bg-sky-600">
-//         <div className="max-w-2xl mx-auto px-4 text-center">
-//           <h2 className="text-2xl font-bold text-white mb-4">
-//             Start Your Health Journey
-//           </h2>
-//           <Link
-//             href="/waitlist"
-//             className="inline-block bg-white text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-all duration-200 hover:shadow-lg"
-//           >
-//             Join the waitlist
-//           </Link>
-//         </div>
-//       </section>
-//     </div>
-//   );
-// }

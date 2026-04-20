@@ -99,14 +99,14 @@ export async function POST(request) {
         const emailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <h1 style="color: #0284c7; margin-bottom: 5px;">St Mary Rideau Clinic</h1>
+          <h1 style="color: #0284c7; margin-bottom: 5px;">Trim Medical Centre</h1>
         </div>
         <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px;">
           <h2 style="color: #1e293b; margin-top: 0;">${safeSubject}</h2>
           <div style="color: #475569; font-size: 15px; line-height: 1.7;">${safeMessage}</div>
         </div>
         <p style="color: #94a3b8; font-size: 12px; text-align: center; margin-top: 24px;">
-          St Mary Rideau Clinic — This email was sent to you because you are on our waitlist.
+          Trim Medical Centre — This email was sent to you because you are on our waitlist.
         </p>
       </div>
     `;

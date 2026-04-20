@@ -50,7 +50,7 @@ export default function BroadcastHistoryTab() {
                 <select
                     value={typeFilter}
                     onChange={(e) => setTypeFilter(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 >
                     <option value="all">All Types</option>
                     <option value="waitlist">Waitlist</option>
@@ -60,7 +60,7 @@ export default function BroadcastHistoryTab() {
 
             {loading ? (
                 <div className="text-center py-12 text-gray-500">
-                    <svg className="animate-spin h-8 w-8 mx-auto mb-3 text-sky-500" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-8 w-8 mx-auto mb-3 text-red-600" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
@@ -86,10 +86,11 @@ export default function BroadcastHistoryTab() {
                                 >
                                     <div className="flex items-center gap-3 min-w-0">
                                         <span
-                                            className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium whitespace-nowrap ${msg.type === 'waitlist'
+                                            className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium whitespace-nowrap ${
+                                                msg.type === 'waitlist'
                                                     ? 'bg-purple-100 text-purple-700'
                                                     : 'bg-blue-100 text-blue-700'
-                                                }`}
+                                            }`}
                                         >
                                             {msg.type === 'waitlist' ? 'Waitlist' : 'Appointment'}
                                         </span>
@@ -104,7 +105,7 @@ export default function BroadcastHistoryTab() {
                                         <div className="flex items-center gap-2 text-xs">
                                             <span className="text-green-600 font-medium">{msg.sent} sent</span>
                                             {msg.failed > 0 && (
-                                                <span className="text-red-500 font-medium">{msg.failed} failed</span>
+                                                <span className="text-red-600 font-medium">{msg.failed} failed</span>
                                             )}
                                         </div>
                                         <svg

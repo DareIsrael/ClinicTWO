@@ -44,12 +44,12 @@ export async function POST(req) {
     try {
       await sendEmail({
         to: user.email,
-        subject: 'Password Reset Request - St Mary Rideau Clinic',
+        subject: 'Password Reset Request - Trim Medical Centre',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #0369a1;">Password Reset Request</h2>
             <p>Hello ${user.firstName},</p>
-            <p>You requested a password reset for your St Mary Rideau Clinic account.</p>
+            <p>You requested a password reset for your Trim Medical Centre account.</p>
             <p>Click the button below to reset your password:</p>
             <div style="text-align: center; margin: 30px 0;">
               <a href="${resetUrl}" 
@@ -62,7 +62,7 @@ export async function POST(req) {
             <p>If you didn't request this reset, please ignore this email.</p>
             <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 20px 0;">
             <p style="color: #666; font-size: 14px;">
-              St Mary Rideau Clinic<br>
+              Trim Medical Centre<br>
               Your Health Partner
             </p>
           </div>

@@ -46,7 +46,7 @@ export default function WaitingListConfirmation() {
           {/* Tiny Footer */}
           <div className="mt-3 pt-3 border-t border-gray-100">
             <p className="text-xs text-gray-400 text-center">
-              St Mary Rideau Clinic
+              Trim Medical Centre
             </p>
           </div>
         </div>

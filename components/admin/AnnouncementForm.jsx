@@ -47,7 +47,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
             type="text"
             value={formData.title}
             onChange={(e) => setFormData({...formData, title: e.target.value})}
-            className="w-full text-gray-700 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="w-full text-gray-700 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
             required
           />
         </div>
@@ -59,7 +59,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
           <textarea
             value={formData.content}
             onChange={(e) => setFormData({...formData, content: e.target.value})}
-            className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
             rows="4"
             required
           />
@@ -73,7 +73,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
             <select
               value={formData.type}
               onChange={(e) => setFormData({...formData, type: e.target.value})}
-              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
+              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
             >
               <option value="info">Info</option>
               <option value="update">Update</option>
@@ -90,7 +90,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
             <select
               value={formData.priority}
               onChange={(e) => setFormData({...formData, priority: parseInt(e.target.value)})}
-              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
+              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
             >
               <option value="1">1 - Highest</option>
               <option value="2">2</option>
@@ -108,7 +108,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
               type="date"
               value={formData.endDate}
               onChange={(e) => setFormData({...formData, endDate: e.target.value})}
-              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
+              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
             />
           </div>
         </div>
@@ -119,7 +119,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
             id="isActive"
             checked={formData.isActive}
             onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
-            className="h-4 w-4 text-sky-600 focus:ring-sky-500 border-gray-300 rounded"
+            className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
           />
           <label htmlFor="isActive" className="ml-2 text-sm text-gray-700">
             Active (visible on homepage)
@@ -137,7 +137,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 text-sm font-medium text-white bg-sky-600 rounded-lg hover:bg-sky-700 transition duration-200 disabled:opacity-50"
+            className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition duration-200 disabled:opacity-50"
           >
             {loading ? 'Saving...' : announcement ? 'Update' : 'Create'}
           </button>

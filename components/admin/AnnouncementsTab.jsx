@@ -91,7 +91,7 @@ export default function AnnouncementsTab() {
         </div>
         <button
           onClick={() => setIsCreating(true)}
-          className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-sky-700 transition duration-300"
+          className="border border-red-600 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-50 transition duration-300"
         >
           + New Announcement
         </button>
@@ -120,7 +120,7 @@ export default function AnnouncementsTab() {
 
       {loading ? (
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
           <p className="mt-2 text-gray-600">Loading announcements...</p>
         </div>
       ) : (

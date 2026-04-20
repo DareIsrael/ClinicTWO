@@ -47,7 +47,6 @@ export default function SlotManagement() {
   const formatDisplayDate = (dateString) => {
     if (!dateString) return '';
     
-    // If it's a YYYY-MM-DD string, format it nicely
     if (typeof dateString === 'string' && dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
       const [year, month, day] = dateString.split('-');
       const dateObj = new Date(year, month - 1, day);
@@ -76,7 +75,6 @@ export default function SlotManagement() {
     try {
       setAllSlotsLoading(true);
       
-      // Set default date range (today to 30 days from now)
       const today = getTodayDate();
       const futureDate = getFutureDate(30);
       
@@ -85,12 +83,10 @@ export default function SlotManagement() {
         end: futureDate
       });
       
-      // console.log('Fetching slots for date range:', { today, futureDate });
       const response = await fetch(`/api/slots/admin?startDate=${today}&endDate=${futureDate}`);
       const data = await response.json();
       
       if (data.success) {
-        // console.log('Received slots:', data.slots?.length || 0);
         setAllSlots(data.slots || []);
       } else {
         setMessage({ type: 'error', text: data.message || 'Failed to load slots' });
@@ -103,8 +99,6 @@ export default function SlotManagement() {
     }
   };
 
-
-  // ADD THIS MISSING FUNCTION
   const fetchSlotsByDateRange = async () => {
     if (!dateRange.start || !dateRange.end) {
       setMessage({ type: 'error', text: 'Please select both start and end dates' });
@@ -113,7 +107,6 @@ export default function SlotManagement() {
 
     try {
       setAllSlotsLoading(true);
-      // console.log('Fetching slots for custom range:', dateRange);
       
       const response = await fetch(`/api/slots/admin?startDate=${dateRange.start}&endDate=${dateRange.end}`);
       const data = await response.json();
@@ -163,8 +156,6 @@ export default function SlotManagement() {
     setMessage({ type: '', text: '' });
 
     try {
-      // console.log('Submitting slots for Canada date:', date, 'times:', times);
-      
       const response = await fetch('/api/appointments/admin', {
         method: 'POST',
         headers: {
@@ -182,7 +173,6 @@ export default function SlotManagement() {
         setMessage({ type: 'success', text: `Successfully added ${data.count} slot(s) for ${formatDisplayDate(date)}` });
         setTimes([]);
         setDate('');
-        // Refresh all slots
         await fetchAllSlots();
       } else {
         setMessage({ type: 'error', text: data.message });
@@ -205,7 +195,6 @@ export default function SlotManagement() {
     setMessage({ type: '', text: '' });
 
     try {
-      // console.log('Viewing slots for date:', viewDate);
       const response = await fetch(`/api/appointments?date=${viewDate}`);
       const data = await response.json();
 
@@ -240,7 +229,6 @@ export default function SlotManagement() {
       const data = await response.json();
 
       if (data.success) {
-        // Update local state
         setAvailableSlots(prev =>
           prev.map(slot =>
             slot._id === slotId
@@ -248,7 +236,6 @@ export default function SlotManagement() {
               : slot
           )
         );
-        // Also update all slots
         setAllSlots(prev =>
           prev.map(slot =>
             slot._id === slotId
@@ -279,7 +266,6 @@ export default function SlotManagement() {
       const data = await response.json();
 
       if (data.success) {
-        // Remove from local state
         setAllSlots(prev => prev.filter(slot => slot._id !== slotId));
         setAvailableSlots(prev => prev.filter(slot => slot._id !== slotId));
         setMessage({ type: 'success', text: 'Slot deleted successfully' });
@@ -298,7 +284,6 @@ export default function SlotManagement() {
     }
 
     try {
-      // console.log('Deleting slots for Canada date:', date);
       const response = await fetch(`/api/slots/admin?date=${date}`, {
         method: 'DELETE',
       });
@@ -306,7 +291,6 @@ export default function SlotManagement() {
       const data = await response.json();
 
       if (data.success) {
-        // Remove from local state using canadaDate or date property
         setAllSlots(prev => prev.filter(slot => {
           const slotDate = slot.canadaDate || slot.date;
           return slotDate !== date;
@@ -321,9 +305,8 @@ export default function SlotManagement() {
     }
   };
 
-  // Group slots by date - FIXED
+  // Group slots by date
   const groupedSlots = allSlots.reduce((groups, slot) => {
-    // Use canadaDate from API response
     const dateKey = slot.canadaDate || slot.date;
     if (!groups[dateKey]) {
       groups[dateKey] = [];
@@ -336,12 +319,8 @@ export default function SlotManagement() {
     <div className="bg-white rounded-lg shadow-md p-6">
       <h2 className="text-xl font-semibold text-gray-900 mb-6">Manage Available Slots</h2>
 
-      {/* SIMPLE: Remove timezone complexity */}
-      <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
-        {/* <p className="text-sm text-blue-700">
-          <strong>Note:</strong> All dates and times are stored and displayed exactly as entered.
-        </p> */}
-        <p className="text-xs text-blue-600 mt-1">
+      <div className="mb-4 p-3 bg-red-50 rounded-lg border border-red-100">
+        <p className="text-xs text-red-600 mt-1">
           Today is: {formatDisplayDate(todayDate)} ({todayDate})
         </p>
       </div>
@@ -368,7 +347,7 @@ export default function SlotManagement() {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 min={todayDate}
-                className="w-full px-4 py-2 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+                className="w-full px-4 py-2 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
               />
               <p className="text-xs text-gray-500 mt-1">
                 Selected date: {date ? formatDisplayDate(date) : 'Not selected'} ({date})
@@ -384,11 +363,11 @@ export default function SlotManagement() {
                   type="time"
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 />
                 <button
                   onClick={addTime}
-                  className="px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700"
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
                 >
                   Add
                 </button>
@@ -445,15 +424,12 @@ export default function SlotManagement() {
             <button
               onClick={submitSlots}
               disabled={loading || !date || times.length === 0}
-              className="w-full px-4 py-3 bg-sky-600 text-white rounded-lg hover:bg-sky-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              className="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               {loading ? 'Adding Slots...' : `Add ${times.length} Slot${times.length !== 1 ? 's' : ''} `}
             </button>
           </div>
         </div>
-
-        {/* View & Manage Slots for Specific Date */}
-       
       </div>
 
       {/* All Created Slots Dashboard */}
@@ -471,7 +447,7 @@ export default function SlotManagement() {
                 value={dateRange.start}
                 onChange={(e) => setDateRange({ ...dateRange, start: e.target.value })}
                 min={todayDate}
-                className="px-3 py-2 border border-gray-300 text-gray-900 rounded text-sm"
+                className="px-3 py-2 border border-gray-300 text-gray-900 rounded text-sm focus:ring-red-500 focus:border-red-500"
                 placeholder="Start Date"
               />
               <input
@@ -479,7 +455,7 @@ export default function SlotManagement() {
                 value={dateRange.end}
                 onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
                 min={dateRange.start || todayDate}
-                className="px-3 py-2 border border-gray-300 text-gray-900 rounded text-sm"
+                className="px-3 py-2 border border-gray-300 text-gray-900 rounded text-sm focus:ring-red-500 focus:border-red-500"
                 placeholder="End Date"
               />
             </div>
@@ -493,7 +469,7 @@ export default function SlotManagement() {
             <button
               onClick={fetchAllSlots}
               disabled={allSlotsLoading}
-              className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 disabled:opacity-50 text-sm"
+              className="px-4 py-2 border border-red-600 text-red-600 rounded hover:bg-red-50 disabled:opacity-50 text-sm"
             >
               Refresh All
             </button>
@@ -502,7 +478,7 @@ export default function SlotManagement() {
 
         {allSlotsLoading ? (
           <div className="text-center py-8">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
             <p className="mt-2 text-gray-600">Loading all slots...</p>
           </div>
         ) : Object.keys(groupedSlots).length > 0 ? (
@@ -591,10 +567,9 @@ export default function SlotManagement() {
       </div>
 
       {/* Information Panel */}
-      <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">
-        <h4 className="font-medium text-blue-900 mb-2">How it works:</h4>
-        <ul className="text-sm text-blue-700 space-y-1">
-          
+      <div className="mt-8 p-4 bg-red-50 rounded-lg border border-red-100">
+        <h4 className="font-medium text-red-900 mb-2">How it works:</h4>
+        <ul className="text-sm text-red-700 space-y-1">
           <li>• Add available time slots for specific dates</li>
           <li>• Patients can only book from available slots</li>
           <li>• Once a slot is booked, it becomes unavailable to others</li>

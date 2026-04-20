@@ -86,11 +86,11 @@ export async function POST(request) {
     // Send confirmation email
     await sendEmail({
       to: trimmedEmail,
-      subject: 'Admin Login Confirmation — St Mary Rideau Clinic',
+      subject: 'Admin Login Confirmation — Trim Medical Centre',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #0284c7; margin-bottom: 5px;">St Mary Rideau Clinic</h1>
+            <h1 style="color: #0284c7; margin-bottom: 5px;">Trim Medical Centre</h1>
             <p style="color: #6b7280; font-size: 14px;">Admin Login Confirmation</p>
           </div>
           

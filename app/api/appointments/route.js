@@ -43,9 +43,9 @@ async function sendAppointmentConfirmationEmail(appointment) {
             </div>
             
             <p><strong>Location:</strong><br>
-            St Mary Rideau Clinic<br>
-            158 Rideau Street,<br>
-            Ottawa, K1N 5X6</p>
+            Trim Medical Centre<br>
+            1280 Trim Rd, Unit B, ,<br>
+            Orleans, ON K4A 3N3</p>
             
             <p><strong>Important Reminders:</strong></p>
             <ul>
@@ -55,14 +55,14 @@ async function sendAppointmentConfirmationEmail(appointment) {
               <li>Bring any relevant medical records or test results</li>
             </ul>
             
-            <p>If you need to cancel or reschedule your appointment, please call us at least 24 hours in advance at <strong>(343) 887-3470</strong>.</p>
+            <p>If you need to cancel or reschedule your appointment, please call us at least 24 hours in advance at <strong>(343) 224-4070</strong>.</p>
             
             <div class="footer">
               <p>We look forward to seeing you soon!</p>
               <p>Best regards,<br>The Healthcare Team</p>
-              <p>St Mary Rideau Clinic<br>
-              Phone: (343) 887-3470<br>
-              Email: contact@stmaryrideauclinic.com</p>
+              <p>Trim Medical Centre<br>
+              Phone: (343) 224-4070<br>
+              Email: contact@trimmedicalcenter.ca</p>
             </div>
           </div>
         </div>

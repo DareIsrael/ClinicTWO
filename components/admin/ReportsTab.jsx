@@ -62,7 +62,7 @@ export default function ReportsTab() {
             <select
               value={selectedMonth}
               onChange={(e) => handlePeriodChange(parseInt(e.target.value), selectedYear)}
-              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500"
             >
               <option value="1">January</option>
               <option value="2">February</option>
@@ -80,7 +80,7 @@ export default function ReportsTab() {
             <select
               value={selectedYear}
               onChange={(e) => handlePeriodChange(selectedMonth, parseInt(e.target.value))}
-              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
+              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500"
             >
               <option value={new Date().getFullYear() - 1}>{new Date().getFullYear() - 1}</option>
               <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
@@ -88,7 +88,7 @@ export default function ReportsTab() {
             <button
               onClick={() => fetchMonthlyReports()}
               disabled={loading}
-              className="bg-sky-600 text-white px-4 py-2 rounded text-sm hover:bg-sky-700 transition duration-300 disabled:opacity-50"
+              className="border border-red-600 text-red-600 px-4 py-2 rounded text-sm hover:bg-red-50 transition duration-300 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>
@@ -100,7 +100,7 @@ export default function ReportsTab() {
         <div className="lg:col-span-2 space-y-6">
           {loading ? (
             <div className="bg-white rounded-lg shadow-md p-6 text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
               <p className="mt-2 text-gray-600">Loading report data...</p>
             </div>
           ) : reportsData ? (

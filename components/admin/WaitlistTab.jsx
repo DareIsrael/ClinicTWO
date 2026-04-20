@@ -134,7 +134,7 @@ export default function WaitlistTab() {
             <select
               value={pagination.limit}
               onChange={(e) => handleLimitChange(parseInt(e.target.value))}
-              className="text-sm text-gray-600 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
+              className="text-sm text-gray-600 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
               disabled={loading}
             >
               <option value="5">5 per page</option>
@@ -146,7 +146,7 @@ export default function WaitlistTab() {
             <button 
               onClick={() => fetchWaitlist(pagination.page, pagination.limit, searchQuery, searchStatus)}
               disabled={loading}
-              className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-sky-700 transition duration-300 disabled:opacity-50"
+              className="border border-red-600 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-50 transition duration-300 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>
@@ -171,7 +171,7 @@ export default function WaitlistTab() {
                 value={searchQuery}
                 onChange={handleSearchChange}
                 placeholder="Search by name, email, or healthcare number..."
-                className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none text-gray-700 focus:ring-2 focus:ring-sky-500"
+                className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500"
               />
               {searchQuery && (
                 <button
@@ -194,7 +194,7 @@ export default function WaitlistTab() {
               id="statusFilter"
               value={searchStatus}
               onChange={handleStatusChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 text-gray-700 focus:ring-sky-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 text-gray-700 focus:ring-red-500 focus:border-red-500"
             >
               <option value="all">All Statuses</option>
               <option value="Active">Active</option>
@@ -218,7 +218,7 @@ export default function WaitlistTab() {
             </div>
             <button
               onClick={handleClearSearch}
-              className="text-sky-600 hover:text-sky-800 text-sm font-medium"
+              className="text-red-600 hover:text-red-800 text-sm font-medium"
             >
               Clear filters
             </button>
@@ -229,7 +229,7 @@ export default function WaitlistTab() {
       <div className="p-4 sm:p-6">
         {loading ? (
           <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
             <p className="mt-2 text-gray-600">Loading waitlist...</p>
           </div>
         ) : (
@@ -262,50 +262,36 @@ export default function WaitlistTab() {
                   {waitlist.map((entry, index) => (
                     <tr 
                       key={entry._id} 
-                      className="hover:bg-gray-50 transition duration-300"
+                      className="hover:bg-gray-50 transition duration-300 cursor-pointer"
+                      onClick={() => openModal(entry)}
                     >
-                      <td 
-                        className="px-4 py-4 whitespace-nowrap cursor-pointer"
-                        onClick={() => openModal(entry)}
-                      >
+                      <td className="px-4 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">
                           {(pagination.page - 1) * pagination.limit + index + 1}
                         </div>
-                      </td>
-                      <td 
-                        className="px-4 py-4 whitespace-nowrap cursor-pointer"
-                        onClick={() => openModal(entry)}
-                      >
+                       </td>
+                      <td className="px-4 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">
                           {entry.firstName} {entry.lastName}
                         </div>
-                      </td>
-                      <td 
-                        className="px-4 py-4 whitespace-nowrap cursor-pointer"
-                        onClick={() => openModal(entry)}
-                      >
-                        <div className="text-sm text-gray-900">{entry.email}</div>
-                      </td>
-                      <td 
-                        className="px-4 py-4 whitespace-nowrap cursor-pointer"
-                        onClick={() => openModal(entry)}
-                      >
-                        <div className="text-sm text-gray-900">{entry.cellPhone || 'N/A'}</div>
-                      </td>
+                       </td>
                       <td className="px-4 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900">{entry.email}</div>
+                       </td>
+                      <td className="px-4 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900">{entry.cellPhone || 'N/A'}</div>
+                       </td>
+                      <td className="px-4 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                         <WaitlistStatusDropdown 
                           waitlistEntry={entry} 
                           onStatusChange={handleStatusUpdate}
                         />
-                      </td>
-                      <td 
-                        className="px-4 py-4 whitespace-nowrap cursor-pointer"
-                        onClick={() => openModal(entry)}
-                      >
+                       </td>
+                      <td className="px-4 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
                           {entry.createdAt ? new Date(entry.createdAt).toLocaleDateString() : 'N/A'}
                         </div>
-                      </td>
+                       </td>
                     </tr>
                   ))}
                   {waitlist.length === 0 && (
@@ -314,7 +300,7 @@ export default function WaitlistTab() {
                         {searchQuery || searchStatus !== 'all' 
                           ? 'No waitlist entries found matching your search criteria.'
                           : 'No waitlist entries found'}
-                      </td>
+                       </td>
                     </tr>
                   )}
                 </tbody>
@@ -382,7 +368,7 @@ export default function WaitlistTab() {
                             onClick={() => handlePageChange(pageNum)}
                             className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
                               pagination.page === pageNum
-                                ? 'z-10 bg-sky-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600'
+                                ? 'z-10 bg-red-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600'
                                 : 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
                             }`}
                           >

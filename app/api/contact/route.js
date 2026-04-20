@@ -67,7 +67,7 @@ export async function POST(req) {
           <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;">
           
           <div style="text-align: center; color: #666; font-size: 14px;">
-            <p>St Mary Rideau Clinic Contact Form<br>
+            <p>Trim Medical Centre Contact Form<br>
             This is an automated message from your website contact form.</p>
           </div>
         </div>
@@ -76,7 +76,7 @@ export async function POST(req) {
 
     // Send email to admin
     await sendEmail({
-      to: process.env.ADMIN_EMAIL || 'contact@stmaryrideauclinic.com', // Set this in your .env
+      to: process.env.ADMIN_EMAIL || 'contact@trimmedicalcenter.ca', // Set this in your .env
       subject: `New Contact Form: ${subject} - From ${name}`,
       html: adminEmailContent,
     });
@@ -91,7 +91,7 @@ export async function POST(req) {
         <div style="padding: 30px; background: #f8fafc;">
           <p>Dear <strong>${name}</strong>,</p>
           
-          <p>Thank you for reaching out to St Mary Rideau Clinic. We have received your message and will get back to you within 24 hours.</p>
+          <p>Thank you for reaching out to Trim Medical Centre. We have received your message and will get back to you within 24 hours.</p>
           
           <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #0369a1; margin: 20px 0;">
             <h3 style="color: #0369a1; margin-top: 0;">Your Message Summary:</h3>
@@ -102,7 +102,7 @@ export async function POST(req) {
           <p>If this is a medical emergency, please call 911 or visit your nearest emergency department immediately.</p>
           
           <p>Best regards,<br>
-          <strong>The St Mary Rideau Clinic Team</strong></p>
+          <strong>The Trim Medical Centre Team</strong></p>
         </div>
       </div>
     `;
@@ -110,7 +110,7 @@ export async function POST(req) {
     // Send confirmation to user
     await sendEmail({
       to: email,
-      subject: 'Thank You for Contacting St Mary Rideau Clinic',
+      subject: 'Thank You for Contacting Trim Medical Centre',
       html: userEmailContent,
     });
 

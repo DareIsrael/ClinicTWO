@@ -105,7 +105,7 @@ export default function AppointmentBroadcastTab() {
                     value={targetEmail}
                     onChange={(e) => setTargetEmail(e.target.value)}
                     placeholder="e.g. patient@example.com"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 />
             </div>
 
@@ -117,7 +117,7 @@ export default function AppointmentBroadcastTab() {
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
                         >
                             <option value="all">All Statuses</option>
                             <option value="scheduled">Scheduled</option>
@@ -126,7 +126,7 @@ export default function AppointmentBroadcastTab() {
                             <option value="cancelled">Cancelled</option>
                             <option value="no_show">No Show</option>
                         </select>
-                        <div className="bg-sky-50 border border-sky-200 text-sky-700 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
+                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
                             {previewLoading ? (
                                 <span className="animate-pulse">Loading...</span>
                             ) : (
@@ -145,7 +145,7 @@ export default function AppointmentBroadcastTab() {
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     placeholder="Email subject line"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 />
             </div>
 
@@ -157,7 +157,7 @@ export default function AppointmentBroadcastTab() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Write your message here..."
                     rows={8}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500 resize-y"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y"
                 />
             </div>
 
@@ -166,7 +166,7 @@ export default function AppointmentBroadcastTab() {
                 <button
                     onClick={() => setShowConfirm(true)}
                     disabled={!canSend || loading}
-                    className="bg-sky-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-sky-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-red-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-red-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? (
                         <span className="flex items-center">
@@ -206,7 +206,7 @@ export default function AppointmentBroadcastTab() {
                             </button>
                             <button
                                 onClick={handleSend}
-                                className="px-4 py-2 text-sm font-medium text-white bg-sky-600 rounded-lg hover:bg-sky-700 transition"
+                                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition"
                             >
                                 Confirm & Send
                             </button>

@@ -555,7 +555,7 @@ export default function SignupPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z" />
                     </svg>
                   </div>
-                  <h2 className="text-lg font-bold mb-1">St Mary Rideau Clinic</h2>
+                  <h2 className="text-lg font-bold mb-1">Trim Medical Centre</h2>
                   <p className="text-sky-100 text-xs mb-3">Admin Registration</p>
                   <div className="space-y-2 text-xs text-sky-200 max-w-xs mx-auto">
                   

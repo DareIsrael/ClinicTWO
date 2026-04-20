@@ -1,5 +1,6 @@
+// policies/page.js - Completely Redesigned with Red Theme
 export const metadata = {
-  title: 'Patient Information & Clinic Policies | St Mary Rideau Family Clinic',
+  title: 'Patient Information & Clinic Policies | Trim Medical Centre',
   description: 'Comprehensive information about patient rights, responsibilities, and clinic policies',
 };
 
@@ -88,7 +89,7 @@ export default function PoliciesPage() {
         },
         {
           title: 'No-Shows',
-          content: 'Missed appointments WILL result in fees (30 cad) and no further appointments unless PAID. Three no shows results in a warning. Four no shows results in an automatic de-rostering.'
+          content: 'Missed appointments WILL result in fees ($30 CAD) and no further appointments unless PAID. Three no shows results in a warning. Four no shows results in an automatic de-rostering.'
         }
       ]
     },
@@ -101,18 +102,10 @@ export default function PoliciesPage() {
         </svg>
       ),
       items: [
-        {
-          content: 'Request renewals through your pharmacy (subject to change)'
-        },
-        {
-          content: 'Allow 3–5 business days for processing.'
-        },
-        {
-          content: 'Urgent renewals may not be guaranteed.'
-        },
-        {
-          content: 'Walk-in renewals are not always possible.'
-        }
+        { content: 'Request renewals through your pharmacy (subject to change)' },
+        { content: 'Allow 3–5 business days for processing.' },
+        { content: 'Urgent renewals may not be guaranteed.' },
+        { content: 'Walk-in renewals are not always possible.' }
       ]
     },
     {
@@ -124,12 +117,10 @@ export default function PoliciesPage() {
         </svg>
       ),
       items: [
-        {
-          content: 'Some services are not covered by OHIP. Common examples include:'
-        },
+        { content: 'Some services are not covered by OHIP. Common examples include:' },
         {
           list: [
-            'Driver\'s medical forms',
+            "Driver's medical forms",
             'Employment and insurance forms',
             'Sick notes',
             'Travel-related forms',
@@ -137,9 +128,7 @@ export default function PoliciesPage() {
             'Transfer of medical records'
           ]
         },
-        {
-          content: 'A full fee list is available at reception and will be provided before completing any service.'
-        }
+        { content: 'A full fee list is available at reception and will be provided before completing any service.' }
       ]
     },
     {
@@ -174,9 +163,7 @@ export default function PoliciesPage() {
         </svg>
       ),
       items: [
-        {
-          content: 'We follow all guidelines under the Personal Health Information Protection Act:'
-        },
+        { content: 'We follow all guidelines under the Personal Health Information Protection Act:' },
         {
           list: [
             'Your information is confidential.',
@@ -197,9 +184,7 @@ export default function PoliciesPage() {
         </svg>
       ),
       items: [
-        {
-          content: 'We welcome patients of all backgrounds and abilities.'
-        },
+        { content: 'We welcome patients of all backgrounds and abilities.' },
         {
           list: [
             'Wheelchair-accessible building',
@@ -221,9 +206,7 @@ export default function PoliciesPage() {
         </svg>
       ),
       items: [
-        {
-          content: 'Bringing the following helps ensure smooth care:'
-        },
+        { content: 'Bringing the following helps ensure smooth care:' },
         {
           list: [
             'Valid OHIP card',
@@ -244,45 +227,33 @@ export default function PoliciesPage() {
         </svg>
       ),
       items: [
-        {
-          content: 'If this is an emergency, call 911.'
-        },
-        {
-          content: 'For urgent but non-emergency care, visit your nearest urgent care clinic or emergency department.'
-        },
-        {
-          content: 'For minor, non-urgent concerns, please leave a message or use the appropriate online system (if available).'
-        }
+        { content: 'If this is an emergency, call 911.' },
+        { content: 'For urgent but non-emergency care, visit your nearest urgent care clinic or emergency department.' },
+        { content: 'For minor, non-urgent concerns, please leave a message or use the appropriate online system (if available).' }
       ]
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section with Background Image */}
-      <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center justify-center sm:justify-start bg-sky-900 overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2053&q=80")',
-          }}
-        >
-          <div className="absolute inset-0 bg-sky-900/70"></div>
-        </div>
-
-        {/* Sky Blue Text Box - Responsive positioning and sizing */}
-        <div className="relative z-10 w-full max-w-4xl mx-4 sm:mx-8 lg:mx-16 xl:mx-24">
-          <div className="bg-sky-700/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-sky-400/40 shadow-xl">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 text-center sm:text-left">
-              Patient Information & Clinic Policies
+      {/* Hero Section - Clean, No Background Image */}
+      <section className="bg-red-50/30 py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12">
+          <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
+            <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-1.5 rounded-full mb-6 mx-auto lg:mx-0">
+              <div className="w-1.5 h-1.5 bg-red-600 rounded-full"></div>
+              <span className="text-xs font-medium text-red-600 uppercase tracking-wide">Clinic Information</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Patient Information &<br />
+              <span className="text-red-600">Clinic Policies</span>
             </h1>
-            <div className="w-12 h-0.5 bg-sky-300 rounded-full mb-3 sm:mb-4 mx-auto sm:mx-0"></div>
-            <p className="text-xs sm:text-sm text-white leading-relaxed mb-4 text-center sm:text-left">
+            <div className="w-16 h-1 bg-red-600 rounded-full mb-6 mx-auto lg:mx-0"></div>
+            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
               Comprehensive, professional, and aligned with CPSO + PHIPA + OMA guidelines
             </p>
-            <div className="p-3 bg-sky-600/60 rounded-lg border-l-2 border-sky-300">
-              <p className="text-xs sm:text-sm text-white font-light italic text-center sm:text-left">
+            <div className="bg-white rounded-xl p-6 border-l-4 border-red-600 shadow-sm max-w-2xl mx-auto lg:mx-0">
+              <p className="text-gray-700 font-medium italic text-center lg:text-left">
                 "We are committed to providing compassionate, efficient, and high-quality care for every patient."
               </p>
             </div>
@@ -291,14 +262,14 @@ export default function PoliciesPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-sky-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-sky-200 shadow-lg">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-sky-900 mb-4 sm:mb-6 text-center sm:text-left">
-              Welcome to St Mary Rideau Family Clinic
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12">
+          <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center lg:text-left">
+              Welcome to Trim Medical Centre
             </h2>
-            <div className="w-12 sm:w-16 h-1 bg-sky-500 mb-4 sm:mb-6 mx-auto sm:mx-0"></div>
-            <p className="text-sm sm:text-base lg:text-lg text-sky-700 leading-relaxed">
+            <div className="w-16 h-1 bg-red-600 rounded-full mb-6 mx-auto lg:mx-0"></div>
+            <p className="text-gray-600 leading-relaxed">
               We are committed to providing compassionate, efficient, and high-quality care for every patient.
               Below is a clear outline of your rights, responsibilities, and our clinic's operational policies 
               so you always know what to expect.
@@ -308,88 +279,92 @@ export default function PoliciesPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12">
+          <div className="space-y-8">
             {policySections.map((section, index) => (
-              <div key={index} id={section.id} className="scroll-mt-20 sm:scroll-mt-24">
-                <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-sky-200 shadow-lg">
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-                    <div className="flex-shrink-0 p-2 sm:p-3 bg-sky-100 rounded-lg text-sky-600 mb-3 sm:mb-0 mx-auto sm:mx-0">
-                      {section.icon}
-                    </div>
-                    <div className="text-center sm:text-left">
-                      <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-sky-900 mb-2">
-                        {section.title}
-                      </h2>
-                      {section.subtitle && (
-                        <p className="text-sm sm:text-base lg:text-lg text-sky-700 font-medium">{section.subtitle}</p>
-                      )}
+              <div key={index} id={section.id} className="scroll-mt-20">
+                <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+                  <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center text-red-600">
+                        {section.icon}
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold text-gray-900">{section.title}</h2>
+                        {section.subtitle && (
+                          <p className="text-sm text-gray-500 mt-0.5">{section.subtitle}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="space-y-4 sm:space-y-6">
-                    {section.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="border-l-4 border-sky-200 pl-4 sm:pl-6">
-                        {item.title && (
-                          <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-sky-800 mb-2 sm:mb-3">
-                            {item.title}
-                          </h3>
-                        )}
-                        
-                        {item.content && (
-                          <p className="text-sm sm:text-base text-sky-700 leading-relaxed">{item.content}</p>
-                        )}
-                        
-                        {item.list && (
-                          <ul className="space-y-1 sm:space-y-2 mt-2 sm:mt-3">
-                            {item.list.map((listItem, listIndex) => (
-                              <li key={listIndex} className="flex items-start">
-                                <span className="text-sky-600 mr-2 sm:mr-3 mt-1">•</span>
-                                <span className="text-sm sm:text-base text-sky-700">{listItem}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
+                  <div className="p-6">
+                    <div className="space-y-4">
+                      {section.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="border-l-4 border-red-300 pl-4">
+                          {item.title && (
+                            <h3 className="text-base font-semibold text-gray-900 mb-2">
+                              {item.title}
+                            </h3>
+                          )}
+                          
+                          {item.content && (
+                            <p className="text-sm text-gray-600 leading-relaxed">{item.content}</p>
+                          )}
+                          
+                          {item.list && (
+                            <ul className="space-y-1 mt-2">
+                              {item.list.map((listItem, listIndex) => (
+                                <li key={listIndex} className="flex items-start gap-2">
+                                  <span className="text-red-600 text-sm mt-0.5">•</span>
+                                  <span className="text-sm text-gray-600">{listItem}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
 
             {/* Additional Sections in Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {additionalSections.map((section, index) => (
-                <div key={index} className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-sky-200 shadow-lg">
-                  <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-                    <div className="flex-shrink-0 p-2 sm:p-3 bg-sky-100 rounded-lg text-sky-600 mb-3 sm:mb-0 mx-auto sm:mx-0">
-                      {section.icon}
+                <div key={index} className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+                  <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center text-red-600">
+                        {section.icon}
+                      </div>
+                      <h2 className="text-lg font-bold text-gray-900">{section.title}</h2>
                     </div>
-                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-sky-900 text-center sm:text-left">
-                      {section.title}
-                    </h2>
                   </div>
                   
-                  <div className="space-y-3 sm:space-y-4">
-                    {section.items.map((item, itemIndex) => (
-                      <div key={itemIndex}>
-                        {item.content && (
-                          <p className="text-sm sm:text-base text-sky-700 leading-relaxed mb-2 sm:mb-3">{item.content}</p>
-                        )}
-                        
-                        {item.list && (
-                          <ul className="space-y-1 sm:space-y-2">
-                            {item.list.map((listItem, listIndex) => (
-                              <li key={listIndex} className="flex items-start">
-                                <span className="text-sky-600 mr-2 sm:mr-3 mt-1">•</span>
-                                <span className="text-sm sm:text-base text-sky-700">{listItem}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
+                  <div className="p-6">
+                    <div className="space-y-3">
+                      {section.items.map((item, itemIndex) => (
+                        <div key={itemIndex}>
+                          {item.content && (
+                            <p className="text-sm text-gray-600 leading-relaxed mb-2">{item.content}</p>
+                          )}
+                          
+                          {item.list && (
+                            <ul className="space-y-1">
+                              {item.list.map((listItem, listIndex) => (
+                                <li key={listIndex} className="flex items-start gap-2">
+                                  <span className="text-red-600 text-sm mt-0.5">•</span>
+                                  <span className="text-sm text-gray-600">{listItem}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -399,25 +374,25 @@ export default function PoliciesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-sky-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6">
-            Questions About Our Policies?
-          </h3>
-          <p className="text-sky-100 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
+      <section className="bg-red-600 py-16">
+        <div className="max-w-4xl mx-auto px-8 lg:px-12 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Questions About Our Policies?</h2>
+          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
             Our team is here to help you understand our policies and ensure you have the best possible experience.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-sky-600 rounded-lg hover:bg-sky-50 transition-colors duration-200 font-medium shadow-lg hover:shadow-xl text-sm sm:text-base"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-red-600 font-semibold hover:bg-gray-100 transition-all duration-200 shadow-md"
             >
               Contact Us
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </a>
-            
             <a
               href="/uninsured-services"
-              className="px-6 sm:px-8 py-2 sm:py-3 bg-sky-700 text-white rounded-lg hover:bg-sky-600 transition-colors duration-200 font-medium text-sm sm:text-base"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-white/30 text-white font-semibold hover:bg-white/10 transition-all duration-200"
             >
               View Service Fees
             </a>

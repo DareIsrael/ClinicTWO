@@ -194,8 +194,8 @@
 // async function sendWaitlistWelcomeEmail(waitlistEntry, isReturningUser = false, waitlistCount = 0) {
 //   try {
 //     const subject = isReturningUser 
-//       ? `Welcome back to St Mary Rideau Clinic Waitlist, ${waitlistEntry.firstName}!`
-//       : `Welcome to St Mary Rideau Clinic Waitlist, ${waitlistEntry.firstName}!`;
+//       ? `Welcome back to Trim Medical Centre Waitlist, ${waitlistEntry.firstName}!`
+//       : `Welcome to Trim Medical Centre Waitlist, ${waitlistEntry.firstName}!`;
 
 //     const greeting = isReturningUser 
 //       ? `Welcome back, ${waitlistEntry.firstName}!`
@@ -208,7 +208,7 @@
 //     const welcomeEmailContent = `
 //       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
 //         <div style="background: linear-gradient(135deg, #0369a1, #0ea5e9); padding: 30px; text-align: center;">
-//           <h1 style="color: white; margin: 0; font-size: 28px;">${isReturningUser ? 'Welcome Back!' : 'Welcome to St Mary Rideau Clinic Waitlist!'}</h1>
+//           <h1 style="color: white; margin: 0; font-size: 28px;">${isReturningUser ? 'Welcome Back!' : 'Welcome to Trim Medical Centre Waitlist!'}</h1>
 //         </div>
         
 //         <div style="padding: 30px; background: #f8fafc;">
@@ -244,14 +244,14 @@
 //           <p>We appreciate your patience and look forward to serving you soon!</p>
           
 //           <p>Best regards,<br>
-//           <strong>The St Mary Rideau Clinic Team</strong></p>
+//           <strong>The Trim Medical Centre Team</strong></p>
           
 //           <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;">
           
 //           <div style="text-align: center; color: #666; font-size: 14px;">
-//             <p>St Mary Rideau Clinic<br>
-//              158 Rideau Street, Ottawa K1N5X6<br>
-//             Phone: (613) 301-8805 | Email: contact@stmaryrideauclinic.com</p>
+//             <p>Trim Medical Centre<br>
+//              1280 Trim Rd, Unit B, Orleans, ON K4A 3N3<br>
+//             Phone: (613) 301-8805 | Email: contact@trimmedicalcenter.ca</p>
             
 //             <p style="font-size: 12px; color: #999;">
 //               This is an automated message. Please do not reply to this email.
@@ -399,8 +399,8 @@ export async function POST(request) {
 async function sendWaitlistWelcomeEmail(waitlistEntry, isReturningUser = false) {
   try {
     const subject = isReturningUser 
-      ? `Welcome back to St Mary Rideau Clinic Waitlist, ${waitlistEntry.firstName}!`
-      : `Welcome to St Mary Rideau Clinic Waitlist, ${waitlistEntry.firstName}!`;
+      ? `Welcome back to Trim Medical Centre Waitlist, ${waitlistEntry.firstName}!`
+      : `Welcome to Trim Medical Centre Waitlist, ${waitlistEntry.firstName}!`;
 
     const greeting = isReturningUser 
       ? `Welcome back, ${waitlistEntry.firstName}!`
@@ -413,7 +413,7 @@ async function sendWaitlistWelcomeEmail(waitlistEntry, isReturningUser = false) 
     const welcomeEmailContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
         <div style="background: linear-gradient(135deg, #0369a1, #0ea5e9); padding: 30px; text-align: center;">
-          <h1 style="color: white; margin: 0; font-size: 28px;">${isReturningUser ? 'Welcome Back!' : 'Welcome to St Mary Rideau Clinic Waitlist!'}</h1>
+          <h1 style="color: white; margin: 0; font-size: 28px;">${isReturningUser ? 'Welcome Back!' : 'Welcome to Trim Medical Centre Waitlist!'}</h1>
         </div>
         
         <div style="padding: 30px; background: #f8fafc;">
@@ -449,14 +449,14 @@ async function sendWaitlistWelcomeEmail(waitlistEntry, isReturningUser = false) 
           <p>We appreciate your patience and look forward to serving you soon!</p>
           
           <p>Best regards,<br>
-          <strong>The St Mary Rideau Clinic Team</strong></p>
+          <strong>The Trim Medical Centre Team</strong></p>
           
           <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;">
           
           <div style="text-align: center; color: #666; font-size: 14px;">
-            <p>St Mary Rideau Clinic<br>
-             158 Rideau Street, Ottawa K1N5X6<br>
-            Phone: (343) 887-3470 | Email: contact@stmaryrideauclinic.com</p>
+            <p>Trim Medical Centre<br>
+            1280 Trim Rd, Unit B, Orleans, ON K4A 3N3<br>
+            Phone: (343) 224-4070 | Email: contact@trimmedicalcenter.ca</p>
             
             <p style="font-size: 12px; color: #999;">
               This is an automated message. Please do not reply to this email.

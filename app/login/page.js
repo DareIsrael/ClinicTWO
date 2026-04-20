@@ -137,7 +137,7 @@ export default function LoginPage() {
                       />
                     </svg>
                   </div>
-                  <h2 className="text-2xl font-bold mb-2">St Mary Rideau Clinic</h2>
+                  <h2 className="text-2xl font-bold mb-2">Trim Medical Centre</h2>
                   <p className="text-sky-100 text-sm">Secure Patient Account</p>
                 </div>
               </div>

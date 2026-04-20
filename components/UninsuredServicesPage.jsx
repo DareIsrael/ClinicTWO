@@ -9,7 +9,7 @@ const UninsuredServicesPage = () => {
       id: 'why-not-covered',
       title: 'Why some services are not covered by OHIP',
       icon: <AlertCircle className="w-6 h-6" />,
-      content: `At St Mary Rideau Family Clinic, most of the care you receive is covered by the Ontario Health Insurance Plan (OHIP). However, OHIP does not pay for certain services, forms, notes, and reports - especially when they are requested by employers, schools, insurers, or other third parties. In those cases, the cost is the responsibility of the patient or the third party requesting the service. Our fees for uninsured services follow the Ontario Medical Association (OMA) recommended fee guide.`,
+      content: `At Trim Medical Centre, most of the care you receive is covered by the Ontario Health Insurance Plan (OHIP). However, OHIP does not pay for certain services, forms, notes, and reports - especially when they are requested by employers, schools, insurers, or other third parties. In those cases, the cost is the responsibility of the patient or the third party requesting the service. Our fees for uninsured services follow the Ontario Medical Association (OMA) recommended fee guide.`,
     },
     {
       id: 'common-services',

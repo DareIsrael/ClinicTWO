@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 export async function sendEmail({ to, subject, html }) {
   try {
     const mailOptions = {
-      from: process.env.EMAIL_FROM || 'St Mary Rideau Clinic <info@yourdomain.com>',
+      from: process.env.EMAIL_FROM || 'Trim Medical Centre <info@trimmedicalcenter.ca>',
       to,
       subject,
       html,

@@ -1,9 +1,3 @@
-
-
-
-// cleaned up commented out code
-
-
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 import debounce from 'lodash/debounce';
@@ -174,7 +168,6 @@ export default function AppointmentsTab() {
         if (selectedAppointment && selectedAppointment._id === appointmentId) {
           setSelectedAppointment(prev => ({ ...prev, status: newStatus }));
         }
-        // Refresh counts if status changed significantly (optional but good)
         fetchAppointments(pagination.page, pagination.limit, searchQuery, searchStatus, searchDate, activeFilter);
         alert(`Appointment status updated to ${newStatus}.`);
       } else {
@@ -211,7 +204,6 @@ export default function AppointmentsTab() {
     fetchAppointments();
   }, []);
 
-  // Filtering is now done on the server
   const filteredAppointments = appointments;
 
   return (
@@ -229,7 +221,7 @@ export default function AppointmentsTab() {
             <select
               value={pagination.limit}
               onChange={(e) => handleLimitChange(parseInt(e.target.value))}
-              className="text-sm text-gray-700 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
+              className="text-sm text-gray-700 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
               disabled={loading}
             >
               <option value="5">5 per page</option>
@@ -240,7 +232,7 @@ export default function AppointmentsTab() {
             <button
               onClick={() => fetchAppointments(pagination.page, pagination.limit, searchQuery, searchStatus, searchDate, activeFilter)}
               disabled={loading}
-              className="bg-sky-600 text-white px-4 py-2 rounded-md text-sm hover:bg-sky-700 transition duration-200 disabled:opacity-50"
+              className="border border-red-600 text-red-600 px-4 py-2 rounded-md text-sm hover:bg-red-50 transition duration-200 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>
@@ -256,7 +248,7 @@ export default function AppointmentsTab() {
               <button
                 key={filter}
                 onClick={() => handleFilterChange(filter)}
-                className={`px-4 py-2 rounded-md text-sm font-medium ${activeFilter === filter ? 'bg-sky-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                className={`px-4 py-2 rounded-md text-sm font-medium ${activeFilter === filter ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
               >
                 {label} ({count})
               </button>
@@ -273,7 +265,7 @@ export default function AppointmentsTab() {
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search by name, email, phone..."
-              className="w-full px-3 py-2 border border-gray-300  text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
             />
           </div>
           <div>
@@ -281,7 +273,7 @@ export default function AppointmentsTab() {
             <select
               value={searchStatus}
               onChange={handleStatusChange}
-              className="w-full px-3 py-2 border border-gray-300 text-gray-400 rounded-md focus:outline-none focus:ring-2 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
             >
               <option value="all">All Statuses</option>
               <option value="scheduled">Scheduled</option>
@@ -297,7 +289,7 @@ export default function AppointmentsTab() {
               type="date"
               value={searchDate}
               onChange={handleDateChange}
-              className="w-full px-3 py-2 border border-gray-300 text-gray-400 rounded-md focus:outline-none focus:ring-2 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
             />
           </div>
         </div>
@@ -307,7 +299,7 @@ export default function AppointmentsTab() {
       <div className="p-6 overflow-x-auto">
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-10 w-10 border-4 border-sky-500 border-t-transparent mx-auto"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-4 border-red-600 border-t-transparent mx-auto"></div>
             <p className="mt-3 text-gray-500 text-sm">Loading appointments...</p>
           </div>
         ) : filteredAppointments.length === 0 ? (
@@ -330,9 +322,9 @@ export default function AppointmentsTab() {
                 const isAppointmentPast = isPast(appointmentDate);
 
                 return (
-                  <tr key={appointment._id} className={`${isAppointmentToday ? 'bg-sky-50' : ''} ${isAppointmentPast && appointment.status === 'scheduled' ? 'bg-red-50' : ''} hover:bg-gray-50 transition`}>
+                  <tr key={appointment._id} className={`${isAppointmentToday ? 'bg-red-50' : ''} ${isAppointmentPast && appointment.status === 'scheduled' ? 'bg-red-50' : ''} hover:bg-gray-50 transition`}>
                     <td className="px-4 py-3 text-gray-500 cursor-pointer" onClick={() => openModal(appointment)}>
-                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs text-sky-600 ml-1">Today</span>}
+                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs text-red-600 ml-1">Today</span>}
                     </td>
                     <td className="px-4 py-3 cursor-pointer" onClick={() => openModal(appointment)}>
                       <div className="font-medium text-gray-800">{appointment.firstName} {appointment.lastName}</div>
@@ -352,7 +344,7 @@ export default function AppointmentsTab() {
                       <AppointmentStatusDropdown appointment={appointment} onStatusChange={handleStatusUpdate} />
                       <button
                         onClick={() => openModal(appointment)}
-                        className="text-sky-600 hover:text-sky-800 text-sm font-medium"
+                        className="text-red-600 hover:text-red-800 text-sm font-medium"
                       >
                         View
                       </button>
@@ -367,16 +359,13 @@ export default function AppointmentsTab() {
         {/* Pagination Component */}
         {!loading && pagination.pages > 1 && (
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-between border-t border-gray-200 pt-6 gap-4">
-            {/* Pagination Info */}
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <span>Page {pagination.page} of {pagination.pages}</span>
               <span className="mx-2">•</span>
               <span>{pagination.total} total appointments</span>
             </div>
 
-            {/* Pagination Controls */}
             <div className="flex items-center gap-2">
-              {/* Previous Button */}
               <button
                 onClick={() => handlePageChange(pagination.page - 1)}
                 disabled={pagination.page <= 1}
@@ -391,7 +380,6 @@ export default function AppointmentsTab() {
                 Previous
               </button>
 
-              {/* Page Numbers */}
               <div className="flex items-center gap-1">
                 {(() => {
                   const pages = [];
@@ -399,19 +387,17 @@ export default function AppointmentsTab() {
                   let startPage = Math.max(1, pagination.page - Math.floor(maxVisible / 2));
                   let endPage = Math.min(pagination.pages, startPage + maxVisible - 1);
 
-                  // Adjust if we're near the end
                   if (endPage - startPage + 1 < maxVisible) {
                     startPage = Math.max(1, endPage - maxVisible + 1);
                   }
 
-                  // First page
                   if (startPage > 1) {
                     pages.push(
                       <button
                         key={1}
                         onClick={() => handlePageChange(1)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === 1
-                          ? 'bg-sky-600 text-white'
+                          ? 'bg-red-600 text-white'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                       >
@@ -427,14 +413,13 @@ export default function AppointmentsTab() {
                     }
                   }
 
-                  // Page numbers
                   for (let i = startPage; i <= endPage; i++) {
                     pages.push(
                       <button
                         key={i}
                         onClick={() => handlePageChange(i)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === i
-                          ? 'bg-sky-600 text-white'
+                          ? 'bg-red-600 text-white'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                       >
@@ -443,7 +428,6 @@ export default function AppointmentsTab() {
                     );
                   }
 
-                  // Last page
                   if (endPage < pagination.pages) {
                     if (endPage < pagination.pages - 1) {
                       pages.push(
@@ -457,7 +441,7 @@ export default function AppointmentsTab() {
                         key={pagination.pages}
                         onClick={() => handlePageChange(pagination.pages)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === pagination.pages
-                          ? 'bg-sky-600 text-white'
+                          ? 'bg-red-600 text-white'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                       >
@@ -470,7 +454,6 @@ export default function AppointmentsTab() {
                 })()}
               </div>
 
-              {/* Next Button */}
               <button
                 onClick={() => handlePageChange(pagination.page + 1)}
                 disabled={pagination.page >= pagination.pages}
@@ -486,13 +469,12 @@ export default function AppointmentsTab() {
               </button>
             </div>
 
-            {/* Items Per Page */}
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-500">Show:</span>
               <select
                 value={pagination.limit}
                 onChange={(e) => handleLimitChange(parseInt(e.target.value))}
-                className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-red-500"
               >
                 <option value="5">5</option>
                 <option value="10">10</option>
