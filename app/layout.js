@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Favicon */}
-        <link rel="icon" href="/TrimLOGO1.svg" />
+        <link rel="icon" href="/TrimLOGO1.SVG" />
       </head>
       <body className={poppins.className}>
         <SessionProvider>
