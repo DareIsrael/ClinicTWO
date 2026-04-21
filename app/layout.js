@@ -37,21 +37,25 @@ export default function RootLayout({ children }) {
       <head>
         {/* Favicon */}
         <link rel="icon" href="/TrimLOGO1.SVG" />
+        {/* IMPORTANT: Viewport meta tag for proper mobile scaling */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+        {/* Prevent layout shifts on mobile */}
+        <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className={poppins.className}>
+      <body className={`${poppins.className} antialiased`}>
         <SessionProvider>
           <Navbar />
-          <main className="min-h-screen bg-white">{children}</main>
+          <main className="min-h-screen bg-white overflow-x-hidden">{children}</main>
 
           {/* Modern Footer - Red Theme */}
           <footer className="bg-gray-900 text-white">
-            {/* Main Footer Content */}
-            <div className="max-w-7xl mx-auto px-8 lg:px-12 py-16">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            {/* Main Footer Content - Adjusted mobile padding */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
                 {/* About Section */}
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-red-400 rounded-lg flex items-center justify-center">
+                    <div className="w-8 h-8 bg-red-400 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Heart className="w-4 h-4 text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-white">
@@ -63,17 +67,6 @@ export default function RootLayout({ children }) {
                     the Ottawa community with personalized care from experienced
                     physicians.
                   </p>
-                  {/* <div className="flex space-x-3">
-                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-400 transition-colors">
-                      <Facebook className="w-4 h-4 text-gray-400 hover:text-white transition-colors" />
-                    </a>
-                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-400 transition-colors">
-                      <Twitter className="w-4 h-4 text-gray-400 hover:text-white transition-colors" />
-                    </a>
-                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-400 transition-colors">
-                      <Instagram className="w-4 h-4 text-gray-400 hover:text-white transition-colors" />
-                    </a>
-                  </div> */}
                 </div>
 
                 {/* Quick Links */}
@@ -88,7 +81,7 @@ export default function RootLayout({ children }) {
                         href="/"
                         className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
                       >
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Home
                       </Link>
                     </li>
@@ -97,7 +90,7 @@ export default function RootLayout({ children }) {
                         href="/about"
                         className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
                       >
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         About Us
                       </Link>
                     </li>
@@ -106,7 +99,7 @@ export default function RootLayout({ children }) {
                         href="/appointment"
                         className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
                       >
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Book Appointment
                       </Link>
                     </li>
@@ -115,7 +108,7 @@ export default function RootLayout({ children }) {
                         href="/contact"
                         className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
                       >
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Contact Us
                       </Link>
                     </li>
@@ -134,7 +127,7 @@ export default function RootLayout({ children }) {
                         href="/uninsured-services"
                         className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
                       >
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Uninsured Services & Fees
                       </Link>
                     </li>
@@ -143,16 +136,10 @@ export default function RootLayout({ children }) {
                         href="/policies"
                         className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
                       >
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Patient Information & Policies
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link href="/privacy" className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group">
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                        Privacy Policy
-                      </Link>
-                    </li> */}
                   </ul>
                 </div>
 
@@ -164,12 +151,12 @@ export default function RootLayout({ children }) {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3 text-gray-400 text-sm">
-                      <Phone className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <Phone className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-white">Phone</p>
                         <a
                           href="tel:+13438873470"
-                          className="hover:text-red-500 transition-colors"
+                          className="hover:text-red-400 transition-colors break-words"
                         >
                           (343) 224-4070
                         </a>
@@ -185,22 +172,22 @@ export default function RootLayout({ children }) {
                       </div>
                     </li>
                     <li className="flex items-start gap-3 text-gray-400 text-sm">
-                      <Mail className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <Mail className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-white">Email</p>
                         <a
                           href="mailto:contact@trimmedicalcenter.ca"
-                          className="hover:text-red-500 transition-colors break-all"
+                          className="hover:text-red-400 transition-colors break-all"
                         >
                           contact@trimmedicalcenter.ca
                         </a>
                       </div>
                     </li>
                     <li className="flex items-start gap-3 text-gray-400 text-sm">
-                      <MapPin className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <MapPin className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-white">Location</p>
-                        <p>1280 Trim Rd, Unit B, Orleans, ON K4A 3N3</p>
+                        <p className="break-words">1280 Trim Rd, Unit B, Orleans, ON K4A 3N3</p>
                       </div>
                     </li>
                   </ul>
@@ -212,23 +199,23 @@ export default function RootLayout({ children }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-md font-semibold mb-4 text-white flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-red-500" />
+                      <Clock className="w-4 h-4 text-red-400 flex-shrink-0" />
                       Clinic Hours
                     </h3>
                     <div className="space-y-2 text-gray-400 text-sm">
-                      <div className="flex justify-between max-w-xs">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:max-w-xs gap-1 sm:gap-0">
                         <span>Monday - Thursday:</span>
                         <span className="text-white">10:00 AM - 7:00 PM</span>
                       </div>
-                      <div className="flex justify-between max-w-xs">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:max-w-xs gap-1 sm:gap-0">
                         <span>Friday:</span>
                         <span className="text-white">10:00 AM - 5:00 PM</span>
                       </div>
-                      <div className="flex justify-between max-w-xs">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:max-w-xs gap-1 sm:gap-0">
                         <span>Saturday:</span>
                         <span className="text-white">10:00 AM - 3:00 PM</span>
                       </div>
-                      <div className="flex justify-between max-w-xs">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:max-w-xs gap-1 sm:gap-0">
                         <span>Sunday:</span>
                         <span className="text-red-400">Closed</span>
                       </div>
@@ -258,7 +245,7 @@ export default function RootLayout({ children }) {
 
               {/* Newsletter Signup */}
               <div className="border-t border-gray-800 pt-8 mb-8">
-                <div className="max-w-md mx-auto text-center">
+                <div className="max-w-md mx-auto text-center px-4 sm:px-0">
                   <h3 className="text-lg font-semibold mb-2 text-white">
                     Stay Updated
                   </h3>
@@ -266,7 +253,7 @@ export default function RootLayout({ children }) {
                     Subscribe to our newsletter for health tips and clinic
                     updates
                   </p>
-                  <form className="flex gap-2">
+                  <form className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="email"
                       placeholder="Your email address"

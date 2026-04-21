@@ -442,3 +442,202 @@ export default function Navbar() {
     </nav>
   );
 }
+
+
+// 'use client';
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import { useState, useRef, useEffect } from 'react';
+// import { usePathname } from 'next/navigation';
+// import { useAuth } from '@/hooks/useAuth';
+
+// export default function Navbar() {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [isOnlineBookingDropdownOpen, setIsOnlineBookingDropdownOpen] = useState(false);
+//   const pathname = usePathname();
+//   const { user, isAuthenticated, signOut, loading } = useAuth();
+//   const dropdownRef = useRef(null);
+
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+//         setIsOnlineBookingDropdownOpen(false);
+//       }
+//     };
+//     document.addEventListener('mousedown', handleClickOutside);
+//     return () => document.removeEventListener('mousedown', handleClickOutside);
+//   }, []);
+
+//   const handleLogout = () => {
+//     signOut();
+//     setIsMenuOpen(false);
+//   };
+
+//   const closeMobileMenu = () => {
+//     setIsMenuOpen(false);
+//     setIsOnlineBookingDropdownOpen(false);
+//   };
+
+//   const isActiveLink = (path) =>
+//     pathname === path
+//       ? 'text-red-400 bg-red-50 font-semibold'
+//       : 'text-gray-700 hover:text-red-400 hover:bg-gray-50';
+
+//   if (loading) {
+//     return (
+//       <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 w-full">
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+//           <div className="flex justify-between items-center h-16">
+//             <Image src="/TrimLOGO1.svg" alt="Logo" width={100} height={40} />
+//             <div className="animate-pulse bg-gray-200 h-8 w-8 rounded-full"></div>
+//           </div>
+//         </div>
+//       </nav>
+//     );
+//   }
+
+//   return (
+//     <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 w-full overflow-x-hidden">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+//         {/* MOBILE HEADER */}
+//         <div className="md:hidden py-3 border-b border-gray-100">
+//           <div className="flex justify-between items-center">
+//             <Link href="/" onClick={closeMobileMenu}>
+//               <Image
+//                 src="/TrimLOGO1.svg"
+//                 alt="Logo"
+//                 width={100}
+//                 height={40}
+//                 priority
+//               />
+//             </Link>
+
+//             <div className="text-right max-w-[60%]">
+//               <a
+//                 href="tel:3432244070"
+//                 className="text-xs font-semibold text-red-400 break-words"
+//               >
+//                 (343) 224-4070
+//               </a>
+//               <p className="text-[10px] text-gray-600 break-words">
+//                 158 Rideau St, Ottawa
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* MAIN NAV */}
+//         <div className="flex justify-between items-center h-16">
+
+//           {/* LOGO */}
+//           <div className="hidden md:flex">
+//             <Link href="/">
+//               <Image
+//                 src="/TrimLOGO1.svg"
+//                 alt="Logo"
+//                 width={100}
+//                 height={50}
+//                 priority
+//               />
+//             </Link>
+//           </div>
+
+//           {/* DESKTOP NAV */}
+//           <div className="hidden md:flex items-center space-x-1">
+
+//             <Link href="/" className={`px-3 py-2 rounded-lg text-sm ${isActiveLink('/')}`}>
+//               Home
+//             </Link>
+
+//             {/* DROPDOWN */}
+//             <div className="relative" ref={dropdownRef}>
+//               <button
+//                 onClick={() => setIsOnlineBookingDropdownOpen(!isOnlineBookingDropdownOpen)}
+//                 className="px-4 py-2 rounded-lg text-sm font-semibold bg-red-400 text-white"
+//               >
+//                 Book Now
+//               </button>
+
+//               {isOnlineBookingDropdownOpen && (
+//                 <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-lg border z-50">
+//                   <Link
+//                     href="/book-appointment"
+//                     className="block px-4 py-2 text-sm hover:bg-gray-50"
+//                   >
+//                     Walk-In Care
+//                   </Link>
+//                 </div>
+//               )}
+//             </div>
+
+//             <Link href="/about" className={`px-3 py-2 rounded-lg text-sm ${isActiveLink('/about')}`}>
+//               About
+//             </Link>
+
+//             <Link href="/contact" className={`px-3 py-2 rounded-lg text-sm ${isActiveLink('/contact')}`}>
+//               Contact
+//             </Link>
+
+//             {!isAuthenticated && (
+//               <Link
+//                 href="/waitlist"
+//                 className="ml-2 px-3 py-2 rounded-lg text-sm bg-red-400 text-white"
+//               >
+//                 Join Waitlist
+//               </Link>
+//             )}
+//           </div>
+
+//           {/* MOBILE BUTTON */}
+//           <div className="md:hidden">
+//             <button
+//               onClick={() => setIsMenuOpen(!isMenuOpen)}
+//               className="p-2 rounded-lg"
+//             >
+//               ☰
+//             </button>
+//           </div>
+//         </div>
+
+//         {/* MOBILE MENU */}
+//         {isMenuOpen && (
+//           <div className="md:hidden w-full bg-white border-t">
+//             <div className="px-4 py-3 space-y-2">
+
+//               <Link href="/" onClick={closeMobileMenu} className="block py-2">
+//                 Home
+//               </Link>
+
+//               <Link href="/about" onClick={closeMobileMenu} className="block py-2">
+//                 About
+//               </Link>
+
+//               <Link href="/contact" onClick={closeMobileMenu} className="block py-2">
+//                 Contact
+//               </Link>
+
+//               <Link
+//                 href="/book-appointment"
+//                 onClick={closeMobileMenu}
+//                 className="block py-2 text-red-400"
+//               >
+//                 Book Appointment
+//               </Link>
+
+//               {!isAuthenticated && (
+//                 <Link
+//                   href="/waitlist"
+//                   onClick={closeMobileMenu}
+//                   className="block py-2 bg-red-400 text-white text-center rounded-lg"
+//                 >
+//                   Join Waitlist
+//                 </Link>
+//               )}
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </nav>
+//   );
+// }

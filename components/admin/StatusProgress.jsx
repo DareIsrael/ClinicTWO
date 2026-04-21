@@ -1,9 +1,9 @@
 const StatusProgress = ({ statusData, total }) => {
   const statusColors = {
     Active: 'bg-green-500',
-    Booked: 'bg-red-500',
+    Booked: 'bg-red-400',
     Accepted: 'bg-purple-500',
-    Rejected: 'bg-red-500'
+    Rejected: 'bg-red-400'
   };
 
   return (
