@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* New Doctor Announcement Modal - Mobile */}
-      {showNewDoctorAnnouncement && (
+      {/* {showNewDoctorAnnouncement && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div
             className="absolute inset-0 bg-black/50"
@@ -127,7 +127,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Desktop Announcement Banner */}
       {/* {showNewDoctorAnnouncement && (
@@ -157,7 +157,7 @@ export default function Home() {
       )} */}
 
       {/* Hero Section with Announcements - Fixed Positioning */}
-      <section className="relative bg-white pt-8">
+     <section className="relative bg-white pt-0 md:pt-8">
         {/* Announcements Component - Positioned without covering content */}
         <div className="relative z-20 max-w-7xl mx-auto px-8 lg:px-12 mb-1">
           <Announcements />
