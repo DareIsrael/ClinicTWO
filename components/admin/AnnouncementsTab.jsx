@@ -91,7 +91,7 @@ export default function AnnouncementsTab() {
         </div>
         <button
           onClick={() => setIsCreating(true)}
-          className="border border-red-600 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-50 transition duration-300"
+          className="border border-red-600 text-red-400 px-4 py-2 rounded-lg text-sm hover:bg-red-50 transition duration-300"
         >
           + New Announcement
         </button>

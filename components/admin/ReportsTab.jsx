@@ -88,7 +88,7 @@ export default function ReportsTab() {
             <button
               onClick={() => fetchMonthlyReports()}
               disabled={loading}
-              className="border border-red-600 text-red-600 px-4 py-2 rounded text-sm hover:bg-red-50 transition duration-300 disabled:opacity-50"
+              className="border border-red-600 text-red-400 px-4 py-2 rounded text-sm hover:bg-red-50 transition duration-300 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>

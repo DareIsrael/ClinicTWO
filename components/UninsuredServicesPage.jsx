@@ -115,7 +115,7 @@ const UninsuredServicesPage = () => {
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="px-4 py-2 bg-white text-red-600 rounded-full shadow-sm hover:shadow-md transition-shadow duration-200 border border-red-100 hover:border-red-300"
+                className="px-4 py-2 bg-white text-red-400 rounded-full shadow-sm hover:shadow-md transition-shadow duration-200 border border-red-100 hover:border-red-300"
               >
                 {section.title.split(' ').slice(0, 3).join(' ')}...
               </a>
@@ -135,7 +135,7 @@ const UninsuredServicesPage = () => {
             >
               {/* Section Header */}
               <div className="flex items-start gap-4 mb-6">
-                <div className="p-3 bg-red-50 rounded-lg text-red-600">
+                <div className="p-3 bg-red-50 rounded-lg text-red-400">
                   {section.icon}
                 </div>
                 <div>
@@ -161,7 +161,7 @@ const UninsuredServicesPage = () => {
                   <ul className="space-y-2 mb-6">
                     {section.list.map((item, idx) => (
                       <li key={idx} className="flex items-start">
-                        <span className="text-red-600 mr-2">•</span>
+                        <span className="text-red-400 mr-2">•</span>
                         <span className="text-gray-700">{item}</span>
                       </li>
                     ))}
@@ -174,7 +174,7 @@ const UninsuredServicesPage = () => {
                     {section.subsections.map((subsection, subIndex) => (
                       <div key={subIndex} className="border-l-4 border-red-200 pl-6">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-red-50 rounded-lg text-red-600">
+                          <div className="p-2 bg-red-50 rounded-lg text-red-400">
                             {subsection.icon}
                           </div>
                           <h3 className="text-xl font-semibold text-red-700">
@@ -244,7 +244,7 @@ const UninsuredServicesPage = () => {
                       </div>
                       <a
                         href="/contact"
-                        className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium shadow-sm hover:shadow-md"
+                        className="px-6 py-3 bg-red-400 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium shadow-sm hover:shadow-md"
                       >
                         Contact Us
                       </a>
@@ -270,7 +270,7 @@ const UninsuredServicesPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="px-6 py-3 bg-white text-red-600 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
+                className="px-6 py-3 bg-white text-red-400 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
               >
                 Ask About Fees
               </a>

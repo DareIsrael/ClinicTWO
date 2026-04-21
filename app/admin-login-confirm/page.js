@@ -103,7 +103,7 @@ function AdminLoginConfirmContent() {
             )}
             {status === "error" && (
               <svg
-                className="w-10 h-10 text-red-600"
+                className="w-10 h-10 text-red-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -136,7 +136,7 @@ function AdminLoginConfirmContent() {
 
           <p
             className={`mb-6 ${
-              status === "error" ? "text-red-600" : "text-gray-600"
+              status === "error" ? "text-red-400" : "text-gray-600"
             }`}
           >
             {message}
@@ -146,7 +146,7 @@ function AdminLoginConfirmContent() {
             <div className="space-y-3">
               <Link
                 href="/login"
-                className="block w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors text-center font-medium"
+                className="block w-full bg-red-400 text-white py-3 rounded-lg hover:bg-red-700 transition-colors text-center font-medium"
               >
                 Go to Login
               </Link>

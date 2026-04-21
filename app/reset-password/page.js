@@ -72,7 +72,7 @@ function ResetPasswordContent() {
           </div>
           <Link
             href="/forgot-password"
-            className="mt-4 inline-block text-red-600 hover:text-red-500"
+            className="mt-4 inline-block text-red-400 hover:text-red-500"
           >
             Request new reset link
           </Link>
@@ -85,7 +85,7 @@ function ResetPasswordContent() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <div className="mx-auto h-12 w-12 bg-red-600 rounded-lg flex items-center justify-center">
+          <div className="mx-auto h-12 w-12 bg-red-400 rounded-lg flex items-center justify-center">
             <svg
               className="w-6 h-6 text-white"
               fill="none"
@@ -167,7 +167,7 @@ function ResetPasswordContent() {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-400 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50"
             >
               {loading ? (
                 <span className="flex items-center">
@@ -201,7 +201,7 @@ function ResetPasswordContent() {
           <div className="text-center">
             <Link
               href="/login"
-              className="font-medium text-red-600 hover:text-red-500"
+              className="font-medium text-red-400 hover:text-red-500"
             >
               Back to login
             </Link>
@@ -218,7 +218,7 @@ export default function ResetPassword() {
       fallback={
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="max-w-md w-full text-center">
-            <div className="mx-auto h-12 w-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="mx-auto h-12 w-12 bg-red-400 rounded-lg flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"

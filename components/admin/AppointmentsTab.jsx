@@ -232,7 +232,7 @@ export default function AppointmentsTab() {
             <button
               onClick={() => fetchAppointments(pagination.page, pagination.limit, searchQuery, searchStatus, searchDate, activeFilter)}
               disabled={loading}
-              className="border border-red-600 text-red-600 px-4 py-2 rounded-md text-sm hover:bg-red-50 transition duration-200 disabled:opacity-50"
+              className="border border-red-600 text-red-400 px-4 py-2 rounded-md text-sm hover:bg-red-50 transition duration-200 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>
@@ -248,7 +248,7 @@ export default function AppointmentsTab() {
               <button
                 key={filter}
                 onClick={() => handleFilterChange(filter)}
-                className={`px-4 py-2 rounded-md text-sm font-medium ${activeFilter === filter ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                className={`px-4 py-2 rounded-md text-sm font-medium ${activeFilter === filter ? 'bg-red-400 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
               >
                 {label} ({count})
               </button>
@@ -324,7 +324,7 @@ export default function AppointmentsTab() {
                 return (
                   <tr key={appointment._id} className={`${isAppointmentToday ? 'bg-red-50' : ''} ${isAppointmentPast && appointment.status === 'scheduled' ? 'bg-red-50' : ''} hover:bg-gray-50 transition`}>
                     <td className="px-4 py-3 text-gray-500 cursor-pointer" onClick={() => openModal(appointment)}>
-                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs text-red-600 ml-1">Today</span>}
+                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs text-red-400 ml-1">Today</span>}
                     </td>
                     <td className="px-4 py-3 cursor-pointer" onClick={() => openModal(appointment)}>
                       <div className="font-medium text-gray-800">{appointment.firstName} {appointment.lastName}</div>
@@ -344,7 +344,7 @@ export default function AppointmentsTab() {
                       <AppointmentStatusDropdown appointment={appointment} onStatusChange={handleStatusUpdate} />
                       <button
                         onClick={() => openModal(appointment)}
-                        className="text-red-600 hover:text-red-800 text-sm font-medium"
+                        className="text-red-400 hover:text-red-800 text-sm font-medium"
                       >
                         View
                       </button>
@@ -397,7 +397,7 @@ export default function AppointmentsTab() {
                         key={1}
                         onClick={() => handlePageChange(1)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === 1
-                          ? 'bg-red-600 text-white'
+                          ? 'bg-red-400 text-white'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                       >
@@ -419,7 +419,7 @@ export default function AppointmentsTab() {
                         key={i}
                         onClick={() => handlePageChange(i)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === i
-                          ? 'bg-red-600 text-white'
+                          ? 'bg-red-400 text-white'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                       >
@@ -441,7 +441,7 @@ export default function AppointmentsTab() {
                         key={pagination.pages}
                         onClick={() => handlePageChange(pagination.pages)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === pagination.pages
-                          ? 'bg-red-600 text-white'
+                          ? 'bg-red-400 text-white'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                       >

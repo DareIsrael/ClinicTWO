@@ -208,7 +208,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
             </button>
             {/* <button
               onClick={() => window.print()}
-              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200 font-medium"
+              className="px-6 py-3 bg-red-400 text-white rounded-lg hover:bg-red-700 transition duration-200 font-medium"
             >
               Print Details
             </button> */}

@@ -185,7 +185,7 @@ export default function BookingForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-red-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition duration-300 transform hover:scale-105 font-medium"
+          className="w-full bg-red-400 text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition duration-300 transform hover:scale-105 font-medium"
         >
           {loading ? (
             <span className="flex items-center justify-center">
@@ -203,7 +203,7 @@ export default function BookingForm() {
 
       {/* Help Text */}
       {/* <div className="mt-6 text-center text-sm text-gray-500">
-        <p>Need help? Contact us at <a href="tel:(343) 224-4070" className="text-red-600 hover:text-red-700">(555) 123-4567</a></p>
+        <p>Need help? Contact us at <a href="tel:(343) 224-4070" className="text-red-400 hover:text-red-700">(555) 123-4567</a></p>
         <p className="mt-1">Our team is available - Monday - Mon & Wed - 4pm-8pm, 
           Tues & Thurs - 10am-7pm, 
           Sat - 10am-3pm</p>

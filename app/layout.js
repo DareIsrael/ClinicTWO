@@ -1,21 +1,34 @@
 // layout.js - Completely Redesigned with Red Theme
-import './globals.css';
-import Navbar from '@/components/Navbar';
-import { Poppins } from 'next/font/google';
-import SessionProvider from '@/components/SessionProvider';
-import { Phone, Mail, Calendar, MapPin, Clock, Heart, Facebook, Twitter, Instagram, Linkedin, ChevronRight, AlertCircle } from 'lucide-react';
-import Link from 'next/link';
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import { Poppins } from "next/font/google";
+import SessionProvider from "@/components/SessionProvider";
+import {
+  Phone,
+  Mail,
+  Calendar,
+  MapPin,
+  Clock,
+  Heart,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  ChevronRight,
+  AlertCircle,
+} from "lucide-react";
+import Link from "next/link";
 
 // Import Poppins font
 const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 // Metadata
 export const metadata = {
-  title: 'Trim medical centre - Your Health Partner',
-  description: 'Book appointments with healthcare professionals easily',
+  title: "Trim medical centre - Your Health Partner",
+  description: "Book appointments with healthcare professionals easily",
 };
 
 export default function RootLayout({ children }) {
@@ -29,32 +42,35 @@ export default function RootLayout({ children }) {
         <SessionProvider>
           <Navbar />
           <main className="min-h-screen bg-white">{children}</main>
-          
+
           {/* Modern Footer - Red Theme */}
           <footer className="bg-gray-900 text-white">
             {/* Main Footer Content */}
             <div className="max-w-7xl mx-auto px-8 lg:px-12 py-16">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                
                 {/* About Section */}
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                    <div className="w-8 h-8 bg-red-400 rounded-lg flex items-center justify-center">
                       <Heart className="w-4 h-4 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-white">Trim Medical Centre</h3>
+                    <h3 className="text-xl font-bold text-white">
+                      Trim Medical Centre
+                    </h3>
                   </div>
                   <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                    Providing compassionate, comprehensive family medicine to the Ottawa community with personalized care from experienced physicians.
+                    Providing compassionate, comprehensive family medicine to
+                    the Ottawa community with personalized care from experienced
+                    physicians.
                   </p>
                   {/* <div className="flex space-x-3">
-                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
+                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-400 transition-colors">
                       <Facebook className="w-4 h-4 text-gray-400 hover:text-white transition-colors" />
                     </a>
-                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
+                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-400 transition-colors">
                       <Twitter className="w-4 h-4 text-gray-400 hover:text-white transition-colors" />
                     </a>
-                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
+                    <a href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-400 transition-colors">
                       <Instagram className="w-4 h-4 text-gray-400 hover:text-white transition-colors" />
                     </a>
                   </div> */}
@@ -64,29 +80,41 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Quick Links
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
                   </h3>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/" className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group">
+                      <Link
+                        href="/"
+                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                      >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         Home
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about" className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group">
+                      <Link
+                        href="/about"
+                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                      >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         About Us
                       </Link>
                     </li>
                     <li>
-                      <Link href="/appointment" className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group">
+                      <Link
+                        href="/appointment"
+                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                      >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         Book Appointment
                       </Link>
                     </li>
                     <li>
-                      <Link href="/contact" className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group">
+                      <Link
+                        href="/contact"
+                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                      >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         Contact Us
                       </Link>
@@ -98,17 +126,23 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Information
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
                   </h3>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/uninsured-services" className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group">
+                      <Link
+                        href="/uninsured-services"
+                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                      >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         Uninsured Services & Fees
                       </Link>
                     </li>
                     <li>
-                      <Link href="/policies" className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group">
+                      <Link
+                        href="/policies"
+                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                      >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         Patient Information & Policies
                       </Link>
@@ -126,18 +160,25 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Contact Info
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3 text-gray-400 text-sm">
                       <Phone className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-white">Phone</p>
-                        <a href="tel:+13438873470" className="hover:text-red-500 transition-colors">(343) 224-4070</a>
+                        <a
+                          href="tel:+13438873470"
+                          className="hover:text-red-500 transition-colors"
+                        >
+                          (343) 224-4070
+                        </a>
                       </div>
                     </li>
                     <li className="flex items-start gap-3 text-gray-400 text-sm">
-                      <span className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0 text-center">📠</span>
+                      <span className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0 text-center">
+                        📠
+                      </span>
                       <div>
                         <p className="font-medium text-white">Fax</p>
                         <p>(888) 615-1221</p>
@@ -147,7 +188,10 @@ export default function RootLayout({ children }) {
                       <Mail className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-white">Email</p>
-                        <a href="mailto:contact@trimmedicalcenter.ca" className="hover:text-red-500 transition-colors break-all">
+                        <a
+                          href="mailto:contact@trimmedicalcenter.ca"
+                          className="hover:text-red-500 transition-colors break-all"
+                        >
                           contact@trimmedicalcenter.ca
                         </a>
                       </div>
@@ -190,15 +234,20 @@ export default function RootLayout({ children }) {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
-                    <h3 className="text-md font-semibold mb-4 text-white">Emergency Care</h3>
+                    <h3 className="text-md font-semibold mb-4 text-white">
+                      Emergency Care
+                    </h3>
                     <div className="bg-red-900/20 border border-red-800 rounded-xl p-4">
                       <div className="flex items-start gap-3">
                         <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                         <div>
                           <p className="text-gray-300 text-sm leading-relaxed">
-                            For medical emergencies, please call <span className="font-bold text-red-400">911</span> or visit your nearest hospital emergency department immediately.
+                            For medical emergencies, please call{" "}
+                            <span className="font-bold text-red-400">911</span>{" "}
+                            or visit your nearest hospital emergency department
+                            immediately.
                           </p>
                         </div>
                       </div>
@@ -210,17 +259,22 @@ export default function RootLayout({ children }) {
               {/* Newsletter Signup */}
               <div className="border-t border-gray-800 pt-8 mb-8">
                 <div className="max-w-md mx-auto text-center">
-                  <h3 className="text-lg font-semibold mb-2 text-white">Stay Updated</h3>
-                  <p className="text-gray-400 text-sm mb-4">Subscribe to our newsletter for health tips and clinic updates</p>
+                  <h3 className="text-lg font-semibold mb-2 text-white">
+                    Stay Updated
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Subscribe to our newsletter for health tips and clinic
+                    updates
+                  </p>
                   <form className="flex gap-2">
-                    <input 
-                      type="email" 
-                      placeholder="Your email address" 
+                    <input
+                      type="email"
+                      placeholder="Your email address"
                       className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 text-sm"
                     />
-                    <button 
-                      type="submit" 
-                      className="px-5 py-2.5 bg-red-600 hover:bg-red-700 rounded-xl font-semibold transition-all duration-200 text-sm text-white"
+                    <button
+                      type="submit"
+                      className="px-5 py-2.5 bg-red-400 hover:bg-red-700 rounded-xl font-semibold transition-all duration-200 text-sm text-white"
                     >
                       Subscribe
                     </button>
@@ -231,7 +285,8 @@ export default function RootLayout({ children }) {
               {/* Copyright */}
               <div className="border-t border-gray-800 pt-8 text-center">
                 <p className="text-gray-500 text-sm">
-                  &copy; {new Date().getFullYear()} Trim Medical Centre. All rights reserved.
+                  &copy; {new Date().getFullYear()} Trim Medical Centre. All
+                  rights reserved.
                 </p>
                 <p className="text-gray-600 text-xs mt-2">
                   Committed to your health and wellbeing

@@ -26,7 +26,7 @@ const MonthlyTrendsChart = ({ trendsData, year }) => {
             <div key={index} className="flex flex-col items-center flex-1">
               <div className="text-xs text-gray-500 mb-1">{count}</div>
               <div
-                className="bg-red-500 w-full rounded-t transition-all duration-300 hover:bg-red-600 cursor-pointer"
+                className="bg-red-500 w-full rounded-t transition-all duration-300 hover:bg-red-400 cursor-pointer"
                 style={{ height: `${(count / maxRegistration) * 90}%` }}
                 title={`${months[index]}: ${count} registrations`}
               ></div>

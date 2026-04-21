@@ -60,7 +60,7 @@ export default function BroadcastHistoryTab() {
 
             {loading ? (
                 <div className="text-center py-12 text-gray-500">
-                    <svg className="animate-spin h-8 w-8 mx-auto mb-3 text-red-600" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-8 w-8 mx-auto mb-3 text-red-400" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
@@ -105,7 +105,7 @@ export default function BroadcastHistoryTab() {
                                         <div className="flex items-center gap-2 text-xs">
                                             <span className="text-green-600 font-medium">{msg.sent} sent</span>
                                             {msg.failed > 0 && (
-                                                <span className="text-red-600 font-medium">{msg.failed} failed</span>
+                                                <span className="text-red-400 font-medium">{msg.failed} failed</span>
                                             )}
                                         </div>
                                         <svg

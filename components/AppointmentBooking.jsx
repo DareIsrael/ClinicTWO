@@ -184,7 +184,7 @@ export default function AppointmentBooking() {
       <div className="relative bg-gray-50 overflow-hidden">
         <div className="relative max-w-6xl mx-auto px-6 py-16 text-center">
           <div className="inline-flex items-center gap-2 bg-primary-light shadow-sm px-4 py-2 rounded-full mb-6">
-            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
             <span className="text-xs font-medium text-gray-700 uppercase  text-primary tracking-wider">Secure Online Booking</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
@@ -203,7 +203,7 @@ export default function AppointmentBooking() {
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
             <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
+                <div className="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
                 <div>
                   <h2 className="font-semibold text-gray-900">Select Date</h2>
                   <p className="text-xs text-gray-500">Choose when you'd like to visit</p>
@@ -224,7 +224,7 @@ export default function AppointmentBooking() {
                       onClick={() => handleDateSelect(dateInfo.date)}
                       className={`group relative p-5 rounded-xl text-left transition-all duration-300 ${
                         selectedDate === dateInfo.date
-                          ? 'bg-red-600 text-white shadow-lg'
+                          ? 'bg-red-400 text-white shadow-lg'
                           : 'bg-gray-50 hover:bg-gray-100 border border-gray-100'
                       }`}
                     >
@@ -249,7 +249,7 @@ export default function AppointmentBooking() {
                         selectedDate === dateInfo.date ? 'border-white/20' : 'border-gray-200'
                       }`}>
                         <span className={selectedDate === dateInfo.date ? 'text-white/70' : 'text-gray-500'}>Slots</span>
-                        <span className={`font-semibold ${selectedDate === dateInfo.date ? 'text-white' : 'text-red-600'}`}>
+                        <span className={`font-semibold ${selectedDate === dateInfo.date ? 'text-white' : 'text-red-400'}`}>
                           {dateInfo.availableSlots || 0} available
                         </span>
                       </div>
@@ -277,7 +277,7 @@ export default function AppointmentBooking() {
             <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
+                  <div className="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
                   <div>
                     <h2 className="font-semibold text-gray-900">Select Time</h2>
                     <p className="text-xs text-gray-500">{selectedDate && formatDateDisplay(selectedDate)}</p>
@@ -285,7 +285,7 @@ export default function AppointmentBooking() {
                 </div>
                 <button
                   onClick={() => setStep(1)}
-                  className="text-sm text-red-600 hover:text-red-700 transition-colors flex items-center gap-1"
+                  className="text-sm text-red-400 hover:text-red-700 transition-colors flex items-center gap-1"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -311,7 +311,7 @@ export default function AppointmentBooking() {
                         className={`
                           py-4 rounded-xl text-center font-medium transition-all duration-200
                           ${selectedTime === slot.time
-                            ? 'bg-red-600 text-white shadow-md scale-105'
+                            ? 'bg-red-400 text-white shadow-md scale-105'
                             : slot.available
                             ? 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-100'
                             : 'bg-gray-50 text-gray-400 cursor-not-allowed line-through'
@@ -326,7 +326,7 @@ export default function AppointmentBooking() {
                     <div className="mt-8 pt-6 border-t border-gray-100 flex justify-end">
                       <button
                         onClick={() => setStep(3)}
-                        className="px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all font-medium flex items-center gap-2 shadow-sm"
+                        className="px-6 py-3 bg-red-400 text-white rounded-xl hover:bg-red-700 transition-all font-medium flex items-center gap-2 shadow-sm"
                       >
                         Continue to Details
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -346,7 +346,7 @@ export default function AppointmentBooking() {
                   <p className="text-gray-600 font-medium">No available time slots</p>
                   <button
                     onClick={() => setStep(1)}
-                    className="mt-4 text-red-600 hover:text-red-700 font-medium"
+                    className="mt-4 text-red-400 hover:text-red-700 font-medium"
                   >
                     ← Choose another date
                   </button>
@@ -405,7 +405,7 @@ export default function AppointmentBooking() {
               <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                 <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
+                    <div className="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
                     <div>
                       <h2 className="font-semibold text-gray-900">Your Details</h2>
                       <p className="text-xs text-gray-500">Fill in your information below</p>
@@ -505,7 +505,7 @@ export default function AppointmentBooking() {
                       Cancel
                     </button>
                     <button type="submit" disabled={loading}
-                      className="px-8 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all font-medium shadow-sm disabled:opacity-50 flex items-center justify-center gap-2">
+                      className="px-8 py-3 bg-red-400 text-white rounded-xl hover:bg-red-700 transition-all font-medium shadow-sm disabled:opacity-50 flex items-center justify-center gap-2">
                       {loading ? (
                         <>
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -533,7 +533,7 @@ export default function AppointmentBooking() {
             <div className="relative bg-gray-800 px-6 py-8 text-center">
               <div className="relative">
                 <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -567,7 +567,7 @@ export default function AppointmentBooking() {
 
               <div className="bg-red-50 rounded-xl p-4 mb-6">
                 <div className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-red-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <div className="text-sm text-gray-700">
@@ -583,7 +583,7 @@ export default function AppointmentBooking() {
               </div>
 
               <button onClick={resetForm}
-                className="w-full py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all font-medium shadow-sm">
+                className="w-full py-3 bg-red-400 text-white rounded-xl hover:bg-red-700 transition-all font-medium shadow-sm">
                 Book Another Appointment
               </button>
             </div>

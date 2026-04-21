@@ -119,7 +119,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
             id="isActive"
             checked={formData.isActive}
             onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
-            className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
+            className="h-4 w-4 text-red-400 focus:ring-red-500 border-gray-300 rounded"
           />
           <label htmlFor="isActive" className="ml-2 text-sm text-gray-700">
             Active (visible on homepage)
@@ -137,7 +137,7 @@ const AnnouncementForm = ({ announcement, onSubmit, onCancel }) => {
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition duration-200 disabled:opacity-50"
+            className="px-4 py-2 text-sm font-medium text-white bg-red-400 rounded-lg hover:bg-red-700 transition duration-200 disabled:opacity-50"
           >
             {loading ? 'Saving...' : announcement ? 'Update' : 'Create'}
           </button>
