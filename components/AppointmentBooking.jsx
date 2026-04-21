@@ -239,7 +239,7 @@ export default function AppointmentBooking() {
                         </div>
                         {dateInfo.isToday && (
                           <span className={`text-xs px-2 py-1 rounded-full ${
-                            selectedDate === dateInfo.date ? 'bg-white/20 text-white' : 'bg-red-100 text-red-700'
+                            selectedDate === dateInfo.date ? 'bg-white/20 text-white' : 'bg-red-100 text-red-400'
                           }`}>
                             Today
                           </span>
@@ -285,7 +285,7 @@ export default function AppointmentBooking() {
                 </div>
                 <button
                   onClick={() => setStep(1)}
-                  className="text-sm text-red-400 hover:text-red-700 transition-colors flex items-center gap-1"
+                  className="text-sm text-red-400 hover:text-red-400 transition-colors flex items-center gap-1"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -346,7 +346,7 @@ export default function AppointmentBooking() {
                   <p className="text-gray-600 font-medium">No available time slots</p>
                   <button
                     onClick={() => setStep(1)}
-                    className="mt-4 text-red-400 hover:text-red-700 font-medium"
+                    className="mt-4 text-red-400 hover:text-red-400 font-medium"
                   >
                     ← Choose another date
                   </button>
@@ -597,11 +597,11 @@ export default function AppointmentBooking() {
           <div className="bg-red-50 border border-red-200 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-red-700 text-sm">{error}</p>
+              <p className="text-red-400 text-sm">{error}</p>
             </div>
           </div>
         </div>

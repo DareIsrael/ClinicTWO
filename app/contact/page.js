@@ -154,7 +154,7 @@ export default function ContactPage() {
       <section className="relative bg-red-50/20 pt-12 pb-16 lg:pt-16 lg:pb-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-700 text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-400 text-sm font-medium mb-4">
               <svg
                 className="w-4 h-4 mr-1.5"
                 fill="none"
@@ -232,7 +232,7 @@ export default function ContactPage() {
               <div className="w-12 h-1 bg-red-400 rounded-full mb-5"></div>
 
               {submitStatus === "success" && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-5">
+                <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-xl mb-5">
                   <div className="flex items-center">
                     <svg
                       className="w-5 h-5 mr-2"
@@ -254,7 +254,7 @@ export default function ContactPage() {
               )}
 
               {submitStatus === "error" && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-5">
+                <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-xl mb-5">
                   <div className="flex items-center">
                     <svg
                       className="w-5 h-5 mr-2"
@@ -427,7 +427,7 @@ export default function ContactPage() {
                     href="https://maps.google.com/?q=1280+Trim+Rd+Orleans+ON"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-red-400 hover:text-red-700 font-medium text-sm transition-colors"
+                    className="inline-flex items-center text-red-400 hover:text-red-400 font-medium text-sm transition-colors"
                   >
                     Get Directions
                     <svg
@@ -469,7 +469,7 @@ export default function ContactPage() {
                     <h3 className="text-base font-semibold text-red-800 mb-1">
                       Medical Emergency
                     </h3>
-                    <p className="text-red-700 text-xs mb-2">
+                    <p className="text-red-400 text-xs mb-2">
                       For urgent medical concerns that require immediate
                       attention, please call 911 or visit your nearest emergency
                       department.

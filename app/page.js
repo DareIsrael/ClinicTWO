@@ -142,7 +142,7 @@ export default function Home() {
                   <span className="text-sm font-medium text-gray-900">Welcome Dr. Babundo Okwechime!</span>
                 </div>
                 <p className="text-sm text-gray-600">Starting April 27, 2026 — accepting new patients on waitlist</p>
-                <Link href="/waitlist" className="text-sm font-semibold text-red-400 hover:text-red-700 transition-colors">
+                <Link href="/waitlist" className="text-sm font-semibold text-red-400 hover:text-red-400 transition-colors">
                   Join Waitlist →
                 </Link>
               </div>
@@ -157,7 +157,7 @@ export default function Home() {
       )} */}
 
       {/* Hero Section with Announcements - Fixed Positioning */}
-     <section className="relative bg-white pt-0 md:pt-8">
+      <section className="relative bg-white pt-0 md:pt-8">
         {/* Announcements Component - Positioned without covering content */}
         <div className="relative z-20 max-w-7xl mx-auto px-8 lg:px-12 mb-1">
           <Announcements />
@@ -167,7 +167,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div>
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-700 text-sm font-medium mb-6">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-400 text-sm font-medium mb-6">
                 <svg
                   className="w-4 h-4 mr-1.5"
                   fill="none"
@@ -282,7 +282,9 @@ export default function Home() {
                 <div className="text-sm text-gray-600">Happy Patients</div>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
-                <div className="text-3xl font-bold text-gray-500 mb-1">24/7</div>
+                <div className="text-3xl font-bold text-gray-500 mb-1">
+                  24/7
+                </div>
                 <div className="text-sm text-gray-600">Online Booking</div>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
@@ -479,7 +481,7 @@ export default function Home() {
                     <p className="text-gray-900 font-medium">Call Us</p>
                     <a
                       href="tel:3438873470"
-                      className="text-red-400 hover:text-red-700 transition-colors"
+                      className="text-red-400 hover:text-red-400 transition-colors"
                     >
                       (343) 224-4070
                     </a>
@@ -504,7 +506,7 @@ export default function Home() {
                       <h4 className="font-semibold text-red-800 text-sm">
                         Emergency Care
                       </h4>
-                      <p className="text-red-700 text-xs mt-0.5">
+                      <p className="text-red-400 text-xs mt-0.5">
                         For emergencies, call 911 or visit your nearest hospital
                         emergency department.
                       </p>

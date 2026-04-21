@@ -484,7 +484,7 @@ export default function SlotManagement() {
                       <span className="text-gray-700">{t}</span>
                       <button
                         onClick={() => removeTime(t)}
-                        className="text-red-500 hover:text-red-700"
+                        className="text-red-400 hover:text-red-400"
                       >
                         ×
                       </button>
@@ -642,7 +642,7 @@ export default function SlotManagement() {
                                       slot.isAvailable,
                                     )
                                   }
-                                  className={`px-2 py-1 text-xs rounded ${slot.isAvailable ? "bg-red-50 text-red-700 hover:bg-red-100" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
+                                  className={`px-2 py-1 text-xs rounded ${slot.isAvailable ? "bg-red-50 text-red-400 hover:bg-red-100" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
                                 >
                                   {slot.isAvailable
                                     ? "Make Unavailable"
@@ -650,7 +650,7 @@ export default function SlotManagement() {
                                 </button>
                                 <button
                                   onClick={() => deleteSlot(slot._id)}
-                                  className="px-2 py-1 text-xs bg-red-50 text-red-700 rounded hover:bg-red-100"
+                                  className="px-2 py-1 text-xs bg-red-50 text-red-400 rounded hover:bg-red-100"
                                 >
                                   Delete
                                 </button>
@@ -673,7 +673,7 @@ export default function SlotManagement() {
       {/* Information Panel */}
       <div className="mt-8 p-4 bg-red-50 rounded-lg border border-red-100">
         <h4 className="font-medium text-red-900 mb-2">How it works:</h4>
-        <ul className="text-sm text-red-700 space-y-1">
+        <ul className="text-sm text-red-400 space-y-1">
           <li>• Add available time slots for specific dates</li>
           <li>• Patients can only book from available slots</li>
           <li>• Once a slot is booked, it becomes unavailable to others</li>

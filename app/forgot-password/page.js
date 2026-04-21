@@ -73,7 +73,7 @@ export default function ForgotPassword() {
           )}
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="bg-red-100 border border-red-400 text-red-400 px-4 py-3 rounded">
               {error}
             </div>
           )}
@@ -136,7 +136,7 @@ export default function ForgotPassword() {
           <div className="text-center">
             <Link
               href="/login"
-              className="font-medium text-red-400 hover:text-red-500"
+              className="font-medium text-red-400 hover:text-red-400"
             >
               Back to login
             </Link>

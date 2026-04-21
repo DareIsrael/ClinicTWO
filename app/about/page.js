@@ -245,7 +245,7 @@ export default function AboutPage() {
       <section className="relative bg-red-50/20 py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-8 lg:px-12">
           <div className="text-center lg:text-left max-w-4xl mx-auto lg:mx-0">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-700 text-sm font-medium mb-6 mx-auto lg:mx-0">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-400 text-sm font-medium mb-6 mx-auto lg:mx-0">
               <svg
                 className="w-4 h-4 mr-1.5"
                 fill="none"

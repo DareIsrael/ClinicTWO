@@ -14,7 +14,7 @@
 //   return (
 //     <div className="mb-4">
 //       <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor={name}>
-//         {label} {required && <span className="text-red-500">*</span>}
+//         {label} {required && <span className="text-red-400">*</span>}
 //       </label>
       
 //       {type === 'select' ? (
@@ -50,7 +50,7 @@
 //         />
 //       )}
       
-//       {error && <p className="text-red-500 text-xs italic mt-1">{error}</p>}
+//       {error && <p className="text-red-400 text-xs italic mt-1">{error}</p>}
 //     </div>
 //   );
 // }
@@ -81,7 +81,7 @@ export default function InputField({
   return (
     <div className={compact ? 'mb-3' : 'mb-4'}>
       <label className={labelClasses} htmlFor={name}>
-        {label} {required && <span className="text-red-500">*</span>}
+        {label} {required && <span className="text-red-400">*</span>}
       </label>
       
       {type === 'select' ? (
@@ -114,7 +114,7 @@ export default function InputField({
       )}
       
       {error && (
-        <p className={`text-red-500 italic mt-1 ${compact ? 'text-xs' : 'text-xs'}`}>
+        <p className={`text-red-400 italic mt-1 ${compact ? 'text-xs' : 'text-xs'}`}>
           {error}
         </p>
       )}

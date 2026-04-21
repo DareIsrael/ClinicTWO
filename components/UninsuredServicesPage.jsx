@@ -177,7 +177,7 @@ const UninsuredServicesPage = () => {
                           <div className="p-2 bg-red-50 rounded-lg text-red-400">
                             {subsection.icon}
                           </div>
-                          <h3 className="text-xl font-semibold text-red-700">
+                          <h3 className="text-xl font-semibold text-red-400">
                             {subsection.title}
                           </h3>
                         </div>
@@ -190,10 +190,10 @@ const UninsuredServicesPage = () => {
                           <table className="min-w-full divide-y divide-gray-200">
                             <thead>
                               <tr className="bg-red-50">
-                                <th className="px-4 py-3 text-left text-xs font-medium text-red-700 uppercase tracking-wider">
+                                <th className="px-4 py-3 text-left text-xs font-medium text-red-400 uppercase tracking-wider">
                                   Service
                                 </th>
-                                <th className="px-4 py-3 text-left text-xs font-medium text-red-700 uppercase tracking-wider w-1/4">
+                                <th className="px-4 py-3 text-left text-xs font-medium text-red-400 uppercase tracking-wider w-1/4">
                                   Fee
                                 </th>
                               </tr>
@@ -210,7 +210,7 @@ const UninsuredServicesPage = () => {
                                     {item.service}
                                   </td>
                                   <td className="px-4 py-4">
-                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-700">
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-400">
                                       {item.fee}
                                     </span>
                                   </td>
@@ -222,7 +222,7 @@ const UninsuredServicesPage = () => {
 
                         {subsection.note && (
                           <div className="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
-                            <p className="text-red-700 text-sm italic">{subsection.note}</p>
+                            <p className="text-red-400 text-sm italic">{subsection.note}</p>
                           </div>
                         )}
                       </div>

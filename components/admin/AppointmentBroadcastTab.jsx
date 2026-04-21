@@ -90,7 +90,7 @@ export default function AppointmentBroadcastTab() {
 
             {/* Error */}
             {error && (
-                <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                <div className="mb-6 bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-lg">
                     {error}
                 </div>
             )}
@@ -126,7 +126,7 @@ export default function AppointmentBroadcastTab() {
                             <option value="cancelled">Cancelled</option>
                             <option value="no_show">No Show</option>
                         </select>
-                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
+                        <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
                             {previewLoading ? (
                                 <span className="animate-pulse">Loading...</span>
                             ) : (

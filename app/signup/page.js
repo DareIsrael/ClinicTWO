@@ -256,7 +256,7 @@ export default function SignupPage() {
 
                 {/* Error Message */}
                 {errors.submit && (
-                  <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg mb-4 text-xs flex items-start">
+                  <div className="bg-red-50 border border-red-200 text-red-400 px-3 py-2 rounded-lg mb-4 text-xs flex items-start">
                     <svg
                       className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0"
                       fill="none"
@@ -484,7 +484,7 @@ export default function SignupPage() {
                         </button>
                       </div>
                       {errors.password && (
-                        <p className="text-red-500 text-xs mt-1 flex items-center">
+                        <p className="text-red-400 text-xs mt-1 flex items-center">
                           <svg
                             className="w-3 h-3 mr-1"
                             fill="none"
@@ -568,7 +568,7 @@ export default function SignupPage() {
                         </button>
                       </div>
                       {errors.confirmPassword && (
-                        <p className="text-red-500 text-xs mt-1 flex items-center">
+                        <p className="text-red-400 text-xs mt-1 flex items-center">
                           <svg
                             className="w-3 h-3 mr-1"
                             fill="none"
@@ -593,7 +593,7 @@ export default function SignupPage() {
                     <p className="text-xs text-red-800 font-medium mb-1">
                       Password Requirements:
                     </p>
-                    <ul className="text-xs text-red-700 space-y-1">
+                    <ul className="text-xs text-red-400 space-y-1">
                       <li
                         className={`flex items-center ${formData.password.length >= 8 ? "text-green-600" : ""}`}
                       >

@@ -3,13 +3,13 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Poppins } from "next/font/google";
 import SessionProvider from "@/components/SessionProvider";
+import Image from "next/image";
 import {
   Phone,
   Mail,
   Calendar,
   MapPin,
   Clock,
-  Heart,
   Facebook,
   Twitter,
   Instagram,
@@ -36,16 +36,21 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Favicon */}
-        <link rel="icon" href="/TrimLOGO1.SVG" />
+        <link rel="icon" href="/TrimLOGO1.svg" />
         {/* IMPORTANT: Viewport meta tag for proper mobile scaling */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"
+        />
         {/* Prevent layout shifts on mobile */}
         <meta name="format-detection" content="telephone=no" />
       </head>
       <body className={`${poppins.className} antialiased`}>
         <SessionProvider>
           <Navbar />
-          <main className="min-h-screen bg-white overflow-x-hidden">{children}</main>
+          <main className="min-h-screen bg-white overflow-x-hidden">
+            {children}
+          </main>
 
           {/* Modern Footer - Red Theme */}
           <footer className="bg-gray-900 text-white">
@@ -54,9 +59,15 @@ export default function RootLayout({ children }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
                 {/* About Section */}
                 <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-red-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-4 h-4 text-white" />
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
+                      <Image
+                        src="/TrimLOGO1.svg"
+                        alt="Trim Medical Centre Logo"
+                        width={32}
+                        height={32}
+                        className="object-contain w-full h-full"
+                      />
                     </div>
                     <h3 className="text-xl font-bold text-white">
                       Trim Medical Centre
@@ -73,13 +84,13 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Quick Links
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
                   </h3>
                   <ul className="space-y-2">
                     <li>
                       <Link
                         href="/"
-                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                        className="text-gray-400 hover:text-red-400 transition-colors text-sm flex items-center gap-2 group"
                       >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Home
@@ -88,7 +99,7 @@ export default function RootLayout({ children }) {
                     <li>
                       <Link
                         href="/about"
-                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                        className="text-gray-400 hover:text-red-400 transition-colors text-sm flex items-center gap-2 group"
                       >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         About Us
@@ -97,7 +108,7 @@ export default function RootLayout({ children }) {
                     <li>
                       <Link
                         href="/appointment"
-                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                        className="text-gray-400 hover:text-red-400 transition-colors text-sm flex items-center gap-2 group"
                       >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Book Appointment
@@ -106,7 +117,7 @@ export default function RootLayout({ children }) {
                     <li>
                       <Link
                         href="/contact"
-                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                        className="text-gray-400 hover:text-red-400 transition-colors text-sm flex items-center gap-2 group"
                       >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Contact Us
@@ -119,13 +130,13 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Information
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
                   </h3>
                   <ul className="space-y-2">
                     <li>
                       <Link
                         href="/uninsured-services"
-                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                        className="text-gray-400 hover:text-red-400 transition-colors text-sm flex items-center gap-2 group"
                       >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Uninsured Services & Fees
@@ -134,7 +145,7 @@ export default function RootLayout({ children }) {
                     <li>
                       <Link
                         href="/policies"
-                        className="text-gray-400 hover:text-red-500 transition-colors text-sm flex items-center gap-2 group"
+                        className="text-gray-400 hover:text-red-400 transition-colors text-sm flex items-center gap-2 group"
                       >
                         <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                         Patient Information & Policies
@@ -147,7 +158,7 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Contact Info
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3 text-gray-400 text-sm">
@@ -163,7 +174,7 @@ export default function RootLayout({ children }) {
                       </div>
                     </li>
                     <li className="flex items-start gap-3 text-gray-400 text-sm">
-                      <span className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0 text-center">
+                      <span className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0 text-center">
                         📠
                       </span>
                       <div>
@@ -187,7 +198,9 @@ export default function RootLayout({ children }) {
                       <MapPin className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-white">Location</p>
-                        <p className="break-words">1280 Trim Rd, Unit B, Orleans, ON K4A 3N3</p>
+                        <p className="break-words">
+                          1280 Trim Rd, Unit B, Orleans, ON K4A 3N3
+                        </p>
                       </div>
                     </li>
                   </ul>
@@ -261,7 +274,7 @@ export default function RootLayout({ children }) {
                     />
                     <button
                       type="submit"
-                      className="px-5 py-2.5 bg-red-400 hover:bg-red-700 rounded-xl font-semibold transition-all duration-200 text-sm text-white"
+                      className="px-5 py-2.5 bg-red-600 hover:bg-red-700 rounded-xl font-semibold transition-all duration-200 text-sm text-white"
                     >
                       Subscribe
                     </button>

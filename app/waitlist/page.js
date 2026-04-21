@@ -163,7 +163,7 @@ export default function WaitlistPage() {
             focus:outline-none placeholder:text-gray-400`}
         />
       )}
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
     </div>
   );
 
@@ -261,7 +261,7 @@ export default function WaitlistPage() {
                       />
                     </svg>
                   </div>
-                  <p className="text-red-700 text-sm">{errors.submit}</p>
+                  <p className="text-red-400 text-sm">{errors.submit}</p>
                 </div>
               </div>
             )}

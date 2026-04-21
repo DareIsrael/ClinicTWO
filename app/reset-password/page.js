@@ -67,12 +67,12 @@ function ResetPasswordContent() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="max-w-md w-full text-center">
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          <div className="bg-red-100 border border-red-400 text-red-400 px-4 py-3 rounded">
             Invalid reset link. Please request a new password reset.
           </div>
           <Link
             href="/forgot-password"
-            className="mt-4 inline-block text-red-400 hover:text-red-500"
+            className="mt-4 inline-block text-red-400 hover:text-red-400"
           >
             Request new reset link
           </Link>
@@ -116,7 +116,7 @@ function ResetPasswordContent() {
           )}
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="bg-red-100 border border-red-400 text-red-400 px-4 py-3 rounded">
               {error}
             </div>
           )}
@@ -201,7 +201,7 @@ function ResetPasswordContent() {
           <div className="text-center">
             <Link
               href="/login"
-              className="font-medium text-red-400 hover:text-red-500"
+              className="font-medium text-red-400 hover:text-red-400"
             >
               Back to login
             </Link>

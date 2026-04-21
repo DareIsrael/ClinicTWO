@@ -83,7 +83,7 @@ export default function BookingForm() {
         <div className={`p-4 mb-6 rounded-lg ${
           message.includes('successfully') 
             ? 'bg-green-100 text-green-700 border border-green-200' 
-            : 'bg-red-100 text-red-700 border border-red-200'
+            : 'bg-red-100 text-red-400 border border-red-200'
         }`}>
           {message}
         </div>
@@ -171,13 +171,13 @@ export default function BookingForm() {
         {/* Patient Information Summary */}
         <div className="bg-red-50 p-4 rounded-lg border border-red-200">
           <h3 className="font-medium text-red-900 mb-2">Patient Information</h3>
-          <p className="text-sm text-red-700">
+          <p className="text-sm text-red-400">
             <strong>Name:</strong> {user?.firstName} {user?.lastName}
           </p>
-          <p className="text-sm text-red-700">
+          <p className="text-sm text-red-400">
             <strong>Email:</strong> {user?.email}
           </p>
-          <p className="text-sm text-red-700">
+          <p className="text-sm text-red-400">
             <strong>Phone:</strong> {user?.cellPhone}
           </p>
         </div>
@@ -203,7 +203,7 @@ export default function BookingForm() {
 
       {/* Help Text */}
       {/* <div className="mt-6 text-center text-sm text-gray-500">
-        <p>Need help? Contact us at <a href="tel:(343) 224-4070" className="text-red-400 hover:text-red-700">(555) 123-4567</a></p>
+        <p>Need help? Contact us at <a href="tel:(343) 224-4070" className="text-red-400 hover:text-red-400">(555) 123-4567</a></p>
         <p className="mt-1">Our team is available - Monday - Mon & Wed - 4pm-8pm, 
           Tues & Thurs - 10am-7pm, 
           Sat - 10am-3pm</p>

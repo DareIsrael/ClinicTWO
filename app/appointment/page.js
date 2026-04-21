@@ -85,7 +85,7 @@ export default function BookAppointment() {
       <section className="relative bg-red-50/20 py-20 lg:py-18">
         <div className="max-w-7xl mx-auto px-8 lg:px-12">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-700 text-sm font-medium mb-2">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-400 text-sm font-medium mb-2">
               <svg
                 className="w-4 h-4 mr-1.5"
                 fill="none"

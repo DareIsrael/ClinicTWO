@@ -92,7 +92,7 @@ export default function Navbar() {
                 </svg>
                 <a 
                   href="tel:3438873470" 
-                  className="text-xs font-semibold text-red-400 hover:text-red-700 transition-colors"
+                  className="text-xs font-semibold text-red-400 hover:text-red-400 transition-colors"
                 >
                   (343) 224-4070
                 </a>
@@ -145,7 +145,7 @@ export default function Navbar() {
                 </svg>
                 <a 
                   href="tel:3432244070" 
-                  className="text-sm font-semibold text-red-400 hover:text-red-700 transition-colors whitespace-nowrap"
+                  className="text-sm font-semibold text-red-400 hover:text-red-400 transition-colors whitespace-nowrap"
                 >
                   (343) 224-4070
                 </a>
@@ -303,7 +303,7 @@ export default function Navbar() {
             <div className="hidden sm:block text-right">
               <a 
                 href="tel:3438873470" 
-                className="text-xs font-semibold text-red-400 hover:text-red-700 transition-colors whitespace-nowrap"
+                className="text-xs font-semibold text-red-400 hover:text-red-400 transition-colors whitespace-nowrap"
               >
                 (343) 224-4070
               </a>

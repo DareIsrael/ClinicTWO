@@ -164,7 +164,7 @@ export default function LoginPage() {
                 </div>
 
                 {error && (
-                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 text-sm">
+                  <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-lg mb-6 text-sm">
                     {error}
                   </div>
                 )}
@@ -188,7 +188,7 @@ export default function LoginPage() {
                       placeholder="Enter your email"
                     />
                     {validationErrors.email && (
-                      <p className="text-red-500 text-xs mt-1">
+                      <p className="text-red-400 text-xs mt-1">
                         {validationErrors.email}
                       </p>
                     )}
@@ -255,7 +255,7 @@ export default function LoginPage() {
                       </button>
                     </div>
                     {validationErrors.password && (
-                      <p className="text-red-500 text-xs mt-1">
+                      <p className="text-red-400 text-xs mt-1">
                         {validationErrors.password}
                       </p>
                     )}
@@ -271,7 +271,7 @@ export default function LoginPage() {
                     </label>
                     <Link
                       href="/forgot-password"
-                      className="text-red-400 hover:text-red-700 font-medium"
+                      className="text-red-400 hover:text-red-400 font-medium"
                     >
                       Forgot password?
                     </Link>
@@ -290,7 +290,7 @@ export default function LoginPage() {
                   New Admin?{" "}
                   <Link
                     href="/signup"
-                    className="text-red-400 hover:text-red-700 font-medium"
+                    className="text-red-400 hover:text-red-400 font-medium"
                   >
                     Create account
                   </Link>

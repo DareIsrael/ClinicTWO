@@ -111,7 +111,7 @@ export default function ReportsTab() {
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="bg-red-50 p-4 rounded-lg">
-                    <p className="text-sm text-red-700 font-medium">Total Waitlist</p>
+                    <p className="text-sm text-red-400 font-medium">Total Waitlist</p>
                     <p className="text-2xl font-bold text-red-900">{reportsData.patients?.total || 0}</p>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
@@ -123,7 +123,7 @@ export default function ReportsTab() {
                     <p className="text-2xl font-bold text-purple-900">{reportsData.patients?.byStatus?.Accepted || 0}</p>
                   </div>
                   <div className="bg-red-50 p-4 rounded-lg">
-                    <p className="text-sm text-red-700 font-medium">Rejected</p>
+                    <p className="text-sm text-red-400 font-medium">Rejected</p>
                     <p className="text-2xl font-bold text-red-900">{reportsData.patients?.byStatus?.Rejected || 0}</p>
                   </div>
                 </div>
@@ -180,13 +180,13 @@ export default function ReportsTab() {
                     </span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                    <span className="text-sm font-medium text-red-700">Acceptance Rate</span>
+                    <span className="text-sm font-medium text-red-400">Acceptance Rate</span>
                     <span className="text-lg font-bold text-red-900">
                       {reportsData.summary?.acceptanceRate || 0}%
                     </span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                    <span className="text-sm font-medium text-red-700">Rejection Rate</span>
+                    <span className="text-sm font-medium text-red-400">Rejection Rate</span>
                     <span className="text-lg font-bold text-red-900">
                       {reportsData.summary?.rejectionRate || 0}%
                     </span>
