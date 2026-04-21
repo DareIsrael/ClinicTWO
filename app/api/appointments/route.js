@@ -19,8 +19,8 @@ async function sendAppointmentConfirmationEmail(appointment) {
         <style>
           body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
           .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background-color: #059669; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-          .content { background-color: #f0fdf4; padding: 30px; border-radius: 0 0 8px 8px; }
+          .header { background-color: #F87171; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+          .content { background-color: #F87171; padding: 30px; border-radius: 0 0 8px 8px; }
           .details { background-color: white; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #bbf7d0; }
           .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px; }
           .highlight { color: #059669; font-weight: bold; }

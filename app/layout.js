@@ -274,7 +274,7 @@ export default function RootLayout({ children }) {
                     />
                     <button
                       type="submit"
-                      className="px-5 py-2.5 bg-red-600 hover:bg-red-700 rounded-xl font-semibold transition-all duration-200 text-sm text-white"
+                      className="px-5 py-2.5 bg-red-400 hover:bg-red-700 rounded-xl font-semibold transition-all duration-200 text-sm text-white"
                     >
                       Subscribe
                     </button>

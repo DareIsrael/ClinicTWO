@@ -98,7 +98,7 @@ export default function Navbar() {
                 </a>
               </div>
               <div className="text-xs text-gray-600 leading-tight">
-                158 Rideau St, Ottawa
+                1280 Trim Rd, Unit B, Orleans.
               </div>
             </div>
           </div>

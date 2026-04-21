@@ -94,7 +94,7 @@ export async function POST(request) {
             <p style="color: #6b7280; font-size: 14px;">Admin Login Confirmation</p>
           </div>
           
-          <div style="background-color: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
+          <div style="background-color: #F87171; border: 1px solid #bae6fd; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
             <p style="color: #1e293b; font-size: 16px; margin-bottom: 16px;">
               Hello <strong>${user.firstName}</strong>,
             </p>
@@ -103,7 +103,7 @@ export async function POST(request) {
             </p>
             <div style="text-align: center; margin: 24px 0;">
               <a href="${confirmUrl}" 
-                 style="background-color: #0284c7; color: white; padding: 12px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
+                 style="background-color: #F87171; color: white; padding: 12px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
                 Confirm Login
               </a>
             </div>
@@ -112,7 +112,7 @@ export async function POST(request) {
             </p>
           </div>
 
-          <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+          <div style="background-color: #F87171; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
             <p style="color: #991b1b; font-size: 13px; margin: 0;">
               ⚠️ If you did not attempt to log in, please ignore this email. Your account is still secure.
             </p>

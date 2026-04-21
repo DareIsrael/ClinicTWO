@@ -57,7 +57,7 @@ export async function POST(req) {
           
           <div style="text-align: center; margin: 30px 0;">
             <a href="mailto:${email}" 
-               style="background-color: #0369a1; color: white; padding: 12px 24px; 
+               style="background-color: #F87171; color: white; padding: 12px 24px; 
                       text-decoration: none; border-radius: 6px; display: inline-block;
                       font-weight: bold; font-size: 16px;">
               Reply to ${name}
