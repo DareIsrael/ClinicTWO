@@ -57,7 +57,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
 
         <div className="p-6">
           {/* Appointment Header */}
-          <div className="bg-sky-50 p-4 rounded-lg mb-6">
+          <div className="bg-red-50 p-4 rounded-lg mb-6">
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="font-semibold text-gray-900 text-lg">
@@ -208,7 +208,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
             </button>
             {/* <button
               onClick={() => window.print()}
-              className="px-6 py-3 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200 font-medium"
+              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200 font-medium"
             >
               Print Details
             </button> */}

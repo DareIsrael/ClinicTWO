@@ -17,7 +17,7 @@ const AppointmentStatusDropdown = ({ appointment, onStatusChange }) => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'scheduled': return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'scheduled': return 'bg-red-100 text-red-800 border-red-200';
       case 'confirmed': return 'bg-green-100 text-green-800 border-green-200';
       case 'completed': return 'bg-purple-100 text-purple-800 border-purple-200';
       case 'cancelled': return 'bg-red-100 text-red-800 border-red-200';
@@ -32,7 +32,7 @@ const AppointmentStatusDropdown = ({ appointment, onStatusChange }) => {
         value={appointment.status || 'scheduled'}
         onChange={(e) => handleStatusChange(e.target.value)}
         disabled={isUpdating}
-        className={`text-xs font-semibold rounded-lg px-3 py-1.5 border focus:ring-2 focus:ring-sky-500 cursor-pointer transition-colors ${
+        className={`text-xs font-semibold rounded-lg px-3 py-1.5 border focus:ring-2 focus:ring-red-500 cursor-pointer transition-colors ${
           getStatusColor(appointment.status || 'scheduled')
         } ${isUpdating ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
@@ -44,7 +44,7 @@ const AppointmentStatusDropdown = ({ appointment, onStatusChange }) => {
       </select>
       {isUpdating && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-lg">
-          <div className="w-3 h-3 border border-sky-600 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-3 h-3 border border-red-600 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
     </div>

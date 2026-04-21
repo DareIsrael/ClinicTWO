@@ -110,9 +110,9 @@ export default function ReportsTab() {
                   {reportsData.period.monthName} {reportsData.period.year} Summary
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <p className="text-sm text-blue-700 font-medium">Total Waitlist</p>
-                    <p className="text-2xl font-bold text-blue-900">{reportsData.patients?.total || 0}</p>
+                  <div className="bg-red-50 p-4 rounded-lg">
+                    <p className="text-sm text-red-700 font-medium">Total Waitlist</p>
+                    <p className="text-2xl font-bold text-red-900">{reportsData.patients?.total || 0}</p>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
                     <p className="text-sm text-green-700 font-medium">Active</p>
@@ -179,9 +179,9 @@ export default function ReportsTab() {
                       {reportsData.summary?.activityRate || 0}%
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                    <span className="text-sm font-medium text-blue-700">Acceptance Rate</span>
-                    <span className="text-lg font-bold text-blue-900">
+                  <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                    <span className="text-sm font-medium text-red-700">Acceptance Rate</span>
+                    <span className="text-lg font-bold text-red-900">
                       {reportsData.summary?.acceptanceRate || 0}%
                     </span>
                   </div>

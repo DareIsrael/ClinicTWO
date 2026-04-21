@@ -14,8 +14,8 @@ function AdminLoginPendingContent() {
             <div className="max-w-md w-full">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
                     {/* Email icon */}
-                    <div className="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg className="w-10 h-10 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
@@ -30,7 +30,7 @@ function AdminLoginPendingContent() {
                     </p>
 
                     {email && (
-                        <p className="text-sky-600 font-semibold mb-4 break-all">
+                        <p className="text-red-600 font-semibold mb-4 break-all">
                             {email}
                         </p>
                     )}
@@ -67,7 +67,7 @@ function AdminLoginPendingContent() {
                     <div className="space-y-3">
                         <Link
                             href="/login"
-                            className="block w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 transition-colors text-center font-medium"
+                            className="block w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors text-center font-medium"
                         >
                             Back to Login
                         </Link>
@@ -92,8 +92,8 @@ export default function AdminLoginPending() {
                 <div className="min-h-screen bg-white flex items-center justify-center p-4">
                     <div className="max-w-md w-full">
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-                            <div className="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-sky-600"></div>
+                            <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-600"></div>
                             </div>
                             <h1 className="text-2xl font-bold text-gray-900 mb-3">Loading...</h1>
                         </div>

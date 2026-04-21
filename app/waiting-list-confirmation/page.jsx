@@ -3,14 +3,14 @@ import Link from 'next/link';
 
 export default function WaitingListConfirmation() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-100 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center p-6">
       <div className="w-full max-w-xs">
-        <div className="bg-white rounded-xl shadow-sm border border-sky-100 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-red-100 p-6">
           {/* Tiny Header */}
           <div className="text-center mb-4">
-            <div className="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-2">
+            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
               <svg 
-                className="w-5 h-5 text-sky-600" 
+                className="w-5 h-5 text-red-600" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -38,7 +38,7 @@ export default function WaitingListConfirmation() {
           {/* Small Home Button */}
           <Link 
             href="/"
-            className="w-full bg-sky-600 text-white py-2 px-3 rounded-lg text-xs font-medium hover:bg-sky-700 focus:outline-none focus:ring-1 focus:ring-sky-500 transition duration-200 block text-center"
+            className="w-full bg-red-600 text-white py-2 px-3 rounded-lg text-xs font-medium hover:bg-red-700 focus:outline-none focus:ring-1 focus:ring-red-500 transition duration-200 block text-center"
           >
             Back to Home
           </Link>

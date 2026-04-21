@@ -10,7 +10,7 @@ const MonthlyChart = ({ data, year, title }) => {
           <div key={index} className="flex flex-col items-center flex-1">
             <div className="text-xs text-gray-500 mb-1">{value}</div>
             <div
-              className="bg-sky-500 w-full rounded-t transition-all duration-300 hover:bg-sky-600"
+              className="bg-red-500 w-full rounded-t transition-all duration-300 hover:bg-red-600"
               style={{ height: `${(value / maxValue) * 80}%` }}
               title={`${months[index]}: ${value}`}
             ></div>
