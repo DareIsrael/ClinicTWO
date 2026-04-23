@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Quick Links
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
                   </h3>
                   <ul className="space-y-2">
                     <li>
@@ -130,7 +130,7 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Information
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
                   </h3>
                   <ul className="space-y-2">
                     <li>
@@ -158,7 +158,7 @@ export default function RootLayout({ children }) {
                 <div>
                   <h3 className="text-lg font-semibold mb-4 text-white relative inline-block">
                     Contact Info
-                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-600 rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-red-400 rounded-full"></div>
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3 text-gray-400 text-sm">

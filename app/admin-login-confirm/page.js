@@ -124,7 +124,7 @@ function AdminLoginConfirmContent() {
                 ? "text-gray-900"
                 : status === "success"
                   ? "text-green-800"
-                  : "text-red-800"
+                  : "text-red-400"
             }`}
           >
             {status === "verifying"
