@@ -270,7 +270,7 @@ export default function RootLayout({ children }) {
                     <input
                       type="email"
                       placeholder="Your email address"
-                      className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 text-sm"
+                      className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-400 text-sm"
                     />
                     <button
                       type="submit"

@@ -154,7 +154,7 @@ export default function ContactPage() {
       <section className="relative bg-red-50/20 pt-12 pb-16 lg:pt-16 lg:pb-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-400 text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-600 text-sm font-medium mb-4">
               <svg
                 className="w-4 h-4 mr-1.5"
                 fill="none"
@@ -194,7 +194,7 @@ export default function ContactPage() {
                 key={index}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 group"
               >
-                <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-400 group-hover:scale-105 transition-all duration-300">
+                <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:scale-105 transition-all duration-300">
                   <div className="text-red-400 group-hover:text-white transition-colors">
                     {info.icon}
                   </div>
@@ -232,7 +232,7 @@ export default function ContactPage() {
               <div className="w-12 h-1 bg-red-400 rounded-full mb-5"></div>
 
               {submitStatus === "success" && (
-                <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-xl mb-5">
+                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-5">
                   <div className="flex items-center">
                     <svg
                       className="w-5 h-5 mr-2"
@@ -254,7 +254,7 @@ export default function ContactPage() {
               )}
 
               {submitStatus === "error" && (
-                <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-xl mb-5">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-5">
                   <div className="flex items-center">
                     <svg
                       className="w-5 h-5 mr-2"
@@ -290,7 +290,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition duration-200 bg-white text-gray-900"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 transition duration-200 bg-white text-gray-900"
                     placeholder="Your full name"
                   />
                 </div>
@@ -309,7 +309,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition duration-200 bg-white text-gray-900"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 transition duration-200 bg-white text-gray-900"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -327,7 +327,7 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition duration-200 bg-white text-gray-900"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 transition duration-200 bg-white text-gray-900"
                   >
                     <option value="">Select a subject</option>
                     <option value="appointment">Appointment Inquiry</option>
@@ -353,7 +353,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition duration-200 resize-none bg-white text-gray-900"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 transition duration-200 resize-none bg-white text-gray-900"
                     placeholder="Please describe your inquiry in detail..."
                   />
                 </div>
@@ -361,7 +361,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-red-400 text-white py-3.5 px-6 rounded-xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 disabled:opacity-50 transition duration-300 font-semibold"
+                  className="w-full bg-red-400 text-white py-3.5 px-6 rounded-xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 disabled:opacity-50 transition duration-300 font-semibold"
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
@@ -396,38 +396,30 @@ export default function ContactPage() {
 
             {/* Map and Additional Info */}
             <div className="space-y-5">
-              {/* Map */}
+              {/* Google Map - Embedded */}
               <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   Our Location
                 </h3>
-                <div className="bg-gray-100 h-56 rounded-xl flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <svg
-                      className="w-14 h-14 mx-auto mb-2 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1}
-                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                      />
-                    </svg>
-                    <p className="font-medium text-gray-700">Interactive Map</p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      1280 Trim Rd, Unit B, Orleans, ON K4A 3N3
-                    </p>
-                  </div>
+                <div className="rounded-xl overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.9693144595276!2d-75.48229282372449!3d45.490562671074414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce13bffd30622b%3A0x25df1a6495298a33!2s1280%20Trim%20Rd%2C%20Orl%C3%A9ans%2C%20ON%20K4A%203P7!5e0!3m2!1sen!2sca!4v1776962002053!5m2!1sen!2sca"
+                    width="100%"
+                    height="350"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Trim Medical Centre Location"
+                    className="w-full"
+                  ></iframe>
                 </div>
                 <div className="mt-3 text-center">
                   <a
-                    href="https://maps.google.com/?q=1280+Trim+Rd+Orleans+ON"
+                    href="https://www.google.com/maps/dir/?api=1&destination=1280+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-red-400 hover:text-red-400 font-medium text-sm transition-colors"
+                    className="inline-flex items-center text-red-400 hover:text-red-700 font-medium text-sm transition-colors"
                   >
                     Get Directions
                     <svg
@@ -474,7 +466,7 @@ export default function ContactPage() {
                       attention, please call 911 or visit your nearest emergency
                       department.
                     </p>
-                    <div className="text-base font-bold text-red-800">
+                    <div className="text-base font-bold text-red-400">
                       Call 911 for Emergencies
                     </div>
                   </div>
@@ -507,7 +499,7 @@ export default function ContactPage() {
                       <p className="text-xs text-gray-500">Appointments</p>
                       <a
                         href="tel:3438873470"
-                        className="text-gray-900 font-medium hover:text-red-400 transition-colors text-sm"
+                        className="text-gray-900 font-medium hover:text-red-600 transition-colors text-sm"
                       >
                         (343) 224-4070
                       </a>
@@ -533,7 +525,7 @@ export default function ContactPage() {
                       <p className="text-xs text-gray-500">Email</p>
                       <a
                         href="mailto:contact@trimmedicalcenter.ca"
-                        className="text-gray-900 font-medium hover:text-red-400 transition-colors text-xs"
+                        className="text-gray-900 font-medium hover:text-red-600 transition-colors text-xs break-all"
                       >
                         contact@trimmedicalcenter.ca
                       </a>

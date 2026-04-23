@@ -418,37 +418,37 @@ export default function AppointmentBooking() {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
                       <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                         placeholder="John" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
                       <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                         placeholder="Doe" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                       <input type="email" name="email" value={formData.email} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                         placeholder="john@example.com" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
                       <input type="tel" name="cellPhone" value={formData.cellPhone} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                         placeholder="(123) 456-7890" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth *</label>
                       <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleInputChange} required
                         max={new Date().toISOString().split('T')[0]}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all" />
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Gender *</label>
                       <select name="gender" value={formData.gender} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all">
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all">
                         <option value="">Select</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -458,25 +458,25 @@ export default function AppointmentBooking() {
                     <div className="sm:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">Street Address *</label>
                       <input type="text" name="address" value={formData.address} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                         placeholder="123 Main Street" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Postal Code *</label>
                       <input type="text" name="postalCode" value={formData.postalCode} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                         placeholder="A1B 2C3" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Healthcare Number *</label>
                       <input type="text" name="healthcareNumber" value={formData.healthcareNumber} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                         placeholder="123456789" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Healthcare Province *</label>
                       <select name="healthcareProvince" value={formData.healthcareProvince} onChange={handleHealthcareProvinceChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all">
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all">
                         <option value="">Select Province</option>
                         {canadianProvinces.map(province => (
                           <option key={province} value={province}>{province}</option>
@@ -487,14 +487,14 @@ export default function AppointmentBooking() {
                     {formData.healthcareProvince === 'Other' && (
                       <div className="sm:col-span-2">
                         <input type="text" value={otherProvince} onChange={handleOtherProvinceChange} required
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all"
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
                           placeholder="Please specify your province" />
                       </div>
                     )}
                     <div className="sm:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">Reason for Appointment *</label>
                       <textarea name="reason" value={formData.reason} onChange={handleInputChange} required rows={3}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:bg-white transition-all resize-none"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all resize-none"
                         placeholder="Please describe the reason for your visit..." />
                     </div>
                   </div>

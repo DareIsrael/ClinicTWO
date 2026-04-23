@@ -311,7 +311,7 @@ export default function Navbar() {
             
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-red-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 transition-all duration-200"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-red-400 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 transition-all duration-200"
               aria-label="Menu"
             >
               <svg className="h-5 w-5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
