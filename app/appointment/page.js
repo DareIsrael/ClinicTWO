@@ -12,7 +12,7 @@ export default function BookAppointment() {
         "For patients already registered with Dr. Fagbolagun for ongoing care.",
       note: "Existing patients only",
       buttonText: "Book as Existing Patient",
-      link: "https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554",
+      link: "/book-appointment",
       icon: (
         <svg
           className="w-7 h-7"
