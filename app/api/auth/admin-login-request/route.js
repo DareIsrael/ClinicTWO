@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
-import crypto from 'crypto';
-import dbConnect from '@/utils/db';
-import User from '@/models/User';
-import { sendEmail } from '@/utils/emailService';
-import { createRateLimiter, getClientIp } from '@/utils/rateLimiter';
+import { NextResponse } from "next/server";
+import crypto from "crypto";
+import dbConnect from "@/utils/db";
+import User from "@/models/User";
+import { sendEmail } from "@/utils/emailService";
+import { createRateLimiter, getClientIp } from "@/utils/rateLimiter";
 
 // 3 attempts per 15 minutes per IP (same policy as the main login)
 const limiter = createRateLimiter({ windowMs: 15 * 60 * 1000, max: 3 });
@@ -19,7 +19,7 @@ export async function POST(request) {
           success: false,
           message: `Too many login attempts. Please try again in ${rateCheck.retryAfterMinutes} minutes.`,
         },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -30,21 +30,23 @@ export async function POST(request) {
     // Validate input
     if (!email || !password) {
       return NextResponse.json(
-        { success: false, message: 'Email and password are required' },
-        { status: 400 }
+        { success: false, message: "Email and password are required" },
+        { status: 400 },
       );
     }
 
     const trimmedEmail = email.trim().toLowerCase();
 
     // Find user with password field
-    const user = await User.findOne({ email: trimmedEmail }).select('+password');
+    const user = await User.findOne({ email: trimmedEmail }).select(
+      "+password",
+    );
 
     if (!user) {
       // Return a generic message — don't reveal whether the account exists
       return NextResponse.json(
-        { success: false, message: 'Invalid email or password' },
-        { status: 401 }
+        { success: false, message: "Invalid email or password" },
+        { status: 401 },
       );
     }
 
@@ -52,8 +54,8 @@ export async function POST(request) {
     const isPasswordCorrect = await user.correctPassword(password);
     if (!isPasswordCorrect) {
       return NextResponse.json(
-        { success: false, message: 'Invalid email or password' },
-        { status: 401 }
+        { success: false, message: "Invalid email or password" },
+        { status: 401 },
       );
     }
 
@@ -63,7 +65,7 @@ export async function POST(request) {
     // If NOT an admin, tell the client to proceed with normal login.
     // IMPORTANT: The response shape is identical to the admin case
     // so an attacker can't distinguish admin from non-admin accounts.
-    if (user.role !== 'admin') {
+    if (user.role !== "admin") {
       return NextResponse.json({
         success: true,
         requiresConfirmation: false,
@@ -71,8 +73,11 @@ export async function POST(request) {
     }
 
     // --- Admin flow: generate a confirmation token ---
-    const rawToken = crypto.randomBytes(32).toString('hex');
-    const hashedToken = crypto.createHash('sha256').update(rawToken).digest('hex');
+    const rawToken = crypto.randomBytes(32).toString("hex");
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(rawToken)
+      .digest("hex");
 
     // Save hashed token and 15-minute expiry
     user.adminLoginToken = hashedToken;
@@ -80,13 +85,13 @@ export async function POST(request) {
     await user.save({ validateBeforeSave: false });
 
     // Build confirmation URL
-    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
     const confirmUrl = `${baseUrl}/admin-login-confirm?token=${rawToken}&email=${encodeURIComponent(trimmedEmail)}`;
 
     // Send confirmation email
     await sendEmail({
       to: trimmedEmail,
-      subject: 'Admin Login Confirmation — Trim Medical Centre',
+      subject: "Admin Login Confirmation — Trim Medical Centre",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="text-align: center; margin-bottom: 30px;">
@@ -129,13 +134,13 @@ export async function POST(request) {
     return NextResponse.json({
       success: true,
       requiresConfirmation: true,
-      message: 'A confirmation link has been sent to your email.',
+      message: "A confirmation link has been sent to your email.",
     });
   } catch (error) {
-    console.error('Admin login request error:', error);
+    console.error("Admin login request error:", error);
     return NextResponse.json(
-      { success: false, message: 'An error occurred. Please try again.' },
-      { status: 500 }
+      { success: false, message: "An error occurred. Please try again." },
+      { status: 500 },
     );
   }
 }

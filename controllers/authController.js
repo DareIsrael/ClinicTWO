@@ -7,9 +7,9 @@
 //   try {
 //     // Connect to database first
 //     await dbConnect();
-    
+
 //     const body = await req.json();
-    
+
 //     const {
 //       firstName,
 //       lastName,
@@ -28,8 +28,8 @@
 //     } = body;
 
 //     // Validation
-//     if (!firstName || !lastName || !email || !gender || !healthcareProvince || 
-//         !healthcareNumber || !age || !dateOfBirth || !cellPhone || !address || 
+//     if (!firstName || !lastName || !email || !gender || !healthcareProvince ||
+//         !healthcareNumber || !age || !dateOfBirth || !cellPhone || !address ||
 //         !country || !postalCode || !password || !confirmPassword) {
 //       return Response.json(
 //         { success: false, message: 'All fields are required' },
@@ -105,7 +105,7 @@
 
 //   } catch (error) {
 //     console.error('Registration error:', error);
-    
+
 //     // More specific error messages
 //     if (error.name === 'MongoServerError' && error.code === 11000) {
 //       return Response.json(
@@ -113,7 +113,7 @@
 //         { status: 400 }
 //       );
 //     }
-    
+
 //     if (error.name === 'ValidationError') {
 //       const errors = Object.values(error.errors).map(err => err.message);
 //       return Response.json(
@@ -133,7 +133,7 @@
 //   try {
 //     // Connect to database first
 //     await dbConnect();
-    
+
 //     const body = await req.json();
 //     const { email, password } = body;
 
@@ -146,7 +146,7 @@
 
 //     // Find user and include password
 //     const user = await User.findOne({ email }).select('+password');
-    
+
 //     if (!user) {
 //       return Response.json(
 //         { success: false, message: 'No user found with this email' },
@@ -185,14 +185,7 @@
 //   }
 // }
 
-
-
-
-
-
-
 // working///////////
-
 
 // import validator from 'validator';
 // import User from '@/models/User';
@@ -204,9 +197,9 @@
 //   try {
 //     // Connect to database first
 //     await dbConnect();
-    
+
 //     const body = await req.json();
-    
+
 //     const {
 //       firstName,
 //       lastName,
@@ -236,9 +229,9 @@
 //     const trimmedPostalCode = postalCode?.trim();
 
 //     // Validation - Check all required fields
-//     if (!trimmedFirstName || !trimmedLastName || !trimmedEmail || !gender || 
-//         !trimmedHealthcareProvince || !trimmedHealthcareNumber || !age || 
-//         !dateOfBirth || !trimmedCellPhone || !trimmedAddress || !trimmedCountry || 
+//     if (!trimmedFirstName || !trimmedLastName || !trimmedEmail || !gender ||
+//         !trimmedHealthcareProvince || !trimmedHealthcareNumber || !age ||
+//         !dateOfBirth || !trimmedCellPhone || !trimmedAddress || !trimmedCountry ||
 //         !trimmedPostalCode || !password || !confirmPassword) {
 //       return NextResponse.json(
 //         { success: false, message: 'All fields are required' },
@@ -370,7 +363,7 @@
 
 //   } catch (error) {
 //     console.error('Registration error:', error);
-    
+
 //     // Handle specific MongoDB errors
 //     if (error.name === 'MongoServerError' && error.code === 11000) {
 //       return NextResponse.json(
@@ -378,7 +371,7 @@
 //         { status: 400 }
 //       );
 //     }
-    
+
 //     // Handle Mongoose validation errors
 //     if (error.name === 'ValidationError') {
 //       const errors = Object.values(error.errors).map(err => err.message);
@@ -390,21 +383,20 @@
 
 //     // Handle general errors
 //     return NextResponse.json(
-//       { 
-//         success: false, 
-//         message: 'An error occurred during registration. Please try again.' 
+//       {
+//         success: false,
+//         message: 'An error occurred during registration. Please try again.'
 //       },
 //       { status: 500 }
 //     );
 //   }
 // }
 
-
 // export async function login(req) {
 //   try {
 //     // Connect to database first
 //     await dbConnect();
-    
+
 //     const body = await req.json();
 //     const { email, password } = body;
 
@@ -420,7 +412,7 @@
 
 //     // Find user and include password field
 //     const user = await User.findOne({ email: trimmedEmail }).select('+password');
-    
+
 //     if (!user) {
 //       return NextResponse.json( // ✅ Fixed: Use NextResponse
 //         { success: false, message: 'Invalid email or password' },
@@ -467,30 +459,20 @@
 //   } catch (error) {
 //     console.error('Login error:', error);
 //     return NextResponse.json(
-//       { 
-//         success: false, 
-//         message: 'An error occurred during login. Please try again.' 
+//       {
+//         success: false,
+//         message: 'An error occurred during login. Please try again.'
 //       },
 //       { status: 500 }
 //     );
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
 // export async function login(req) {
 //   try {
 //     // Connect to database first
 //     await dbConnect();
-    
+
 //     const body = await req.json();
 //     const { email, password } = body;
 
@@ -506,7 +488,7 @@
 
 //     // Find user and include password field
 //     const user = await User.findOne({ email: trimmedEmail }).select('+password');
-    
+
 //     if (!user) {
 //       return NextResponse.json(
 //         { success: false, message: 'Invalid email or password' },
@@ -552,21 +534,14 @@
 //   } catch (error) {
 //     console.error('Login error:', error);
 //     return NextResponse.json(
-//       { 
-//         success: false, 
-//         message: 'An error occurred during login. Please try again.' 
+//       {
+//         success: false,
+//         message: 'An error occurred during login. Please try again.'
 //       },
 //       { status: 500 }
 //     );
 //   }
 // }
-
-
-
-
-
-
-
 
 // import validator from 'validator';
 // import User from '@/models/User';
@@ -576,9 +551,9 @@
 // export async function register(req) {
 //   try {
 //     await dbConnect();
-    
+
 //     const body = await req.json();
-    
+
 //     const {
 //       firstName,
 //       lastName,
@@ -597,8 +572,8 @@
 //     } = body;
 
 //     // Validation
-//     if (!firstName || !lastName || !email || !gender || !healthcareProvince || 
-//         !healthcareNumber || !age || !dateOfBirth || !cellPhone || !address || 
+//     if (!firstName || !lastName || !email || !gender || !healthcareProvince ||
+//         !healthcareNumber || !age || !dateOfBirth || !cellPhone || !address ||
 //         !country || !postalCode || !password || !confirmPassword) {
 //       return Response.json(
 //         { success: false, message: 'All fields are required' },
@@ -670,14 +645,14 @@
 
 //   } catch (error) {
 //     console.error('Registration error:', error);
-    
+
 //     if (error.name === 'MongoServerError' && error.code === 11000) {
 //       return Response.json(
 //         { success: false, message: 'Email already exists' },
 //         { status: 400 }
 //       );
 //     }
-    
+
 //     if (error.name === 'ValidationError') {
 //       const errors = Object.values(error.errors).map(err => err.message);
 //       return Response.json(
@@ -696,7 +671,7 @@
 // export async function login(req) {
 //   try {
 //     await dbConnect();
-    
+
 //     const body = await req.json();
 //     const { email, password } = body;
 
@@ -709,7 +684,7 @@
 
 //     // Find user and include password
 //     const user = await User.findOne({ email: email.toLowerCase().trim() }).select('+password');
-    
+
 //     if (!user) {
 //       return Response.json(
 //         { success: false, message: 'Invalid email or password' },

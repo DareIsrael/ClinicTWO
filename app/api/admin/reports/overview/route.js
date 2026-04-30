@@ -8,7 +8,7 @@
 // export async function GET(request) {
 //   try {
 //     const session = await getServerSession(authOptions);
-    
+
 //     if (!session) {
 //       return NextResponse.json(
 //         { success: false, message: 'Authentication required' },
@@ -63,12 +63,12 @@
 //     });
 
 //     // Calculate trends
-//     const patientTrend = prevMonthPatients > 0 ? 
-//       Math.round(((currentMonthPatients - prevMonthPatients) / prevMonthPatients) * 100) : 
+//     const patientTrend = prevMonthPatients > 0 ?
+//       Math.round(((currentMonthPatients - prevMonthPatients) / prevMonthPatients) * 100) :
 //       (currentMonthPatients > 0 ? 100 : 0);
 
-//     const acceptanceTrend = prevMonthAccepted > 0 ? 
-//       Math.round(((currentMonthAccepted - prevMonthAccepted) / prevMonthAccepted) * 100) : 
+//     const acceptanceTrend = prevMonthAccepted > 0 ?
+//       Math.round(((currentMonthAccepted - prevMonthAccepted) / prevMonthAccepted) * 100) :
 //       (currentMonthAccepted > 0 ? 100 : 0);
 
 //     // Get yearly overview for chart
@@ -106,7 +106,7 @@
 //           patients: currentMonthPatients,
 //           accepted: currentMonthAccepted,
 //           appointments: currentMonthAppointments,
-//           acceptanceRate: currentMonthPatients > 0 ? 
+//           acceptanceRate: currentMonthPatients > 0 ?
 //             Math.round((currentMonthAccepted / currentMonthPatients) * 100) : 0
 //         },
 //         trends: {
@@ -127,23 +127,20 @@
 //   }
 // }
 
-
-
-
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { NextResponse } from 'next/server';
-import dbConnect from '@/utils/db';
-import Waitlist from '@/models/Waitlist';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { NextResponse } from "next/server";
+import dbConnect from "@/utils/db";
+import Waitlist from "@/models/Waitlist";
 
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    
-    if (!session || session.user.role !== 'admin') {
+
+    if (!session || session.user.role !== "admin") {
       return NextResponse.json(
-        { success: false, message: 'Admin access required' },
-        { status: 403 }
+        { success: false, message: "Admin access required" },
+        { status: 403 },
       );
     }
 
@@ -154,97 +151,114 @@ export async function GET() {
     const currentMonth = currentDate.getMonth() + 1;
 
     // Current month stats - FIXED DATE RANGE
-    const currentMonthStart = new Date(Date.UTC(currentYear, currentMonth - 1, 1));
-    const currentMonthEnd = new Date(Date.UTC(currentYear, currentMonth, 0, 23, 59, 59));
+    const currentMonthStart = new Date(
+      Date.UTC(currentYear, currentMonth - 1, 1),
+    );
+    const currentMonthEnd = new Date(
+      Date.UTC(currentYear, currentMonth, 0, 23, 59, 59),
+    );
 
     const currentMonthStats = await Waitlist.aggregate([
       {
         $match: {
-          createdAt: { $gte: currentMonthStart, $lte: currentMonthEnd }
-        }
+          createdAt: { $gte: currentMonthStart, $lte: currentMonthEnd },
+        },
       },
       {
         $group: {
           _id: null,
           total: { $sum: 1 },
           byStatus: {
-            $push: '$status'
-          }
-        }
-      }
+            $push: "$status",
+          },
+        },
+      },
     ]);
 
     // Previous month stats
     const prevMonthStart = new Date(Date.UTC(currentYear, currentMonth - 2, 1));
-    const prevMonthEnd = new Date(Date.UTC(currentYear, currentMonth - 1, 0, 23, 59, 59));
+    const prevMonthEnd = new Date(
+      Date.UTC(currentYear, currentMonth - 1, 0, 23, 59, 59),
+    );
 
     const prevMonthStats = await Waitlist.aggregate([
       {
         $match: {
-          createdAt: { $gte: prevMonthStart, $lte: prevMonthEnd }
-        }
+          createdAt: { $gte: prevMonthStart, $lte: prevMonthEnd },
+        },
       },
       {
         $group: {
           _id: null,
           total: { $sum: 1 },
           byStatus: {
-            $push: '$status'
-          }
-        }
-      }
+            $push: "$status",
+          },
+        },
+      },
     ]);
 
     // Process current month data
     const currentMonthData = currentMonthStats[0] || { total: 0, byStatus: [] };
-    const currentStatusCounts = { Active: 0, Booked: 0, Accepted: 0, Rejected: 0 };
-    currentMonthData.byStatus.forEach(status => {
+    const currentStatusCounts = {
+      Active: 0,
+      Booked: 0,
+      Accepted: 0,
+      Rejected: 0,
+    };
+    currentMonthData.byStatus.forEach((status) => {
       currentStatusCounts[status] = (currentStatusCounts[status] || 0) + 1;
     });
 
     // Process previous month data
     const prevMonthData = prevMonthStats[0] || { total: 0, byStatus: [] };
     const prevStatusCounts = { Active: 0, Booked: 0, Accepted: 0, Rejected: 0 };
-    prevMonthData.byStatus.forEach(status => {
+    prevMonthData.byStatus.forEach((status) => {
       prevStatusCounts[status] = (prevStatusCounts[status] || 0) + 1;
     });
 
     // Calculate growth
-    const growthRate = prevMonthData.total ? 
-      Math.round(((currentMonthData.total - prevMonthData.total) / prevMonthData.total) * 100) : 
-      (currentMonthData.total > 0 ? 100 : 0);
+    const growthRate = prevMonthData.total
+      ? Math.round(
+          ((currentMonthData.total - prevMonthData.total) /
+            prevMonthData.total) *
+            100,
+        )
+      : currentMonthData.total > 0
+        ? 100
+        : 0;
 
     const overview = {
       currentMonth: {
         total: currentMonthData.total,
-        byStatus: currentStatusCounts
+        byStatus: currentStatusCounts,
       },
       previousMonth: {
         total: prevMonthData.total,
-        byStatus: prevStatusCounts
+        byStatus: prevStatusCounts,
       },
       growth: {
         rate: growthRate,
-        absolute: currentMonthData.total - prevMonthData.total
+        absolute: currentMonthData.total - prevMonthData.total,
       },
       performance: {
-        trend: growthRate >= 0 ? 'up' : 'down',
-        message: growthRate >= 0 ? 
-          `Up ${growthRate}% from last month` : 
-          `Down ${Math.abs(growthRate)}% from last month`
-      }
+        trend: growthRate >= 0 ? "up" : "down",
+        message:
+          growthRate >= 0
+            ? `Up ${growthRate}% from last month`
+            : `Down ${Math.abs(growthRate)}% from last month`,
+      },
     };
 
     return NextResponse.json({
       success: true,
-      overview
+      overview,
     });
-
   } catch (error) {
-    console.error('Error fetching reports overview:', error);
+    console.error("Error fetching reports overview:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to fetch reports overview' },
-      { status: 500 }
+      { success: false, message: "Failed to fetch reports overview" },
+      { status: 500 },
     );
   }
 }

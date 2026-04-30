@@ -125,7 +125,7 @@ export default function WaitlistTab() {
       <div className="p-4 sm:p-6 border-b border-gray-200">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">Waitlist Management</h2>
+            <h2 className="text-lg font-semibold text-gray-700">Waitlist Management</h2>
             <p className="text-sm text-gray-600 mt-1">
               Showing {waitlist.length} of {pagination.total} waitlist entries
             </p>
@@ -146,7 +146,7 @@ export default function WaitlistTab() {
             <button 
               onClick={() => fetchWaitlist(pagination.page, pagination.limit, searchQuery, searchStatus)}
               disabled={loading}
-              className="border border-red-600 text-red-400 px-4 py-2 rounded-lg text-sm hover:bg-red-50 transition duration-300 disabled:opacity-50"
+              className="border border-cyan-600 bg-cyan-600 px-4 py-2 rounded-lg text-sm hover:bg-cyan-30 transition duration-300 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>
@@ -171,7 +171,7 @@ export default function WaitlistTab() {
                 value={searchQuery}
                 onChange={handleSearchChange}
                 placeholder="Search by name, email, or healthcare number..."
-                className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-cyan-500"
               />
               {searchQuery && (
                 <button
@@ -194,7 +194,7 @@ export default function WaitlistTab() {
               id="statusFilter"
               value={searchStatus}
               onChange={handleStatusChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 text-gray-700 focus:ring-red-500 focus:border-red-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 text-gray-700 focus:ring-red-500 focus:border-cyan-500"
             >
               <option value="all">All Statuses</option>
               <option value="Active">Active</option>
@@ -218,7 +218,7 @@ export default function WaitlistTab() {
             </div>
             <button
               onClick={handleClearSearch}
-              className="text-red-400 hover:text-red-800 text-sm font-medium"
+              className="bg-cyan-600 hover:text-red-800 text-sm font-medium"
             >
               Clear filters
             </button>
@@ -229,14 +229,14 @@ export default function WaitlistTab() {
       <div className="p-4 sm:p-6">
         {loading ? (
           <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-600 mx-auto"></div>
             <p className="mt-2 text-gray-600">Loading waitlist...</p>
           </div>
         ) : (
           <>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-cyan-30">
                   <tr>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       No
@@ -262,24 +262,24 @@ export default function WaitlistTab() {
                   {waitlist.map((entry, index) => (
                     <tr 
                       key={entry._id} 
-                      className="hover:bg-gray-50 transition duration-300 cursor-pointer"
+                      className="hover:bg-cyan-30 transition duration-300 cursor-pointer"
                       onClick={() => openModal(entry)}
                     >
                       <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className="text-sm font-medium text-gray-700">
                           {(pagination.page - 1) * pagination.limit + index + 1}
                         </div>
                        </td>
                       <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className="text-sm font-medium text-gray-700">
                           {entry.firstName} {entry.lastName}
                         </div>
                        </td>
                       <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{entry.email}</div>
+                        <div className="text-sm text-gray-700">{entry.email}</div>
                        </td>
                       <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{entry.cellPhone || 'N/A'}</div>
+                        <div className="text-sm text-gray-700">{entry.cellPhone || 'N/A'}</div>
                        </td>
                       <td className="px-4 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                         <WaitlistStatusDropdown 
@@ -288,7 +288,7 @@ export default function WaitlistTab() {
                         />
                        </td>
                       <td className="px-4 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
+                        <div className="text-sm text-gray-700">
                           {entry.createdAt ? new Date(entry.createdAt).toLocaleDateString() : 'N/A'}
                         </div>
                        </td>
@@ -314,14 +314,14 @@ export default function WaitlistTab() {
                   <button
                     onClick={() => handlePageChange(pagination.page - 1)}
                     disabled={pagination.page === 1}
-                    className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-cyan-30 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Previous
                   </button>
                   <button
                     onClick={() => handlePageChange(pagination.page + 1)}
                     disabled={pagination.page === pagination.pages}
-                    className="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-cyan-30 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Next
                   </button>
@@ -341,7 +341,7 @@ export default function WaitlistTab() {
                       <button
                         onClick={() => handlePageChange(pagination.page - 1)}
                         disabled={pagination.page === 1}
-                        className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-cyan-30 focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span className="sr-only">Previous</span>
                         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -368,8 +368,8 @@ export default function WaitlistTab() {
                             onClick={() => handlePageChange(pageNum)}
                             className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
                               pagination.page === pageNum
-                                ? 'z-10 bg-red-400 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600'
-                                : 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
+                                ? 'z-10 bg-cyan-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600'
+                                : 'text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-cyan-30 focus:z-20 focus:outline-offset-0'
                             }`}
                           >
                             {pageNum}
@@ -380,7 +380,7 @@ export default function WaitlistTab() {
                       <button
                         onClick={() => handlePageChange(pagination.page + 1)}
                         disabled={pagination.page === pagination.pages}
-                        className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-cyan-30 focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span className="sr-only">Next</span>
                         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

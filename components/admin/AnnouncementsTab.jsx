@@ -84,21 +84,21 @@ export default function AnnouncementsTab() {
     <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Announcements</h2>
+          <h2 className="text-lg font-semibold text-gray-700">Announcements</h2>
           <p className="text-sm text-gray-600 mt-1">
             Manage announcements displayed on the homepage
           </p>
         </div>
         <button
           onClick={() => setIsCreating(true)}
-          className="border border-red-600 text-red-400 px-4 py-2 rounded-lg text-sm hover:bg-red-50 transition duration-300"
+          className="border border-cyan-600 bg-cyan-600 px-4 py-2 rounded-lg text-sm hover:bg-cyan-30 transition duration-300"
         >
           + New Announcement
         </button>
       </div>
 
       {error && (
-        <div className="mb-4 bg-red-100 border border-red-400 text-red-400 px-4 py-3 rounded">
+        <div className="mb-4 bg-cyan-100 border border-cyan-400 bg-cyan-600 px-4 py-3 rounded">
           {error}
         </div>
       )}
@@ -120,7 +120,7 @@ export default function AnnouncementsTab() {
 
       {loading ? (
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-600 mx-auto"></div>
           <p className="mt-2 text-gray-600">Loading announcements...</p>
         </div>
       ) : (

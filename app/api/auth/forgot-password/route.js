@@ -1,35 +1,36 @@
-import { NextResponse } from 'next/server';
-import crypto from 'crypto';
-import dbConnect from '@/utils/db';
-import User from '@/models/User';
-import { sendEmail } from '@/utils/emailService';
+import { NextResponse } from "next/server";
+import crypto from "crypto";
+import dbConnect from "@/utils/db";
+import User from "@/models/User";
+import { sendEmail } from "@/utils/emailService";
 
 export async function POST(req) {
   try {
     await dbConnect();
-    
+
     const { email } = await req.json();
 
     if (!email) {
       return NextResponse.json(
-        { success: false, message: 'Email is required' },
-        { status: 400 }
+        { success: false, message: "Email is required" },
+        { status: 400 },
       );
     }
 
     // Find user by email
     const user = await User.findOne({ email: email.toLowerCase().trim() });
-    
+
     if (!user) {
       // Don't reveal if email exists or not for security
       return NextResponse.json({
         success: true,
-        message: 'If an account with that email exists, a password reset link has been sent.'
+        message:
+          "If an account with that email exists, a password reset link has been sent.",
       });
     }
 
     // Generate reset token
-    const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetToken = crypto.randomBytes(32).toString("hex");
     const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
 
     // Save reset token to user
@@ -44,7 +45,7 @@ export async function POST(req) {
     try {
       await sendEmail({
         to: user.email,
-        subject: 'Password Reset Request - Trim Medical Centre',
+        subject: "Password Reset Request - Trim Medical Centre",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #0369a1;">Password Reset Request</h2>
@@ -66,31 +67,34 @@ export async function POST(req) {
               Your Health Partner
             </p>
           </div>
-        `
+        `,
       });
     } catch (emailError) {
-      console.error('Email sending error:', emailError);
+      console.error("Email sending error:", emailError);
       // Clear the reset token if email fails
       user.resetPasswordToken = undefined;
       user.resetPasswordExpires = undefined;
       await user.save();
-      
+
       return NextResponse.json(
-        { success: false, message: 'Failed to send reset email. Please try again.' },
-        { status: 500 }
+        {
+          success: false,
+          message: "Failed to send reset email. Please try again.",
+        },
+        { status: 500 },
       );
     }
 
     return NextResponse.json({
       success: true,
-      message: 'If an account with that email exists, a password reset link has been sent.'
+      message:
+        "If an account with that email exists, a password reset link has been sent.",
     });
-
   } catch (error) {
-    console.error('Forgot password error:', error);
+    console.error("Forgot password error:", error);
     return NextResponse.json(
-      { success: false, message: 'Server error. Please try again.' },
-      { status: 500 }
+      { success: false, message: "Server error. Please try again." },
+      { status: 500 },
     );
   }
 }

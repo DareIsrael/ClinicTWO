@@ -65,14 +65,14 @@ function ResetPasswordContent() {
 
   if (!token) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-cyan-30 flex items-center justify-center">
         <div className="max-w-md w-full text-center">
-          <div className="bg-red-100 border border-red-400 text-red-400 px-4 py-3 rounded">
+          <div className="bg-cyan-100 border border-cyan-400 bg-cyan-600 px-4 py-3 rounded">
             Invalid reset link. Please request a new password reset.
           </div>
           <Link
             href="/forgot-password"
-            className="mt-4 inline-block text-red-400 hover:text-red-400"
+            className="mt-4 inline-block bg-cyan-600 hover:bg-cyan-600"
           >
             Request new reset link
           </Link>
@@ -82,10 +82,10 @@ function ResetPasswordContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-cyan-30 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <div className="mx-auto h-12 w-12 bg-red-400 rounded-lg flex items-center justify-center">
+          <div className="mx-auto h-12 w-12 bg-cyan-600 rounded-lg flex items-center justify-center">
             <svg
               className="w-6 h-6 text-white"
               fill="none"
@@ -100,7 +100,7 @@ function ResetPasswordContent() {
               />
             </svg>
           </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">
             Reset your password
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
@@ -116,7 +116,7 @@ function ResetPasswordContent() {
           )}
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-400 px-4 py-3 rounded">
+            <div className="bg-cyan-100 border border-cyan-400 bg-cyan-600 px-4 py-3 rounded">
               {error}
             </div>
           )}
@@ -136,7 +136,7 @@ function ResetPasswordContent() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm"
+              className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-700 rounded-md focus:outline-none focus:ring-red-500 focus:border-cyan-500 focus:z-10 sm:text-sm"
               placeholder="Enter new password"
               minLength="8"
             />
@@ -157,7 +157,7 @@ function ResetPasswordContent() {
               required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm"
+              className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-700 rounded-md focus:outline-none focus:ring-red-500 focus:border-cyan-500 focus:z-10 sm:text-sm"
               placeholder="Confirm new password"
               minLength="8"
             />
@@ -167,7 +167,7 @@ function ResetPasswordContent() {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-400 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50"
             >
               {loading ? (
                 <span className="flex items-center">
@@ -201,7 +201,7 @@ function ResetPasswordContent() {
           <div className="text-center">
             <Link
               href="/login"
-              className="font-medium text-red-400 hover:text-red-400"
+              className="font-medium bg-cyan-600 hover:bg-cyan-600"
             >
               Back to login
             </Link>
@@ -216,9 +216,9 @@ export default function ResetPassword() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="min-h-screen bg-cyan-30 flex items-center justify-center">
           <div className="max-w-md w-full text-center">
-            <div className="mx-auto h-12 w-12 bg-red-400 rounded-lg flex items-center justify-center mb-4">
+            <div className="mx-auto h-12 w-12 bg-cyan-600 rounded-lg flex items-center justify-center mb-4">
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"

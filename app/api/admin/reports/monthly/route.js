@@ -8,9 +8,9 @@
 // export async function GET(request) {
 //   try {
 //     console.log('Monthly reports API called');
-    
+
 //     const session = await getServerSession(authOptions);
-    
+
 //     if (!session) {
 //       return NextResponse.json(
 //         { success: false, message: 'Authentication required' },
@@ -26,7 +26,7 @@
 //     }
 
 //     await dbConnect();
-    
+
 //     const { searchParams } = new URL(request.url);
 //     const year = parseInt(searchParams.get('year')) || new Date().getFullYear();
 //     const month = parseInt(searchParams.get('month')) || new Date().getMonth() + 1;
@@ -141,7 +141,7 @@
 //       const month = item._id.month;
 //       const status = item._id.status;
 //       const count = item.count;
-      
+
 //       if (!monthlyStatusData[month]) {
 //         monthlyStatusData[month] = { Active: 0, Booked: 0, Accepted: 0, Rejected: 0 };
 //       }
@@ -228,9 +228,9 @@
 //           totalPatients: totalPatients,
 //           activePatients: activePatientsCount,
 //           newPatients: newPatientsThisMonth,
-//           acceptanceRate: totalPatients > 0 ? 
+//           acceptanceRate: totalPatients > 0 ?
 //             Math.round((acceptedCount / totalPatients) * 100) : 0,
-//           rejectionRate: totalPatients > 0 ? 
+//           rejectionRate: totalPatients > 0 ?
 //             Math.round((rejectedCount / totalPatients) * 100) : 0,
 //           activityRate: totalPatients > 0 ?
 //             Math.round((activePatientsCount / totalPatients) * 100) : 0
@@ -247,39 +247,38 @@
 //   }
 // }
 
-
-
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { NextResponse } from 'next/server';
-import dbConnect from '@/utils/db';
-import Waitlist from '@/models/Waitlist';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { NextResponse } from "next/server";
+import dbConnect from "@/utils/db";
+import Waitlist from "@/models/Waitlist";
 
 export async function GET(request) {
   try {
     // console.log('Monthly reports API called');
-    
+
     const session = await getServerSession(authOptions);
-    
+
     if (!session) {
       return NextResponse.json(
-        { success: false, message: 'Authentication required' },
-        { status: 401 }
+        { success: false, message: "Authentication required" },
+        { status: 401 },
       );
     }
 
-    if (session.user.role !== 'admin') {
+    if (session.user.role !== "admin") {
       return NextResponse.json(
-        { success: false, message: 'Admin access required' },
-        { status: 403 }
+        { success: false, message: "Admin access required" },
+        { status: 403 },
       );
     }
 
     await dbConnect();
-    
+
     const { searchParams } = new URL(request.url);
-    const year = parseInt(searchParams.get('year')) || new Date().getFullYear();
-    const month = parseInt(searchParams.get('month')) || new Date().getMonth() + 1;
+    const year = parseInt(searchParams.get("year")) || new Date().getFullYear();
+    const month =
+      parseInt(searchParams.get("month")) || new Date().getMonth() + 1;
 
     // console.log('Fetching reports for:', { year, month });
 
@@ -291,17 +290,17 @@ export async function GET(request) {
     const totalWaitlist = await Waitlist.countDocuments();
 
     // Count waitlist by status
-    const activeCount = await Waitlist.countDocuments({ status: 'Active' });
-    const bookedCount = await Waitlist.countDocuments({ status: 'Booked' });
-    const acceptedCount = await Waitlist.countDocuments({ status: 'Accepted' });
-    const rejectedCount = await Waitlist.countDocuments({ status: 'Rejected' });
+    const activeCount = await Waitlist.countDocuments({ status: "Active" });
+    const bookedCount = await Waitlist.countDocuments({ status: "Booked" });
+    const acceptedCount = await Waitlist.countDocuments({ status: "Accepted" });
+    const rejectedCount = await Waitlist.countDocuments({ status: "Rejected" });
 
     // Get new waitlist registrations for the month
     const newThisMonth = await Waitlist.countDocuments({
       createdAt: {
         $gte: startDate,
-        $lte: endDate
-      }
+        $lte: endDate,
+      },
     });
 
     // Get monthly registration trends for the entire year - FIXED DATE RANGE
@@ -310,19 +309,19 @@ export async function GET(request) {
         $match: {
           createdAt: {
             $gte: new Date(Date.UTC(year, 0, 1)), // Start of year
-            $lte: new Date(Date.UTC(year, 11, 31, 23, 59, 59)) // End of year
-          }
-        }
+            $lte: new Date(Date.UTC(year, 11, 31, 23, 59, 59)), // End of year
+          },
+        },
       },
       {
         $group: {
-          _id: { $month: '$createdAt' },
-          count: { $sum: 1 }
-        }
+          _id: { $month: "$createdAt" },
+          count: { $sum: 1 },
+        },
       },
       {
-        $sort: { _id: 1 }
-      }
+        $sort: { _id: 1 },
+      },
     ]);
 
     // Get monthly status breakdown for the entire year
@@ -331,46 +330,61 @@ export async function GET(request) {
         $match: {
           createdAt: {
             $gte: new Date(Date.UTC(year, 0, 1)),
-            $lte: new Date(Date.UTC(year, 11, 31, 23, 59, 59))
-          }
-        }
+            $lte: new Date(Date.UTC(year, 11, 31, 23, 59, 59)),
+          },
+        },
       },
       {
         $group: {
           _id: {
-            month: { $month: '$createdAt' },
-            status: '$status'
+            month: { $month: "$createdAt" },
+            status: "$status",
           },
-          count: { $sum: 1 }
-        }
+          count: { $sum: 1 },
+        },
       },
       {
-        $sort: { '_id.month': 1, '_id.status': 1 }
-      }
+        $sort: { "_id.month": 1, "_id.status": 1 },
+      },
     ]);
 
     // Format monthly registration data for chart
     const monthlyRegistrationsData = Array(12).fill(0);
-    monthlyRegistrations.forEach(item => {
+    monthlyRegistrations.forEach((item) => {
       monthlyRegistrationsData[item._id - 1] = item.count;
     });
 
     // Format monthly status data
     const monthlyStatusData = {};
-    monthlyStatusBreakdown.forEach(item => {
+    monthlyStatusBreakdown.forEach((item) => {
       const month = item._id.month;
-      const status = item._id.status || 'Active';
+      const status = item._id.status || "Active";
       const count = item.count;
-      
+
       if (!monthlyStatusData[month]) {
-        monthlyStatusData[month] = { Active: 0, Booked: 0, Accepted: 0, Rejected: 0 };
+        monthlyStatusData[month] = {
+          Active: 0,
+          Booked: 0,
+          Accepted: 0,
+          Rejected: 0,
+        };
       }
       monthlyStatusData[month][status] = count;
     });
 
     const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
 
     return NextResponse.json({
@@ -379,7 +393,7 @@ export async function GET(request) {
         period: {
           year,
           month,
-          monthName: monthNames[month - 1]
+          monthName: monthNames[month - 1],
         },
         patients: {
           total: totalWaitlist,
@@ -388,33 +402,38 @@ export async function GET(request) {
             Active: activeCount,
             Booked: bookedCount,
             Accepted: acceptedCount,
-            Rejected: rejectedCount
-          }
+            Rejected: rejectedCount,
+          },
         },
         // Monthly trends data
         trends: {
           year: year,
           monthlyRegistrations: monthlyRegistrationsData,
-          monthlyStatusBreakdown: monthlyStatusData
+          monthlyStatusBreakdown: monthlyStatusData,
         },
         summary: {
           totalWaitlist: totalWaitlist,
           newWaitlist: newThisMonth,
-          acceptanceRate: totalWaitlist > 0 ? 
-            Math.round((acceptedCount / totalWaitlist) * 100) : 0,
-          rejectionRate: totalWaitlist > 0 ? 
-            Math.round((rejectedCount / totalWaitlist) * 100) : 0,
-          activityRate: totalWaitlist > 0 ?
-            Math.round((activeCount / totalWaitlist) * 100) : 0
-        }
-      }
+          acceptanceRate:
+            totalWaitlist > 0
+              ? Math.round((acceptedCount / totalWaitlist) * 100)
+              : 0,
+          rejectionRate:
+            totalWaitlist > 0
+              ? Math.round((rejectedCount / totalWaitlist) * 100)
+              : 0,
+          activityRate:
+            totalWaitlist > 0
+              ? Math.round((activeCount / totalWaitlist) * 100)
+              : 0,
+        },
+      },
     });
-
   } catch (error) {
-    console.error('Monthly reports error:', error);
+    console.error("Monthly reports error:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to generate monthly reports' },
-      { status: 500 }
+      { success: false, message: "Failed to generate monthly reports" },
+      { status: 500 },
     );
   }
 }

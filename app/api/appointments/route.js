@@ -1,8 +1,7 @@
-
-import { NextResponse } from 'next/server';
-import { appointmentService } from '@/services/appointmentService';
-import dbConnect from '@/utils/db';
-import { sendEmail } from '@/utils/emailService';
+import { NextResponse } from "next/server";
+import { appointmentService } from "@/services/appointmentService";
+import dbConnect from "@/utils/db";
+import { sendEmail } from "@/utils/emailService";
 
 // Updated email function - only sends confirmation email
 async function sendAppointmentConfirmationEmail(appointment) {
@@ -11,7 +10,7 @@ async function sendAppointmentConfirmationEmail(appointment) {
     const formattedDate = appointment.appointmentDate;
 
     const emailSubject = `Appointment Confirmed - ${appointment.firstName} ${appointment.lastName}`;
-    
+
     const emailHtml = `
       <!DOCTYPE html>
       <html>
@@ -74,12 +73,12 @@ async function sendAppointmentConfirmationEmail(appointment) {
     await sendEmail({
       to: appointment.email,
       subject: emailSubject,
-      html: emailHtml
+      html: emailHtml,
     });
 
     return true;
   } catch (error) {
-    console.error('Error sending appointment email:', error);
+    console.error("Error sending appointment email:", error);
     return false;
   }
 }
@@ -88,19 +87,19 @@ async function sendAppointmentConfirmationEmail(appointment) {
 export async function GET(request) {
   try {
     await dbConnect();
-    
+
     const { searchParams } = new URL(request.url);
-    const date = searchParams.get('date');
-    
+    const date = searchParams.get("date");
+
     if (!date) {
       // Return clinic info if no date specified
       const schedule = appointmentService.getClinicSchedule();
       const availableDates = await appointmentService.getAvailableDates();
-      
+
       return NextResponse.json({
         success: true,
         clinicSchedule: schedule,
-        availableDates: availableDates
+        availableDates: availableDates,
       });
     }
 
@@ -108,22 +107,22 @@ export async function GET(request) {
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(date)) {
       return NextResponse.json(
-        { success: false, message: 'Date must be in YYYY-MM-DD format' },
-        { status: 400 }
+        { success: false, message: "Date must be in YYYY-MM-DD format" },
+        { status: 400 },
       );
     }
 
     const slots = await appointmentService.getAvailableSlots(date);
-    
+
     return NextResponse.json({
       success: true,
       date,
-      slots
+      slots,
     });
   } catch (error) {
     return NextResponse.json(
       { success: false, message: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -132,47 +131,59 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     await dbConnect();
-    
+
     const data = await request.json();
-    
+
     // Validate required fields (removed appointmentType)
     const requiredFields = [
-      'firstName', 'lastName', 'email', 'gender', 'healthcareProvince',
-      'healthcareNumber', 'dateOfBirth', 'cellPhone', 'address',
-      'country', 'postalCode', 'appointmentDate', 'appointmentTime', 'reason'
+      "firstName",
+      "lastName",
+      "email",
+      "gender",
+      "healthcareProvince",
+      "healthcareNumber",
+      "dateOfBirth",
+      "cellPhone",
+      "address",
+      "country",
+      "postalCode",
+      "appointmentDate",
+      "appointmentTime",
+      "reason",
     ];
 
-    const missingFields = requiredFields.filter(field => !data[field]);
-    
+    const missingFields = requiredFields.filter((field) => !data[field]);
+
     if (missingFields.length > 0) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: `Missing required fields: ${missingFields.join(', ')}` 
+        {
+          success: false,
+          message: `Missing required fields: ${missingFields.join(", ")}`,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     const result = await appointmentService.bookAppointment(data);
-    
+
     if (result.success) {
       // Send booking confirmation email
       try {
-        const appointment = await appointmentService.getAppointmentByEmailAndDate(
-          data.email,
-          data.appointmentDate,
-          data.appointmentTime
-        );
-        
+        const appointment =
+          await appointmentService.getAppointmentByEmailAndDate(
+            data.email,
+            data.appointmentDate,
+            data.appointmentTime,
+          );
+
         if (appointment) {
           await sendAppointmentConfirmationEmail(appointment);
         }
       } catch (emailError) {
-        console.error('Failed to send booking confirmation email:', emailError);
+        console.error("Failed to send booking confirmation email:", emailError);
         // Don't fail the whole request if email fails
       }
-      
+
       return NextResponse.json(result, { status: 201 });
     } else {
       return NextResponse.json(result, { status: 400 });
@@ -180,7 +191,7 @@ export async function POST(request) {
   } catch (error) {
     return NextResponse.json(
       { success: false, message: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -189,29 +200,35 @@ export async function POST(request) {
 export async function PUT(request) {
   try {
     await dbConnect();
-    
+
     const data = await request.json();
     const { appointmentId, status, reason } = data;
-    
+
     if (!appointmentId || !status) {
       return NextResponse.json(
-        { success: false, message: 'appointmentId and status are required' },
-        { status: 400 }
+        { success: false, message: "appointmentId and status are required" },
+        { status: 400 },
       );
     }
 
     let updatedAppointment;
-    
-    if (status === 'cancelled') {
-      updatedAppointment = await appointmentService.cancelAppointment(appointmentId, reason);
+
+    if (status === "cancelled") {
+      updatedAppointment = await appointmentService.cancelAppointment(
+        appointmentId,
+        reason,
+      );
     } else {
-      updatedAppointment = await appointmentService.updateAppointmentStatus(appointmentId, status);
+      updatedAppointment = await appointmentService.updateAppointmentStatus(
+        appointmentId,
+        status,
+      );
     }
-    
+
     if (!updatedAppointment) {
       return NextResponse.json(
-        { success: false, message: 'Appointment not found' },
-        { status: 404 }
+        { success: false, message: "Appointment not found" },
+        { status: 404 },
       );
     }
 
@@ -220,12 +237,12 @@ export async function PUT(request) {
     return NextResponse.json({
       success: true,
       appointment: updatedAppointment,
-      message: 'Appointment updated successfully'
+      message: "Appointment updated successfully",
     });
   } catch (error) {
     return NextResponse.json(
       { success: false, message: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

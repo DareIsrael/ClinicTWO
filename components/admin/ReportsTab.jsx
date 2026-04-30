@@ -55,14 +55,14 @@ export default function ReportsTab() {
       <div className="bg-white rounded-lg shadow-md p-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">Monthly Reports & Analytics</h2>
+            <h2 className="text-xl font-semibold text-gray-700">Monthly Reports & Analytics</h2>
             <p className="text-gray-600 mt-1">Track waitlist registrations and status distribution</p>
           </div>
           <div className="flex gap-3">
             <select
               value={selectedMonth}
               onChange={(e) => handlePeriodChange(parseInt(e.target.value), selectedYear)}
-              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500"
+              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-cyan-500"
             >
               <option value="1">January</option>
               <option value="2">February</option>
@@ -80,7 +80,7 @@ export default function ReportsTab() {
             <select
               value={selectedYear}
               onChange={(e) => handlePeriodChange(selectedMonth, parseInt(e.target.value))}
-              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500"
+              className="border text-gray-600 border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-cyan-500"
             >
               <option value={new Date().getFullYear() - 1}>{new Date().getFullYear() - 1}</option>
               <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
@@ -88,7 +88,7 @@ export default function ReportsTab() {
             <button
               onClick={() => fetchMonthlyReports()}
               disabled={loading}
-              className="border border-red-600 text-red-400 px-4 py-2 rounded text-sm hover:bg-red-50 transition duration-300 disabled:opacity-50"
+              className="border border-cyan-600 bg-cyan-600 px-4 py-2 rounded text-sm hover:bg-cyan-30 transition duration-300 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>
@@ -100,18 +100,18 @@ export default function ReportsTab() {
         <div className="lg:col-span-2 space-y-6">
           {loading ? (
             <div className="bg-white rounded-lg shadow-md p-6 text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-600 mx-auto"></div>
               <p className="mt-2 text-gray-600">Loading report data...</p>
             </div>
           ) : reportsData ? (
             <>
               <div className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                <h3 className="text-lg font-semibold text-gray-700 mb-4">
                   {reportsData.period.monthName} {reportsData.period.year} Summary
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-red-50 p-4 rounded-lg">
-                    <p className="text-sm text-red-400 font-medium">Total Waitlist</p>
+                  <div className="bg-cyan-30 p-4 rounded-lg">
+                    <p className="text-sm bg-cyan-600 font-medium">Total Waitlist</p>
                     <p className="text-2xl font-bold text-red-900">{reportsData.patients?.total || 0}</p>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
@@ -122,8 +122,8 @@ export default function ReportsTab() {
                     <p className="text-sm text-purple-700 font-medium">Accepted</p>
                     <p className="text-2xl font-bold text-purple-900">{reportsData.patients?.byStatus?.Accepted || 0}</p>
                   </div>
-                  <div className="bg-red-50 p-4 rounded-lg">
-                    <p className="text-sm text-red-400 font-medium">Rejected</p>
+                  <div className="bg-cyan-30 p-4 rounded-lg">
+                    <p className="text-sm bg-cyan-600 font-medium">Rejected</p>
                     <p className="text-2xl font-bold text-red-900">{reportsData.patients?.byStatus?.Rejected || 0}</p>
                   </div>
                 </div>
@@ -134,15 +134,15 @@ export default function ReportsTab() {
                     <p className="text-2xl font-bold text-indigo-900">{reportsData.patients?.byStatus?.Booked || 0}</p>
                   </div>
                   <div className="bg-cyan-50 p-4 rounded-lg">
-                    <p className="text-sm text-cyan-700 font-medium">New This Month</p>
-                    <p className="text-2xl font-bold text-cyan-900">
+                    <p className="text-sm text-red-700 font-medium">New This Month</p>
+                    <p className="text-2xl font-bold text-red-900">
                       {reportsData.patients?.newThisMonth || 0}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-6">
-                  <h4 className="text-md font-semibold text-gray-900 mb-3">Waitlist Status Distribution</h4>
+                  <h4 className="text-md font-semibold text-gray-700 mb-3">Waitlist Status Distribution</h4>
                   <StatusProgress 
                     statusData={reportsData.patients?.byStatus || {}} 
                     total={reportsData.patients?.total || 0} 
@@ -152,7 +152,7 @@ export default function ReportsTab() {
 
               {reportsData?.trends && (
                 <div className="bg-white rounded-lg shadow-md p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Monthly Trends & Analytics</h3>
+                  <h3 className="text-lg font-semibold text-gray-700 mb-4">Monthly Trends & Analytics</h3>
                   <MonthlyTrendsChart 
                     trendsData={reportsData.trends} 
                     year={reportsData.trends.year} 
@@ -169,7 +169,7 @@ export default function ReportsTab() {
 
         <div className="space-y-6">
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h3>
+            <h3 className="text-lg font-semibold text-gray-700 mb-4">Performance Metrics</h3>
             <div className="space-y-4">
               {reportsData && (
                 <>
@@ -179,14 +179,14 @@ export default function ReportsTab() {
                       {reportsData.summary?.activityRate || 0}%
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                    <span className="text-sm font-medium text-red-400">Acceptance Rate</span>
+                  <div className="flex justify-between items-center p-3 bg-cyan-30 rounded-lg">
+                    <span className="text-sm font-medium bg-cyan-600">Acceptance Rate</span>
                     <span className="text-lg font-bold text-red-900">
                       {reportsData.summary?.acceptanceRate || 0}%
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                    <span className="text-sm font-medium text-red-400">Rejection Rate</span>
+                  <div className="flex justify-between items-center p-3 bg-cyan-30 rounded-lg">
+                    <span className="text-sm font-medium bg-cyan-600">Rejection Rate</span>
                     <span className="text-lg font-bold text-red-900">
                       {reportsData.summary?.rejectionRate || 0}%
                     </span>
@@ -203,22 +203,22 @@ export default function ReportsTab() {
           </div>
 
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Report Definitions</h3>
+            <h3 className="text-lg font-semibold text-gray-700 mb-4">Report Definitions</h3>
             <div className="space-y-3 text-sm text-gray-600">
               <div>
-                <p className="font-medium text-gray-900">Total Waitlist</p>
+                <p className="font-medium text-gray-700">Total Waitlist</p>
                 <p>All registered patients in the waitlist system</p>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Active Waitlist</p>
+                <p className="font-medium text-gray-700">Active Waitlist</p>
                 <p>Patients currently waiting for appointments</p>
               </div>
               <div>
-                <p className="font-medium text-gray-900">New Patients</p>
+                <p className="font-medium text-gray-700">New Patients</p>
                 <p>Patients registered this month</p>
               </div>
               <div className="pt-2 border-t border-gray-200">
-                <p className="font-medium text-gray-900">Status Legend:</p>
+                <p className="font-medium text-gray-700">Status Legend:</p>
                 <p>• <strong>Active:</strong> New registrations waiting</p>
                 <p>• <strong>Booked:</strong> Has upcoming appointment</p>
                 <p>• <strong>Accepted:</strong> Approved for treatment</p>

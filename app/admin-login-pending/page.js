@@ -14,9 +14,9 @@ function AdminLoginPendingContent() {
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
           {/* Email icon */}
-          <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <svg
-              className="w-10 h-10 text-red-400"
+              className="w-10 h-10 bg-cyan-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -30,7 +30,7 @@ function AdminLoginPendingContent() {
             </svg>
           </div>
 
-          <h1 className="text-2xl font-bold text-gray-900 mb-3">
+          <h1 className="text-2xl font-bold text-gray-700 mb-3">
             Check Your Email
           </h1>
 
@@ -39,7 +39,7 @@ function AdminLoginPendingContent() {
           </p>
 
           {email && (
-            <p className="text-red-400 font-semibold mb-4 break-all">{email}</p>
+            <p className="bg-cyan-600 font-semibold mb-4 break-all">{email}</p>
           )}
 
           <p className="text-gray-500 text-sm mb-6">
@@ -70,7 +70,7 @@ function AdminLoginPendingContent() {
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
+            <div className="bg-cyan-30 border border-cyan-200 bg-cyan-600 px-4 py-3 rounded-lg mb-4 text-sm">
               {error}
             </div>
           )}
@@ -84,7 +84,7 @@ function AdminLoginPendingContent() {
           <div className="space-y-3">
             <Link
               href="/login"
-              className="block w-full bg-red-400 text-white py-3 rounded-lg hover:bg-red-700 transition-colors text-center font-medium"
+              className="block w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition-colors text-center font-medium"
             >
               Back to Login
             </Link>
@@ -109,10 +109,10 @@ export default function AdminLoginPending() {
         <div className="min-h-screen bg-white flex items-center justify-center p-4">
           <div className="max-w-md w-full">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-              <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-600"></div>
+              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-cyan-600"></div>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-3">
+              <h1 className="text-2xl font-bold text-gray-700 mb-3">
                 Loading...
               </h1>
             </div>

@@ -42,7 +42,7 @@ export default function BroadcastHistoryTab() {
         <div className="bg-white rounded-lg shadow-md p-6">
             <div className="flex items-center justify-between mb-6">
                 <div>
-                    <h2 className="text-lg font-semibold text-gray-900">Broadcast History</h2>
+                    <h2 className="text-lg font-semibold text-gray-700">Broadcast History</h2>
                     <p className="text-sm text-gray-600 mt-1">
                         {pagination.total} message{pagination.total !== 1 ? 's' : ''} sent
                     </p>
@@ -50,7 +50,7 @@ export default function BroadcastHistoryTab() {
                 <select
                     value={typeFilter}
                     onChange={(e) => setTypeFilter(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500"
                 >
                     <option value="all">All Types</option>
                     <option value="waitlist">Waitlist</option>
@@ -60,7 +60,7 @@ export default function BroadcastHistoryTab() {
 
             {loading ? (
                 <div className="text-center py-12 text-gray-500">
-                    <svg className="animate-spin h-8 w-8 mx-auto mb-3 text-red-400" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-8 w-8 mx-auto mb-3 bg-cyan-600" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
@@ -82,19 +82,19 @@ export default function BroadcastHistoryTab() {
                                 {/* Row header */}
                                 <button
                                     onClick={() => setExpandedId(expandedId === msg._id ? null : msg._id)}
-                                    className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition"
+                                    className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-cyan-30 transition"
                                 >
                                     <div className="flex items-center gap-3 min-w-0">
                                         <span
                                             className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium whitespace-nowrap ${
                                                 msg.type === 'waitlist'
                                                     ? 'bg-purple-100 text-purple-700'
-                                                    : 'bg-red-100 text-red-400'
+                                                    : 'bg-cyan-100 bg-cyan-600'
                                             }`}
                                         >
                                             {msg.type === 'waitlist' ? 'Waitlist' : 'Appointment'}
                                         </span>
-                                        <span className="text-sm font-medium text-gray-900 truncate">
+                                        <span className="text-sm font-medium text-gray-700 truncate">
                                             {msg.subject}
                                         </span>
                                     </div>
@@ -105,7 +105,7 @@ export default function BroadcastHistoryTab() {
                                         <div className="flex items-center gap-2 text-xs">
                                             <span className="text-green-600 font-medium">{msg.sent} sent</span>
                                             {msg.failed > 0 && (
-                                                <span className="text-red-400 font-medium">{msg.failed} failed</span>
+                                                <span className="bg-cyan-600 font-medium">{msg.failed} failed</span>
                                             )}
                                         </div>
                                         <svg
@@ -122,7 +122,7 @@ export default function BroadcastHistoryTab() {
 
                                 {/* Expanded details */}
                                 {expandedId === msg._id && (
-                                    <div className="border-t border-gray-200 px-4 py-4 bg-gray-50">
+                                    <div className="border-t border-gray-200 px-4 py-4 bg-cyan-30">
                                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-xs text-gray-600">
                                             <div>
                                                 <span className="font-medium text-gray-500 block">Sent by</span>
@@ -167,14 +167,14 @@ export default function BroadcastHistoryTab() {
                                 <button
                                     onClick={() => fetchHistory(pagination.page - 1)}
                                     disabled={pagination.page <= 1}
-                                    className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                                    className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-cyan-30 disabled:opacity-50 disabled:cursor-not-allowed transition"
                                 >
                                     Previous
                                 </button>
                                 <button
                                     onClick={() => fetchHistory(pagination.page + 1)}
                                     disabled={pagination.page >= pagination.pages}
-                                    className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                                    className="px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-cyan-30 disabled:opacity-50 disabled:cursor-not-allowed transition"
                                 >
                                     Next
                                 </button>

@@ -41,7 +41,6 @@
 //   };
 // }
 
-
 // 'use client';
 // import { useSession, signIn, signOut } from 'next-auth/react';
 // import { useRouter } from 'next/navigation';
@@ -85,11 +84,9 @@
 //   };
 // }
 
-
-
-'use client';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function useAuth() {
   const { data: session, status } = useSession();
@@ -97,35 +94,36 @@ export function useAuth() {
 
   return {
     user: session?.user,
-    isAuthenticated: status === 'authenticated',
-    loading: status === 'loading',
+    isAuthenticated: status === "authenticated",
+    loading: status === "loading",
 
     signIn: async (email, password) => {
-      const result = await signIn('credentials', {
+      const result = await signIn("credentials", {
         email,
         password,
-        redirect: false
+        redirect: false,
       });
       // Remove the automatic redirect - let the calling component handle it
       return result;
     },
 
-    signOut: () => signOut({ redirect: true, callbackUrl: '/login' }),
+    signOut: () => signOut({ redirect: true, callbackUrl: "/login" }),
 
     register: async (userData) => {
       try {
-        const response = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(userData)
+        const response = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
         });
         const data = await response.json();
-        if (!response.ok) throw new Error(data.message || 'Registration failed');
+        if (!response.ok)
+          throw new Error(data.message || "Registration failed");
         return data;
       } catch (error) {
-        console.error('Registration error:', error);
+        console.error("Registration error:", error);
         throw error;
       }
-    }
+    },
   };
 }

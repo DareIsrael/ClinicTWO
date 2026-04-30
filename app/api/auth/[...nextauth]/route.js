@@ -1,24 +1,27 @@
-import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import jwt from 'jsonwebtoken';
-import dbConnect from '@/utils/db';
-import User from '@/models/User';
-import { NextResponse } from 'next/server';
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import jwt from "jsonwebtoken";
+import dbConnect from "@/utils/db";
+import User from "@/models/User";
+import { NextResponse } from "next/server";
 
 // Simple in-memory rate limiter for login attempts
 const loginAttempts = new Map();
 
 // Clean up old entries every 15 minutes
-setInterval(() => {
-  const now = Date.now();
-  const fifteenMinutes = 15 * 60 * 1000;
+setInterval(
+  () => {
+    const now = Date.now();
+    const fifteenMinutes = 15 * 60 * 1000;
 
-  for (const [ip, data] of loginAttempts.entries()) {
-    if (now - data.firstAttempt > fifteenMinutes) {
-      loginAttempts.delete(ip);
+    for (const [ip, data] of loginAttempts.entries()) {
+      if (now - data.firstAttempt > fifteenMinutes) {
+        loginAttempts.delete(ip);
+      }
     }
-  }
-}, 15 * 60 * 1000);
+  },
+  15 * 60 * 1000,
+);
 
 // Rate limiting check function
 function checkRateLimit(ip) {
@@ -28,7 +31,7 @@ function checkRateLimit(ip) {
   if (!loginAttempts.has(ip)) {
     loginAttempts.set(ip, {
       count: 1,
-      firstAttempt: now
+      firstAttempt: now,
     });
     return { allowed: true, remaining: 2 };
   }
@@ -39,18 +42,20 @@ function checkRateLimit(ip) {
   if (now - data.firstAttempt > fifteenMinutes) {
     loginAttempts.set(ip, {
       count: 1,
-      firstAttempt: now
+      firstAttempt: now,
     });
     return { allowed: true, remaining: 2 };
   }
 
   // Check if limit exceeded
   if (data.count >= 3) {
-    const timeLeft = Math.ceil((fifteenMinutes - (now - data.firstAttempt)) / 1000 / 60);
+    const timeLeft = Math.ceil(
+      (fifteenMinutes - (now - data.firstAttempt)) / 1000 / 60,
+    );
     return {
       allowed: false,
       remaining: 0,
-      retryAfter: timeLeft
+      retryAfter: timeLeft,
     };
   }
 
@@ -62,10 +67,10 @@ function checkRateLimit(ip) {
 export const authOptions = {
   providers: [
     CredentialsProvider({
-      name: 'credentials',
+      name: "credentials",
       credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' }
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
         await dbConnect();
@@ -73,13 +78,16 @@ export const authOptions = {
         // --- Admin login confirmation flow (via email link) ---
         if (credentials.loginToken) {
           try {
-            const decoded = jwt.verify(credentials.loginToken, process.env.NEXTAUTH_SECRET);
-            if (decoded.purpose !== 'admin-login-confirm') {
-              throw new Error('Invalid login token');
+            const decoded = jwt.verify(
+              credentials.loginToken,
+              process.env.NEXTAUTH_SECRET,
+            );
+            if (decoded.purpose !== "admin-login-confirm") {
+              throw new Error("Invalid login token");
             }
             const user = await User.findById(decoded.userId);
-            if (!user || user.role !== 'admin') {
-              throw new Error('Invalid login token');
+            if (!user || user.role !== "admin") {
+              throw new Error("Invalid login token");
             }
             return {
               id: user._id.toString(),
@@ -97,34 +105,42 @@ export const authOptions = {
               postalCode: user.postalCode,
             };
           } catch (err) {
-            throw new Error('Invalid or expired confirmation. Please log in again.');
+            throw new Error(
+              "Invalid or expired confirmation. Please log in again.",
+            );
           }
         }
 
         // --- Normal password-based login flow ---
         // Get IP address for rate limiting
-        const forwarded = req.headers?.['x-forwarded-for'];
-        const ip = forwarded ? forwarded.split(',')[0] : req.headers?.['x-real-ip'] || 'unknown';
+        const forwarded = req.headers?.["x-forwarded-for"];
+        const ip = forwarded
+          ? forwarded.split(",")[0]
+          : req.headers?.["x-real-ip"] || "unknown";
 
         // Check rate limit BEFORE attempting authentication
         const rateCheck = checkRateLimit(ip);
         if (!rateCheck.allowed) {
-          throw new Error(`Too many login attempts. Please try again in ${rateCheck.retryAfter} minutes.`);
+          throw new Error(
+            `Too many login attempts. Please try again in ${rateCheck.retryAfter} minutes.`,
+          );
         }
 
         const { email, password } = credentials;
 
         // Find user
-        const user = await User.findOne({ email: email.trim().toLowerCase() }).select('+password');
+        const user = await User.findOne({
+          email: email.trim().toLowerCase(),
+        }).select("+password");
 
         if (!user) {
-          throw new Error('Invalid email or password');
+          throw new Error("Invalid email or password");
         }
 
         // Check password
         const isPasswordCorrect = await user.correctPassword(password);
         if (!isPasswordCorrect) {
-          throw new Error('Invalid email or password');
+          throw new Error("Invalid email or password");
         }
 
         // Successful login - reset the rate limit for this IP
@@ -147,8 +163,8 @@ export const authOptions = {
           country: user.country,
           postalCode: user.postalCode,
         };
-      }
-    })
+      },
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -186,14 +202,14 @@ export const authOptions = {
       session.user.country = token.country;
       session.user.postalCode = token.postalCode;
       return session;
-    }
+    },
   },
   pages: {
-    signIn: '/login',
-    signUp: '/register'
+    signIn: "/login",
+    signUp: "/register",
   },
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   secret: process.env.NEXTAUTH_SECRET,

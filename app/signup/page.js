@@ -212,7 +212,7 @@ export default function SignupPage() {
                 {/* Header */}
                 <div className="text-center mb-6">
                   <div className="flex justify-center mb-3">
-                    <div className="w-10 h-10 bg-red-400 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-cyan-600 rounded-lg flex items-center justify-center">
                       <svg
                         className="w-5 h-5 text-white"
                         fill="none"
@@ -228,7 +228,7 @@ export default function SignupPage() {
                       </svg>
                     </div>
                   </div>
-                  <h1 className="text-xl font-bold text-gray-900 mb-1">
+                  <h1 className="text-xl font-bold text-gray-700 mb-1">
                     Join Our Clinic
                   </h1>
                   <p className="text-gray-600 text-xs">Register</p>
@@ -256,7 +256,7 @@ export default function SignupPage() {
 
                 {/* Error Message */}
                 {errors.submit && (
-                  <div className="bg-red-50 border border-red-200 text-red-400 px-3 py-2 rounded-lg mb-4 text-xs flex items-start">
+                  <div className="bg-cyan-30 border border-cyan-200 bg-cyan-600 px-3 py-2 rounded-lg mb-4 text-xs flex items-start">
                     <svg
                       className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0"
                       fill="none"
@@ -435,8 +435,8 @@ export default function SignupPage() {
                           onChange={handleChange}
                           className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition text-gray-700 duration-200 pr-10 ${
                             errors.password
-                              ? "border-red-500 focus:border-red-500"
-                              : "border-gray-300 focus:border-red-500"
+                              ? "border-cyan-500 focus:border-cyan-500"
+                              : "border-gray-300 focus:border-cyan-500"
                           }`}
                           placeholder="••••••••"
                           required
@@ -484,7 +484,7 @@ export default function SignupPage() {
                         </button>
                       </div>
                       {errors.password && (
-                        <p className="text-red-400 text-xs mt-1 flex items-center">
+                        <p className="bg-cyan-600 text-xs mt-1 flex items-center">
                           <svg
                             className="w-3 h-3 mr-1"
                             fill="none"
@@ -519,8 +519,8 @@ export default function SignupPage() {
                           onChange={handleChange}
                           className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200 text-gray-700 pr-10 ${
                             errors.confirmPassword
-                              ? "border-red-500 focus:border-red-500"
-                              : "border-gray-300 focus:border-red-500"
+                              ? "border-cyan-500 focus:border-cyan-500"
+                              : "border-gray-300 focus:border-cyan-500"
                           }`}
                           placeholder="••••••••"
                           required
@@ -568,7 +568,7 @@ export default function SignupPage() {
                         </button>
                       </div>
                       {errors.confirmPassword && (
-                        <p className="text-red-400 text-xs mt-1 flex items-center">
+                        <p className="bg-cyan-600 text-xs mt-1 flex items-center">
                           <svg
                             className="w-3 h-3 mr-1"
                             fill="none"
@@ -589,16 +589,16 @@ export default function SignupPage() {
                   </div>
 
                   {/* Password Requirements */}
-                  <div className="bg-red-50 rounded-lg p-3 border border-red-200">
+                  <div className="bg-cyan-30 rounded-lg p-3 border border-cyan-200">
                     <p className="text-xs text-red-800 font-medium mb-1">
                       Password Requirements:
                     </p>
-                    <ul className="text-xs text-red-400 space-y-1">
+                    <ul className="text-xs bg-cyan-600 space-y-1">
                       <li
                         className={`flex items-center ${formData.password.length >= 8 ? "text-green-600" : ""}`}
                       >
                         <svg
-                          className={`w-3 h-3 mr-1 ${formData.password.length >= 8 ? "text-green-500" : "text-red-400"}`}
+                          className={`w-3 h-3 mr-1 ${formData.password.length >= 8 ? "text-green-500" : "bg-cyan-600"}`}
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -614,7 +614,7 @@ export default function SignupPage() {
                         className={`flex items-center ${/(?=.*[a-z])/.test(formData.password) ? "text-green-600" : ""}`}
                       >
                         <svg
-                          className={`w-3 h-3 mr-1 ${/(?=.*[a-z])/.test(formData.password) ? "text-green-500" : "text-red-400"}`}
+                          className={`w-3 h-3 mr-1 ${/(?=.*[a-z])/.test(formData.password) ? "text-green-500" : "bg-cyan-600"}`}
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -630,7 +630,7 @@ export default function SignupPage() {
                         className={`flex items-center ${/(?=.*[A-Z])/.test(formData.password) ? "text-green-600" : ""}`}
                       >
                         <svg
-                          className={`w-3 h-3 mr-1 ${/(?=.*[A-Z])/.test(formData.password) ? "text-green-500" : "text-red-400"}`}
+                          className={`w-3 h-3 mr-1 ${/(?=.*[A-Z])/.test(formData.password) ? "text-green-500" : "bg-cyan-600"}`}
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -646,7 +646,7 @@ export default function SignupPage() {
                         className={`flex items-center ${/(?=.*\d)/.test(formData.password) ? "text-green-600" : ""}`}
                       >
                         <svg
-                          className={`w-3 h-3 mr-1 ${/(?=.*\d)/.test(formData.password) ? "text-green-500" : "text-red-400"}`}
+                          className={`w-3 h-3 mr-1 ${/(?=.*\d)/.test(formData.password) ? "text-green-500" : "bg-cyan-600"}`}
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -664,7 +664,7 @@ export default function SignupPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-red-400 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 font-semibold text-sm mt-2"
+                    className="w-full bg-cyan-600 text-white py-2 px-4 rounded-lg hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 font-semibold text-sm mt-2"
                   >
                     {loading ? (
                       <span className="flex items-center justify-center">
@@ -698,7 +698,7 @@ export default function SignupPage() {
             </div>
 
             {/* Right Side - Image */}
-            <div className="lg:w-1/2 bg-red-400 relative">
+            <div className="lg:w-1/2 bg-cyan-600 relative">
               <div
                 className="h-48 lg:h-full bg-cover bg-center bg-no-repeat"
                 style={{
@@ -706,7 +706,7 @@ export default function SignupPage() {
                     'url("https://images.unsplash.com/photo-1576097449790-4b5e7f7dd4c5?auto=format&fit=crop&w=1000&q=80")',
                 }}
               >
-                <div className="absolute inset-0 bg-red-900/20"></div>
+                <div className="absolute inset-0 bg-cyan-900/20"></div>
               </div>
 
               {/* Overlay Content */}

@@ -12,6 +12,7 @@ export default function AppointmentBooking() {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [otherProvince, setOtherProvince] = useState('');
+  const [hoveredDate, setHoveredDate] = useState(null);
 
   // Form data
   const [formData, setFormData] = useState({
@@ -174,147 +175,147 @@ export default function AppointmentBooking() {
     fetchClinicData();
   };
 
-  // Get current date for display
-  const today = new Date();
-  const currentMonth = today.toLocaleString('default', { month: 'long', year: 'numeric' });
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section with Wave - No Red Background */}
-      <div className="relative bg-gray-50 overflow-hidden">
-        <div className="relative max-w-6xl mx-auto px-6 py-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-primary-light shadow-sm px-4 py-2 rounded-full mb-6">
-            <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-            <span className="text-xs font-medium text-gray-700 uppercase  text-primary tracking-wider">Secure Online Booking</span>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Hero Section - Minimal */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
+          <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
+            <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
+            <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">Secure Online Booking</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
             Book Your Visit
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Schedule an appointment in minutes. Choose a date and time that works best for you.
+          <p className="text-gray-500 text-base max-w-md mx-auto">
+            Schedule in minutes. Simple. Secure. Convenient.
           </p>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-6 py-12 -mt-8">
-        {/* Step 1: Date Selection */}
-        {step === 1 && (
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
-                <div>
-                  <h2 className="font-semibold text-gray-900">Select Date</h2>
-                  <p className="text-xs text-gray-500">Choose when you'd like to visit</p>
-                </div>
-              </div>
+      {/* Progress Steps */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div className="flex items-center justify-center">
+          <div className="flex items-center">
+            <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium ${step >= 1 ? 'bg-cyan-800 text-white' : 'bg-cyan-30-200 text-gray-500'}`}>
+              1
             </div>
+            <div className={`w-16 sm:w-24 h-px ${step >= 2 ? 'bg-cyan-30-800' : 'bg-cyan-30-200'}`}></div>
+            <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium ${step >= 2 ? 'bg-cyan-800 text-white' : 'bg-cyan-30-200 text-gray-500'}`}>
+              2
+            </div>
+            <div className={`w-16 sm:w-24 h-px ${step >= 3 ? 'bg-cyan-30-800' : 'bg-cyan-30-200'}`}></div>
+            <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium ${step >= 3 ? 'bg-cyan-800 text-white' : 'bg-cyan-30-200 text-gray-500'}`}>
+              3
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center mt-2 text-xs text-gray-500">
+          <span className="w-16 sm:w-24 text-center">Date</span>
+          <span className="w-16 sm:w-24 text-center">Time</span>
+          <span className="w-16 sm:w-24 text-center">Details</span>
+        </div>
+      </div>
+
+      {/* Step 1: Date Selection */}
+      {step === 1 && (
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
             <div className="p-6">
               {loading ? (
                 <div className="flex flex-col items-center justify-center py-16">
-                  <div className="w-12 h-12 border-4 border-red-200 border-t-red-600 rounded-full animate-spin"></div>
-                  <p className="mt-4 text-gray-500">Loading available dates...</p>
+                  <div className="w-10 h-10 border-2 border-gray-300 border-t-gray-800 rounded-full animate-spin"></div>
+                  <p className="mt-4 text-gray-500 text-sm">Loading available dates...</p>
                 </div>
               ) : availableDates.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                   {availableDates.map((dateInfo) => (
                     <button
                       key={dateInfo.date}
                       onClick={() => handleDateSelect(dateInfo.date)}
-                      className={`group relative p-5 rounded-xl text-left transition-all duration-300 ${
+                      onMouseEnter={() => setHoveredDate(dateInfo.date)}
+                      onMouseLeave={() => setHoveredDate(null)}
+                      className={`group relative p-4 rounded-xl text-center transition-all duration-200 ${
                         selectedDate === dateInfo.date
-                          ? 'bg-red-400 text-white shadow-lg'
-                          : 'bg-gray-50 hover:bg-gray-100 border border-gray-100'
+                          ? 'bg-cyan-30-800 text-white shadow-lg scale-[1.02]'
+                          : hoveredDate === dateInfo.date
+                          ? 'bg-cyan-30-100 border border-gray-200'
+                          : 'bg-white border border-gray-200 hover:border-gray-300'
                       }`}
                     >
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <div className={`text-lg font-bold ${selectedDate === dateInfo.date ? 'text-white' : 'text-gray-900'}`}>
-                            {new Date(dateInfo.date).getDate()}
-                          </div>
-                          <div className={`text-sm ${selectedDate === dateInfo.date ? 'text-white/80' : 'text-gray-500'}`}>
-                            {new Date(dateInfo.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short' })}
-                          </div>
-                        </div>
-                        {dateInfo.isToday && (
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            selectedDate === dateInfo.date ? 'bg-white/20 text-white' : 'bg-red-100 text-red-400'
-                          }`}>
-                            Today
-                          </span>
-                        )}
+                      <div className="text-2xl font-light">
+                        {new Date(dateInfo.date).getDate()}
                       </div>
-                      <div className={`mt-4 pt-4 border-t flex items-center justify-between text-sm ${
-                        selectedDate === dateInfo.date ? 'border-white/20' : 'border-gray-200'
-                      }`}>
-                        <span className={selectedDate === dateInfo.date ? 'text-white/70' : 'text-gray-500'}>Slots</span>
-                        <span className={`font-semibold ${selectedDate === dateInfo.date ? 'text-white' : 'text-red-400'}`}>
-                          {dateInfo.availableSlots || 0} available
+                      <div className={`text-sm mt-1 ${selectedDate === dateInfo.date ? 'text-gray-300' : 'text-gray-500'}`}>
+                        {new Date(dateInfo.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short' })}
+                      </div>
+                      {dateInfo.isToday && (
+                        <span className={`absolute -top-2 -right-2 text-xs px-1.5 py-0.5 rounded-full ${
+                          selectedDate === dateInfo.date ? 'bg-cyan-30-600 text-white' : 'bg-cyan-30-200 text-gray-600'
+                        }`}>
+                          Today
                         </span>
+                      )}
+                      <div className={`mt-3 pt-2 text-xs ${selectedDate === dateInfo.date ? 'text-gray-400' : 'text-gray-400'}`}>
+                        {dateInfo.availableSlots || 0} slots
                       </div>
                     </button>
                   ))}
                 </div>
               ) : (
                 <div className="text-center py-16">
-                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 bg-cyan-30-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <p className="text-gray-600 font-medium">No available dates</p>
+                  <p className="text-gray-600">No available dates</p>
                   <p className="text-gray-400 text-sm mt-1">Please check back later</p>
                 </div>
               )}
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Step 2: Time Selection */}
-        {step === 2 && (
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
-                  <div>
-                    <h2 className="font-semibold text-gray-900">Select Time</h2>
-                    <p className="text-xs text-gray-500">{selectedDate && formatDateDisplay(selectedDate)}</p>
-                  </div>
+      {/* Step 2: Time Selection */}
+      {step === 2 && (
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                <div>
+                  <p className="text-sm text-gray-500">Selected Date</p>
+                  <p className="font-medium text-gray-700">{selectedDate && formatDateDisplay(selectedDate)}</p>
                 </div>
                 <button
                   onClick={() => setStep(1)}
-                  className="text-sm text-red-400 hover:text-red-400 transition-colors flex items-center gap-1"
+                  className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                  </svg>
-                  Change Date
+                  ← Change
                 </button>
               </div>
-            </div>
-            <div className="p-6">
+
               {loading ? (
                 <div className="flex flex-col items-center justify-center py-16">
-                  <div className="w-12 h-12 border-4 border-red-200 border-t-red-600 rounded-full animate-spin"></div>
-                  <p className="mt-4 text-gray-500">Loading time slots...</p>
+                  <div className="w-10 h-10 border-2 border-gray-300 border-t-gray-800 rounded-full animate-spin"></div>
+                  <p className="mt-4 text-gray-500 text-sm">Loading time slots...</p>
                 </div>
               ) : availableSlots.length > 0 ? (
                 <>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
                     {availableSlots.map((slot, idx) => (
                       <button
                         key={idx}
                         onClick={() => handleTimeSelect(slot.time)}
                         disabled={!slot.available}
                         className={`
-                          py-4 rounded-xl text-center font-medium transition-all duration-200
+                          py-3 rounded-xl text-center font-medium transition-all duration-200
                           ${selectedTime === slot.time
-                            ? 'bg-red-400 text-white shadow-md scale-105'
+                            ? 'bg-cyan-30-800 text-white shadow-md'
                             : slot.available
-                            ? 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-100'
-                            : 'bg-gray-50 text-gray-400 cursor-not-allowed line-through'
+                            ? 'bg-white border border-gray-200 text-gray-700 hover:border-gray-400 hover:bg-cyan-30'
+                            : 'bg-cyan-30 border border-gray-100 text-gray-400 cursor-not-allowed line-through'
                           }
                         `}
                       >
@@ -323,13 +324,13 @@ export default function AppointmentBooking() {
                     ))}
                   </div>
                   {selectedTime && (
-                    <div className="mt-8 pt-6 border-t border-gray-100 flex justify-end">
+                    <div className="mt-8 pt-4 flex justify-end">
                       <button
                         onClick={() => setStep(3)}
-                        className="px-6 py-3 bg-red-400 text-white rounded-xl hover:bg-red-700 transition-all font-medium flex items-center gap-2 shadow-sm"
+                        className="px-6 py-2.5 bg-cyan-30-800 text-white rounded-lg hover:bg-cyan-30-900 transition-colors font-medium text-sm"
                       >
-                        Continue to Details
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        Continue
+                        <svg className="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </button>
@@ -338,15 +339,15 @@ export default function AppointmentBooking() {
                 </>
               ) : (
                 <div className="text-center py-16">
-                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 bg-cyan-30-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <p className="text-gray-600 font-medium">No available time slots</p>
+                  <p className="text-gray-600">No available time slots</p>
                   <button
                     onClick={() => setStep(1)}
-                    className="mt-4 text-red-400 hover:text-red-400 font-medium"
+                    className="mt-4 text-gray-500 hover:text-gray-800 font-medium text-sm"
                   >
                     ← Choose another date
                   </button>
@@ -354,47 +355,29 @@ export default function AppointmentBooking() {
               )}
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Step 3: Personal Details - Split Layout */}
-        {step === 3 && (
+      {/* Step 3: Personal Details */}
+      {step === 3 && (
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Side - Appointment Summary Card */}
+            {/* Left Side - Appointment Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-gray-800 rounded-2xl p-6 text-white sticky top-6">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+              <div className="bg-cyan-30 border border-gray-200 rounded-2xl p-5 sticky top-6">
+                <h3 className="font-medium text-gray-700 mb-4">Appointment Summary</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Date</span>
+                    <span className="font-medium text-gray-700">{selectedDate && formatDateDisplay(selectedDate)}</span>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-white/70 text-sm">Your Appointment</h3>
-                    <p className="text-white text-sm opacity-90">Review your selection</p>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Time</span>
+                    <span className="font-medium text-gray-700">{selectedTime}</span>
                   </div>
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="border-b border-white/20 pb-4">
-                    <p className="text-white/70 text-xs uppercase tracking-wide mb-1">Date</p>
-                    <p className="text-white font-medium">{selectedDate && formatDateDisplay(selectedDate)}</p>
-                  </div>
-                  <div className="border-b border-white/20 pb-4">
-                    <p className="text-white/70 text-xs uppercase tracking-wide mb-1">Time</p>
-                    <p className="text-white font-medium">{selectedTime}</p>
-                  </div>
-                  <div>
-                    <p className="text-white/70 text-xs uppercase tracking-wide mb-1">Location</p>
-                    <p className="text-white text-sm">Trim Medical Centre<br />1280 Trim Rd, Unit B, Orleans, ON K4A 3N3</p>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-white/20">
-                  <div className="flex items-center gap-2 text-white/60 text-xs">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    <span>Secure & Confidential</span>
+                  <div className="pt-3 border-t border-gray-200">
+                    <p className="text-gray-500 text-xs">Location</p>
+                    <p className="text-gray-700 text-sm mt-1">Trim Medical Centre<br />1280 Trim Rd, Unit B, Orleans, ON</p>
                   </div>
                 </div>
               </div>
@@ -402,206 +385,189 @@ export default function AppointmentBooking() {
 
             {/* Right Side - Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
-                    <div>
-                      <h2 className="font-semibold text-gray-900">Your Details</h2>
-                      <p className="text-xs text-gray-500">Fill in your information below</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <form onSubmit={handleSubmit} className="p-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                      <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                        placeholder="John" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                      <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                        placeholder="Doe" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                      <input type="email" name="email" value={formData.email} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                        placeholder="john@example.com" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
-                      <input type="tel" name="cellPhone" value={formData.cellPhone} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                        placeholder="(123) 456-7890" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth *</label>
-                      <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleInputChange} required
-                        max={new Date().toISOString().split('T')[0]}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Gender *</label>
-                      <select name="gender" value={formData.gender} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all">
-                        <option value="">Select</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Street Address *</label>
-                      <input type="text" name="address" value={formData.address} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                        placeholder="123 Main Street" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Postal Code *</label>
-                      <input type="text" name="postalCode" value={formData.postalCode} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                        placeholder="A1B 2C3" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Healthcare Number *</label>
-                      <input type="text" name="healthcareNumber" value={formData.healthcareNumber} onChange={handleInputChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                        placeholder="123456789" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Healthcare Province *</label>
-                      <select name="healthcareProvince" value={formData.healthcareProvince} onChange={handleHealthcareProvinceChange} required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all">
-                        <option value="">Select Province</option>
-                        {canadianProvinces.map(province => (
-                          <option key={province} value={province}>{province}</option>
-                        ))}
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    {formData.healthcareProvince === 'Other' && (
-                      <div className="sm:col-span-2">
-                        <input type="text" value={otherProvince} onChange={handleOtherProvinceChange} required
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all"
-                          placeholder="Please specify your province" />
+              <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+                <div className="p-6">
+                  <h2 className="text-lg font-medium text-gray-700 mb-1">Your Information</h2>
+                  <p className="text-sm text-gray-500 mb-6">Please fill out all required fields</p>
+                  
+                  <form onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                        <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                          placeholder="John" />
                       </div>
-                    )}
-                    <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Reason for Appointment *</label>
-                      <textarea name="reason" value={formData.reason} onChange={handleInputChange} required rows={3}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-600 focus:bg-white transition-all resize-none"
-                        placeholder="Please describe the reason for your visit..." />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6 pt-6 border-t border-gray-100">
-                    <button type="button" onClick={resetForm}
-                      className="px-6 py-3 text-gray-600 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors font-medium">
-                      Cancel
-                    </button>
-                    <button type="submit" disabled={loading}
-                      className="px-8 py-3 bg-red-400 text-white rounded-xl hover:bg-red-700 transition-all font-medium shadow-sm disabled:opacity-50 flex items-center justify-center gap-2">
-                      {loading ? (
-                        <>
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          Processing...
-                        </>
-                      ) : (
-                        <>
-                          Confirm Booking
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                        <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                          placeholder="Doe" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                          placeholder="john@example.com" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+                        <input type="tel" name="cellPhone" value={formData.cellPhone} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                          placeholder="(123) 456-7890" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
+                        <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleInputChange} required
+                          max={new Date().toISOString().split('T')[0]}
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Gender *</label>
+                        <select name="gender" value={formData.gender} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700">
+                          <option value="">Select</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Street Address *</label>
+                        <input type="text" name="address" value={formData.address} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                          placeholder="123 Main Street" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Postal Code *</label>
+                        <input type="text" name="postalCode" value={formData.postalCode} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                          placeholder="A1B 2C3" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Healthcare Number *</label>
+                        <input type="text" name="healthcareNumber" value={formData.healthcareNumber} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                          placeholder="123456789" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Healthcare Province *</label>
+                        <select name="healthcareProvince" value={formData.healthcareProvince} onChange={handleHealthcareProvinceChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700">
+                          <option value="">Select Province</option>
+                          {canadianProvinces.map(province => (
+                            <option key={province} value={province}>{province}</option>
+                          ))}
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      {formData.healthcareProvince === 'Other' && (
+                        <div className="sm:col-span-2">
+                          <input type="text" value={otherProvince} onChange={handleOtherProvinceChange} required
+                            className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                            placeholder="Please specify your province" />
+                        </div>
                       )}
-                    </button>
-                  </div>
-                </form>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Reason for Appointment *</label>
+                        <textarea name="reason" value={formData.reason} onChange={handleInputChange} required rows={3}
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700 resize-none"
+                          placeholder="Please describe the reason for your visit..." />
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6 pt-4 border-t border-gray-100">
+                      <button type="button" onClick={resetForm}
+                        className="px-6 py-2.5 text-gray-600 bg-cyan-30-100 rounded-lg hover:bg-cyan-30-200 transition-colors font-medium text-sm">
+                        Cancel
+                      </button>
+                      <button type="submit" disabled={loading}
+                        className=" bg-cyan-600 px-8 py-2.5 bg-cyan-30-800 text-white rounded-lg hover:bg-cyan-30-900 transition-all font-medium text-sm disabled:opacity-50 flex items-center justify-center gap-2">
+                        {loading ? (
+                          <>
+                            <div className=" bg-cyan-600 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            Processing...
+                          </>
+                        ) : (
+                          'Confirm Booking'
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Step 4: Confirmation - Celebration Card */}
-        {step === 4 && (
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div className="relative bg-gray-800 px-6 py-8 text-center">
-              <div className="relative">
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <svg className="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h2 className="text-2xl font-bold text-white mb-2">Appointment Confirmed!</h2>
-                <p className="text-white/70">A confirmation has been sent to your email</p>
+      {/* Step 4: Confirmation */}
+      {step === 4 && (
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden text-center">
+            <div className="p-8">
+              <div className="w-16 h-16 bg-cyan-30-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
               </div>
-            </div>
-            
-            <div className="p-6">
-              <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Appointment Summary</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Date & Time</p>
-                    <p className="font-medium text-gray-900 mt-1">{selectedDate && formatDateDisplay(selectedDate)} at {selectedTime}</p>
+              <h2 className="text-2xl font-light text-gray-700 mb-2">Appointment Confirmed</h2>
+              <p className="text-gray-500 text-sm mb-6">A confirmation has been sent to your email</p>
+              
+              <div className="bg-cyan-30 rounded-xl p-5 text-left mb-6">
+                <h3 className="font-medium text-gray-700 mb-3">Appointment Details</h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Date & Time</span>
+                    <span className="text-gray-700">{selectedDate && formatDateDisplay(selectedDate)} at {selectedTime}</span>
                   </div>
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Patient</p>
-                    <p className="font-medium text-gray-900 mt-1">{formData.firstName} {formData.lastName}</p>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Patient</span>
+                    <span className="text-gray-700">{formData.firstName} {formData.lastName}</span>
                   </div>
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Location</p>
-                    <p className="font-medium text-gray-900 mt-1">1280 Trim Rd, Unit B, Orleans, ON K4A 3N3</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Contact</p>
-                    <p className="font-medium text-gray-900 mt-1">{formData.email} | {formData.cellPhone}</p>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Location</span>
+                    <span className="text-gray-700">1280 Trim Rd, Unit B, Orleans</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-red-50 rounded-xl p-4 mb-6">
+              <div className="bg-cyan-30 rounded-xl p-4 mb-6 text-left">
                 <div className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-red-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <div className="text-sm text-gray-700">
                     <p className="font-medium mb-1">What to bring:</p>
-                    <ul className="space-y-1 text-gray-600">
+                    <ul className="space-y-0.5 text-gray-600 text-xs">
                       <li>• Valid health card</li>
                       <li>• Photo ID</li>
-                      <li>• List of current medications (if any)</li>
-                      <li>• Any relevant medical records</li>
+                      <li>• List of current medications</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
               <button onClick={resetForm}
-                className="w-full py-3 bg-red-400 text-white rounded-xl hover:bg-red-700 transition-all font-medium shadow-sm">
+                className="px-6 py-2.5 bg-cyan-30-800 text-white rounded-lg hover:bg-cyan-30-900 transition-all font-medium text-sm">
                 Book Another Appointment
               </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Error Message Display */}
+      {/* Error Message */}
       {error && step !== 4 && (
-        <div className="max-w-5xl mx-auto px-6 -mt-6 mb-6">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 -mt-8">
+          <div className="bg-cyan-30-100 border border-gray-200 rounded-xl p-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-8 h-8 bg-cyan-30-200 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-red-400 text-sm">{error}</p>
+              <p className="text-gray-700 text-sm">{error}</p>
             </div>
           </div>
         </div>

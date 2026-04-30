@@ -1,34 +1,28 @@
-// components/Announcements.js - Completely Redesigned
+// components/Announcements.js - News Ticker Style (Right to Left)
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { dashboardService } from "@/services/dashboardService";
 
 const Announcements = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentAnnouncement, setCurrentAnnouncement] = useState(0);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     fetchAnnouncements();
   }, []);
-
-  useEffect(() => {
-    if (announcements.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentAnnouncement((prev) => (prev + 1) % announcements.length);
-      }, 8000);
-      return () => clearInterval(interval);
-    }
-  }, [announcements.length]);
 
   const fetchAnnouncements = async () => {
     try {
       setLoading(true);
       const response = await dashboardService.getAnnouncements(false);
       if (response.success) {
-        setAnnouncements(response.announcements || []);
+        // Filter only active announcements
+        const activeAnnouncements = (response.announcements || []).filter(
+          (announcement) => announcement.isActive === true
+        );
+        setAnnouncements(activeAnnouncements);
       }
     } catch (error) {
       console.error("Error fetching announcements:", error);
@@ -40,15 +34,15 @@ const Announcements = () => {
   const getTypeStyles = (type) => {
     switch (type) {
       case "emergency":
-        return "bg-red-50 border-l-4 border-red-500 text-red-800";
+        return "bg-red-600";
       case "warning":
-        return "bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800";
+        return "bg-amber-500";
       case "success":
-        return "bg-green-50 border-l-4 border-green-500 text-green-800";
+        return "bg-emerald-600";
       case "update":
-        return "bg-primary-light border-l-4 border-primary text-gray-900";
+        return "bg-cyan-600";
       default:
-        return "bg-gray-50 border-l-4 border-primary text-gray-900";
+        return "bg-white-800";
     }
   };
 
@@ -57,7 +51,7 @@ const Announcements = () => {
       case "emergency":
         return (
           <svg
-            className="w-5 h-5 text-red-400"
+            className="w-4 h-4 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -73,7 +67,7 @@ const Announcements = () => {
       case "warning":
         return (
           <svg
-            className="w-5 h-5 text-yellow-500"
+            className="w-4 h-4 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -89,7 +83,7 @@ const Announcements = () => {
       case "success":
         return (
           <svg
-            className="w-5 h-5 text-green-500"
+            className="w-4 h-4 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -102,26 +96,10 @@ const Announcements = () => {
             />
           </svg>
         );
-      case "update":
-        return (
-          <svg
-            className="w-5 h-5 text-primary"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-            />
-          </svg>
-        );
       default:
         return (
           <svg
-            className="w-5 h-5 text-primary"
+            className="w-4 h-4 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -139,15 +117,8 @@ const Announcements = () => {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 animate-pulse">
-        <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 bg-gray-200 rounded-lg"></div>
-          <div className="flex-1">
-            <div className="h-4 bg-gray-200 rounded w-1/3 mb-2"></div>
-            <div className="h-3 bg-gray-200 rounded w-full"></div>
-            <div className="h-3 bg-gray-200 rounded w-2/3 mt-1"></div>
-          </div>
-        </div>
+      <div className="bg-gray-100 rounded-lg p-3 animate-pulse">
+        <div className="h-5 bg-gray-200 rounded w-full"></div>
       </div>
     );
   }
@@ -156,85 +127,63 @@ const Announcements = () => {
     return null;
   }
 
-  const announcement = announcements[currentAnnouncement];
+  // Combine all announcements into a single scrolling text
+  const scrollingText = announcements
+    .map((announcement) => `🔔 ${announcement.title}: ${announcement.content}`)
+    .join("   •   ");
 
   return (
-    <div
-      className={`${getTypeStyles(announcement.type)} rounded-xl shadow-md transition-all duration-300 ${isExpanded ? "p-4" : "p-3"}`}
-    >
-      <div className="flex items-start space-x-3">
-        {/* Icon */}
-        <div className="flex-shrink-0 mt-0.5">
-          {getTypeIcon(announcement.type)}
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-center gap-2 mb-1">
-            <h3 className="font-semibold text-sm text-gray-900">
-              {announcement.title}
-            </h3>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-white shadow-sm text-gray-600 font-medium">
-              {announcement.type.toUpperCase()}
-            </span>
-          </div>
-
-          {/* Message Content */}
-          <div
-            className={`${isExpanded ? "block" : "line-clamp-2"} text-sm text-gray-600 leading-relaxed`}
-          >
-            {announcement.content}
-          </div>
-
-          {/* Footer with date and controls */}
-          <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500">
-            <span className="flex items-center">
-              <svg
-                className="w-3 h-3 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              {new Date(announcement.createdAt).toLocaleDateString()}
-            </span>
-
-            <div className="flex items-center space-x-3">
-              {/* Pagination dots */}
-              {announcements.length > 1 && (
-                <div className="flex items-center space-x-1">
-                  {announcements.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentAnnouncement(index)}
-                      className={`h-1.5 rounded-full transition-all duration-200 ${
-                        index === currentAnnouncement
-                          ? "w-4 bg-primary"
-                          : "w-1.5 bg-gray-300 hover:bg-gray-400"
-                      }`}
-                      aria-label={`Go to announcement ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              )}
-
-              {/* Read More / Show Less button */}
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="text-primary hover:text-primary-dark font-medium transition-colors text-xs"
-              >
-                {isExpanded ? "Show Less" : "Read More"}
-              </button>
+    <div className="relative overflow-hidden rounded-lg shadow-md">
+      {/* Colored background bar */}
+      <div className={`${getTypeStyles(announcements[0].type)} py-2.5 px-3`}>
+        <div className="flex items-center gap-3">
+          {/* Static icon on the left */}
+          <div className="flex-shrink-0">
+            <div className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">
+              {getTypeIcon(announcements[0].type)}
             </div>
           </div>
+
+          {/* Scrolling text container */}
+          <div className="flex-1 overflow-hidden">
+            <div
+              ref={scrollRef}
+              className="whitespace-nowrap animate-scroll"
+              style={{
+                animation: "scroll 20s linear infinite",
+                display: "inline-block",
+              }}
+            >
+              <span className="text-white text-sm font-medium mx-2">
+                {scrollingText}
+              </span>
+            </div>
+          </div>
+
+          {/* Optional: View All link */}
+          {/* <button className="flex-shrink-0 text-white/80 hover:text-white text-xs font-medium transition-colors">
+            View All
+          </button> */}
         </div>
       </div>
+
+      {/* Add the CSS animation */}
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 25s linear infinite;
+        }
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </div>
   );
 };

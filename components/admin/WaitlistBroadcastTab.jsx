@@ -70,7 +70,7 @@ export default function WaitlistBroadcastTab() {
     return (
         <div className="bg-white rounded-lg shadow-md p-6">
             <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900">Waitlist Messages</h2>
+                <h2 className="text-lg font-semibold text-gray-700">Waitlist Messages</h2>
                 <p className="text-sm text-gray-600 mt-1">
                     Send an email to waitlist members — broadcast to a group or target a specific email
                 </p>
@@ -90,7 +90,7 @@ export default function WaitlistBroadcastTab() {
 
             {/* Error */}
             {error && (
-                <div className="mb-6 bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-lg">
+                <div className="mb-6 bg-cyan-30 border border-cyan-200 bg-cyan-600 px-4 py-3 rounded-lg">
                     {error}
                 </div>
             )}
@@ -105,7 +105,7 @@ export default function WaitlistBroadcastTab() {
                     value={targetEmail}
                     onChange={(e) => setTargetEmail(e.target.value)}
                     placeholder="e.g. patient@example.com"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500"
                 />
             </div>
 
@@ -117,7 +117,7 @@ export default function WaitlistBroadcastTab() {
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500"
                         >
                             <option value="all">All Statuses</option>
                             <option value="Active">Active</option>
@@ -128,7 +128,7 @@ export default function WaitlistBroadcastTab() {
                             <option value="Left Voicemail">Left Voicemail</option>
                             <option value="Not Reachable">Not Reachable</option>
                         </select>
-                        <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
+                        <div className="bg-cyan-30 border border-cyan-200 bg-cyan-600 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
                             {previewLoading ? (
                                 <span className="animate-pulse">Loading...</span>
                             ) : (
@@ -147,7 +147,7 @@ export default function WaitlistBroadcastTab() {
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     placeholder="Email subject line"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500"
                 />
             </div>
 
@@ -159,7 +159,7 @@ export default function WaitlistBroadcastTab() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Write your message here..."
                     rows={8}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500 resize-y"
                 />
             </div>
 
@@ -168,7 +168,7 @@ export default function WaitlistBroadcastTab() {
                 <button
                     onClick={() => setShowConfirm(true)}
                     disabled={!canSend || loading}
-                    className="bg-red-400 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-red-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-cyan-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-cyan-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? (
                         <span className="flex items-center">
@@ -189,7 +189,7 @@ export default function WaitlistBroadcastTab() {
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                     <div className="absolute inset-0 bg-black bg-opacity-10 backdrop-blur-sm" onClick={() => setShowConfirm(false)} />
                     <div className="bg-white rounded-lg max-w-md w-full p-6 relative shadow-xl border border-gray-200">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Confirm Send</h3>
+                        <h3 className="text-lg font-semibold text-gray-700 mb-2">Confirm Send</h3>
                         <p className="text-gray-600 text-sm mb-1">
                             <strong>Subject:</strong> {subject}
                         </p>
@@ -202,13 +202,13 @@ export default function WaitlistBroadcastTab() {
                         <div className="flex justify-end gap-3">
                             <button
                                 onClick={() => setShowConfirm(false)}
-                                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
+                                className="px-4 py-2 text-sm font-medium text-gray-700 bg-cyan-30-100 rounded-lg hover:bg-cyan-30-200 transition"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleSend}
-                                className="px-4 py-2 text-sm font-medium text-white bg-red-400 rounded-lg hover:bg-red-700 transition"
+                                className="px-4 py-2 text-sm font-medium text-white bg-cyan-600 rounded-lg hover:bg-cyan-700 transition"
                             >
                                 Confirm & Send
                             </button>

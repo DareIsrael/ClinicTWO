@@ -1,11 +1,11 @@
 const AnnouncementList = ({ announcements, onEdit, onDelete }) => {
   const getTypeBadge = (type) => {
     const styles = {
-      emergency: 'bg-red-100 text-red-800',
+      emergency: 'bg-cyan-100 text-red-800',
       warning: 'bg-yellow-100 text-yellow-800',
       success: 'bg-green-100 text-green-800',
-      update: 'bg-red-100 text-red-800',
-      info: 'bg-gray-100 text-gray-700'
+      update: 'bg-cyan-100 text-red-800',
+      info: 'bg-cyan-30-100 text-gray-700'
     };
     return (
       <span className={`px-2 py-1 rounded text-xs font-medium ${styles[type] || styles.info}`}>
@@ -26,14 +26,14 @@ const AnnouncementList = ({ announcements, onEdit, onDelete }) => {
             <div className="flex justify-between items-start">
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-2">
-                  <h3 className="font-semibold text-gray-900">
+                  <h3 className="font-semibold text-gray-700">
                     {announcement.title}
                   </h3>
                   {getTypeBadge(announcement.type)}
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     announcement.isActive 
                       ? 'bg-green-100 text-green-800' 
-                      : 'bg-gray-100 text-gray-800'
+                      : 'bg-cyan-30-100 text-gray-800'
                   }`}>
                     {announcement.isActive ? 'Active' : 'Inactive'}
                   </span>
@@ -58,7 +58,7 @@ const AnnouncementList = ({ announcements, onEdit, onDelete }) => {
               <div className="flex space-x-2 ml-4">
                 <button
                   onClick={() => onEdit(announcement)}
-                  className="text-red-400 hover:text-red-800"
+                  className="bg-cyan-600 hover:text-red-800"
                   title="Edit"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ const AnnouncementList = ({ announcements, onEdit, onDelete }) => {
                 </button>
                 <button
                   onClick={() => onDelete(announcement._id)}
-                  className="text-red-400 hover:text-red-800"
+                  className="bg-cyan-600 hover:text-red-800"
                   title="Delete"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

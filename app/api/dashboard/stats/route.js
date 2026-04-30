@@ -9,7 +9,7 @@
 //   try {
 //     // Use NextAuth session instead of protectRoute
 //     const session = await getServerSession(authOptions);
-    
+
 //     if (!session) {
 //       return NextResponse.json(
 //         { success: false, message: 'Authentication required' },
@@ -35,13 +35,13 @@
 //         Appointment.countDocuments({ status: 'pending' }),
 //         Appointment.countDocuments({ status: 'completed' }),
 //         Appointment.countDocuments({ status: 'cancelled' }),
-//         Appointment.countDocuments({ 
+//         Appointment.countDocuments({
 //           preferredDate: { $gte: new Date() },
 //           status: { $in: ['pending', 'confirmed'] }
 //         }),
-//         User.countDocuments({ 
+//         User.countDocuments({
 //           role: 'patient',
-//           createdAt: { 
+//           createdAt: {
 //             $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
 //           }
 //         })
@@ -68,16 +68,16 @@
 //         cancelledAppointments
 //       ] = await Promise.all([
 //         Appointment.countDocuments({ user: session.user.id }),
-//         Appointment.countDocuments({ 
+//         Appointment.countDocuments({
 //           user: session.user.id,
 //           preferredDate: { $gte: new Date() },
 //           status: { $in: ['pending', 'confirmed'] }
 //         }),
-//         Appointment.countDocuments({ 
+//         Appointment.countDocuments({
 //           user: session.user.id,
 //           status: 'completed'
 //         }),
-//         Appointment.countDocuments({ 
+//         Appointment.countDocuments({
 //           user: session.user.id,
 //           status: 'cancelled'
 //         })
@@ -103,20 +103,20 @@
 //   }
 // }
 
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { NextResponse } from 'next/server';
-import dbConnect from '@/utils/db';
-import Waitlist from '@/models/Waitlist';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { NextResponse } from "next/server";
+import dbConnect from "@/utils/db";
+import Waitlist from "@/models/Waitlist";
 
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    
+
     if (!session) {
       return NextResponse.json(
-        { success: false, message: 'Authentication required' },
-        { status: 401 }
+        { success: false, message: "Authentication required" },
+        { status: 401 },
       );
     }
 
@@ -130,27 +130,34 @@ export async function GET() {
       acceptedWaitlist,
       rejectedWaitlist,
       newThisMonth,
-      newThisWeek
+      newThisWeek,
     ] = await Promise.all([
       Waitlist.countDocuments(),
-      Waitlist.countDocuments({ status: 'Active' }),
-      Waitlist.countDocuments({ status: 'Booked' }),
-      Waitlist.countDocuments({ status: 'Accepted' }),
-      Waitlist.countDocuments({ status: 'Rejected' }),
+      Waitlist.countDocuments({ status: "Active" }),
+      Waitlist.countDocuments({ status: "Booked" }),
+      Waitlist.countDocuments({ status: "Accepted" }),
+      Waitlist.countDocuments({ status: "Rejected" }),
       // New this month
       Waitlist.countDocuments({
         createdAt: {
           $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-          $lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0, 23, 59, 59)
-        }
+          $lte: new Date(
+            new Date().getFullYear(),
+            new Date().getMonth() + 1,
+            0,
+            23,
+            59,
+            59,
+          ),
+        },
       }),
       // New this week
       Waitlist.countDocuments({
         createdAt: {
           $gte: new Date(new Date().setDate(new Date().getDate() - 7)),
-          $lte: new Date()
-        }
-      })
+          $lte: new Date(),
+        },
+      }),
     ]);
 
     const stats = {
@@ -162,23 +169,28 @@ export async function GET() {
       rejectedWaitlist,
       newPatientsThisMonth: newThisMonth,
       newThisWeek,
-      
+
       // Calculated percentages
-      acceptanceRate: totalWaitlist ? Math.round((acceptedWaitlist / totalWaitlist) * 100) : 0,
-      rejectionRate: totalWaitlist ? Math.round((rejectedWaitlist / totalWaitlist) * 100) : 0,
-      bookingRate: totalWaitlist ? Math.round((bookedWaitlist / totalWaitlist) * 100) : 0
+      acceptanceRate: totalWaitlist
+        ? Math.round((acceptedWaitlist / totalWaitlist) * 100)
+        : 0,
+      rejectionRate: totalWaitlist
+        ? Math.round((rejectedWaitlist / totalWaitlist) * 100)
+        : 0,
+      bookingRate: totalWaitlist
+        ? Math.round((bookedWaitlist / totalWaitlist) * 100)
+        : 0,
     };
 
     return NextResponse.json({
       success: true,
-      stats
+      stats,
     });
-
   } catch (error) {
-    console.error('Error fetching dashboard stats:', error);
+    console.error("Error fetching dashboard stats:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to fetch dashboard stats' },
-      { status: 500 }
+      { success: false, message: "Failed to fetch dashboard stats" },
+      { status: 500 },
     );
   }
 }

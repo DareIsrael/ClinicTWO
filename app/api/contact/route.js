@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { sendEmail } from '@/utils/emailService';
+import { NextResponse } from "next/server";
+import { sendEmail } from "@/utils/emailService";
 
 export async function POST(req) {
   try {
@@ -8,8 +8,8 @@ export async function POST(req) {
     // Validate required fields
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
-        { success: false, message: 'All fields are required' },
-        { status: 400 }
+        { success: false, message: "All fields are required" },
+        { status: 400 },
       );
     }
 
@@ -44,7 +44,7 @@ export async function POST(req) {
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; vertical-align: top;">Message:</td>
-                <td style="padding: 8px 0;">${message.replace(/\n/g, '<br>')}</td>
+                <td style="padding: 8px 0;">${message.replace(/\n/g, "<br>")}</td>
               </tr>
             </table>
           </div>
@@ -76,7 +76,7 @@ export async function POST(req) {
 
     // Send email to admin
     await sendEmail({
-      to: process.env.ADMIN_EMAIL || 'contact@trimmedicalcenter.ca', // Set this in your .env
+      to: process.env.ADMIN_EMAIL || "contact@trimmedicalcenter.ca", // Set this in your .env
       subject: `New Contact Form: ${subject} - From ${name}`,
       html: adminEmailContent,
     });
@@ -110,20 +110,19 @@ export async function POST(req) {
     // Send confirmation to user
     await sendEmail({
       to: email,
-      subject: 'Thank You for Contacting Trim Medical Centre',
+      subject: "Thank You for Contacting Trim Medical Centre",
       html: userEmailContent,
     });
 
     return NextResponse.json({
       success: true,
-      message: 'Message sent successfully'
+      message: "Message sent successfully",
     });
-
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.error("Contact form error:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to send message' },
-      { status: 500 }
+      { success: false, message: "Failed to send message" },
+      { status: 500 },
     );
   }
 }

@@ -52,7 +52,7 @@ function AdminLoginConfirmContent() {
 
       if (result?.ok) {
         setStatus("success");
-        setMessage("Login successful! Redirecting to dashboard...");
+        setMessage("Login successful! redirecting to dashboard...");
         setTimeout(() => {
           router.push("/admin");
         }, 1500);
@@ -77,14 +77,14 @@ function AdminLoginConfirmContent() {
           <div
             className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ${
               status === "verifying"
-                ? "bg-red-100"
+                ? "bg-cyan-100"
                 : status === "success"
                   ? "bg-green-100"
-                  : "bg-red-100"
+                  : "bg-cyan-100"
             }`}
           >
             {status === "verifying" && (
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-600"></div>
+              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-cyan-600"></div>
             )}
             {status === "success" && (
               <svg
@@ -103,7 +103,7 @@ function AdminLoginConfirmContent() {
             )}
             {status === "error" && (
               <svg
-                className="w-10 h-10 text-red-400"
+                className="w-10 h-10 bg-cyan-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -121,10 +121,10 @@ function AdminLoginConfirmContent() {
           <h1
             className={`text-2xl font-bold mb-3 ${
               status === "verifying"
-                ? "text-gray-900"
+                ? "text-gray-700"
                 : status === "success"
                   ? "text-green-800"
-                  : "text-red-400"
+                  : "bg-cyan-600"
             }`}
           >
             {status === "verifying"
@@ -136,7 +136,7 @@ function AdminLoginConfirmContent() {
 
           <p
             className={`mb-6 ${
-              status === "error" ? "text-red-400" : "text-gray-600"
+              status === "error" ? "bg-cyan-600" : "text-gray-600"
             }`}
           >
             {message}
@@ -146,7 +146,7 @@ function AdminLoginConfirmContent() {
             <div className="space-y-3">
               <Link
                 href="/login"
-                className="block w-full bg-red-400 text-white py-3 rounded-lg hover:bg-red-700 transition-colors text-center font-medium"
+                className="block w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition-colors text-center font-medium"
               >
                 Go to Login
               </Link>
@@ -161,7 +161,7 @@ function AdminLoginConfirmContent() {
 
           {status === "success" && (
             <p className="text-gray-500 text-sm">
-              Redirecting to admin dashboard...
+              redirecting to admin dashboard...
             </p>
           )}
         </div>
@@ -177,10 +177,10 @@ export default function AdminLoginConfirm() {
         <div className="min-h-screen bg-white flex items-center justify-center p-4">
           <div className="max-w-md w-full">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-              <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-600"></div>
+              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-cyan-600"></div>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-3">
+              <h1 className="text-2xl font-bold text-gray-700 mb-3">
                 Confirming Login...
               </h1>
               <p className="text-gray-600">

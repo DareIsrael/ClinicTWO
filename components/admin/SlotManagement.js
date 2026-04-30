@@ -49,7 +49,7 @@ export default function SlotManagement() {
   };
 
   // SIMPLE: Get future date as YYYY-MM-DD
-  const getFutureDate = (daysToAdd) => {
+  const getFuturedate = (daysToAdd) => {
     const future = new Date();
     future.setDate(future.getDate() + daysToAdd);
     const year = future.getFullYear();
@@ -94,15 +94,15 @@ export default function SlotManagement() {
       setAllSlotsLoading(true);
 
       const today = getTodayDate();
-      const futureDate = getFutureDate(30);
+      const futuredate = getFuturedate(30);
 
       setDateRange({
         start: today,
-        end: futureDate,
+        end: futuredate,
       });
 
       const response = await fetch(
-        `/api/slots/admin?startDate=${today}&endDate=${futureDate}`,
+        `/api/slots/admin?startDate=${today}&endDate=${futuredate}`,
       );
       const data = await response.json();
 
@@ -379,12 +379,12 @@ export default function SlotManagement() {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-xl font-semibold text-gray-900 mb-6">
+      <h2 className="text-xl font-semibold text-gray-700 mb-6">
         Manage Available Slots
       </h2>
 
-      <div className="mb-4 p-3 bg-red-50 rounded-lg border border-red-100">
-        <p className="text-xs text-red-400 mt-1">
+      <div className="mb-4 p-3 bg-cyan-30 rounded-lg border border-cyan-100">
+        <p className="text-xs bg-cyan-600 mt-1">
           Today is: {formatDisplayDate(todayDate)} ({todayDate})
         </p>
       </div>
@@ -392,7 +392,7 @@ export default function SlotManagement() {
       {/* Message Display */}
       {message.text && (
         <div
-          className={`mb-6 p-4 rounded-lg ${message.type === "success" ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}
+          className={`mb-6 p-4 rounded-lg ${message.type === "success" ? "bg-green-50 text-green-800" : "bg-cyan-30 text-red-800"}`}
         >
           {message.text}
         </div>
@@ -401,7 +401,7 @@ export default function SlotManagement() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Add New Slots */}
         <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-4">
+          <h3 className="text-lg font-medium text-gray-700 mb-4">
             Add New Slots
           </h3>
 
@@ -415,7 +415,7 @@ export default function SlotManagement() {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 min={todayDate}
-                className="w-full px-4 py-2 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-cyan-500"
               />
               <p className="text-xs text-gray-500 mt-1">
                 Selected date: {date ? formatDisplayDate(date) : "Not selected"}{" "}
@@ -432,11 +432,11 @@ export default function SlotManagement() {
                   type="time"
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-cyan-500"
                 />
                 <button
                   onClick={addTime}
-                  className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-700"
+                  className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
                 >
                   Add
                 </button>
@@ -452,7 +452,7 @@ export default function SlotManagement() {
                     <button
                       key={commonTime}
                       onClick={() => addCommonTime(commonTime)}
-                      className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
+                      className="px-3 py-1 text-sm bg-cyan-30-100 text-gray-700 rounded hover:bg-cyan-30-200"
                     >
                       {commonTime}
                     </button>
@@ -470,12 +470,12 @@ export default function SlotManagement() {
                   </span>
                   <button
                     onClick={clearAllTimes}
-                    className="text-sm text-red-400 hover:text-red-800"
+                    className="text-sm bg-cyan-600 hover:text-red-800"
                   >
                     Clear All
                   </button>
                 </div>
-                <div className="flex flex-wrap gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="flex flex-wrap gap-2 p-3 bg-cyan-30 rounded-lg border border-gray-200">
                   {times.sort().map((t) => (
                     <div
                       key={t}
@@ -484,7 +484,7 @@ export default function SlotManagement() {
                       <span className="text-gray-700">{t}</span>
                       <button
                         onClick={() => removeTime(t)}
-                        className="text-red-400 hover:text-red-400"
+                        className="bg-cyan-600 hover:bg-cyan-600"
                       >
                         ×
                       </button>
@@ -497,7 +497,7 @@ export default function SlotManagement() {
             <button
               onClick={submitSlots}
               disabled={loading || !date || times.length === 0}
-              className="w-full px-4 py-3 bg-red-400 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              className="w-full px-4 py-3 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               {loading
                 ? "Adding Slots..."
@@ -511,7 +511,7 @@ export default function SlotManagement() {
       <div className="mt-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-900">
+            <h3 className="text-lg font-medium text-gray-700">
               All Created Slots
             </h3>
             <p className="text-sm text-gray-600">
@@ -528,7 +528,7 @@ export default function SlotManagement() {
                   setDateRange({ ...dateRange, start: e.target.value })
                 }
                 min={todayDate}
-                className="px-3 py-2 border border-gray-300 text-gray-900 rounded text-sm focus:ring-red-500 focus:border-red-500"
+                className="px-3 py-2 border border-gray-300 text-gray-700 rounded text-sm focus:ring-red-500 focus:border-cyan-500"
                 placeholder="Start Date"
               />
               <input
@@ -538,21 +538,21 @@ export default function SlotManagement() {
                   setDateRange({ ...dateRange, end: e.target.value })
                 }
                 min={dateRange.start || todayDate}
-                className="px-3 py-2 border border-gray-300 text-gray-900 rounded text-sm focus:ring-red-500 focus:border-red-500"
+                className="px-3 py-2 border border-gray-300 text-gray-700 rounded text-sm focus:ring-red-500 focus:border-cyan-500"
                 placeholder="End Date"
               />
             </div>
             <button
               onClick={fetchSlotsByDateRange}
               disabled={allSlotsLoading || !dateRange.start || !dateRange.end}
-              className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 disabled:opacity-50 text-sm"
+              className="px-4 py-2 bg-cyan-30-600 text-white rounded hover:bg-cyan-30-700 disabled:opacity-50 text-sm"
             >
               {allSlotsLoading ? "Loading..." : "Filter"}
             </button>
             <button
               onClick={fetchAllSlots}
               disabled={allSlotsLoading}
-              className="px-4 py-2 border border-red-600 text-red-400 rounded hover:bg-red-50 disabled:opacity-50 text-sm"
+              className="px-4 py-2 border border-cyan-600 bg-cyan-600 rounded hover:bg-cyan-30 disabled:opacity-50 text-sm"
             >
               Refresh All
             </button>
@@ -561,12 +561,12 @@ export default function SlotManagement() {
 
         {allSlotsLoading ? (
           <div className="text-center py-8">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-600"></div>
             <p className="mt-2 text-gray-600">Loading all slots...</p>
           </div>
         ) : Object.keys(groupedSlots).length > 0 ? (
           <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+            <div className="bg-cyan-30 px-4 py-3 border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium text-gray-700">
                   {Object.keys(groupedSlots).length} date(s) • {allSlots.length}{" "}
@@ -587,10 +587,10 @@ export default function SlotManagement() {
                     key={date}
                     className="border-b border-gray-100 last:border-b-0"
                   >
-                    <div className="bg-gray-50 px-4 py-3 border-b border-gray-100">
+                    <div className="bg-cyan-30 px-4 py-3 border-b border-gray-100">
                       <div className="flex justify-between items-center">
                         <div>
-                          <span className="font-medium text-gray-900">
+                          <span className="font-medium text-gray-700">
                             {formatDisplayDate(date)}
                           </span>
                           <span className="ml-3 text-sm text-gray-600">
@@ -605,7 +605,7 @@ export default function SlotManagement() {
                         </div>
                         <button
                           onClick={() => deleteAllSlotsForDate(date)}
-                          className="text-sm text-red-400 hover:text-red-800"
+                          className="text-sm bg-cyan-600 hover:text-red-800"
                         >
                           Delete All
                         </button>
@@ -621,11 +621,11 @@ export default function SlotManagement() {
                               key={slot._id}
                               className="flex items-center gap-2 px-3 py-2 bg-white rounded border border-gray-300 hover:border-gray-400"
                             >
-                              <span className="font-medium text-gray-900">
+                              <span className="font-medium text-gray-700">
                                 {slot.time}
                               </span>
                               <span
-                                className={`px-2 py-1 text-xs rounded-full ${slot.isAvailable ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                                className={`px-2 py-1 text-xs rounded-full ${slot.isAvailable ? "bg-green-100 text-green-800" : "bg-cyan-100 text-red-800"}`}
                               >
                                 {slot.isAvailable ? "Available" : "Booked"}
                               </span>
@@ -642,7 +642,7 @@ export default function SlotManagement() {
                                       slot.isAvailable,
                                     )
                                   }
-                                  className={`px-2 py-1 text-xs rounded ${slot.isAvailable ? "bg-red-50 text-red-400 hover:bg-red-100" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
+                                  className={`px-2 py-1 text-xs rounded ${slot.isAvailable ? "bg-cyan-30 bg-cyan-600 hover:bg-cyan-100" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
                                 >
                                   {slot.isAvailable
                                     ? "Make Unavailable"
@@ -650,7 +650,7 @@ export default function SlotManagement() {
                                 </button>
                                 <button
                                   onClick={() => deleteSlot(slot._id)}
-                                  className="px-2 py-1 text-xs bg-red-50 text-red-400 rounded hover:bg-red-100"
+                                  className="px-2 py-1 text-xs bg-cyan-30 bg-cyan-600 rounded hover:bg-cyan-100"
                                 >
                                   Delete
                                 </button>
@@ -671,9 +671,9 @@ export default function SlotManagement() {
       </div>
 
       {/* Information Panel */}
-      <div className="mt-8 p-4 bg-red-50 rounded-lg border border-red-100">
+      <div className="mt-8 p-4 bg-cyan-30 rounded-lg border border-cyan-100">
         <h4 className="font-medium text-red-900 mb-2">How it works:</h4>
-        <ul className="text-sm text-red-400 space-y-1">
+        <ul className="text-sm bg-cyan-600 space-y-1">
           <li>• Add available time slots for specific dates</li>
           <li>• Patients can only book from available slots</li>
           <li>• Once a slot is booked, it becomes unavailable to others</li>

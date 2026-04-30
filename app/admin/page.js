@@ -172,13 +172,13 @@ export default function AdminDashboard() {
 
   return (
     <ProtectedRoute requireAdmin={true}>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-cyan-30">
         {/* Header */}
         <div className="bg-white shadow">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-6">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-700">
                   Admin Dashboard
                 </h1>
                 <p className="text-gray-600 mt-1">
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
                 <span className="text-sm text-gray-600 hidden sm:block">
                   Welcome, {user?.firstName}
                 </span>
-                <div className="w-10 h-10 bg-red-400 rounded-full flex items-center justify-center text-white font-semibold">
+                <div className="w-10 h-10 bg-cyan-600 rounded-full flex items-center justify-center text-white font-semibold">
                   {user?.firstName?.charAt(0)}
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function AdminDashboard() {
             {/* Vertical Navigation Sidebar */}
             <div className="md:w-64 flex-shrink-0">
               <nav className="bg-white rounded-lg shadow-md overflow-hidden sticky top-6">
-                <div className="p-3 border-b border-gray-200 bg-gray-50">
+                <div className="p-3 border-b border-gray-200 bg-cyan-30">
                   <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
                     Menu
                   </h3>
@@ -215,12 +215,12 @@ export default function AdminDashboard() {
                       onClick={() => setActiveTab(tab.id)}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 ${
                         activeTab === tab.id
-                          ? "bg-red-50 text-red-400 border-l-4 border-red-600"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                          ? "bg-cyan-30 bg-cyan-600 border-l-4 border-cyan-600"
+                          : "text-gray-600 hover:bg-cyan-30 hover:text-gray-700"
                       }`}
                     >
                       <span
-                        className={`flex-shrink-0 ${activeTab === tab.id ? "text-red-400" : "text-gray-400"}`}
+                        className={`flex-shrink-0 ${activeTab === tab.id ? "bg-cyan-600" : "text-gray-400"}`}
                       >
                         {tab.icon}
                       </span>

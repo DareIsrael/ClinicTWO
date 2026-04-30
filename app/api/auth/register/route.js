@@ -1,48 +1,56 @@
-import { NextResponse } from 'next/server';
-import dbConnect from '@/utils/db';
-import User from '@/models/User';
-import { sendEmail } from '@/utils/emailService';
+import { NextResponse } from "next/server";
+import dbConnect from "@/utils/db";
+import User from "@/models/User";
+import { sendEmail } from "@/utils/emailService";
 
 export async function POST(req) {
   try {
     await dbConnect();
-    
-    const { 
-      firstName, 
-      lastName, 
-      email, 
-      password, 
-      cellPhone, 
-      dateOfBirth, 
-      gender, 
-      healthcareNumber, 
-      healthcareProvince, 
-      address, 
-      country, 
-      postalCode 
+
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      cellPhone,
+      dateOfBirth,
+      gender,
+      healthcareNumber,
+      healthcareProvince,
+      address,
+      country,
+      postalCode,
     } = await req.json();
 
     // Validation
     if (!firstName || !lastName || !email || !password) {
       return NextResponse.json(
-        { success: false, message: 'First name, last name, email, and password are required' },
-        { status: 400 }
+        {
+          success: false,
+          message: "First name, last name, email, and password are required",
+        },
+        { status: 400 },
       );
     }
 
     if (password.length < 8) {
       return NextResponse.json(
-        { success: false, message: 'Password must be at least 8 characters long' },
-        { status: 400 }
+        {
+          success: false,
+          message: "Password must be at least 8 characters long",
+        },
+        { status: 400 },
       );
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email: email.trim().toLowerCase() });
+    const existingUser = await User.findOne({
+      email: email.trim().toLowerCase(),
+    });
     if (existingUser) {
       return NextResponse.json(
-        { success: false, message: 'User already exists with this email' },
-        { status: 400 }
+        { success: false, message: "User already exists with this email" },
+        { status: 400 },
       );
     }
 
@@ -77,7 +85,7 @@ export async function POST(req) {
       country,
       postalCode,
       // age,
-      role: 'patient'
+      role: "patient",
     });
 
     // console.log('🆕 New user created - Password automatically hashed by model');
@@ -85,27 +93,26 @@ export async function POST(req) {
     // console.log('🔐 Hashed password stored:', user.password.substring(0, 20) + '...');
 
     // Send welcome email (don't await to avoid blocking response)
-    sendWelcomeEmail(user).catch(error => {
-      console.error('Failed to send welcome email:', error);
+    sendWelcomeEmail(user).catch((error) => {
+      console.error("Failed to send welcome email:", error);
     });
 
     return NextResponse.json({
       success: true,
-      message: 'Registration successful! Welcome email sent.',
+      message: "Registration successful! Welcome email sent.",
       user: {
         id: user._id.toString(),
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        role: user.role
-      }
+        role: user.role,
+      },
     });
-
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error("Registration error:", error);
     return NextResponse.json(
-      { success: false, message: 'Server error during registration' },
-      { status: 500 }
+      { success: false, message: "Server error during registration" },
+      { status: 500 },
     );
   }
 }
@@ -164,10 +171,10 @@ async function sendWelcomeEmail(user) {
       subject: `Welcome to Trim Medical Centre, ${user.firstName}!`,
       html: welcomeEmailContent,
     });
-    
-    console.log('Welcome email sent successfully to:', user.email);
+
+    console.log("Welcome email sent successfully to:", user.email);
   } catch (error) {
-    console.error('Error sending welcome email:', error);
+    console.error("Error sending welcome email:", error);
     throw error;
   }
 }

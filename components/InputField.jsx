@@ -14,7 +14,7 @@
 //   return (
 //     <div className="mb-4">
 //       <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor={name}>
-//         {label} {required && <span className="text-red-400">*</span>}
+//         {label} {required && <span className="bg-cyan-600">*</span>}
 //       </label>
       
 //       {type === 'select' ? (
@@ -24,7 +24,7 @@
 //           value={value}
 //           onChange={onChange}
 //           className={`w-full px-3 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300 ${
-//             error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:border-red-500'
+//             error ? 'border-cyan-500 focus:ring-red-500' : 'border-gray-300 focus:border-cyan-500'
 //           }`}
 //         >
 //           <option value="">Select {label}</option>
@@ -45,12 +45,12 @@
 //           max={max}
 //           placeholder={placeholder}
 //           className={`w-full px-3 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300 ${
-//             error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:border-red-500'
+//             error ? 'border-cyan-500 focus:ring-red-500' : 'border-gray-300 focus:border-cyan-500'
 //           }`}
 //         />
 //       )}
       
-//       {error && <p className="text-red-400 text-xs italic mt-1">{error}</p>}
+//       {error && <p className="bg-cyan-600 text-xs italic mt-1">{error}</p>}
 //     </div>
 //   );
 // }
@@ -71,7 +71,7 @@ export default function InputField({
   compact = false
 }) {
   const inputClasses = `w-full border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700 transition duration-200 ${
-    error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:border-red-500'
+    error ? 'border-cyan-500 focus:ring-red-500' : 'border-gray-300 focus:border-cyan-500'
   } ${compact ? 'px-3 py-2 text-sm' : 'px-3 py-3'}`;
 
   const labelClasses = `block text-gray-700 font-medium mb-2 ${
@@ -81,7 +81,7 @@ export default function InputField({
   return (
     <div className={compact ? 'mb-3' : 'mb-4'}>
       <label className={labelClasses} htmlFor={name}>
-        {label} {required && <span className="text-red-400">*</span>}
+        {label} {required && <span className="bg-cyan-600">*</span>}
       </label>
       
       {type === 'select' ? (
@@ -114,7 +114,7 @@ export default function InputField({
       )}
       
       {error && (
-        <p className={`text-red-400 italic mt-1 ${compact ? 'text-xs' : 'text-xs'}`}>
+        <p className={`bg-cyan-600 italic mt-1 ${compact ? 'text-xs' : 'text-xs'}`}>
           {error}
         </p>
       )}

@@ -191,12 +191,12 @@ export default function AppointmentsTab() {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'scheduled': return 'bg-red-100 text-red-800';
+      case 'scheduled': return 'bg-cyan-100 text-red-800';
       case 'confirmed': return 'bg-green-100 text-green-800';
       case 'completed': return 'bg-purple-100 text-purple-800';
-      case 'cancelled': return 'bg-red-100 text-red-800';
+      case 'cancelled': return 'bg-cyan-100 text-red-800';
       case 'no_show': return 'bg-yellow-100 text-yellow-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-cyan-30-100 text-gray-800';
     }
   };
 
@@ -212,7 +212,7 @@ export default function AppointmentsTab() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">Appointment Management</h2>
+            <h2 className="text-xl font-semibold text-gray-700">Appointment Management</h2>
             <p className="text-sm text-gray-500 mt-1">
               Showing {filteredAppointments.length > 0 ? (pagination.page - 1) * pagination.limit + 1 : 0} - {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} appointments
             </p>
@@ -232,7 +232,7 @@ export default function AppointmentsTab() {
             <button
               onClick={() => fetchAppointments(pagination.page, pagination.limit, searchQuery, searchStatus, searchDate, activeFilter)}
               disabled={loading}
-              className="border border-red-600 text-red-400 px-4 py-2 rounded-md text-sm hover:bg-red-50 transition duration-200 disabled:opacity-50"
+              className="border border-cyan-600 bg-cyan-600 px-4 py-2 rounded-md text-sm hover:bg-cyan-30 transition duration-200 disabled:opacity-50"
             >
               {loading ? 'Loading...' : 'Refresh'}
             </button>
@@ -248,7 +248,7 @@ export default function AppointmentsTab() {
               <button
                 key={filter}
                 onClick={() => handleFilterChange(filter)}
-                className={`px-4 py-2 rounded-md text-sm font-medium ${activeFilter === filter ? 'bg-red-400 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                className={`px-4 py-2 rounded-md text-sm font-medium ${activeFilter === filter ? 'bg-cyan-600 text-white' : 'bg-cyan-30-100 text-gray-700 hover:bg-cyan-30-200'}`}
               >
                 {label} ({count})
               </button>
@@ -299,14 +299,14 @@ export default function AppointmentsTab() {
       <div className="p-6 overflow-x-auto">
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-10 w-10 border-4 border-red-600 border-t-transparent mx-auto"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-4 border-cyan-600 border-t-transparent mx-auto"></div>
             <p className="mt-3 text-gray-500 text-sm">Loading appointments...</p>
           </div>
         ) : filteredAppointments.length === 0 ? (
           <div className="text-center py-12 text-gray-400 text-sm">No appointments found.</div>
         ) : (
           <table className="min-w-full divide-y divide-gray-200 text-sm">
-            <thead className="bg-gray-50">
+            <thead className="bg-cyan-30">
               <tr>
                 <th className="px-4 py-3 text-left font-medium text-gray-700">No</th>
                 <th className="px-4 py-3 text-left font-medium text-gray-700">Patient</th>
@@ -322,9 +322,9 @@ export default function AppointmentsTab() {
                 const isAppointmentPast = isPast(appointmentDate);
 
                 return (
-                  <tr key={appointment._id} className={`${isAppointmentToday ? 'bg-red-50' : ''} ${isAppointmentPast && appointment.status === 'scheduled' ? 'bg-red-50' : ''} hover:bg-gray-50 transition`}>
+                  <tr key={appointment._id} className={`${isAppointmentToday ? 'bg-cyan-30' : ''} ${isAppointmentPast && appointment.status === 'scheduled' ? 'bg-cyan-30' : ''} hover:bg-cyan-30 transition`}>
                     <td className="px-4 py-3 text-gray-500 cursor-pointer" onClick={() => openModal(appointment)}>
-                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs text-red-400 ml-1">Today</span>}
+                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs bg-cyan-600 ml-1">Today</span>}
                     </td>
                     <td className="px-4 py-3 cursor-pointer" onClick={() => openModal(appointment)}>
                       <div className="font-medium text-gray-800">{appointment.firstName} {appointment.lastName}</div>
@@ -344,7 +344,7 @@ export default function AppointmentsTab() {
                       <AppointmentStatusDropdown appointment={appointment} onStatusChange={handleStatusUpdate} />
                       <button
                         onClick={() => openModal(appointment)}
-                        className="text-red-400 hover:text-red-800 text-sm font-medium"
+                        className="bg-cyan-600 hover:text-red-800 text-sm font-medium"
                       >
                         View
                       </button>
@@ -370,8 +370,8 @@ export default function AppointmentsTab() {
                 onClick={() => handlePageChange(pagination.page - 1)}
                 disabled={pagination.page <= 1}
                 className={`flex items-center px-3 py-2 rounded-md text-sm font-medium ${pagination.page <= 1
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                  ? 'bg-cyan-30-100 text-gray-400 cursor-not-allowed'
+                  : 'bg-cyan-30-100 text-gray-700 hover:bg-cyan-30-200 hover:text-gray-700'
                   }`}
               >
                 <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -397,8 +397,8 @@ export default function AppointmentsTab() {
                         key={1}
                         onClick={() => handlePageChange(1)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === 1
-                          ? 'bg-red-400 text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? 'bg-cyan-600 text-white'
+                          : 'bg-cyan-30-100 text-gray-700 hover:bg-cyan-30-200'
                           }`}
                       >
                         1
@@ -419,8 +419,8 @@ export default function AppointmentsTab() {
                         key={i}
                         onClick={() => handlePageChange(i)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === i
-                          ? 'bg-red-400 text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? 'bg-cyan-600 text-white'
+                          : 'bg-cyan-30-100 text-gray-700 hover:bg-cyan-30-200'
                           }`}
                       >
                         {i}
@@ -441,8 +441,8 @@ export default function AppointmentsTab() {
                         key={pagination.pages}
                         onClick={() => handlePageChange(pagination.pages)}
                         className={`px-3 py-1 rounded-md text-sm font-medium ${pagination.page === pagination.pages
-                          ? 'bg-red-400 text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? 'bg-cyan-600 text-white'
+                          : 'bg-cyan-30-100 text-gray-700 hover:bg-cyan-30-200'
                           }`}
                       >
                         {pagination.pages}
@@ -458,8 +458,8 @@ export default function AppointmentsTab() {
                 onClick={() => handlePageChange(pagination.page + 1)}
                 disabled={pagination.page >= pagination.pages}
                 className={`flex items-center px-3 py-2 rounded-md text-sm font-medium ${pagination.page >= pagination.pages
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                  ? 'bg-cyan-30-100 text-gray-400 cursor-not-allowed'
+                  : 'bg-cyan-30-100 text-gray-700 hover:bg-cyan-30-200 hover:text-gray-700'
                   }`}
               >
                 Next

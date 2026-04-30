@@ -4,8 +4,6 @@
 //   return login(request);
 // }
 
-
-
 // import { NextResponse } from 'next/server';
 // import dbConnect from '@/utils/db';
 // import User from '@/models/User';
@@ -15,7 +13,7 @@
 //   try {
 //     // console.log('🔐 Login API route called');
 //     await dbConnect();
-    
+
 //     const { email, password } = await request.json();
 //     // console.log('📧 Login attempt for:', email);
 
@@ -31,7 +29,7 @@
 
 //     // Find user and include password field
 //     const user = await User.findOne({ email: trimmedEmail }).select('+password');
-    
+
 //     if (!user) {
 //       return NextResponse.json(
 //         { success: false, message: 'Invalid email or password' },
@@ -78,12 +76,11 @@
 //   } catch (error) {
 //     console.error('💥 Login error:', error);
 //     return NextResponse.json(
-//       { 
-//         success: false, 
-//         message: 'An error occurred during login. Please try again.' 
+//       {
+//         success: false,
+//         message: 'An error occurred during login. Please try again.'
 //       },
 //       { status: 500 }
 //     );
 //   }
 // }
-

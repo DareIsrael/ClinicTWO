@@ -54,7 +54,7 @@ export default function BookingForm() {
           message: ''
         });
         
-        // Redirect to dashboard after 2 seconds
+        // redirect to dashboard after 2 seconds
         setTimeout(() => {
           router.push('/dashboard');
         }, 2000);
@@ -75,7 +75,7 @@ export default function BookingForm() {
   return (
     <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md">
       <div className="text-center mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Book an Appointment</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-700">Book an Appointment</h1>
         <p className="text-gray-600 mt-2">Schedule your visit with our healthcare professionals</p>
       </div>
 
@@ -83,7 +83,7 @@ export default function BookingForm() {
         <div className={`p-4 mb-6 rounded-lg ${
           message.includes('successfully') 
             ? 'bg-green-100 text-green-700 border border-green-200' 
-            : 'bg-red-100 text-red-400 border border-red-200'
+            : 'bg-cyan-100 bg-cyan-600 border border-cyan-200'
         }`}>
           {message}
         </div>
@@ -101,7 +101,7 @@ export default function BookingForm() {
             value={formData.serviceType}
             onChange={handleChange}
             required
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition text-gray-700 duration-300"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500 transition text-gray-700 duration-300"
           >
             <option value="">Select a service</option>
             {serviceOptions.map(option => (
@@ -126,7 +126,7 @@ export default function BookingForm() {
               onChange={handleChange}
               min={today}
               required
-              className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-700 transition duration-300"
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500 text-gray-700 transition duration-300"
             />
           </div>
 
@@ -140,7 +140,7 @@ export default function BookingForm() {
               value={formData.preferredTime}
               onChange={handleChange}
               required
-              className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-gray-700 transition duration-300"
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-cyan-500 text-gray-700 transition duration-300"
             >
               <option value="">Select a time</option>
               {timeSlots.map(time => (
@@ -163,21 +163,21 @@ export default function BookingForm() {
             rows="4"
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700 focus:border-red-500 transition duration-300"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700 focus:border-cyan-500 transition duration-300"
             placeholder="Any specific concerns or notes for the doctor..."
           />
         </div>
 
         {/* Patient Information Summary */}
-        <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+        <div className="bg-cyan-30 p-4 rounded-lg border border-cyan-200">
           <h3 className="font-medium text-red-900 mb-2">Patient Information</h3>
-          <p className="text-sm text-red-400">
+          <p className="text-sm bg-cyan-600">
             <strong>Name:</strong> {user?.firstName} {user?.lastName}
           </p>
-          <p className="text-sm text-red-400">
+          <p className="text-sm bg-cyan-600">
             <strong>Email:</strong> {user?.email}
           </p>
-          <p className="text-sm text-red-400">
+          <p className="text-sm bg-cyan-600">
             <strong>Phone:</strong> {user?.cellPhone}
           </p>
         </div>
@@ -185,7 +185,7 @@ export default function BookingForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-red-400 text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition duration-300 transform hover:scale-105 font-medium"
+          className="w-full bg-cyan-600 text-white py-3 px-4 rounded-lg hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition duration-300 transform hover:scale-105 font-medium"
         >
           {loading ? (
             <span className="flex items-center justify-center">
@@ -203,7 +203,7 @@ export default function BookingForm() {
 
       {/* Help Text */}
       {/* <div className="mt-6 text-center text-sm text-gray-500">
-        <p>Need help? Contact us at <a href="tel:(343) 224-4070" className="text-red-400 hover:text-red-400">(555) 123-4567</a></p>
+        <p>Need help? Contact us at <a href="tel:(343) 224-4070" className="bg-cyan-600 hover:bg-cyan-600">(555) 123-4567</a></p>
         <p className="mt-1">Our team is available - Monday - Mon & Wed - 4pm-8pm, 
           Tues & Thurs - 10am-7pm, 
           Sat - 10am-3pm</p>

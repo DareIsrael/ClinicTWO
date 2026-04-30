@@ -115,7 +115,7 @@ export default function LoginPage() {
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
           <div className="flex flex-col lg:flex-row">
             {/* Left Side - Image */}
-            <div className="lg:w-1/2 bg-red-400 relative">
+            <div className="lg:w-1/2 bg-cyan-600 relative">
               <div
                 className="h-48 lg:h-full bg-cover bg-center bg-no-repeat"
                 style={{
@@ -123,7 +123,7 @@ export default function LoginPage() {
                     'url("https://images.unsplash.com/photo-1576097449790-4b5e7f7dd4c5?auto=format&fit=crop&w=1000&q=80")',
                 }}
               >
-                <div className="absolute inset-0 bg-red-900/20"></div>
+                <div className="absolute inset-0 bg-cyan-900/20"></div>
               </div>
 
               <div className="absolute inset-0 flex items-center justify-center p-8">
@@ -155,7 +155,7 @@ export default function LoginPage() {
             <div className="lg:w-1/2 p-8">
               <div className="max-w-md mx-auto">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h1 className="text-2xl font-bold text-gray-700 mb-2">
                     Welcome Back
                   </h1>
                   <p className="text-gray-600 text-sm">
@@ -164,7 +164,7 @@ export default function LoginPage() {
                 </div>
 
                 {error && (
-                  <div className="bg-red-50 border border-red-200 text-red-400 px-4 py-3 rounded-lg mb-6 text-sm">
+                  <div className="bg-cyan-30 border border-cyan-200 bg-cyan-600 px-4 py-3 rounded-lg mb-6 text-sm">
                     {error}
                   </div>
                 )}
@@ -180,15 +180,15 @@ export default function LoginPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none text-gray-900 focus:ring-2 ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none text-gray-700 focus:ring-2 ${
                         validationErrors.email
-                          ? "border-red-500 focus:ring-red-500"
-                          : "border-gray-300 focus:ring-red-500 focus:border-red-500"
+                          ? "border-cyan-500 focus:ring-red-500"
+                          : "border-gray-300 focus:ring-red-500 focus:border-cyan-500"
                       }`}
                       placeholder="Enter your email"
                     />
                     {validationErrors.email && (
-                      <p className="text-red-400 text-xs mt-1">
+                      <p className="bg-cyan-600 text-xs mt-1">
                         {validationErrors.email}
                       </p>
                     )}
@@ -205,10 +205,10 @@ export default function LoginPage() {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 border rounded-lg text-gray-900 focus:outline-none focus:ring-2 pr-12 ${
+                        className={`w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 pr-12 ${
                           validationErrors.password
-                            ? "border-red-500 focus:ring-red-500"
-                            : "border-gray-300 focus:ring-red-500 focus:border-red-500"
+                            ? "border-cyan-500 focus:ring-red-500"
+                            : "border-gray-300 focus:ring-red-500 focus:border-cyan-500"
                         }`}
                         placeholder="Enter your password"
                       />
@@ -255,7 +255,7 @@ export default function LoginPage() {
                       </button>
                     </div>
                     {validationErrors.password && (
-                      <p className="text-red-400 text-xs mt-1">
+                      <p className="bg-cyan-600 text-xs mt-1">
                         {validationErrors.password}
                       </p>
                     )}
@@ -265,13 +265,13 @@ export default function LoginPage() {
                     <label className="flex items-center">
                       <input
                         type="checkbox"
-                        className="h-4 w-4 text-red-400 rounded border-gray-300 focus:ring-red-500"
+                        className="h-4 w-4 bg-cyan-600 rounded border-gray-300 focus:ring-red-500"
                       />
                       <span className="ml-2 text-gray-600">Remember me</span>
                     </label>
                     <Link
                       href="/forgot-password"
-                      className="text-red-400 hover:text-red-400 font-medium"
+                      className=" hover:bg-cyan-600 text-cyan-600 font-medium"
                     >
                       Forgot password?
                     </Link>
@@ -280,7 +280,7 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-red-400 text-white py-3 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
+                    className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition-colors"
                   >
                     {loading ? "Signing in..." : "Sign In"}
                   </button>
@@ -290,7 +290,7 @@ export default function LoginPage() {
                   New Admin?{" "}
                   <Link
                     href="/signup"
-                    className="text-red-400 hover:text-red-400 font-medium"
+                    className="hover:bg-cyan-600 text-cyan-600 font-medium"
                   >
                     Create account
                   </Link>

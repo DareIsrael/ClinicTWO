@@ -96,9 +96,9 @@ const UninsuredServicesPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-cyan-30">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-red-50 to-red-50 py-12 px-4">
+      <div className="bg-gradient-to-r from-cyan-30 to-red-50 py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-red-900 mb-4">
@@ -115,7 +115,7 @@ const UninsuredServicesPage = () => {
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="px-4 py-2 bg-white text-red-400 rounded-full shadow-sm hover:shadow-md transition-shadow duration-200 border border-red-100 hover:border-red-300"
+                className="px-4 py-2 bg-white bg-cyan-600 rounded-full shadow-sm hover:shadow-md transition-shadow duration-200 border border-cyan-100 hover:border-cyan-300"
               >
                 {section.title.split(' ').slice(0, 3).join(' ')}...
               </a>
@@ -131,11 +131,11 @@ const UninsuredServicesPage = () => {
             <section
               key={section.id}
               id={section.id}
-              className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-red-100"
+              className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-cyan-100"
             >
               {/* Section Header */}
               <div className="flex items-start gap-4 mb-6">
-                <div className="p-3 bg-red-50 rounded-lg text-red-400">
+                <div className="p-3 bg-cyan-30 rounded-lg bg-cyan-600">
                   {section.icon}
                 </div>
                 <div>
@@ -161,7 +161,7 @@ const UninsuredServicesPage = () => {
                   <ul className="space-y-2 mb-6">
                     {section.list.map((item, idx) => (
                       <li key={idx} className="flex items-start">
-                        <span className="text-red-400 mr-2">•</span>
+                        <span className="bg-cyan-600 mr-2">•</span>
                         <span className="text-gray-700">{item}</span>
                       </li>
                     ))}
@@ -172,12 +172,12 @@ const UninsuredServicesPage = () => {
                 {section.subsections && (
                   <div className="space-y-8">
                     {section.subsections.map((subsection, subIndex) => (
-                      <div key={subIndex} className="border-l-4 border-red-200 pl-6">
+                      <div key={subIndex} className="border-l-4 border-cyan-200 pl-6">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-red-50 rounded-lg text-red-400">
+                          <div className="p-2 bg-cyan-30 rounded-lg bg-cyan-600">
                             {subsection.icon}
                           </div>
-                          <h3 className="text-xl font-semibold text-red-400">
+                          <h3 className="text-xl font-semibold bg-cyan-600">
                             {subsection.title}
                           </h3>
                         </div>
@@ -189,11 +189,11 @@ const UninsuredServicesPage = () => {
                         <div className="overflow-x-auto">
                           <table className="min-w-full divide-y divide-gray-200">
                             <thead>
-                              <tr className="bg-red-50">
-                                <th className="px-4 py-3 text-left text-xs font-medium text-red-400 uppercase tracking-wider">
+                              <tr className="bg-cyan-30">
+                                <th className="px-4 py-3 text-left text-xs font-medium bg-cyan-600 uppercase tracking-wider">
                                   Service
                                 </th>
-                                <th className="px-4 py-3 text-left text-xs font-medium text-red-400 uppercase tracking-wider w-1/4">
+                                <th className="px-4 py-3 text-left text-xs font-medium bg-cyan-600 uppercase tracking-wider w-1/4">
                                   Fee
                                 </th>
                               </tr>
@@ -202,15 +202,15 @@ const UninsuredServicesPage = () => {
                               {subsection.items.map((item, itemIndex) => (
                                 <tr 
                                   key={itemIndex} 
-                                  className={`hover:bg-red-50 transition-colors duration-150 ${
-                                    itemIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                                  className={`hover:bg-cyan-30 transition-colors duration-150 ${
+                                    itemIndex % 2 === 0 ? 'bg-white' : 'bg-cyan-30'
                                   }`}
                                 >
                                   <td className="px-4 py-4 text-gray-700">
                                     {item.service}
                                   </td>
                                   <td className="px-4 py-4">
-                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-400">
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 bg-cyan-600">
                                       {item.fee}
                                     </span>
                                   </td>
@@ -221,8 +221,8 @@ const UninsuredServicesPage = () => {
                         </div>
 
                         {subsection.note && (
-                          <div className="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
-                            <p className="text-red-400 text-sm italic">{subsection.note}</p>
+                          <div className="mt-4 p-4 bg-cyan-30 rounded-lg border border-cyan-200">
+                            <p className="bg-cyan-600 text-sm italic">{subsection.note}</p>
                           </div>
                         )}
                       </div>
@@ -232,7 +232,7 @@ const UninsuredServicesPage = () => {
 
                 {/* Call to action for questions section */}
                 {section.id === 'questions' && (
-                  <div className="mt-8 p-6 bg-gradient-to-r from-red-50 to-red-50 rounded-xl border border-red-200">
+                  <div className="mt-8 p-6 bg-gradient-to-r from-cyan-30 to-red-50 rounded-xl border border-cyan-200">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                       <div>
                         <h3 className="text-xl font-semibold text-red-800 mb-2">
@@ -244,7 +244,7 @@ const UninsuredServicesPage = () => {
                       </div>
                       <a
                         href="/contact"
-                        className="px-6 py-3 bg-red-400 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium shadow-sm hover:shadow-md"
+                        className="px-6 py-3 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200 font-medium shadow-sm hover:shadow-md"
                       >
                         Contact Us
                       </a>
@@ -257,7 +257,7 @@ const UninsuredServicesPage = () => {
         </div>
 
         {/* Important Notice */}
-        <div className="mt-12 bg-gradient-to-r from-red-500 to-red-500 rounded-2xl p-8 text-white">
+        <div className="mt-12 bg-gradient-to-r from-cyan-300 to-red-500 rounded-2xl p-8 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4">
               Important Notice
@@ -270,7 +270,7 @@ const UninsuredServicesPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="px-6 py-3 bg-white text-red-400 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
+                className="px-6 py-3 bg-white bg-cyan-600 rounded-lg hover:bg-cyan-30-100 transition-colors duration-200 font-medium"
               >
                 Ask About Fees
               </a>

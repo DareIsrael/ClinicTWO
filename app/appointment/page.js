@@ -1,4 +1,4 @@
-// book-appointment/page.js - Completely Redesigned
+// book-appointment/page.js - Completely redesigned with Clean UI
 "use client";
 
 import Link from "next/link";
@@ -9,10 +9,10 @@ export default function BookAppointment() {
       id: 1,
       title: "Rostered Patients",
       description:
-        "For patients already registered with Dr. Fagbolagun for ongoing care.",
+        "For patients already registered with our clinic for ongoing care.",
       note: "Existing patients only",
       buttonText: "Book as Existing Patient",
-      link: "/book-appointment",
+      link: "https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554",
       icon: (
         <svg
           className="w-7 h-7"
@@ -82,78 +82,63 @@ export default function BookAppointment() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Clean */}
-      <section className="relative bg-red-50/20 py-20 lg:py-18">
-        <div className="max-w-7xl mx-auto px-8 lg:px-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-400 text-sm font-medium mb-2">
-              <svg
-                className="w-4 h-4 mr-1.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
+          <div className="inline-flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full mb-4">
+            <div className="w-2 h-2 bg-gray-600 rounded-full"></div>
+            <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
               Online Booking
-            </div>
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tight mb-6">
-              Book an
-              <br />
-              <span className="text-red-400">Appointment</span>
-            </h1>
-            <div className="w-16 h-1 bg-red-400 rounded-full mx-auto mb-6"></div>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-              Select the option that best fits your needs. Same-day appointments
-              available for urgent care.
-            </p>
+            </span>
           </div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
+            Book an Appointment
+          </h1>
+          <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
+            Select the option that best fits your needs. Same-day appointments
+            available for urgent care.
+          </p>
         </div>
-      </section>
+      </div>
 
       {/* Main Content - Booking Options */}
-      <main className="py-1 bg-white">
-        <div className="max-w-6xl mx-auto px-4 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <main className="py-12 sm:py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {options.map((option) => (
               <div
                 key={option.id}
-                className="group bg-white border border-gray-100 rounded-2xl p-4 transition-all duration-300 hover:shadow-xl hover:border-gray-200"
+                className="group bg-white border border-gray-100 rounded-xl p-6 transition-all duration-300 hover:shadow-md hover:border-gray-200"
               >
                 {/* Icon */}
-                <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-red-400 group-hover:scale-105 transition-all duration-300">
-                  <div className="text-red-400 group-hover:text-white transition-colors">
+                <div className="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center mb-5 group-hover:bg-cyan-600 group-hover:scale-105 transition-all duration-300">
+                  <div className="text-gray-600 group-hover:text-white transition-colors">
                     {option.icon}
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-lg font-semibold text-gray-700 mb-2">
                   {option.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-3 text-base leading-relaxed">
+                <p className="text-gray-500 mb-3 text-sm leading-relaxed">
                   {option.description}
                 </p>
 
                 {/* Note */}
-                <div className="inline-block bg-gray-50 rounded-full px-3 py-1 mb-6">
+                <div className="inline-block bg-gray-100 rounded-full px-3 py-1 mb-5">
                   <p className="text-xs text-gray-500">{option.note}</p>
                 </div>
 
                 {/* Button */}
                 <Link
                   href={option.link}
-                  className="block text-center py-3 px-6 rounded-xl font-semibold text-base bg-red-400 text-white hover:bg-red-700 transition-all duration-200 shadow-sm hover:shadow-md"
+                  className="block text-center py-2.5 px-5 rounded-lg font-medium text-sm bg-cyan-600 text-white hover:bg-cyan-500 transition-all duration-200 shadow-sm"
                 >
                   {option.buttonText}
                   <svg
-                    className="w-4 h-4 inline-block ml-2 group-hover:translate-x-1 transition-transform"
+                    className="w-3.5 h-3.5 inline-block ml-1 group-hover:translate-x-0.5 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -171,12 +156,12 @@ export default function BookAppointment() {
           </div>
 
           {/* Help Section */}
-          <div className="mt-16 text-center">
-            <div className="bg-gray-50 rounded-2xl p-8 max-w-2xl mx-auto">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-12 text-center">
+            <div className="bg-gray-50 rounded-xl p-6 max-w-2xl mx-auto">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <div className="flex items-center text-gray-600">
                   <svg
-                    className="w-5 h-5 mr-2 text-red-400"
+                    className="w-4 h-4 mr-1.5 text-gray-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -188,15 +173,17 @@ export default function BookAppointment() {
                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span className="text-sm">Need help choosing?</span>
+                  <span className="text-sm text-gray-600">
+                    Need help choosing?
+                  </span>
                 </div>
 
                 <a
                   href="tel:+13432244070"
-                  className="inline-flex items-center justify-center text-sm font-semibold text-red-400 bg-red-50 hover:bg-red-400 hover:text-white transition-all duration-200 rounded-full px-6 py-2.5"
+                  className="inline-flex items-center justify-center text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 transition-all duration-200 rounded-full px-5 py-2"
                 >
                   <svg
-                    className="w-4 h-4 mr-2"
+                    className="w-3.5 h-3.5 mr-1.5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -211,7 +198,7 @@ export default function BookAppointment() {
                   Call (343) 224-4070
                 </a>
               </div>
-              <p className="text-xs text-gray-500 mt-4">
+              <p className="text-xs text-gray-500 mt-3">
                 Our staff is available to help you choose the right appointment
                 type
               </p>
@@ -219,11 +206,11 @@ export default function BookAppointment() {
           </div>
 
           {/* Additional Info Section */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center p-4">
-              <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center mx-auto mb-3">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="text-center p-3">
+              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                 <svg
-                  className="w-5 h-5 text-red-400"
+                  className="w-5 h-5 text-gray-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -236,17 +223,17 @@ export default function BookAppointment() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-1">
+              <h4 className="font-medium text-gray-800 text-sm mb-0.5">
                 Same-Day Appointments
               </h4>
               <p className="text-xs text-gray-500">
                 Available for urgent care needs
               </p>
             </div>
-            <div className="text-center p-4">
-              <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center mx-auto mb-3">
+            <div className="text-center p-3">
+              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                 <svg
-                  className="w-5 h-5 text-red-400"
+                  className="w-5 h-5 text-gray-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -259,15 +246,17 @@ export default function BookAppointment() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-1">OHIP Covered</h4>
+              <h4 className="font-medium text-gray-800 text-sm mb-0.5">
+                OHIP Covered
+              </h4>
               <p className="text-xs text-gray-500">
                 Most services are covered by OHIP
               </p>
             </div>
-            <div className="text-center p-4">
-              <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center mx-auto mb-3">
+            <div className="text-center p-3">
+              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                 <svg
-                  className="w-5 h-5 text-red-400"
+                  className="w-5 h-5 text-gray-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -286,11 +275,11 @@ export default function BookAppointment() {
                   />
                 </svg>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-1">
+              <h4 className="font-medium text-gray-800 text-sm mb-0.5">
                 Central Location
               </h4>
               <p className="text-xs text-gray-500">
-                1280 Trim Rd, Unit B, Orleans, ON K4A 3N3
+                1280 Trim Rd, Unit B, Orleans
               </p>
             </div>
           </div>
@@ -298,19 +287,19 @@ export default function BookAppointment() {
       </main>
 
       {/* CTA Section */}
-      <section className="bg-red-400 py-16">
-        <div className="max-w-4xl mx-auto px-8 lg:px-12 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-light  mb-3">
             Need Immediate Medical Attention?
           </h2>
-          <p className="text-white/90 mb-8">
+          <p className="text-gray-500 text-sm mb-6">
             For urgent medical concerns, please call us or visit our clinic
             directly.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="tel:+13438873470"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-red-400 font-semibold hover:bg-gray-100 transition-all duration-200 shadow-md"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-white text-gray-700 font-medium hover:bg-gray-100 transition-all duration-200 text-sm"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -329,7 +318,7 @@ export default function BookAppointment() {
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-white/30 text-white font-semibold hover:bg-white/10 transition-all duration-200"
+              className="bg-cyan-600 inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-600 text-white font-medium hover:bg-gray-800 transition-all duration-200 text-sm"
             >
               View Location
               <svg

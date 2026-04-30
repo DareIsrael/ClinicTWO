@@ -17,12 +17,12 @@ const AppointmentStatusDropdown = ({ appointment, onStatusChange }) => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'scheduled': return 'bg-red-100 text-red-800 border-red-200';
+      case 'scheduled': return 'bg-cyan-100 text-red-800 border-cyan-200';
       case 'confirmed': return 'bg-green-100 text-green-800 border-green-200';
       case 'completed': return 'bg-purple-100 text-purple-800 border-purple-200';
-      case 'cancelled': return 'bg-red-100 text-red-800 border-red-200';
+      case 'cancelled': return 'bg-cyan-100 text-red-800 border-cyan-200';
       case 'no_show': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      default: return 'bg-cyan-30-100 text-gray-800 border-gray-200';
     }
   };
 
@@ -44,7 +44,7 @@ const AppointmentStatusDropdown = ({ appointment, onStatusChange }) => {
       </select>
       {isUpdating && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-lg">
-          <div className="w-3 h-3 border border-red-600 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-3 h-3 border border-cyan-600 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
     </div>

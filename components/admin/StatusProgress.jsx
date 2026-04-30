@@ -1,9 +1,9 @@
 const StatusProgress = ({ statusData, total }) => {
   const statusColors = {
     Active: 'bg-green-500',
-    Booked: 'bg-red-400',
+    Booked: 'bg-cyan-600',
     Accepted: 'bg-purple-500',
-    Rejected: 'bg-red-400'
+    Rejected: 'bg-cyan-600'
   };
 
   return (
@@ -17,8 +17,8 @@ const StatusProgress = ({ statusData, total }) => {
               <span className="text-sm font-medium text-gray-700">{status}</span>
             </div>
             <div className="flex items-center space-x-3">
-              <span className="text-sm text-gray-900">{count}</span>
-              <div className="w-24 bg-gray-200 rounded-full h-2">
+              <span className="text-sm text-gray-700">{count}</span>
+              <div className="w-24 bg-cyan-30-200 rounded-full h-2">
                 <div
                   className={`h-2 rounded-full ${statusColors[status]} transition-all duration-300`}
                   style={{ width: `${percentage}%` }}
