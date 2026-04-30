@@ -85,7 +85,7 @@ export default function AboutPage() {
       </div>
 
       {/* Meet Our Physician Section */}
-      <section className="bg-cyan-30 py-16 sm:py-20">
+      {/* <section className="bg-cyan-30 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-light text-gray-700 mb-3">
@@ -151,7 +151,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Our Practice Philosophy */}
       <section className="bg-white py-16 sm:py-20">

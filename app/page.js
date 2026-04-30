@@ -431,7 +431,7 @@ export default function Home() {
       </section>
 
       {/* Meet Our Physician Section - reduced padding */}
-      <section className="bg-cyan-30 py-12 sm:py-20">
+      {/* <section className="bg-cyan-30 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-4 sm:mb-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-3 sm:mb-4">
@@ -501,7 +501,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Hours and Quick Contact Section - 2 columns */}
       <section className="bg-cyan-30 py-12 sm:py-20">
