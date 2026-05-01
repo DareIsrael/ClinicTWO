@@ -176,7 +176,7 @@ export default function ContactPage() {
                 className="bg-cyan-30 p-6 rounded-xl text-center border border-gray-100 hover:shadow-md transition-shadow"
               >
                 <div className="w-12 h-12 bg-cyan-30-200 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <div className="text-gray-600">{info.icon}</div>
+                  <div className="text-cyan-600">{info.icon}</div>
                 </div>
                 <h3 className="text-base font-semibold text-gray-700 mb-2">
                   {info.title}
@@ -421,7 +421,7 @@ export default function ContactPage() {
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 bg-cyan-30-200 rounded-lg flex items-center justify-center">
                       <svg
-                        className="w-4 h-4 text-gray-600"
+                        className="w-4 h-4 text-cyan-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -447,7 +447,7 @@ export default function ContactPage() {
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 bg-cyan-30-200 rounded-lg flex items-center justify-center">
                       <svg
-                        className="w-4 h-4 text-gray-600"
+                        className="w-4 h-4 text-cyan-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -473,7 +473,7 @@ export default function ContactPage() {
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 bg-cyan-30-200 rounded-lg flex items-center justify-center">
                       <svg
-                        className="w-4 h-4 text-gray-600"
+                        className="w-4 h-4 text-cyan-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -500,7 +500,7 @@ export default function ContactPage() {
               <div className="bg-cyan-30-100 rounded-2xl p-5">
                 <div className="flex items-start space-x-3">
                   <svg
-                    className="w-5 h-5 text-gray-600 mt-0.5 flex-shrink-0"
+                    className="w-5 h-5 text-cyan-600 mt-0.5 flex-shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

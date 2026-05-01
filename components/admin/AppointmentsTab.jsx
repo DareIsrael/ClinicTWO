@@ -324,7 +324,7 @@ export default function AppointmentsTab() {
                 return (
                   <tr key={appointment._id} className={`${isAppointmentToday ? 'bg-cyan-30' : ''} ${isAppointmentPast && appointment.status === 'scheduled' ? 'bg-cyan-30' : ''} hover:bg-cyan-30 transition`}>
                     <td className="px-4 py-3 text-gray-500 cursor-pointer" onClick={() => openModal(appointment)}>
-                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs bg-cyan-600 ml-1">Today</span>}
+                      {(pagination.page - 1) * pagination.limit + index + 1}{isAppointmentToday && <span className="text-xs  text-cyan-700 ml-1">Today</span>}
                     </td>
                     <td className="px-4 py-3 cursor-pointer" onClick={() => openModal(appointment)}>
                       <div className="font-medium text-gray-800">{appointment.firstName} {appointment.lastName}</div>
@@ -344,7 +344,7 @@ export default function AppointmentsTab() {
                       <AppointmentStatusDropdown appointment={appointment} onStatusChange={handleStatusUpdate} />
                       <button
                         onClick={() => openModal(appointment)}
-                        className="bg-cyan-600 hover:text-red-800 text-sm font-medium"
+                        className=" hover:text-red-800 text-sm font-medium"
                       >
                         View
                       </button>

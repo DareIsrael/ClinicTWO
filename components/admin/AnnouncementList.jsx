@@ -58,7 +58,7 @@ const AnnouncementList = ({ announcements, onEdit, onDelete }) => {
               <div className="flex space-x-2 ml-4">
                 <button
                   onClick={() => onEdit(announcement)}
-                  className="bg-cyan-600 hover:text-red-800"
+                  className=" hover:text-red-800"
                   title="Edit"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ const AnnouncementList = ({ announcements, onEdit, onDelete }) => {
                 </button>
                 <button
                   onClick={() => onDelete(announcement._id)}
-                  className="bg-cyan-600 hover:text-red-800"
+                  className=" hover:text-red-800"
                   title="Delete"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

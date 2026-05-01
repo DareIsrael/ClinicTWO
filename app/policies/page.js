@@ -380,7 +380,7 @@ export default function PoliciesPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-white text-gray-700 font-medium hover:bg-cyan-30-100 transition-all duration-200 text-sm"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-white text-cyan-600 font-medium hover:bg-cyan-30-100 transition-all duration-200 text-sm"
             >
               Contact Us
               <svg
@@ -399,7 +399,7 @@ export default function PoliciesPage() {
             </a>
             <a
               href="/uninsured-services"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-600 font-medium hover:bg-cyan-30-800 transition-all duration-200 text-sm"
+              className="inline-flex text-cyan-600 items-center justify-center px-6 py-2.5 rounded-lg border border-gray-600 font-medium hover:bg-cyan-30-800 transition-all duration-200 text-sm"
             >
               View Service Fees
             </a>

@@ -134,8 +134,8 @@ const UninsuredServicesPage = () => {
               className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-cyan-100"
             >
               {/* Section Header */}
-              <div className="flex items-start gap-4 mb-6">
-                <div className="p-3 bg-cyan-30 rounded-lg bg-cyan-600">
+              <div className="flex  items-start gap-4 mb-6">
+                <div className="p-3  bg-cyan-30  rounded-lg bg-cyan-600">
                   {section.icon}
                 </div>
                 <div>

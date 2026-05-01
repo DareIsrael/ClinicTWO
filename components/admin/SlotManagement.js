@@ -384,7 +384,7 @@ export default function SlotManagement() {
       </h2>
 
       <div className="mb-4 p-3 bg-cyan-30 rounded-lg border border-cyan-100">
-        <p className="text-xs bg-cyan-600 mt-1">
+        <p className="text-xs  mt-1">
           Today is: {formatDisplayDate(todayDate)} ({todayDate})
         </p>
       </div>
@@ -605,7 +605,7 @@ export default function SlotManagement() {
                         </div>
                         <button
                           onClick={() => deleteAllSlotsForDate(date)}
-                          className="text-sm bg-cyan-600 hover:text-red-800"
+                          className="text-sm  hover:text-red-800"
                         >
                           Delete All
                         </button>
@@ -672,8 +672,8 @@ export default function SlotManagement() {
 
       {/* Information Panel */}
       <div className="mt-8 p-4 bg-cyan-30 rounded-lg border border-cyan-100">
-        <h4 className="font-medium text-red-900 mb-2">How it works:</h4>
-        <ul className="text-sm bg-cyan-600 space-y-1">
+        <h4 className="font-medium text-cyan-900 mb-2">How it works:</h4>
+        <ul className="text-sm space-y-1">
           <li>• Add available time slots for specific dates</li>
           <li>• Patients can only book from available slots</li>
           <li>• Once a slot is booked, it becomes unavailable to others</li>
