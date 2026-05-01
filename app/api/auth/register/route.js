@@ -156,7 +156,7 @@ async function sendWelcomeEmail(user) {
           <div style="text-align: center; color: #666; font-size: 14px;">
             <p>Trim Medical Centre<br>
              1280 Trim Rd, Unit B, Orleans, ON K4A 3N3<br>
-            Phone: (343) 224-4070 | Email: contact@trimmedicalcenter.ca</p>
+            Phone: (343) 224-4070 | Email: contact@trimmedicalcentre.ca</p>
             
             <p style="font-size: 12px; color: #999;">
               This is an automated message. Please do not reply to this email.

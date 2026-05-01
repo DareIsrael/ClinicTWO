@@ -76,7 +76,7 @@ export async function POST(req) {
 
     // Send email to admin
     await sendEmail({
-      to: process.env.ADMIN_EMAIL || "contact@trimmedicalcenter.ca", // Set this in your .env
+      to: process.env.ADMIN_EMAIL || "contact@trimmedicalcentre.ca", // Set this in your .env
       subject: `New Contact Form: ${subject} - From ${name}`,
       html: adminEmailContent,
     });

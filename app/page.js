@@ -628,10 +628,10 @@ export default function Home() {
                     <div>
                       {/* <p className="text-xs text-gray-500">Email</p> */}
                       <a
-                        href="mailto:contact@trimmedicalcenter.ca"
+                        href="mailto:contact@trimmedicalcentre.ca"
                         className="text-gray-700 font-medium hover:text-gray-700 transition-colors text-xs break-all"
                       >
-                        contact@trimmedicalcenter.ca
+                        contact@trimmedicalcentre.ca
                       </a>
                     </div>
                   </div>

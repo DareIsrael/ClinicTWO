@@ -61,7 +61,7 @@ async function sendAppointmentConfirmationEmail(appointment) {
               <p>Best regards,<br>The Healthcare Team</p>
               <p>Trim Medical Centre<br>
               Phone: (343) 224-4070<br>
-              Email: contact@trimmedicalcenter.ca</p>
+              Email: contact@trimmedicalcentre.ca</p>
             </div>
           </div>
         </div>
