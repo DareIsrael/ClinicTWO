@@ -25,7 +25,6 @@ export async function GET(request) {
         isActive: true,
         $or: [
           { endDate: { $exists: false } },
-          { endDate: null },
           { endDate: { $gt: new Date() } },
         ],
       };
