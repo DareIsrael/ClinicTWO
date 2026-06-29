@@ -172,7 +172,7 @@ async function sendWelcomeEmail(user) {
       html: welcomeEmailContent,
     });
 
-    console.log("Welcome email sent successfully to:", user.email);
+    // console.log("Welcome email sent successfully to:", user.email);
   } catch (error) {
     console.error("Error sending welcome email:", error);
     throw error;

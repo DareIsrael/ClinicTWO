@@ -1,24 +1,26 @@
 'use client';
 import AppointmentStatusDropdown from './AppointmentStatusDropdown';
+import { X, User, MapPin, Shield, Calendar, HeartPulse } from 'lucide-react';
+// import AppointmentStatusDropdown from './AppointmentStatusDropdown';
 
 const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
   const formatDate = (dateString) => {
-  if (!dateString) return '';
-  
-  if (typeof dateString === 'string' && dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
-    const [year, month, day] = dateString.split('-');
-    const dateObj = new Date(year, month - 1, day);
+    if (!dateString) return '';
     
-    return dateObj.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  }
-  
-  return dateString;
-};
+    if (typeof dateString === 'string' && dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const [year, month, day] = dateString.split('-');
+      const dateObj = new Date(year, month - 1, day);
+      
+      return dateObj.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+    
+    return dateString;
+  };
 
   const calculateAge = (dateOfBirth) => {
     const dob = new Date(dateOfBirth);
@@ -33,186 +35,316 @@ const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Light translucent overlay matching original design */}
       <div 
         className="absolute inset-0 bg-black bg-opacity-10 backdrop-blur-sm transition-opacity duration-200"
         onClick={onClose}
       ></div>
       
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-xl border border-gray-200">
-        <div className="p-6 border-b border-gray-200 bg-white sticky top-0 z-10">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold text-gray-700">
-              Appointment Details
-            </h2>
+      {/* A4 sheet modal container */}
+      <div className="bg-white rounded-xl max-w-4xl w-full max-h-[92vh] overflow-y-auto relative shadow-2xl border border-slate-200 flex flex-col z-10">
+        
+        {/* Letterhead Header Section */}
+        <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-cyan-900 text-white p-6 md:p-8 relative border-b border-blue-950">
+          
+          {/* Top row: Hospital Logo + Clinic name & Close button */}
+          <div className="flex justify-between items-start mb-6">
+            <div className="flex items-center gap-3">
+              <div className="bg-white p-2 rounded-lg shadow-md flex items-center justify-center">
+                <img 
+                  src="/TrimLOGO11.svg" 
+                  alt="Trim Medical Centre Logo" 
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold tracking-widest text-blue-100 uppercase">
+                  Trim Medical Centre
+                </h3>
+                <p className="text-[10px] uppercase tracking-wider text-blue-200 font-semibold">
+                  Patient Appointment File
+                </p>
+              </div>
+            </div>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition duration-200 p-1 hover:bg-cyan-30-100 rounded"
+              className="text-white/80 hover:text-white transition duration-200 p-1.5 hover:bg-white/10 rounded-full focus:outline-none"
+              aria-label="Close details"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="w-5 h-5" />
             </button>
+          </div>
+
+          {/* Bottom row: Patient name and status badge */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-white/10 pt-4">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                {appointment.firstName} {appointment.lastName}
+              </h2>
+              <p className="text-xs text-blue-200 mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span>DOB: {appointment.dateOfBirth ? new Date(appointment.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A'}</span>
+                <span className="hidden sm:inline text-blue-300">•</span>
+                <span>Age: {appointment.dateOfBirth ? `${calculateAge(appointment.dateOfBirth)} years old` : 'N/A'}</span>
+                <span className="hidden sm:inline text-blue-300">•</span>
+                <span>Gender: {appointment.gender || 'N/A'}</span>
+              </p>
+            </div>
+            <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+              <span className="text-[10px] text-blue-200 uppercase tracking-widest font-bold">Status:</span>
+              <AppointmentStatusDropdown 
+                appointment={appointment} 
+                onStatusChange={onStatusChange}
+              />
+            </div>
           </div>
         </div>
 
-        <div className="p-6">
-          {/* Appointment Header */}
-          <div className="bg-cyan-30 p-4 rounded-lg mb-6">
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="font-semibold text-gray-700 text-lg">
-                  {appointment.firstName} {appointment.lastName}
-                  <span className="ml-3 text-sm font-normal text-gray-600">
-                    ({calculateAge(appointment.dateOfBirth)} years old)
-                  </span>
-                </h3>
-                <p className="text-gray-600 mt-1">
-                  Appointment ID: <span className="font-mono">{appointment._id}</span>
-                </p>
-              </div>
-              <div className="text-right">
-                <div className="text-sm text-gray-500">Status</div>
-                <div className="mt-1">
-                  <AppointmentStatusDropdown 
-                    appointment={appointment} 
-                    onStatusChange={onStatusChange}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
+        {/* Modal Body: A4 Content Sheets */}
+        <div className="p-6 md:p-8 bg-slate-50/50 flex-1">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left Column: Patient Information */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">Patient Information</h3>
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">First Name</label>
-                    <p className="text-gray-700 font-medium">{appointment.firstName}</p>
+            
+            {/* Left Column: Patient Profile & Contact */}
+            <div className="space-y-6">
+              
+              {/* Personal Information Card */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 hover:shadow-md transition-all duration-200">
+                <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                  <div className="bg-blue-50 p-1.5 rounded text-blue-800">
+                    <User className="w-4 h-4" />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Last Name</label>
-                    <p className="text-gray-700 font-medium">{appointment.lastName}</p>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-500 mb-1">Email</label>
-                  <p className="text-gray-700">{appointment.email}</p>
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Patient Profile
+                  </h4>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Phone</label>
-                    <p className="text-gray-700">{appointment.cellPhone}</p>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      First Name
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">{appointment.firstName}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Gender</label>
-                    <p className="text-gray-700">{appointment.gender}</p>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Last Name
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">{appointment.lastName}</p>
                   </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-500 mb-1">Date of Birth</label>
-                  <p className="text-gray-700">
-                    {new Date(appointment.dateOfBirth).toLocaleDateString()} 
-                    <span className="ml-2 text-gray-500">
-                      ({calculateAge(appointment.dateOfBirth)} years old)
-                    </span>
-                  </p>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-500 mb-1">Address</label>
-                  <p className="text-gray-700">{appointment.address}</p>
-                  <p className="text-gray-600 text-sm">
-                    {appointment.city && `${appointment.city}, `}
-                    {appointment.province} {appointment.postalCode}
-                    {appointment.country && `, ${appointment.country}`}
-                  </p>
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Gender
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">{appointment.gender}</p>
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Date of Birth
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">
+                      {appointment.dateOfBirth ? new Date(appointment.dateOfBirth).toLocaleDateString() : 'N/A'}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right Column: Appointment Details */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">Appointment Details</h3>
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Appointment Date</label>
-                    <p className="text-gray-700 font-medium">{formatDate(appointment.appointmentDate)}</p>
+              {/* Contact Card */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 hover:shadow-md transition-all duration-200">
+                <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                  <div className="bg-blue-50 p-1.5 rounded text-blue-800">
+                    <MapPin className="w-4 h-4" />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Appointment Time</label>
-                    <p className="text-gray-700 font-medium">{appointment.appointmentTime}</p>
-                  </div>
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Contact & Address
+                  </h4>
                 </div>
                 
-                
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-500 mb-1">Healthcare Information</label>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                        Email Address
+                      </label>
+                      <p className="text-sm font-semibold text-slate-700 select-all">{appointment.email}</p>
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                        Phone
+                      </label>
+                      <p className="text-sm font-semibold text-slate-700 select-all">{appointment.cellPhone}</p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Street Address
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">{appointment.address}</p>
+                  </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-sm text-gray-500">Healthcare Number</p>
-                      <p className="text-gray-700">{appointment.healthcareNumber}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Healthcare Province</p>
-                      <p className="text-gray-700">{appointment.healthcareProvince}</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-500 mb-1">Reason for Appointment</label>
-                  <p className="text-gray-700 bg-cyan-30 p-3 rounded">{appointment.reason}</p>
-                </div>
-                
-                {appointment.notes && (
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Additional Notes</label>
-                    <p className="text-gray-700 bg-cyan-30 p-3 rounded">{appointment.notes}</p>
-                  </div>
-                )}
-                
-                <div className="pt-4 border-t border-gray-200">
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <p className="text-gray-500">Created At</p>
-                      <p className="text-gray-700">
-                        {new Date(appointment.createdAt).toLocaleString()}
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                        City & Province
+                      </label>
+                      <p className="text-sm font-semibold text-slate-700">
+                        {appointment.city ? `${appointment.city}, ` : ''}{appointment.province}
                       </p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Last Updated</p>
-                      <p className="text-gray-700">
-                        {new Date(appointment.updatedAt || appointment.createdAt).toLocaleString()}
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                        Postal Code & Country
+                      </label>
+                      <p className="text-sm font-semibold text-slate-700">
+                        {appointment.postalCode} {appointment.country ? `(${appointment.country})` : ''}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
+
+            </div>
+
+            {/* Right Column: Appointment Schedule & Clinical Details */}
+            <div className="space-y-6">
+              
+              {/* Healthcare Card */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 hover:shadow-md transition-all duration-200">
+                <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                  <div className="bg-blue-50 p-1.5 rounded text-blue-800">
+                    <Shield className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Healthcare Coverage
+                  </h4>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Healthcare Number
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700 select-all">{appointment.healthcareNumber}</p>
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Province
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">{appointment.healthcareProvince}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Schedule Card */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 hover:shadow-md transition-all duration-200">
+                <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                  <div className="bg-blue-50 p-1.5 rounded text-blue-800">
+                    <Calendar className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Appointment Schedule
+                  </h4>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Appointment Date
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">
+                      {formatDate(appointment.appointmentDate)}
+                    </p>
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Appointment Time
+                    </label>
+                    <p className="text-sm font-semibold text-slate-700">
+                      {appointment.appointmentTime}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Clinical Details Card */}
+              <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 hover:shadow-md transition-all duration-200">
+                <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                  <div className="bg-blue-50 p-1.5 rounded text-blue-800">
+                    <HeartPulse className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Clinical Information
+                  </h4>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Reason for Appointment
+                    </label>
+                    <p className="text-sm text-blue-900 bg-blue-50 border-l-4 border-blue-600 p-3 rounded-r-lg font-medium leading-relaxed">
+                      {appointment.reason}
+                    </p>
+                  </div>
+                  
+                  {appointment.notes && (
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                        Additional Notes
+                      </label>
+                      <p className="text-sm text-slate-800 bg-slate-50 border-l-4 border-slate-400 p-3 rounded-r-lg font-medium leading-relaxed">
+                        {appointment.notes}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-gray-200 flex justify-end space-x-3">
-            <button
-              onClick={onClose}
-              className="px-6 py-3 text-gray-700 bg-cyan-30-100 rounded-lg hover:bg-cyan-30-200 transition duration-200 font-medium"
-            >
-              Close
-            </button>
-            {/* <button
-              onClick={() => window.print()}
-              className="px-6 py-3 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition duration-200 font-medium"
-            >
-              Print Details
-            </button> */}
+          {/* Metadata Card */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 mt-6 hover:shadow-md transition-all duration-200">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  Created At
+                </label>
+                <p className="text-xs font-semibold text-slate-600">
+                  {new Date(appointment.createdAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}
+                </p>
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  Last Updated
+                </label>
+                <p className="text-xs font-semibold text-slate-600">
+                  {new Date(appointment.updatedAt || appointment.createdAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}
+                </p>
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  Appointment ID
+                </label>
+                <p className="text-xs font-mono text-slate-500">{appointment._id}</p>
+              </div>
+            </div>
           </div>
+
+          {/* Medical Record Watermark Footer */}
+          <div className="mt-8 pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-2 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+            <div>Trim Medical Centre • Confidential Patient Record</div>
+            <div>Page 1 of 1</div>
+          </div>
+        </div>
+
+        {/* Footer actions */}
+        <div className="p-5 bg-slate-50 border-t border-slate-200 flex justify-end gap-3 rounded-b-xl">
+          <button
+            onClick={onClose}
+            className="px-5 py-2 text-sm font-bold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 hover:text-slate-900 transition duration-200 shadow-sm"
+          >
+            Close Sheet
+          </button>
         </div>
       </div>
     </div>
