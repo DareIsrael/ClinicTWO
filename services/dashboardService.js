@@ -253,4 +253,31 @@ export const dashboardService = {
     });
     return response.data;
   },
+
+  // Teaser functions
+  // Get teasers (admin=true for admin view, false for public view)
+  getTeasers: async (isAdmin = false) => {
+    const response = await api.get('/teasers', {
+      params: { admin: isAdmin }
+    });
+    return response.data;
+  },
+
+  // Create teaser
+  createTeaser: async (teaserData) => {
+    const response = await api.post('/teasers', teaserData);
+    return response.data;
+  },
+
+  // Update teaser
+  updateTeaser: async (id, teaserData) => {
+    const response = await api.put(`/teasers/${id}`, teaserData);
+    return response.data;
+  },
+
+  // Delete teaser
+  deleteTeaser: async (id) => {
+    const response = await api.delete(`/teasers/${id}`);
+    return response.data;
+  },
 };

@@ -767,6 +767,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Announcements from "@/components/Announcements";
+import TeaserBanner from "@/components/TeaserBanner";
 
 export default function Home() {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
@@ -888,6 +889,9 @@ export default function Home() {
       {/* Announcements */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 pt-3 sm:pt-6">
         <Announcements />
+        <div className="mt-3">
+          <TeaserBanner />
+        </div>
       </div>
 
       {/* Hero Section with Background Video - Fixed Version */}
