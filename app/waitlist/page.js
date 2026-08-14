@@ -2,6 +2,52 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const InputField = ({
+  label,
+  name,
+  type,
+  value,
+  onChange,
+  error,
+  required,
+  placeholder,
+  options,
+}) => (
+  <div className="mb-4">
+    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+      {label} {required && <span className="text-cyan-600">*</span>}
+    </label>
+    {type === "select" ? (
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={`w-full px-4 py-2.5 bg-white border rounded-lg transition-all duration-200 text-gray-700 text-sm
+          ${error ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/20"}
+          focus:outline-none`}
+      >
+        {options?.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    ) : (
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={`w-full px-4 py-2.5 bg-white border rounded-lg transition-all duration-200 text-gray-700 text-sm
+          ${error ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/20"}
+          focus:outline-none placeholder:text-gray-400`}
+      />
+    )}
+    {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+  </div>
+);
+
 export default function WaitlistPage() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -120,52 +166,6 @@ export default function WaitlistPage() {
       setLoading(false);
     }
   };
-
-  const InputField = ({
-    label,
-    name,
-    type,
-    value,
-    onChange,
-    error,
-    required,
-    placeholder,
-    options,
-  }) => (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-        {label} {required && <span className="text-cyan-600">*</span>}
-      </label>
-      {type === "select" ? (
-        <select
-          name={name}
-          value={value}
-          onChange={onChange}
-          className={`w-full px-4 py-2.5 bg-white border rounded-lg transition-all duration-200 text-gray-700 text-sm
-            ${error ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/20"}
-            focus:outline-none`}
-        >
-          {options?.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      ) : (
-        <input
-          type={type}
-          name={name}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className={`w-full px-4 py-2.5 bg-white border rounded-lg transition-all duration-200 text-gray-700 text-sm
-            ${error ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/20"}
-            focus:outline-none placeholder:text-gray-400`}
-        />
-      )}
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-30 via-white to-blue-50">
