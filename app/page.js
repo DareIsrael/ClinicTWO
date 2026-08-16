@@ -768,86 +768,88 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Announcements from "@/components/Announcements";
 import TeaserBanner from "@/components/TeaserBanner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Home() {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   const videoRef = useRef(null);
+  const { t } = useLanguage();
 
   const services = [
     {
-      title: "Family Medicine",
-      description: "Primary care for all ages from infants to seniors",
+      title: t("service_family_med"),
+      description: t("service_family_med_desc"),
     },
     {
-      title: "Chronic Care",
-      description: "Diabetes, hypertension and heart condition management",
+      title: t("service_chronic_care"),
+      description: t("service_chronic_care_desc"),
     },
     {
-      title: "Preventive Health",
-      description: "Regular check-ups, vaccinations and health screenings",
+      title: t("service_preventive"),
+      description: t("service_preventive_desc"),
     },
     {
-      title: "Sick Notes",
-      description: "Same-day school, university and work sick notes",
+      title: t("service_sick_notes"),
+      description: t("service_sick_notes_desc"),
     },
     {
-      title: "STI Screening",
-      description: "Confidential and accurate testing",
+      title: t("service_sti"),
+      description: t("service_sti_desc"),
     },
     {
-      title: "WSIB Forms",
-      description: "WSIB medical assessments and form 8 completion",
+      title: t("service_wsib"),
+      description: t("service_wsib_desc"),
     },
     {
-      title: "Driver's Medicals",
-      description: "Same-day MTO drivers medical exam",
+      title: t("service_drivers"),
+      description: t("service_drivers_desc"),
     },
     {
-      title: "Counselling",
-      description: "Professional health counselling services",
+      title: t("service_counselling"),
+      description: t("service_counselling_desc"),
     },
-    { title: "Treatments", description: "Comprehensive medical treatments" },
+    {
+      title: t("service_treatments"),
+      description: t("service_treatments_desc"),
+    },
   ];
 
   const values = [
     {
-      title: "Patient-Centered Care",
-      description:
-        "Every treatment plan is tailored to your unique health needs and lifestyle",
+      title: t("val_patient_centered"),
+      description: t("val_patient_centered_desc"),
     },
     {
-      title: "Continuity of Care",
-      description:
-        "Build a long-term relationship with your dedicated family physician",
+      title: t("val_continuity"),
+      description: t("val_continuity_desc"),
     },
     {
-      title: "Evidence-Based Medicine",
-      description:
-        "Treatment decisions based on the latest medical research and guidelines",
+      title: t("val_evidence"),
+      description: t("val_evidence_desc"),
     },
     {
-      title: "Compassionate Approach",
-      description:
-        "Healthcare delivered with empathy, respect, and understanding",
+      title: t("val_compassionate"),
+      description: t("val_compassionate_desc"),
     },
   ];
 
+
   const practiceFeatures = [
     {
-      title: "Same-Day Appointments",
-      description: "Urgent care needs addressed promptly",
+      title: t("feat_sameday"),
+      description: t("feat_sameday_desc"),
     },
     {
-      title: "OHIP Billed Services",
-      description: "Most medical services covered by Ontario Health Insurance",
+      title: t("feat_ohip"),
+      description: t("feat_ohip_desc"),
     },
     {
-      title: "Comprehensive Care",
-      description: "Full-spectrum family medicine for all ages",
+      title: t("feat_comprehensive"),
+      description: t("feat_comprehensive_desc"),
     },
     {
-      title: "Welcoming Environment",
-      description: "Comfortable clinic designed for patient relaxation",
+      title: t("feat_welcoming"),
+      description: t("feat_welcoming_desc"),
     },
   ];
 
@@ -894,151 +896,146 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Hero Section with Background Video - Fixed Version */}
-{/* Hero Section with Background Video - Loading Spinner Removed */}
-<section className="relative py-10 sm:py-14 lg:py-20 overflow-hidden">
-  {/* Background Video */}
-  <div className="absolute inset-0 w-full h-full">
-    <video
-      ref={videoRef}
-      className="absolute top-0 left-0 w-full h-full object-cover object-[center_30%]"
-      autoPlay
-      loop
-      muted
-      playsInline
-      poster="https://res.cloudinary.com/dveill0ji/image/upload/v1777532146/Trim3_sc7fb7.jpg"
-      preload="auto"
-    >
-      <source
-        src="https://res.cloudinary.com/dveill0ji/video/upload/v1778781972/TrimV_udy9pt.mp4"
-        type="video/mp4"
-      />
-      {/* Fallback for different video formats */}
-      <source
-        src="https://res.cloudinary.com/dveill0ji/video/upload/v1778781972/TrimV_udy9pt.webm"
-        type="video/webm"
-      />
-      Your browser does not support the video tag.
-    </video>
-    
-    {/* Fallback image with better visibility */}
-    <div 
-      className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-      style={{
-        backgroundImage: "url('https://res.cloudinary.com/dveill0ji/image/upload/v1777532146/Trim3_sc7fb7.jpg')",
-      }}
-    ></div>
-  </div>
+      {/* Hero Section with Background Video */}
+      <section className="relative py-10 sm:py-14 lg:py-20 overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            ref={videoRef}
+            className="absolute top-0 left-0 w-full h-full object-cover object-[center_30%]"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="https://res.cloudinary.com/dveill0ji/image/upload/v1777532146/Trim3_sc7fb7.jpg"
+            preload="auto"
+          >
+            <source
+              src="https://res.cloudinary.com/dveill0ji/video/upload/v1778781972/TrimV_udy9pt.mp4"
+              type="video/mp4"
+            />
+            <source
+              src="https://res.cloudinary.com/dveill0ji/video/upload/v1778781972/TrimV_udy9pt.webm"
+              type="video/webm"
+            />
+          </video>
+          
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
+            style={{
+              backgroundImage: "url('https://res.cloudinary.com/dveill0ji/image/upload/v1777532146/Trim3_sc7fb7.jpg')",
+            }}
+          ></div>
+        </div>
 
-  {/* Dark Overlay for text readability */}
-  <div className="absolute inset-0 bg-black/60"></div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
 
-  <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 text-center text-white">
-    {/* Badge */}
-    <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-      <svg
-        className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-        />
-      </svg>
-      Accepting New Patients
-    </div>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 text-center text-white">
+          {/* Badge */}
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+            <svg
+              className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              />
+            </svg>
+            {t("hero_badge")}
+          </div>
 
-    {/* Title */}
-    <h1 className="text-xl sm:text-3xl lg:text-4xl xl:text-4xl font-bold leading-tight tracking-tight mb-3 sm:mb-6">
-      Comprehensive Medical Care
-      <br />
-      <span className="text-white/90 text-base sm:text-xl lg:text-2xl block mt-1">
-        Accessible. Reliable. Patient-focused.
-      </span>
-    </h1>
+          {/* Title */}
+          <h1 className="text-xl sm:text-3xl lg:text-4xl xl:text-4xl font-bold leading-tight tracking-tight mb-3 sm:mb-6">
+            {t("hero_title")}
+            <br />
+            <span className="text-white/90 text-base sm:text-xl lg:text-2xl block mt-1">
+              {t("hero_subtitle")}
+            </span>
+          </h1>
 
-    {/* BUTTON ROWS - MOBILE STACKED, DESKTOP ROW */}
-    <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 mb-4 sm:mb-6">
-      <Link
-        href="https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554"
-        className="inline-flex w-40 sm:w-auto items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-white text-gray-700 font-semibold text-sm sm:text-base border border-cyan-400 hover:bg-cyan-50 transition-all duration-200"
-      >
-        Rostered Patients
-        <svg
-          className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </Link>
+          {/* BUTTON ROWS */}
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 mb-4 sm:mb-6">
+            <Link
+              href="https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554"
+              className="inline-flex w-40 sm:w-auto items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-white text-gray-700 font-semibold text-sm sm:text-base border border-cyan-400 hover:bg-cyan-50 transition-all duration-200"
+            >
+              {t("hero_rostered_btn")}
+              <svg
+                className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
 
-      <Link
-        href="/waitlist"
-        className="inline-flex w-48 sm:w-auto items-center justify-center px-5 sm:px-8 py-2 sm:py-3 rounded-xl bg-transparent border border-cyan-400 text-white font-semibold text-sm sm:text-base hover:bg-cyan-500/10 transition-all duration-200"
-      >
-        <svg
-          className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13-5.197a6 6 0 00-9 5.197"
-          />
-        </svg>
-        Join Waitlist
-      </Link>
-    </div>
+            <Link
+              href="/waitlist"
+              className="inline-flex w-48 sm:w-auto items-center justify-center px-5 sm:px-8 py-2 sm:py-3 rounded-xl bg-transparent border border-cyan-400 text-white font-semibold text-sm sm:text-base hover:bg-cyan-500/10 transition-all duration-200"
+            >
+              <svg
+                className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13-5.197a6 6 0 00-9 5.197"
+                />
+              </svg>
+              {t("hero_join_waitlist")}
+            </Link>
+          </div>
 
-    <div className="flex justify-center">
-      <Link
-        href="/book-appointment"
-        className="inline-flex w-56 sm:w-auto items-center justify-center px-6 sm:px-10 py-2 sm:py-3 rounded-xl bg-transparent border border-cyan-400 text-white font-semibold text-sm sm:text-base hover:bg-cyan-500/10 transition-all duration-200"
-      >
-        <svg
-          className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M13 10V3L4 14h7v7l9-11h-7z"
-          />
-        </svg>
-        Book Walk-In Care
-      </Link>
-    </div>
-  </div>
-</section>
+          <div className="flex justify-center">
+            <Link
+              href="/book-appointment"
+              className="inline-flex w-56 sm:w-auto items-center justify-center px-6 sm:px-10 py-2 sm:py-3 rounded-xl bg-transparent border border-cyan-400 text-white font-semibold text-sm sm:text-base hover:bg-cyan-500/10 transition-all duration-200"
+            >
+              <svg
+                className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              {t("hero_book_walkin")}
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      {/* Stats Section - reduced padding on mobile */}
-      {/* Practice Features Section - reduced padding on mobile */}
+      {/* Practice Features Section */}
       <section className="bg-white py-12 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-4 sm:mb-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-3 sm:mb-4">
-              Practice Features
+              {t("features_title")}
             </h2>
             <div className="w-10 h-0.5 bg-gray-300 rounded-full mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
-              Designed with your comfort and convenience in mind
+              {t("features_subtitle")}
             </p>
           </div>
 
@@ -1075,16 +1072,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section - Sliding Carousel */}
+      {/* Services Section */}
       <section className="bg-gray-50 py-10 sm:py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-3 sm:mb-4">
-            Our Services
+            {t("services_title")}
           </h2>
           <div className="w-10 h-0.5 bg-gray-300 rounded-full mx-auto mb-4 sm:mb-6"></div>
           <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 max-w-2xl mx-auto">
-            Comprehensive family medicine services to keep you and your family
-            healthy
+            {t("services_subtitle")}
           </p>
 
           {/* Sliding Carousel */}
@@ -1129,7 +1125,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Navigation Buttons - Smaller on mobile */}
+            {/* Navigation Buttons */}
             <button
               onClick={prevService}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 lg:-translate-x-6 w-8 h-8 sm:w-10 sm:h-10 bg-white border border-gray-200 rounded-full shadow-md hover:bg-gray-50 transition-all flex items-center justify-center"
@@ -1181,16 +1177,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Practice Philosophy Section - reduced padding on mobile */}
+      {/* Practice Philosophy Section */}
       <section className="bg-white py-12 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-4 sm:mb-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-3 sm:mb-4">
-              Our Practice Philosophy
+              {t("philosophy_title")}
             </h2>
             <div className="w-10 h-0.5 bg-gray-300 rounded-full mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
-              Guided by principles that put your health and well-being first
+              {t("philosophy_subtitle")}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -1223,25 +1219,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hours and Quick Contact Section - 2 columns */}
+      {/* Hours and Quick Contact Section */}
       <section className="bg-gray-50 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Hours of Operation */}
             <div className="text-center lg:text-left">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-700 mb-4 sm:mb-6">
-                Hours of Operation
+                {t("hours_title")}
               </h2>
               <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100 max-w-md mx-auto lg:mx-0">
                 <div className="space-y-2 sm:space-y-3">
                   {[
-                    { day: "Monday", hours: "10:00 AM - 7:00 PM" },
-                    { day: "Tuesday", hours: "10:00 AM - 7:00 PM" },
-                    { day: "Wednesday", hours: "10:00 AM - 7:00 PM" },
-                    { day: "Thursday", hours: "10:00 AM - 7:00 PM" },
-                    { day: "Friday", hours: "10:00 AM - 5:00 PM" },
-                    { day: "Saturday", hours: "10:00 AM - 3:00 PM" },
-                    { day: "Sunday", hours: "Closed" },
+                    { day: t("day_monday"), hours: t("hours_mon_thu") },
+                    { day: t("day_tuesday"), hours: t("hours_mon_thu") },
+                    { day: t("day_wednesday"), hours: t("hours_mon_thu") },
+                    { day: t("day_thursday"), hours: t("hours_mon_thu") },
+                    { day: t("day_friday"), hours: t("hours_fri") },
+                    { day: t("day_saturday"), hours: t("hours_sat") },
+                    { day: t("day_sunday"), hours: t("hours_closed") },
                   ].map((schedule, index) => (
                     <div
                       key={index}
@@ -1262,7 +1258,7 @@ export default function Home() {
             {/* Quick Contact */}
             <div className="text-center lg:text-left">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-700 mb-4 sm:mb-6">
-                Quick Contact
+                {t("quick_contact")}
               </h2>
               <div className="bg-white rounded-2xl p-5 sm:p-6 max-w-md mx-auto lg:mx-0 border border-gray-100">
                 <div className="space-y-3 sm:space-y-4">
@@ -1291,10 +1287,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-gray-700 font-medium text-sm">
-                        1280 Trim Rd, Unit B
-                      </p>
-                      <p className="text-gray-700 text-sm">
-                        Orleans, ON K4A 3N3
+                        {t("address")}
                       </p>
                     </div>
                   </div>
@@ -1318,10 +1311,10 @@ export default function Home() {
                     </div>
                     <div>
                       <a
-                        href="tel:3438873470"
+                        href="tel:3432244070"
                         className="text-gray-700 font-medium hover:text-cyan-600 transition-colors text-sm"
                       >
-                        (343) 224-4070
+                        {t("phone")}
                       </a>
                     </div>
                   </div>
@@ -1348,7 +1341,7 @@ export default function Home() {
                         href="mailto:contact@trimmedicalcentre.ca"
                         className="text-gray-700 font-medium hover:text-cyan-600 transition-colors text-xs break-all"
                       >
-                        contact@trimmedicalcentre.ca
+                        {t("email")}
                       </a>
                     </div>
                   </div>
@@ -1372,7 +1365,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-gray-700 font-medium text-sm">
-                        (888) 615-1221
+                        {t("fax")}
                       </p>
                     </div>
                   </div>
@@ -1383,12 +1376,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Location Section - Full Width with Bold Styling */}
+      {/* Our Location Section */}
       <section className="bg-white py-12 sm:py-16">
         <div className="w-full px-0">
           <div className="text-center mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-700 mb-3">
-              Our Location
+              {t("our_location")}
             </h2>
             <div className="w-12 h-0.5 bg-gray-300 rounded-full mx-auto"></div>
           </div>
@@ -1409,7 +1402,7 @@ export default function Home() {
             </div>
             <div className="text-center py-4 sm:py-6 bg-gray-50">
               <p className="text-gray-700 font-medium text-base sm:text-lg mb-2">
-                1280 Trim Rd, Unit B, Orleans, ON K4A 3N3
+                {t("address")}
               </p>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=1280+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
@@ -1417,7 +1410,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold text-sm sm:text-base transition-colors border-b border-gray-300 hover:border-cyan-600"
               >
-                Get Directions
+                {t("get_directions")}
                 <svg
                   className="w-4 h-4 ml-1"
                   fill="none"
@@ -1437,7 +1430,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Emergency Info - reduced padding */}
+      {/* Emergency Info */}
       <section className="bg-gray-50 py-6 sm:py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="bg-white rounded-xl p-4 sm:p-5 text-center border border-gray-100">
@@ -1457,11 +1450,10 @@ export default function Home() {
               </svg>
               <div>
                 <h4 className="font-semibold text-red-600 text-xs sm:text-sm">
-                  Emergency Care
+                  {t("emergency_title")}
                 </h4>
                 <p className="text-gray-600 text-xs">
-                  For emergencies, call 911 or visit your nearest hospital
-                  emergency department.
+                  {t("emergency_text")}
                 </p>
               </div>
             </div>
@@ -1471,3 +1463,4 @@ export default function Home() {
     </div>
   );
 }
+

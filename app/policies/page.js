@@ -1,16 +1,16 @@
 // policies/page.js - Completely redesigned with Clean UI
-export const metadata = {
-  title: "Patient Information & Clinic Policies | Trim Medical Centre",
-  description:
-    "Comprehensive information about patient rights, responsibilities, and clinic policies",
-};
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function PoliciesPage() {
+  const { t } = useLanguage();
+
   const policySections = [
     {
       id: "patient-rights",
-      title: "Patient Rights",
-      subtitle: "As a patient, you have the right to:",
+      title: t("policy_rights"),
+      subtitle: t("policy_rights_sub"),
       items: [
         {
           title: "Respect & Dignity",
@@ -45,8 +45,8 @@ export default function PoliciesPage() {
     },
     {
       id: "patient-responsibilities",
-      title: "Patient Responsibilities",
-      subtitle: "To help us care for you effectively, we ask that you:",
+      title: t("policy_resp"),
+      subtitle: t("policy_resp_sub"),
       items: [
         {
           title: "Respectful Conduct",
@@ -67,7 +67,7 @@ export default function PoliciesPage() {
     },
     {
       id: "appointment-policy",
-      title: "Appointment, Late & No-Show Policy",
+      title: t("policy_cancel"),
       items: [
         {
           title: "Arrivals",
@@ -104,7 +104,7 @@ export default function PoliciesPage() {
     },
     {
       id: "non-ohip-services",
-      title: "Non-OHIP / Uninsured Services",
+      title: t("policy_uninsured_title"),
       items: [
         {
           content:
@@ -223,15 +223,14 @@ export default function PoliciesPage() {
           <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
             <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
             <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
-              Clinic Information
+              {t("nav_policy")}
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
-            Patient Information & Policies
+            {t("policies_title")}
           </h1>
           <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
-            Comprehensive information about your rights, responsibilities, and
-            our clinic policies
+            {t("policies_subtitle")}
           </p>
         </div>
       </div>
@@ -248,6 +247,7 @@ export default function PoliciesPage() {
               We are committed to providing compassionate, efficient, and
               high-quality care for every patient. Below is a clear outline of
               your rights, responsibilities, and our clinic's operational
+
               policies so you always know what to expect.
             </p>
           </div>

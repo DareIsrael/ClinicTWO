@@ -4,9 +4,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import InputField from "@/components/InputField";
 import { useAuth } from "@/hooks/useAuth";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function SignupPage() {
+  const { t } = useLanguage();
   const { register, signIn } = useAuth();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,16 +33,16 @@ export default function SignupPage() {
   const router = useRouter();
 
   const genderOptions = [
-    { value: "Male", label: "Male" },
-    { value: "Female", label: "Female" },
-    { value: "Other", label: "Other" },
+    { value: "Male", label: t("gender_male") },
+    { value: "Female", label: t("gender_female") },
+    { value: "Other", label: t("gender_other") },
   ];
 
   const countryOptions = [
-    { value: "USA", label: "United States" },
-    { value: "Canada", label: "Canada" },
-    { value: "UK", label: "United Kingdom" },
-    { value: "Australia", label: "Australia" },
+    { value: "USA", label: t("country_usa") },
+    { value: "Canada", label: t("country_canada") },
+    { value: "UK", label: t("country_uk") },
+    { value: "Australia", label: t("country_australia") },
   ];
 
   const handleChange = (e) => {
@@ -73,37 +76,32 @@ export default function SignupPage() {
     const newErrors = {};
 
     if (!formData.firstName.trim())
-      newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.gender) newErrors.gender = "Gender is required";
+      newErrors.firstName = t("err_first_name_req");
+    if (!formData.lastName.trim()) newErrors.lastName = t("err_last_name_req");
+    if (!formData.email.trim()) newErrors.email = t("err_email_req");
+    if (!formData.gender) newErrors.gender = t("err_gender_req");
     if (!formData.healthcareProvince.trim())
-      newErrors.healthcareProvince = "Healthcare province is required";
+      newErrors.healthcareProvince = t("err_province_req");
     if (!formData.healthcareNumber.trim())
-      newErrors.healthcareNumber = "Healthcare number is required";
+      newErrors.healthcareNumber = t("err_health_num_req");
     if (!formData.dateOfBirth)
-      newErrors.dateOfBirth = "Date of birth is required";
+      newErrors.dateOfBirth = t("err_dob_req");
     if (!formData.cellPhone.trim())
-      newErrors.cellPhone = "Cell phone is required";
-    if (!formData.address.trim()) newErrors.address = "Address is required";
-    if (!formData.country) newErrors.country = "Country is required";
+      newErrors.cellPhone = t("err_phone_req");
+    if (!formData.address.trim()) newErrors.address = t("err_address_req");
+    if (!formData.country) newErrors.country = t("err_country_req");
     if (!formData.postalCode.trim())
-      newErrors.postalCode = "Postal code is required";
-    if (!formData.password) newErrors.password = "Password is required";
-    if (!formData.confirmPassword)
-      newErrors.confirmPassword = "Please confirm your password";
+      newErrors.postalCode = t("err_postal_req");
+    if (!formData.password) newErrors.password = t("err_password_req");
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formData.email && !emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("err_email_valid");
     }
 
     if (formData.password) {
       if (formData.password.length < 8) {
-        newErrors.password = "Password must be at least 8 characters long";
-      } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
-        newErrors.password =
-          "Password must contain at least one uppercase letter, one lowercase letter, and one number";
+        newErrors.password = t("err_password_min");
       }
     }
 
@@ -112,14 +110,14 @@ export default function SignupPage() {
       formData.confirmPassword &&
       formData.password !== formData.confirmPassword
     ) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = t("err_password_match");
     }
 
     if (formData.dateOfBirth) {
       const dob = new Date(formData.dateOfBirth);
       const today = new Date();
       if (dob > today) {
-        newErrors.dateOfBirth = "Date of birth cannot be in the future";
+        newErrors.dateOfBirth = t("err_dob_future");
       }
     }
 
@@ -229,10 +227,10 @@ export default function SignupPage() {
                     </div>
                   </div>
                   <h1 className="text-xl font-bold text-gray-700 mb-1">
-                    Join Our Clinic
+                    {t("signup_title")}
                   </h1>
-                  <p className="text-gray-600 text-xs">Register</p>
                 </div>
+
 
                 {/* Success Message */}
                 {successMessage && (

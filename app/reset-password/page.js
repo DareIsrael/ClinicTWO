@@ -2,8 +2,10 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 function ResetPasswordContent() {
+  const { t } = useLanguage();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,13 +30,13 @@ function ResetPasswordContent() {
     setError("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(t("err_password_match"));
       setLoading(false);
       return;
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters long");
+      setError(t("err_password_min"));
       setLoading(false);
       return;
     }
@@ -101,10 +103,10 @@ function ResetPasswordContent() {
             </svg>
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">
-            Reset your password
+            {t("reset_title")}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Enter your new password below
+            {t("reset_subtitle")}
           </p>
         </div>
 
@@ -126,7 +128,7 @@ function ResetPasswordContent() {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
             >
-              New Password
+              {t("reset_new_pwd_label")}
             </label>
             <input
               id="password"
@@ -137,7 +139,7 @@ function ResetPasswordContent() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-700 rounded-md focus:outline-none focus:ring-red-500 focus:border-cyan-500 focus:z-10 sm:text-sm"
-              placeholder="Enter new password"
+              placeholder={t("reset_new_pwd_placeholder")}
               minLength="8"
             />
           </div>
@@ -147,7 +149,7 @@ function ResetPasswordContent() {
               htmlFor="confirmPassword"
               className="block text-sm font-medium text-gray-700"
             >
-              Confirm New Password
+              {t("reset_confirm_pwd_label")}
             </label>
             <input
               id="confirmPassword"
@@ -158,7 +160,7 @@ function ResetPasswordContent() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-700 rounded-md focus:outline-none focus:ring-red-500 focus:border-cyan-500 focus:z-10 sm:text-sm"
-              placeholder="Confirm new password"
+              placeholder={t("reset_confirm_pwd_placeholder")}
               minLength="8"
             />
           </div>
@@ -190,10 +192,10 @@ function ResetPasswordContent() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Resetting...
+                  {t("reset_btn_loading")}
                 </span>
               ) : (
-                "Reset Password"
+                t("reset_btn")
               )}
             </button>
           </div>
@@ -203,7 +205,7 @@ function ResetPasswordContent() {
               href="/login"
               className="font-medium bg-cyan-600 hover:bg-cyan-600"
             >
-              Back to login
+              {t("forgot_back_link")}
             </Link>
           </div>
         </form>
@@ -211,6 +213,7 @@ function ResetPasswordContent() {
     </div>
   );
 }
+
 
 export default function ResetPassword() {
   return (

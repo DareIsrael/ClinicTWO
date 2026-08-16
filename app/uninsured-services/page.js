@@ -1,14 +1,14 @@
 // uninsured-services/page.js - Completely redesigned with Clean UI
-export const metadata = {
-  title: "Uninsured Services & Fees | Trim Medical Centre",
-  description:
-    "Information about services not covered by OHIP and associated fees",
-};
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function UninsuredServicesPage() {
+  const { t } = useLanguage();
+
   const whySection = {
-    title: "Why some services are not covered by OHIP",
-    content: `At Trim Medical Centre, most of the care you receive is covered by the Ontario Health Insurance Plan (OHIP). However, OHIP does not pay for certain services, forms, notes, and reports - especially when they are requested by employers, schools, insurers, or other third parties. In those cases, the cost is the responsibility of the patient or the third party requesting the service. Our fees for uninsured services follow the Ontario Medical Association (OMA) recommended fee guide.`,
+    title: t("uninsured_why_title"),
+    content: t("uninsured_why_content"),
   };
 
   const services = [
@@ -73,16 +73,16 @@ export default function UninsuredServicesPage() {
 
   const additionalSections = [
     {
-      title: "Missed Appointments",
-      content: `OHIP does not pay for missed or late appointments. Our clinic will charge a missed appointment fee for appointments that are not cancelled with sufficient notice i.e same day cancellation or no show.`,
+      title: t("uninsured_missed_title"),
+      content: t("uninsured_missed_content"),
     },
     {
-      title: "Travel Medicine & Other Uninsured Services",
-      content: `Some clinical visits are uninsured because of the reason for the visit, such as: Travel health consultations, Non-insured vaccines, and certain employment-related assessments.`,
+      title: t("uninsured_travel_title"),
+      content: t("uninsured_travel_content"),
     },
     {
-      title: "Questions About Fees?",
-      content: `If you're unsure whether something is covered by OHIP or subject to an uninsured fee, please ask our team. We're happy to explain what is insured, what isn't, and how the fees are calculated.`,
+      title: t("uninsured_questions_title"),
+      content: t("uninsured_questions_content"),
     },
   ];
 
@@ -94,14 +94,14 @@ export default function UninsuredServicesPage() {
           <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
             <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
             <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
-              Fee Information
+              {t("uninsured_badge")}
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
-            Uninsured Services
+            {t("uninsured_title")}
           </h1>
           <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
-            Information about services not covered by OHIP and associated fees
+            {t("uninsured_subtitle")}
           </p>
         </div>
       </div>
@@ -112,7 +112,7 @@ export default function UninsuredServicesPage() {
           <div className="bg-cyan-30 rounded-2xl p-6 sm:p-8">
             <div className="text-left">
               <h2 className="text-xl sm:text-2xl font-light text-gray-700 mb-4">
-                Why some services are not covered by OHIP
+                {whySection.title}
               </h2>
               <div className="w-10 h-0.5 bg-cyan-30-300 rounded-full mb-5"></div>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
@@ -123,7 +123,7 @@ export default function UninsuredServicesPage() {
             <div className="mt-6 p-4 bg-cyan-30-100 rounded-lg">
               <div className="flex items-start gap-3">
                 <svg
-                  className="w-4 h-4  flex-shrink-0 mt-0.5 "
+                  className="w-4 h-4 flex-shrink-0 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -136,9 +136,7 @@ export default function UninsuredServicesPage() {
                   />
                 </svg>
                 <p className="text-sm text-gray-600">
-                  <span className="font-semibold">Note:</span> Fees are based on
-                  the OMA 2025 recommendations. We will always inform you of any
-                  fee before proceeding.
+                  <span className="font-semibold">Note:</span> {t("uninsured_oma_note")}
                 </p>
               </div>
             </div>
@@ -151,7 +149,7 @@ export default function UninsuredServicesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-light text-gray-700 mb-3">
-              Common Uninsured Services & Fees
+              {t("uninsured_common_title")}
             </h2>
             <div className="w-12 h-0.5 bg-cyan-30-300 rounded-full mx-auto"></div>
           </div>
@@ -180,10 +178,10 @@ export default function UninsuredServicesPage() {
                       <thead>
                         <tr className="border-b border-gray-200">
                           <th className="text-left py-2 px-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Service
+                            {t("table_service")}
                           </th>
                           <th className="text-left py-2 px-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-24">
-                            Fee
+                            {t("table_fee")}
                           </th>
                         </tr>
                       </thead>
@@ -250,21 +248,20 @@ export default function UninsuredServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className=" py-12 sm:py-16">
+      <section className="py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-light  mb-3">
-            Need Clarification About Fees?
+          <h2 className="text-2xl sm:text-3xl font-light mb-3">
+            {t("uninsured_cta_title")}
           </h2>
           <p className="text-gray-500 text-sm mb-6 max-w-md mx-auto">
-            We're happy to explain what is insured, what isn't, and how the fees
-            are calculated.
+            {t("uninsured_cta_text")}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-white text-gray-700 font-medium hover:bg-cryan-30-100 transition-all duration-200 text-sm"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-white text-gray-700 font-medium hover:bg-cyan-50 transition-all duration-200 text-sm border border-gray-200"
             >
-              Contact Us
+              {t("nav_contact")}
               <svg
                 className="w-4 h-4 ml-2"
                 fill="none"
@@ -280,10 +277,10 @@ export default function UninsuredServicesPage() {
               </svg>
             </a>
             <a
-              href="/appointment"
-              className="bg-cyan-800 inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-600 text-white font-medium hover:bg-cyan-30-800 transition-all duration-200 text-sm"
+              href="/book-appointment"
+              className="bg-cyan-800 inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-600 text-white font-medium hover:bg-cyan-700 transition-all duration-200 text-sm"
             >
-              Book Appointment
+              {t("nav_book")}
             </a>
           </div>
         </div>
@@ -291,3 +288,4 @@ export default function UninsuredServicesPage() {
     </div>
   );
 }
+

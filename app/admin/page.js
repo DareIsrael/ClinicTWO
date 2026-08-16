@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
+
 import ProtectedRoute from "@/components/ProtectedRoute";
 import WaitlistTab from "@/components/admin/WaitlistTab";
 import ReportsTab from "@/components/admin/ReportsTab";
@@ -14,7 +15,22 @@ import TeaserTab from "@/components/admin/TeaserTab";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("waitlist");
+  const [theme, setTheme] = useState("light");
   const { user } = useAuth();
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("admin_theme");
+    if (savedTheme === "dark" || savedTheme === "light") {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    localStorage.setItem("admin_theme", nextTheme);
+  };
+
 
   const tabs = [
     {
@@ -190,26 +206,57 @@ export default function AdminDashboard() {
     },
   ];
 
+  const isDark = theme === "dark";
+
   return (
     <ProtectedRoute requireAdmin={true}>
-      <div className="min-h-screen bg-cyan-30">
+      <div className={`min-h-screen transition-colors duration-300 ${isDark ? "dark-theme-active bg-[#0f172a] text-slate-100" : "bg-cyan-30 text-gray-800"}`}>
+
         {/* Header */}
-        <div className="bg-white shadow">
+        <div className={`shadow transition-colors duration-300 ${isDark ? "bg-[#1e293b] border-b border-slate-800" : "bg-white"}`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-6">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-700">
+                <h1 className={`text-2xl sm:text-3xl font-bold ${isDark ? "text-slate-100" : "text-gray-700"}`}>
                   Admin Dashboard
                 </h1>
-                <p className="text-gray-600 mt-1">
+                <p className={`mt-1 text-sm ${isDark ? "text-slate-400" : "text-gray-600"}`}>
                   Manage clinic operations and waitlist
                 </p>
               </div>
+
               <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-600 hidden sm:block">
+                {/* Theme Toggle Button */}
+                <button
+                  onClick={toggleTheme}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-200 ${
+                    isDark
+                      ? "bg-slate-800 border-slate-700 text-cyan-400 hover:bg-slate-700"
+                      : "bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200"
+                  }`}
+                  aria-label="Toggle Theme"
+                >
+                  {isDark ? (
+                    <>
+                      <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                      <span>Light Theme</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                      </svg>
+                      <span>Dark Theme</span>
+                    </>
+                  )}
+                </button>
+
+                <span className={`text-sm hidden sm:block ${isDark ? "text-slate-300" : "text-gray-600"}`}>
                   Welcome, {user?.firstName}
                 </span>
-                <div className="w-10 h-10 bg-cyan-600 rounded-full flex items-center justify-center text-white font-semibold">
+                <div className="w-10 h-10 bg-cyan-600 rounded-full flex items-center justify-center text-white font-semibold shadow-sm">
                   {user?.firstName?.charAt(0)}
                 </div>
               </div>
@@ -222,9 +269,11 @@ export default function AdminDashboard() {
           <div className="flex flex-col md:flex-row gap-6">
             {/* Vertical Navigation Sidebar */}
             <div className="md:w-64 flex-shrink-0">
-              <nav className="bg-white rounded-lg shadow-md overflow-hidden sticky top-6">
-                <div className="p-3 border-b border-gray-200 bg-cyan-30">
-                  <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
+              <nav className={`rounded-lg shadow-md overflow-hidden sticky top-6 border transition-colors duration-300 ${
+                isDark ? "bg-[#1e293b] border-slate-800" : "bg-white border-gray-200"
+              }`}>
+                <div className={`p-3 border-b ${isDark ? "border-slate-800 bg-slate-800/60" : "border-gray-200 bg-cyan-30"}`}>
+                  <h3 className={`text-sm font-semibold uppercase tracking-wider ${isDark ? "text-slate-300" : "text-gray-700"}`}>
                     Menu
                   </h3>
                 </div>
@@ -235,12 +284,22 @@ export default function AdminDashboard() {
                       onClick={() => setActiveTab(tab.id)}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 ${
                         activeTab === tab.id
-                          ? "bg-cyan-30 bg-cyan-600 border-l-4 border-cyan-600"
-                          : "text-gray-600 hover:bg-cyan-30 hover:text-gray-700"
+                          ? isDark
+                            ? "bg-slate-800 text-cyan-400 border-l-4 border-cyan-500 font-semibold"
+                            : "bg-cyan-50 text-cyan-700 border-l-4 border-cyan-600 font-semibold"
+                          : isDark
+                            ? "text-slate-300 hover:bg-slate-800/80 hover:text-white"
+                            : "text-gray-600 hover:bg-cyan-50 hover:text-gray-700"
                       }`}
                     >
                       <span
-                        className={`flex-shrink-0 ${activeTab === tab.id ? "bg-cyan-600" : "text-gray-400"}`}
+                        className={`flex-shrink-0 ${
+                          activeTab === tab.id
+                            ? "text-cyan-500"
+                            : isDark
+                              ? "text-slate-400"
+                              : "text-gray-400"
+                        }`}
                       >
                         {tab.icon}
                       </span>
@@ -267,7 +326,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Content Area */}
-            <div className="flex-1">
+            <div className={`flex-1 rounded-lg ${isDark ? "dark-theme-active" : ""}`}>
               {activeTab === "waitlist" && <WaitlistTab />}
               {activeTab === "reports" && <ReportsTab />}
               {activeTab === "announcements" && <AnnouncementsTab />}
@@ -286,3 +345,4 @@ export default function AdminDashboard() {
     </ProtectedRoute>
   );
 }
+

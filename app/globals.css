@@ -255,3 +255,103 @@ select:focus {
 a, button {
   transition: all 0.2s ease;
 }
+
+/* Soft Dark Navy Theme for Admin Dashboard & All Tab Pages */
+.dark-theme-active {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-theme-active .bg-white {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+.dark-theme-active .bg-cyan-30,
+.dark-theme-active .bg-cyan-50,
+.dark-theme-active .bg-gray-50,
+.dark-theme-active .bg-gray-100,
+.dark-theme-active .bg-slate-50 {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+.dark-theme-active .text-gray-900,
+.dark-theme-active .text-gray-800,
+.dark-theme-active .text-gray-700,
+.dark-theme-active .text-slate-800,
+.dark-theme-active .text-slate-700 {
+  color: #f1f5f9 !important;
+}
+
+.dark-theme-active .text-gray-600,
+.dark-theme-active .text-gray-500,
+.dark-theme-active .text-slate-600,
+.dark-theme-active .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+.dark-theme-active .text-gray-400,
+.dark-theme-active .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Inputs, Selects, Textareas */
+.dark-theme-active input:not([type="checkbox"]):not([type="radio"]),
+.dark-theme-active select,
+.dark-theme-active textarea {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+.dark-theme-active select option {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-theme-active input::placeholder,
+.dark-theme-active textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Tables */
+.dark-theme-active table thead,
+.dark-theme-active table th {
+  background-color: #0f172a !important;
+  color: #cbd5e1 !important;
+  border-color: #334155 !important;
+}
+
+.dark-theme-active table tbody tr {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+.dark-theme-active table tbody tr:hover,
+.dark-theme-active table tr.hover\:bg-cyan-30:hover,
+.dark-theme-active table tr.hover\:bg-gray-50:hover {
+  background-color: #334155 !important;
+}
+
+.dark-theme-active table td {
+  border-color: #334155 !important;
+}
+
+/* Borders & Dividers */
+.dark-theme-active .border-gray-100,
+.dark-theme-active .border-gray-200,
+.dark-theme-active .border-gray-300,
+.dark-theme-active .border-slate-200,
+.dark-theme-active .divide-gray-100,
+.dark-theme-active .divide-gray-200 {
+  border-color: #334155 !important;
+}
+
+/* Modal Backdrops & Cards */
+.dark-theme-active .bg-white\/75 {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+}

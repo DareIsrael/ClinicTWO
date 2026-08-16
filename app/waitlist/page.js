@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const InputField = ({
+
   label,
   name,
   type,
@@ -49,7 +51,9 @@ const InputField = ({
 );
 
 export default function WaitlistPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
+
     firstName: "",
     lastName: "",
     email: "",
@@ -68,18 +72,18 @@ export default function WaitlistPage() {
   const router = useRouter();
 
   const genderOptions = [
-    { value: "", label: "Select Gender" },
-    { value: "Male", label: "Male" },
-    { value: "Female", label: "Female" },
-    { value: "Other", label: "Other" },
+    { value: "", label: t("select_gender") },
+    { value: "Male", label: t("gender_male") },
+    { value: "Female", label: t("gender_female") },
+    { value: "Other", label: t("gender_other") },
   ];
 
   const countryOptions = [
-    { value: "", label: "Select Country" },
-    { value: "Canada", label: "Canada" },
-    { value: "USA", label: "United States" },
-    { value: "UK", label: "United Kingdom" },
-    { value: "Australia", label: "Australia" },
+    { value: "", label: t("select_country") },
+    { value: "Canada", label: t("country_canada") },
+    { value: "USA", label: t("country_usa") },
+    { value: "UK", label: t("country_uk") },
+    { value: "Australia", label: t("country_australia") },
   ];
 
   const handleChange = (e) => {
@@ -92,37 +96,38 @@ export default function WaitlistPage() {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.firstName.trim())
-      newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.gender) newErrors.gender = "Gender is required";
+      newErrors.firstName = t("err_first_name_req");
+    if (!formData.lastName.trim()) newErrors.lastName = t("err_last_name_req");
+    if (!formData.email.trim()) newErrors.email = t("err_email_req");
+    if (!formData.gender) newErrors.gender = t("err_gender_req");
     if (!formData.healthcareProvince.trim())
-      newErrors.healthcareProvince = "Healthcare province is required";
+      newErrors.healthcareProvince = t("err_province_req");
     if (!formData.healthcareNumber.trim())
-      newErrors.healthcareNumber = "Healthcare number is required";
+      newErrors.healthcareNumber = t("err_health_num_req");
     if (!formData.dateOfBirth)
-      newErrors.dateOfBirth = "Date of birth is required";
+      newErrors.dateOfBirth = t("err_dob_req");
     if (!formData.cellPhone.trim())
-      newErrors.cellPhone = "Cell phone is required";
-    if (!formData.address.trim()) newErrors.address = "Address is required";
-    if (!formData.country) newErrors.country = "Country is required";
+      newErrors.cellPhone = t("err_phone_req");
+    if (!formData.address.trim()) newErrors.address = t("err_address_req");
+    if (!formData.country) newErrors.country = t("err_country_req");
     if (!formData.postalCode.trim())
-      newErrors.postalCode = "Postal code is required";
+      newErrors.postalCode = t("err_postal_req");
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formData.email && !emailRegex.test(formData.email))
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("err_email_valid");
 
     if (formData.dateOfBirth) {
       const dob = new Date(formData.dateOfBirth);
       const today = new Date();
       if (dob > today)
-        newErrors.dateOfBirth = "Date of birth cannot be in the future";
+        newErrors.dateOfBirth = t("err_dob_future");
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -179,10 +184,10 @@ export default function WaitlistPage() {
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-tight">
-            Join the Waitlist
+            {t("waitlist_title")}
           </h1>
           <p className="text-gray-500 text-lg max-w-md mx-auto">
-            Be the first to know when new patient spots become available
+            {t("waitlist_subtitle")}
           </p>
         </div>
       </div>
@@ -262,7 +267,7 @@ export default function WaitlistPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     <InputField
-                      label="First Name"
+                      label={t("form_first_name")}
                       type="text"
                       name="firstName"
                       value={formData.firstName}
@@ -272,7 +277,7 @@ export default function WaitlistPage() {
                       placeholder="John"
                     />
                     <InputField
-                      label="Last Name"
+                      label={t("form_last_name")}
                       type="text"
                       name="lastName"
                       value={formData.lastName}
@@ -282,7 +287,7 @@ export default function WaitlistPage() {
                       placeholder="Doe"
                     />
                     <InputField
-                      label="Gender"
+                      label={t("form_gender")}
                       type="select"
                       name="gender"
                       value={formData.gender}
@@ -292,7 +297,7 @@ export default function WaitlistPage() {
                       options={genderOptions}
                     />
                     <InputField
-                      label="Date of Birth"
+                      label={t("form_dob")}
                       type="date"
                       name="dateOfBirth"
                       value={formData.dateOfBirth}
@@ -322,7 +327,7 @@ export default function WaitlistPage() {
                     Contact Information
                   </h3>
                   <InputField
-                    label="Email Address"
+                    label={t("form_email")}
                     type="email"
                     name="email"
                     value={formData.email}
@@ -332,7 +337,7 @@ export default function WaitlistPage() {
                     placeholder="john@example.com"
                   />
                   <InputField
-                    label="Phone Number"
+                    label={t("form_phone")}
                     type="tel"
                     name="cellPhone"
                     value={formData.cellPhone}
@@ -342,7 +347,7 @@ export default function WaitlistPage() {
                     placeholder="+1 (555) 123-4567"
                   />
                   <InputField
-                    label="Street Address"
+                    label={t("form_address")}
                     type="text"
                     name="address"
                     value={formData.address}
@@ -353,7 +358,7 @@ export default function WaitlistPage() {
                   />
                   <div className="grid grid-cols-2 gap-4">
                     <InputField
-                      label="Country"
+                      label={t("form_country")}
                       type="select"
                       name="country"
                       value={formData.country}
@@ -363,7 +368,7 @@ export default function WaitlistPage() {
                       options={countryOptions}
                     />
                     <InputField
-                      label="Postal Code"
+                      label={t("form_postal")}
                       type="text"
                       name="postalCode"
                       value={formData.postalCode}
@@ -395,7 +400,7 @@ export default function WaitlistPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     <InputField
-                      label="Province"
+                      label={t("form_province")}
                       type="text"
                       name="healthcareProvince"
                       value={formData.healthcareProvince}
@@ -405,7 +410,7 @@ export default function WaitlistPage() {
                       placeholder="Ontario"
                     />
                     <InputField
-                      label="Health Card Number"
+                      label={t("form_health_num")}
                       type="text"
                       name="healthcareNumber"
                       value={formData.healthcareNumber}
@@ -426,7 +431,7 @@ export default function WaitlistPage() {
                 {loading ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Processing...
+                    {t("btn_submitting")}
                   </>
                 ) : (
                   <>
@@ -443,10 +448,11 @@ export default function WaitlistPage() {
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    Join Waitlist
+                    {t("btn_submit_registration")}
                   </>
                 )}
               </button>
+
 
               <p className="text-center text-xs text-gray-400 mt-4">
                 By joining, you agree to our privacy policy.

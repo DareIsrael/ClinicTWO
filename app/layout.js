@@ -1,23 +1,11 @@
 // layout.js - Completely redesigned with red Theme
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Poppins } from "next/font/google";
 import SessionProvider from "@/components/SessionProvider";
-import Image from "next/image";
-import {
-  Phone,
-  Mail,
-  Calendar,
-  MapPin,
-  Clock,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  ChevronRight,
-  AlertCircle,
-} from "lucide-react";
-import Link from "next/link";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+
 
 // Import Poppins font
 const poppins = Poppins({
@@ -47,29 +35,17 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${poppins.className} antialiased`}>
         <SessionProvider>
-          <Navbar />
-          <main className="min-h-screen bg-white overflow-x-hidden">
-            {children}
-          </main>
+          <LanguageProvider>
+            <Navbar />
+            <main className="min-h-screen bg-white overflow-x-hidden">
+              {children}
+            </main>
+            <Footer />
+          </LanguageProvider>
 
-          {/* Modern Footer - red Theme */}
-          <footer className="bg-cyan-900 text-white">
-            {/* Main Footer Content - Adjusted mobile padding */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
-              {/* Copyright */}
-              <div className="border-t border-gray-800 pt-8 text-center">
-                <p className="text-white text-sm">
-                  &copy; {new Date().getFullYear()} Trim Medical Centre. All
-                  rights reserved.
-                </p>
-                <p className="text-white text-xs mt-2">
-                  Committed to your health and wellbeing
-                </p>
-              </div>
-            </div>
-          </footer>
         </SessionProvider>
       </body>
     </html>
   );
 }
+

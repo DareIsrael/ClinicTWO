@@ -2,8 +2,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ForgotPassword() {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -26,7 +28,7 @@ export default function ForgotPassword() {
       const data = await response.json();
 
       if (data.success) {
-        setMessage(data.message);
+        setMessage(t("forgot_success_msg"));
         setEmail("");
       } else {
         setError(data.message);
@@ -58,10 +60,10 @@ export default function ForgotPassword() {
             </svg>
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">
-            Forgot your password?
+            {t("forgot_title")}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Enter your email and we'll send you a reset link
+            {t("forgot_subtitle")}
           </p>
         </div>
 
@@ -83,7 +85,7 @@ export default function ForgotPassword() {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Email address
+              {t("login_email_label")}
             </label>
             <input
               id="email"
@@ -94,7 +96,7 @@ export default function ForgotPassword() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-700 rounded-md focus:outline-none focus:ring-red-500 focus:border-cyan-500 focus:z-10 sm:text-sm"
-              placeholder="Enter your email"
+              placeholder={t("login_email_placeholder")}
             />
           </div>
 
@@ -125,10 +127,10 @@ export default function ForgotPassword() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Sending...
+                  {t("forgot_btn_loading")}
                 </span>
               ) : (
-                "Send Reset Link"
+                t("forgot_btn")
               )}
             </button>
           </div>
@@ -138,7 +140,7 @@ export default function ForgotPassword() {
               href="/login"
               className="font-medium bg-cyan-600 hover:bg-cyan-600"
             >
-              Back to login
+              {t("forgot_back_link")}
             </Link>
           </div>
         </form>
@@ -146,3 +148,4 @@ export default function ForgotPassword() {
     </div>
   );
 }
+

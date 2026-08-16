@@ -3,12 +3,15 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function LoginPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -39,15 +42,15 @@ export default function LoginPage() {
   const validateForm = () => {
     const errors = {};
     if (!formData.email.trim()) {
-      errors.email = "Email is required";
+      errors.email = t("err_email_req");
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Please enter a valid email address";
+      errors.email = t("err_email_valid");
     }
 
     if (!formData.password) {
-      errors.password = "Password is required";
+      errors.password = t("err_password_req");
     } else if (formData.password.length < 6) {
-      errors.password = "Password must be at least 6 characters";
+      errors.password = t("err_password_min");
     }
 
     setValidationErrors(errors);
@@ -146,7 +149,6 @@ export default function LoginPage() {
                   <h2 className="text-2xl font-bold mb-2">
                     Trim Medical Centre
                   </h2>
-                  <p className="text-red-100 text-sm">Secure Admin Account</p>
                 </div>
               </div>
             </div>
@@ -156,11 +158,8 @@ export default function LoginPage() {
               <div className="max-w-md mx-auto">
                 <div className="text-center mb-8">
                   <h1 className="text-2xl font-bold text-gray-700 mb-2">
-                    Welcome Back
+                    {t("login_title")}
                   </h1>
-                  <p className="text-gray-600 text-sm">
-                    Sign in to your patient portal
-                  </p>
                 </div>
 
                 {error && (
@@ -173,7 +172,7 @@ export default function LoginPage() {
                   {/* Email */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address
+                      {t("login_email_label")}
                     </label>
                     <input
                       type="email"
@@ -185,7 +184,7 @@ export default function LoginPage() {
                           ? "border-cyan-500 focus:ring-red-500"
                           : "border-gray-300 focus:ring-red-500 focus:border-cyan-500"
                       }`}
-                      placeholder="Enter your email"
+                      placeholder={t("login_email_placeholder")}
                     />
                     {validationErrors.email && (
                       <p className="bg-cyan-600 text-xs mt-1">
@@ -197,7 +196,7 @@ export default function LoginPage() {
                   {/* Password */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Password
+                      {t("login_password_label")}
                     </label>
                     <div className="relative">
                       <input
@@ -210,7 +209,7 @@ export default function LoginPage() {
                             ? "border-cyan-500 focus:ring-red-500"
                             : "border-gray-300 focus:ring-red-500 focus:border-cyan-500"
                         }`}
-                        placeholder="Enter your password"
+                        placeholder={t("login_password_placeholder")}
                       />
                       <button
                         type="button"
@@ -261,19 +260,12 @@ export default function LoginPage() {
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between text-sm">
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="h-4 w-4 bg-cyan-600 rounded border-gray-300 focus:ring-red-500"
-                      />
-                      <span className="ml-2 text-gray-600">Remember me</span>
-                    </label>
+                  <div className="flex items-center justify-end text-sm">
                     <Link
                       href="/forgot-password"
-                      className=" hover:bg-cyan-600 text-cyan-600 font-medium"
+                      className="hover:bg-cyan-600 text-cyan-600 font-medium"
                     >
-                      Forgot password?
+                      {t("login_forgot_link")}
                     </Link>
                   </div>
 
@@ -282,17 +274,17 @@ export default function LoginPage() {
                     disabled={loading}
                     className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition-colors"
                   >
-                    {loading ? "Signing in..." : "Sign In"}
+                    {loading ? t("login_btn_loading") : t("login_btn")}
                   </button>
                 </form>
 
-                <div className="mt-6 text-center text-sm">
-                  New Admin?{" "}
+                <div className="mt-6 text-center text-sm text-gray-600">
+                  {t("login_no_acc")}{" "}
                   <Link
                     href="/signup"
                     className="hover:bg-cyan-600 text-cyan-600 font-medium"
                   >
-                    Create account
+                    {t("login_reg_link")}
                   </Link>
                 </div>
               </div>
@@ -302,4 +294,5 @@ export default function LoginPage() {
       </div>
     </div>
   );
+
 }

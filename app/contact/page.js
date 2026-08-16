@@ -2,14 +2,17 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("");
 
@@ -78,9 +81,10 @@ export default function ContactPage() {
           />
         </svg>
       ),
-      title: "Visit Us",
+      title: t("contact_visit_us"),
       details: ["1280 Trim Rd, Unit B", "Orleans, ON K4A 3N3"],
     },
+
     {
       icon: (
         <svg
@@ -97,7 +101,7 @@ export default function ContactPage() {
           />
         </svg>
       ),
-      title: "Call Us",
+      title: t("contact_call_us"),
       details: ["(343) 224-4070", "Fax: (888) 615-1221"],
     },
     {
@@ -116,7 +120,7 @@ export default function ContactPage() {
           />
         </svg>
       ),
-      title: "Email Us",
+      title: t("contact_email_us"),
       details: ["contact@trimmedicalcentre.ca"],
     },
     {
@@ -135,12 +139,12 @@ export default function ContactPage() {
           />
         </svg>
       ),
-      title: "Hours",
+      title: t("contact_hours"),
       details: [
-        "Mon-Thu: 10am - 7pm",
-        "Friday: 10am - 5pm",
-        "Saturday: 10am - 3pm",
-        "Sunday: Closed",
+        `Mon-Thu: ${t("hours_mon_thu")}`,
+        `Friday: ${t("hours_fri")}`,
+        `Saturday: ${t("hours_sat")}`,
+        `Sunday: ${t("hours_closed")}`,
       ],
     },
   ];
@@ -153,18 +157,18 @@ export default function ContactPage() {
           <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
             <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
             <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
-              Get in Touch
+              {t("contact_badge")}
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
-            Contact Us
+            {t("contact_title")}
           </h1>
           <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
-            We're here to help with all your healthcare needs. Reach out for
-            appointments, inquiries, or medical concerns.
+            {t("contact_subtitle")}
           </p>
         </div>
       </div>
+
 
       {/* Contact Information Cards */}
       <section className="py-12 sm:py-16 bg-white">

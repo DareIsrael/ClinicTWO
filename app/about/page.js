@@ -3,8 +3,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+
   const credentials = [
     {
       title: "Medical Degree",
@@ -22,43 +25,40 @@ export default function AboutPage() {
 
   const values = [
     {
-      title: "Patient-Centered Care",
-      description:
-        "Every treatment plan is tailored to your unique health needs and lifestyle",
+      title: t("val_patient_centered"),
+      description: t("val_patient_centered_desc"),
     },
     {
-      title: "Continuity of Care",
-      description:
-        "Build a long-term relationship with your dedicated family physician",
+      title: t("val_continuity"),
+      description: t("val_continuity_desc"),
     },
     {
-      title: "Evidence-Based Medicine",
-      description:
-        "Treatment decisions based on the latest medical research and guidelines",
+      title: t("val_evidence"),
+      description: t("val_evidence_desc"),
     },
     {
-      title: "Compassionate Approach",
-      description:
-        "Healthcare delivered with empathy, respect, and understanding",
+      title: t("val_compassionate"),
+      description: t("val_compassionate_desc"),
     },
   ];
 
+
   const practiceFeatures = [
     {
-      title: "Same-Day Appointments",
-      description: "Urgent care needs addressed promptly",
+      title: t("feat_sameday"),
+      description: t("feat_sameday_desc"),
     },
     {
-      title: "OHIP Billed Services",
-      description: "Most medical services covered by Ontario Health Insurance",
+      title: t("feat_ohip"),
+      description: t("feat_ohip_desc"),
     },
     {
-      title: "Comprehensive Care",
-      description: "Full-spectrum family medicine for all ages",
+      title: t("feat_comprehensive"),
+      description: t("feat_comprehensive_desc"),
     },
     {
-      title: "Welcoming Environment",
-      description: "Comfortable clinic designed for patient relaxation",
+      title: t("feat_welcoming"),
+      description: t("feat_welcoming_desc"),
     },
   ];
 
@@ -70,19 +70,19 @@ export default function AboutPage() {
           <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
             <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
             <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
-              About Our Clinic
+              {t("about_badge")}
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
-            Trim Medical Centre
+            {t("about_title")}
           </h1>
           <p className="text-gray-500 text-base max-w-2xl mx-auto">
-            Providing compassionate, comprehensive family medicine to the
-            Orleans community with personalized care from experienced
-            physicians.
+            {t("about_subtitle")}
           </p>
         </div>
       </div>
+
+
 
       {/* Meet Our Physician Section */}
       {/* <section className="bg-cyan-30 py-16 sm:py-20">

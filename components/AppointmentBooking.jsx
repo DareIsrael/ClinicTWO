@@ -1,7 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function AppointmentBooking() {
+  const { t } = useLanguage();
+
   // State management
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -182,13 +185,13 @@ export default function AppointmentBooking() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
           <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
             <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
-            <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">Secure Online Booking</span>
+            <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">{t("nav_book")}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
-            Book Your Visit
+            {t("book_title")}
           </h1>
           <p className="text-gray-500 text-base max-w-md mx-auto">
-            Schedule in minutes. Simple. Secure. Convenient.
+            {t("book_subtitle")}
           </p>
         </div>
       </div>
@@ -216,6 +219,7 @@ export default function AppointmentBooking() {
           <span className="w-16 sm:w-24 text-center">Details</span>
         </div>
       </div>
+
 
       {/* Step 1: Date Selection */}
       {step === 1 && (
