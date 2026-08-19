@@ -82,7 +82,7 @@ export default function ContactPage() {
         </svg>
       ),
       title: t("contact_visit_us"),
-      details: ["1280 Trim Rd, Unit B", "Orleans, ON K4A 3N3"],
+      details: ["1282 Trim Rd, Unit B", "Orleans, ON K4A 3N3"],
     },
 
     {
@@ -102,7 +102,7 @@ export default function ContactPage() {
         </svg>
       ),
       title: t("contact_call_us"),
-      details: ["(343) 224-4070", "Fax: (888) 615-1221"],
+      details: ["(705) 242-5090", "Fax: (705) 408-3177"],
     },
     {
       icon: (
@@ -168,7 +168,6 @@ export default function ContactPage() {
           </p>
         </div>
       </div>
-
 
       {/* Contact Information Cards */}
       <section className="py-12 sm:py-16 bg-white">
@@ -380,7 +379,7 @@ export default function ContactPage() {
                 </h3>
                 <div className="rounded-lg overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.9693144595276!2d-75.48229282372449!3d45.490562671074414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce13bffd30622b%3A0x25df1a6495298a33!2s1280%20Trim%20Rd%2C%20Orl%C3%A9ans%2C%20ON%20K4A%203P7!5e0!3m2!1sen!2sca!4v1776962002053!5m2!1sen!2sca"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.9693144595276!2d-75.48229282372449!3d45.490562671074414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce13bffd30622b%3A0x25df1a6495298a33!2s1282%20Trim%20Rd%2C%20Orl%C3%A9ans%2C%20ON%20K4A%203P7!5e0!3m2!1sen!2sca!4v1776962002053!5m2!1sen!2sca"
                     width="100%"
                     height="280"
                     style={{ border: 0 }}
@@ -393,7 +392,7 @@ export default function ContactPage() {
                 </div>
                 <div className="mt-3 text-center">
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=1280+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
+                    href="https://www.google.com/maps/dir/?api=1&destination=1282+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-cyan-600 hover:text-cyan-800 font-medium text-sm transition-colors"
@@ -444,7 +443,7 @@ export default function ContactPage() {
                         href="tel:3438873470"
                         className="text-gray-700 font-medium hover:text-gray-700 transition-colors text-sm"
                       >
-                        (343) 224-4070
+                        (705) 242-5090
                       </a>
                     </div>
                   </div>
@@ -493,7 +492,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs text-gray-500">Fax</p>
                       <p className="text-gray-700 font-medium text-sm">
-                        (888) 615-1221
+                        (705) 408-3177
                       </p>
                     </div>
                   </div>

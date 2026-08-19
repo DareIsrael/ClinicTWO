@@ -381,7 +381,7 @@ export default function AppointmentBooking() {
                   </div>
                   <div className="pt-3 border-t border-gray-200">
                     <p className="text-gray-500 text-xs">Location</p>
-                    <p className="text-gray-700 text-sm mt-1">Trim Medical Centre<br />1280 Trim Rd, Unit B, Orleans, ON</p>
+                    <p className="text-gray-700 text-sm mt-1">Trim Medical Centre<br />1282 Trim Rd, Unit B, Orleans, ON</p>
                   </div>
                 </div>
               </div>
@@ -531,7 +531,7 @@ export default function AppointmentBooking() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Location</span>
-                    <span className="text-gray-700">1280 Trim Rd, Unit B, Orleans</span>
+                    <span className="text-gray-700">1282 Trim Rd, Unit B, Orleans</span>
                   </div>
                 </div>
               </div>

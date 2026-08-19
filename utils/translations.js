@@ -1,10 +1,10 @@
 export const translations = {
   en: {
     // Topbar & Navbar & Footer
-    address: "1280 Trim Rd, Unit B, Orleans, ON K4A 3N3",
-    phone: "(343) 224-4070",
+    address: "1282 Trim Rd, Unit B, Orleans, ON K4A 3N3",
+    phone: "(705) 242-5090",
     email: "contact@trimmedicalcentre.ca",
-    fax: "(888) 615-1221",
+    fax: "(705) 408-3177",
     nav_home: "Home",
     nav_about: "About",
     nav_uninsured: "Uninsured Services",
@@ -294,10 +294,10 @@ export const translations = {
 
   fr: {
     // Topbar & Navbar & Footer
-    address: "1280 Trim Rd, Unité B, Orleans, ON K4A 3N3",
-    phone: "(343) 224-4070",
+    address: "1282 Trim Rd, Unité B, Orleans, ON K4A 3N3",
+    phone: "(705) 242-5090",
     email: "contact@trimmedicalcentre.ca",
-    fax: "(888) 615-1221",
+    fax: "(705) 408-3177",
     nav_home: "Accueil",
     nav_about: "À propos",
     nav_uninsured: "Services non assurés",
@@ -593,10 +593,10 @@ export const translations = {
 
   de: {
     // Topbar & Navbar & Footer
-    address: "1280 Trim Rd, Unit B, Orleans, ON K4A 3N3",
-    phone: "(343) 224-4070",
+    address: "1282 Trim Rd, Unit B, Orleans, ON K4A 3N3",
+    phone: "(705) 242-5090",
     email: "contact@trimmedicalcentre.ca",
-    fax: "(888) 615-1221",
+    fax: "(705) 408-3177",
     nav_home: "Startseite",
     nav_about: "Über uns",
     nav_uninsured: "Zusatzleistungen",
@@ -885,10 +885,10 @@ export const translations = {
 
   es: {
     // Topbar & Navbar & Footer
-    address: "1280 Trim Rd, Unidad B, Orleans, ON K4A 3N3",
-    phone: "(343) 224-4070",
+    address: "1282 Trim Rd, Unidad B, Orleans, ON K4A 3N3",
+    phone: "(705) 242-5090",
     email: "contact@trimmedicalcentre.ca",
-    fax: "(888) 615-1221",
+    fax: "(705) 408-3177",
     nav_home: "Inicio",
     nav_about: "Nosotros",
     nav_uninsured: "Servicios No Cubiertos",

@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const InputField = ({
-
   label,
   name,
   type,
@@ -53,7 +52,6 @@ const InputField = ({
 export default function WaitlistPage() {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
-
     firstName: "",
     lastName: "",
     email: "",
@@ -104,14 +102,11 @@ export default function WaitlistPage() {
       newErrors.healthcareProvince = t("err_province_req");
     if (!formData.healthcareNumber.trim())
       newErrors.healthcareNumber = t("err_health_num_req");
-    if (!formData.dateOfBirth)
-      newErrors.dateOfBirth = t("err_dob_req");
-    if (!formData.cellPhone.trim())
-      newErrors.cellPhone = t("err_phone_req");
+    if (!formData.dateOfBirth) newErrors.dateOfBirth = t("err_dob_req");
+    if (!formData.cellPhone.trim()) newErrors.cellPhone = t("err_phone_req");
     if (!formData.address.trim()) newErrors.address = t("err_address_req");
     if (!formData.country) newErrors.country = t("err_country_req");
-    if (!formData.postalCode.trim())
-      newErrors.postalCode = t("err_postal_req");
+    if (!formData.postalCode.trim()) newErrors.postalCode = t("err_postal_req");
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formData.email && !emailRegex.test(formData.email))
@@ -120,14 +115,12 @@ export default function WaitlistPage() {
     if (formData.dateOfBirth) {
       const dob = new Date(formData.dateOfBirth);
       const today = new Date();
-      if (dob > today)
-        newErrors.dateOfBirth = t("err_dob_future");
+      if (dob > today) newErrors.dateOfBirth = t("err_dob_future");
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -453,7 +446,6 @@ export default function WaitlistPage() {
                 )}
               </button>
 
-
               <p className="text-center text-xs text-gray-400 mt-4">
                 By joining, you agree to our privacy policy.
               </p>
@@ -495,7 +487,7 @@ export default function WaitlistPage() {
                     href="tel:+13438873470"
                     className="text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors"
                   >
-                    (343) 224-4070
+                    (705) 242-5090
                   </a>
                 </div>
               </div>

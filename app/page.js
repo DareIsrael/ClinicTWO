@@ -450,7 +450,7 @@
 //                   className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-600"
 //                   fill="none"
 //                   stroke="currentColor"
-//                   viewBox="0 0 24 24"  
+//                   viewBox="0 0 24 24"
 //                 >
 //                   <path
 //                     strokeLinecap="round"
@@ -572,7 +572,7 @@
 //                     <div>
 //                       {/* <p className="text-xs text-gray-500">Address</p> */}
 //                       <p className="text-gray-700 font-medium text-sm">
-//                         1280 Trim Rd, Unit B
+//                         1282 Trim Rd, Unit B
 //                       </p>
 //                       <p className="text-gray-700 text-sm">
 //                         Orleans, ON K4A 3N3
@@ -603,7 +603,7 @@
 //                         href="tel:3438873470"
 //                         className="text-gray-700 font-medium hover:text-gray-700 transition-colors text-sm"
 //                       >
-//                         (343) 224-4070
+//                         (705) 242-5090
 //                       </a>
 //                     </div>
 //                   </div>
@@ -656,7 +656,7 @@
 //                     <div>
 //                       <p className="text-xs text-gray-500">Fax</p>
 //                       <p className="text-gray-700 font-medium text-sm">
-//                         (888) 615-1221
+//                         (705) 408-3177
 //                       </p>
 //                     </div>
 //                   </div>
@@ -680,7 +680,7 @@
 //           <div className="w-full">
 //             <div className="rounded-none overflow-hidden">
 //               <iframe
-//                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.9693144595276!2d-75.48229282372449!3d45.490562671074414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce13bffd30622b%3A0x25df1a6495298a33!2s1280%20Trim%20Rd%2C%20Orl%C3%A9ans%2C%20ON%20K4A%203P7!5e0!3m2!1sen!2sca!4v1776962002053!5m2!1sen!2sca"
+//                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.9693144595276!2d-75.48229282372449!3d45.490562671074414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce13bffd30622b%3A0x25df1a6495298a33!2s1282%20Trim%20Rd%2C%20Orl%C3%A9ans%2C%20ON%20K4A%203P7!5e0!3m2!1sen!2sca!4v1776962002053!5m2!1sen!2sca"
 //                 width="100%"
 //                 height="400"
 //                 style={{ border: 0 }}
@@ -693,10 +693,10 @@
 //             </div>
 //             <div className="text-center py-4 sm:py-6 bg-cyan-30">
 //               <p className="text-gray-700 font-medium text-base sm:text-lg mb-2">
-//                 1280 Trim Rd, Unit B, Orleans, ON K4A 3N3
+//                 1282 Trim Rd, Unit B, Orleans, ON K4A 3N3
 //               </p>
 //               <a
-//                 href="https://www.google.com/maps/dir/?api=1&destination=1280+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
+//                 href="https://www.google.com/maps/dir/?api=1&destination=1282+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
 //                 target="_blank"
 //                 rel="noopener noreferrer"
 //                 className="inline-flex items-center text-cyan-700 hover:text-gray-700 font-semibold text-sm sm:text-base transition-colors border-b border-gray-400 hover:border-gray-700"
@@ -755,11 +755,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
 
 // page.js - Completely redesigned with Clean Centered Layout
 "use client";
@@ -832,7 +827,6 @@ export default function Home() {
       description: t("val_compassionate_desc"),
     },
   ];
-
 
   const practiceFeatures = [
     {
@@ -919,11 +913,12 @@ export default function Home() {
               type="video/webm"
             />
           </video>
-          
-          <div 
+
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
             style={{
-              backgroundImage: "url('https://res.cloudinary.com/dveill0ji/image/upload/v1777532146/Trim3_sc7fb7.jpg')",
+              backgroundImage:
+                "url('https://res.cloudinary.com/dveill0ji/image/upload/v1777532146/Trim3_sc7fb7.jpg')",
             }}
           ></div>
         </div>
@@ -1389,7 +1384,7 @@ export default function Home() {
           <div className="w-full">
             <div className="rounded-none overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.9693144595276!2d-75.48229282372449!3d45.490562671074414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce13bffd30622b%3A0x25df1a6495298a33!2s1280%20Trim%20Rd%2C%20Orl%C3%A9ans%2C%20ON%20K4A%203P7!5e0!3m2!1sen!2sca!4v1776962002053!5m2!1sen!2sca"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.9693144595276!2d-75.48229282372449!3d45.490562671074414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce13bffd30622b%3A0x25df1a6495298a33!2s1282%20Trim%20Rd%2C%20Orl%C3%A9ans%2C%20ON%20K4A%203P7!5e0!3m2!1sen!2sca!4v1776962002053!5m2!1sen!2sca"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
@@ -1405,7 +1400,7 @@ export default function Home() {
                 {t("address")}
               </p>
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=1280+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
+                href="https://www.google.com/maps/dir/?api=1&destination=1282+Trim+Rd+Orl%C3%A9ans+ON+K4A+3P7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold text-sm sm:text-base transition-colors border-b border-gray-300 hover:border-cyan-600"
@@ -1452,9 +1447,7 @@ export default function Home() {
                 <h4 className="font-semibold text-red-600 text-xs sm:text-sm">
                   {t("emergency_title")}
                 </h4>
-                <p className="text-gray-600 text-xs">
-                  {t("emergency_text")}
-                </p>
+                <p className="text-gray-600 text-xs">{t("emergency_text")}</p>
               </div>
             </div>
           </div>
@@ -1463,4 +1456,3 @@ export default function Home() {
     </div>
   );
 }
-

@@ -203,7 +203,7 @@ export default function BookingForm() {
 
       {/* Help Text */}
       {/* <div className="mt-6 text-center text-sm text-gray-500">
-        <p>Need help? Contact us at <a href="tel:(343) 224-4070" className="bg-cyan-600 hover:bg-cyan-600">(555) 123-4567</a></p>
+        <p>Need help? Contact us at <a href="tel:(705) 242-5090" className="bg-cyan-600 hover:bg-cyan-600">(555) 123-4567</a></p>
         <p className="mt-1">Our team is available - Monday - Mon & Wed - 4pm-8pm, 
           Tues & Thurs - 10am-7pm, 
           Sat - 10am-3pm</p>

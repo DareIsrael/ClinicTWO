@@ -43,7 +43,7 @@ async function sendAppointmentConfirmationEmail(appointment) {
             
             <p><strong>Location:</strong><br>
             Trim Medical Centre<br>
-            1280 Trim Rd, Unit B, ,<br>
+            1282 Trim Rd, Unit B, ,<br>
             Orleans, ON K4A 3N3</p>
             
             <p><strong>Important Reminders:</strong></p>
@@ -54,13 +54,13 @@ async function sendAppointmentConfirmationEmail(appointment) {
               <li>Bring any relevant medical records or test results</li>
             </ul>
             
-            <p>If you need to cancel or reschedule your appointment, please call us at least 24 hours in advance at <strong>(343) 224-4070</strong>.</p>
+            <p>If you need to cancel or reschedule your appointment, please call us at least 24 hours in advance at <strong>(705) 242-5090</strong>.</p>
             
             <div class="footer">
               <p>We look forward to seeing you soon!</p>
               <p>Best regards,<br>The Healthcare Team</p>
               <p>Trim Medical Centre<br>
-              Phone: (343) 224-4070<br>
+              Phone: (705) 242-5090<br>
               Email: contact@trimmedicalcentre.ca</p>
             </div>
           </div>
