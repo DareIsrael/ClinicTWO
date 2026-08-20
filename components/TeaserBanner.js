@@ -89,12 +89,12 @@ const TeaserBanner = () => {
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-white text-lg sm:text-xl font-bold leading-tight mb-1">
+            <h3 className="text-white text-lg sm:text-3xl font-bold leading-tight mb-1">
               {teaser.headline}
             </h3>
-            <p className="text-cyan-100 text-sm sm:text-base leading-relaxed">
-              {teaser.message}
-            </p>
+            <p className="text-cyan-100 text-xl sm:text-2xl font-bold leading-relaxed">
+  {teaser.message}
+</p>
           </div>
 
           {/* CTA Button */}
@@ -109,7 +109,7 @@ const TeaserBanner = () => {
                 >
                   {teaser.buttonText}
                   <svg
-                    className="w-4 h-4"
+                    className="w-6 h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
