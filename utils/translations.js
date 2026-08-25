@@ -107,6 +107,45 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Providing compassionate, comprehensive family medicine to the Orleans community with personalized care from experienced physicians.",
+    about_meet_physician: "Meet Our Physician",
+    about_dr_name: "Dr. Fatima Ahmad",
+    about_dr_role: "Family Physician",
+    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
+    about_dr_bio_1:
+      "Dr. Fatima Ahmad is a UK-trained Family Physician with broad international experience in Family Medicine, Emergency Medicine, General Surgery, Obstetrics & Gynaecology and Public Health.",
+    about_dr_bio_2:
+      "She obtained her medical degree in Sudan and has practised medicine in Sudan, Nigeria and the United Kingdom. She later completed a Master's in Public Health in the UK before completing her specialist training in Family Medicine/General Practice.",
+    about_dr_bio_3:
+      "Dr. Ahmad chose Family Medicine because she values building lasting relationships with her patients and caring for individuals and families throughout every stage of life. Her broad medical background allows her to provide comprehensive care to children, adolescents, adults and older patients, with interests spanning preventative care, chronic disease management, mental health, men's and women's health, and health promotion.",
+    about_dr_bio_4:
+      "Having lived and worked across different countries and cultures, Dr. Ahmad brings a warm, culturally sensitive approach to her practice. She speaks five languages, including English and Arabic.",
+    about_dr_bio_5:
+      "Now certified by the College of Family Physicians of Canada (CCFP), Dr. Ahmad is delighted to call Ottawa home and looks forward to welcoming patients and families of all ages and backgrounds.",
+    about_dr_location: "Trim Medical Centre, Ottawa",
+    about_cred_medical_degree: "Medical Degree",
+    about_cred_medical_degree_val: "MBBS - Bachelor of Medicine, Bachelor of Surgery",
+    about_cred_public_health: "Public Health",
+    about_cred_public_health_val: "MPH - Master of Public Health",
+    about_cred_uk: "UK Certification",
+    about_cred_uk_val: "MRCGP - Member of Royal College of General Practitioners",
+    about_cred_ca: "Canadian Certification",
+    about_cred_ca_val: "CCFP - College of Family Physicians of Canada",
+    about_mission_title: "Our Mission",
+    about_mission_text:
+      "To serve our patients, team, and community with excellence - grounded in integrity, guided by professionalism, and driven by patient-centred innovation. We are committed to delivering accessible, comprehensive healthcare that evolves with the needs of the families we serve.",
+    about_commitment_title: "Our Commitment",
+    about_commitment_1: "Personalized care for every patient",
+    about_commitment_2: "Evidence-based medical practice",
+    about_commitment_3: "Continuity of care through long-term relationships",
+    about_vision_title: "Our Vision",
+    about_vision_text:
+      "To provide compassionate, efficient, and high-quality family medical care in Orleans - blending modern technology, premium service, and accessible care. We believe every family deserves care they can trust - care that grows with them and supports their health at every stage of life.",
+    about_vision_quote:
+      "Building healthier families through dedicated, personalized medical care.",
+    about_cta_title: "Ready to become a patient?",
+    about_cta_text:
+      "Join our family of satisfied patients and experience compassionate care.",
+    about_cta_btn: "Book Appointment",
 
     // Contact Page
     contact_badge: "Get in Touch",
@@ -403,6 +442,45 @@ export const translations = {
     about_title: "Centre Médical Trim",
     about_subtitle:
       "Offrir des soins familiaux attentionnés et complets à la communauté d'Orleans avec une prise en charge personnalisée.",
+    about_meet_physician: "Rencontrez notre médecin",
+    about_dr_name: "Dre Fatima Ahmad",
+    about_dr_role: "Médecin de famille",
+    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
+    about_dr_bio_1:
+      "La Dre Fatima Ahmad est médecin de famille formée au Royaume-Uni, dotée d'une vaste expérience internationale en médecine familiale, médecine d'urgence, chirurgie générale, obstétrique et gynécologie ainsi qu'en santé publique.",
+    about_dr_bio_2:
+      "Elle a obtenu son diplôme de médecine au Soudan et a exercé la médecine au Soudan, au Nigeria et au Royaume-Uni. Elle a ensuite complété une maîtrise en santé publique au Royaume-Uni avant de terminer sa formation spécialisée en médecine familiale/médecine générale.",
+    about_dr_bio_3:
+      "La Dre Ahmad a choisi la médecine familiale parce qu'elle accorde une grande importance à l'établissement de relations durables avec ses patients et aux soins prodigués aux individus et aux familles à chaque étape de la vie. Sa vaste formation médicale lui permet d'offrir des soins complets aux enfants, aux adolescents, aux adultes et aux personnes âgées, avec des intérêts couvrant la prévention, la gestion des maladies chroniques, la santé mentale, la santé des hommes et des femmes, et la promotion de la santé.",
+    about_dr_bio_4:
+      "Ayant vécu et travaillé dans différents pays et cultures, la Dre Ahmad apporte une approche chaleureuse et culturellement sensible à sa pratique. Elle parle cinq langues, dont l'anglais et l'arabe.",
+    about_dr_bio_5:
+      "Désormais certifiée par le Collège des médecins de famille du Canada (CCMF), la Dre Ahmad est ravie de s'établir à Ottawa et a hâte d'accueillir des patients et des familles de tous âges et de toutes origines.",
+    about_dr_location: "Centre Médical Trim, Ottawa",
+    about_cred_medical_degree: "Diplôme de médecine",
+    about_cred_medical_degree_val: "MBBS - Baccalauréat en médecine et en chirurgie",
+    about_cred_public_health: "Santé publique",
+    about_cred_public_health_val: "MPH - Maîtrise en santé publique",
+    about_cred_uk: "Certification britannique",
+    about_cred_uk_val: "MRCGP - Membre du Royal College of General Practitioners",
+    about_cred_ca: "Certification canadienne",
+    about_cred_ca_val: "CCMF - Collège des médecins de famille du Canada",
+    about_mission_title: "Notre mission",
+    about_mission_text:
+      "Servir nos patients, notre équipe et notre communauté avec excellence — enracinés dans l'intégrité, guidés par le professionnalisme et motivés par l'innovation centrée sur le patient. Nous nous engageons à offrir des soins de santé accessibles et complets qui évoluent avec les besoins des familles que nous servons.",
+    about_commitment_title: "Notre engagement",
+    about_commitment_1: "Des soins personnalisés pour chaque patient",
+    about_commitment_2: "Une pratique médicale fondée sur des preuves",
+    about_commitment_3: "La continuité des soins à travers des relations à long terme",
+    about_vision_title: "Notre vision",
+    about_vision_text:
+      "Offrir des soins médicaux familiaux attentionnés, efficaces et de haute qualité à Orleans — alliant technologie moderne, service premium et soins accessibles. Nous croyons que chaque famille mérite des soins de confiance — des soins qui grandissent avec elle et soutiennent sa santé à chaque étape de la vie.",
+    about_vision_quote:
+      "Bâtir des familles en meilleure santé grâce à des soins médicaux dévoués et personnalisés.",
+    about_cta_title: "Prêt à devenir patient ?",
+    about_cta_text:
+      "Rejoignez notre famille de patients satisfaits et vivez une expérience de soins attentionnés.",
+    about_cta_btn: "Prendre rendez-vous",
 
     // Contact Page
     contact_badge: "Contactez-nous",
@@ -700,6 +778,45 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Einfühlsame und umfassende Allgemeinmedizin für die Gemeinschaft in Orleans.",
+    about_meet_physician: "Lernen Sie unsere Ärztin kennen",
+    about_dr_name: "Dr. Fatima Ahmad",
+    about_dr_role: "Hausärztin",
+    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
+    about_dr_bio_1:
+      "Dr. Fatima Ahmad ist eine in Großbritannien ausgebildete Hausärztin mit breiter internationaler Erfahrung in Allgemeinmedizin, Notfallmedizin, Allgemeinchirurgie, Geburtshilfe und Gynäkologie sowie öffentlicher Gesundheit.",
+    about_dr_bio_2:
+      "Sie erwarb ihren Abschluss in Medizin im Sudan und praktizierte in Sudan, Nigeria und im Vereinigten Königreich. Anschließend absolvierte sie einen Master in Public Health im Vereinigten Königreich, bevor sie ihre Facharztausbildung in Allgemeinmedizin abschloss.",
+    about_dr_bio_3:
+      "Dr. Ahmad wählte die Allgemeinmedizin, weil sie den Aufbau dauerhafter Beziehungen zu ihren Patienten schätzt und Einzelpersonen sowie Familien in jeder Lebensphase betreut. Ihre breite medizinische Ausbildung ermöglicht es ihr, umfassende Versorgung für Kinder, Jugendliche, Erwachsene und ältere Patienten zu bieten, mit Schwerpunkten in Prävention, Management chronischer Erkrankungen, psychischer Gesundheit, Männer- und Frauengesundheit sowie Gesundheitsförderung.",
+    about_dr_bio_4:
+      "Da sie in verschiedenen Ländern und Kulturen gelebt und gearbeitet hat, bringt Dr. Ahmad einen warmherzigen, kultursensiblen Ansatz in ihre Praxis ein. Sie spricht fünf Sprachen, darunter Englisch und Arabisch.",
+    about_dr_bio_5:
+      "Nun zertifiziert durch das College of Family Physicians of Canada (CCFP), freut sich Dr. Ahmad, Ottawa ihr Zuhause zu nennen, und heißt Patienten und Familien aller Altersgruppen und Herkunft herzlich willkommen.",
+    about_dr_location: "Trim Medical Centre, Ottawa",
+    about_cred_medical_degree: "Medizinischer Abschluss",
+    about_cred_medical_degree_val: "MBBS - Bachelor der Medizin und Chirurgie",
+    about_cred_public_health: "Öffentliche Gesundheit",
+    about_cred_public_health_val: "MPH - Master in Public Health",
+    about_cred_uk: "Britische Zertifizierung",
+    about_cred_uk_val: "MRCGP - Mitglied des Royal College of General Practitioners",
+    about_cred_ca: "Kanadische Zertifizierung",
+    about_cred_ca_val: "CCFP - College of Family Physicians of Canada",
+    about_mission_title: "Unsere Mission",
+    about_mission_text:
+      "Unseren Patienten, unserem Team und unserer Gemeinschaft mit Exzellenz zu dienen — verwurzelt in Integrität, geleitet von Professionalität und angetrieben von patientenzentrierter Innovation. Wir verpflichten uns, zugängliche, umfassende Gesundheitsversorgung zu bieten, die sich mit den Bedürfnissen der Familien weiterentwickelt, die wir betreuen.",
+    about_commitment_title: "Unser Versprechen",
+    about_commitment_1: "Individuelle Betreuung für jeden Patienten",
+    about_commitment_2: "Evidenzbasierte medizinische Praxis",
+    about_commitment_3: "Kontinuität der Versorgung durch langfristige Beziehungen",
+    about_vision_title: "Unsere Vision",
+    about_vision_text:
+      "Einfühlsame, effiziente und hochwertige hausärztliche Versorgung in Orleans zu bieten — mit moderner Technologie, erstklassigem Service und zugänglicher Betreuung. Wir glauben, dass jede Familie Vertrauen in ihre Gesundheitsversorgung verdient — eine Versorgung, die mit ihr wächst und ihre Gesundheit in jeder Lebensphase unterstützt.",
+    about_vision_quote:
+      "Gesündere Familien durch engagierte, persönliche medizinische Betreuung aufbauen.",
+    about_cta_title: "Bereit, Patient zu werden?",
+    about_cta_text:
+      "Werden Sie Teil unserer zufriedenen Patienten und erleben Sie einfühlsame Betreuung.",
+    about_cta_btn: "Termin buchen",
 
     // Contact Page
     contact_badge: "Kontakt aufnehmen",
@@ -994,6 +1111,45 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Brindando atención médica familiar compasiva e integral a la comunidad de Orleans.",
+    about_meet_physician: "Conozca a nuestra médica",
+    about_dr_name: "Dra. Fatima Ahmad",
+    about_dr_role: "Médica de Familia",
+    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
+    about_dr_bio_1:
+      "La Dra. Fatima Ahmad es médica de familia formada en el Reino Unido, con amplia experiencia internacional en medicina familiar, medicina de emergencia, cirugía general, obstetricia y ginecología y salud pública.",
+    about_dr_bio_2:
+      "Obtuvo su título de medicina en Sudán y ha ejercido la medicina en Sudán, Nigeria y el Reino Unido. Posteriormente completó una Maestría en Salud Pública en el Reino Unido antes de completar su formación especializada en medicina familiar/medicina general.",
+    about_dr_bio_3:
+      "La Dra. Ahmad eligió la medicina familiar porque valora la construcción de relaciones duraderas con sus pacientes y el cuidado de personas y familias en cada etapa de la vida. Su amplia formación médica le permite brindar atención integral a niños, adolescentes, adultos y personas mayores, con intereses que abarcan la atención preventiva, el manejo de enfermedades crónicas, la salud mental, la salud masculina y femenina, y la promoción de la salud.",
+    about_dr_bio_4:
+      "Habiendo vivido y trabajado en diferentes países y culturas, la Dra. Ahmad aporta un enfoque cálido y culturalmente sensible a su práctica. Habla cinco idiomas, incluyendo inglés y árabe.",
+    about_dr_bio_5:
+      "Ahora certificada por el Colegio de Médicos de Familia de Canadá (CCFP), la Dra. Ahmad está encantada de llamar a Ottawa su hogar y espera dar la bienvenida a pacientes y familias de todas las edades y orígenes.",
+    about_dr_location: "Trim Medical Centre, Ottawa",
+    about_cred_medical_degree: "Título de Medicina",
+    about_cred_medical_degree_val: "MBBS - Licenciatura en Medicina y Cirugía",
+    about_cred_public_health: "Salud Pública",
+    about_cred_public_health_val: "MPH - Maestría en Salud Pública",
+    about_cred_uk: "Certificación Británica",
+    about_cred_uk_val: "MRCGP - Miembro del Royal College of General Practitioners",
+    about_cred_ca: "Certificación Canadiense",
+    about_cred_ca_val: "CCFP - Colegio de Médicos de Familia de Canadá",
+    about_mission_title: "Nuestra misión",
+    about_mission_text:
+      "Servir a nuestros pacientes, equipo y comunidad con excelencia — fundamentados en la integridad, guiados por el profesionalismo e impulsados por la innovación centrada en el paciente. Nos comprometemos a brindar atención médica accesible e integral que evoluciona con las necesidades de las familias que atendemos.",
+    about_commitment_title: "Nuestro compromiso",
+    about_commitment_1: "Atención personalizada para cada paciente",
+    about_commitment_2: "Práctica médica basada en evidencia",
+    about_commitment_3: "Continuidad de la atención a través de relaciones a largo plazo",
+    about_vision_title: "Nuestra visión",
+    about_vision_text:
+      "Brindar atención médica familiar compasiva, eficiente y de alta calidad en Orleans — combinando tecnología moderna, servicio premium y atención accesible. Creemos que cada familia merece una atención en la que pueda confiar — una atención que crezca con ella y apoye su salud en cada etapa de la vida.",
+    about_vision_quote:
+      "Construir familias más saludables a través de atención médica dedicada y personalizada.",
+    about_cta_title: "¿Listo para ser paciente?",
+    about_cta_text:
+      "Únase a nuestra familia de pacientes satisfechos y experimente una atención compasiva.",
+    about_cta_btn: "Reservar cita",
 
     // Contact Page
     contact_badge: "Contáctenos",

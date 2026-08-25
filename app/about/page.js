@@ -10,16 +10,20 @@ export default function AboutPage() {
 
   const credentials = [
     {
-      title: "Medical Degree",
-      value: "MD - Doctor of Medicine",
+      title: t("about_cred_medical_degree"),
+      value: t("about_cred_medical_degree_val"),
     },
     {
-      title: "Canadian Certification",
-      value: "CCFP - Canadian College of Family Physicians",
+      title: t("about_cred_public_health"),
+      value: t("about_cred_public_health_val"),
     },
     {
-      title: "UK Certification",
-      value: "MRCGP - Member of Royal College of General Practitioners",
+      title: t("about_cred_uk"),
+      value: t("about_cred_uk_val"),
+    },
+    {
+      title: t("about_cred_ca"),
+      value: t("about_cred_ca_val"),
     },
   ];
 
@@ -85,11 +89,11 @@ export default function AboutPage() {
 
 
       {/* Meet Our Physician Section */}
-      {/* <section className="bg-cyan-30 py-16 sm:py-20">
+      <section className="bg-cyan-30 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-light text-gray-700 mb-3">
-              Meet Our Physician
+              {t("about_meet_physician")}
             </h2>
             <div className="w-12 h-0.5 bg-cyan-30-300 rounded-full mx-auto"></div>
           </div>
@@ -112,19 +116,34 @@ export default function AboutPage() {
                 </svg>
               </div>
               <h3 className="text-2xl font-medium text-gray-700 mb-1">
-                Dr. Oluwaseun Fagbolagun
+                {t("about_dr_name")}
               </h3>
-              <p className="text-gray-500 text-sm mb-4">Family Physician</p>
-              <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto text-sm sm:text-base">
-                Dr. Fagbolagun brings over a decade of medical practice
-                experience. He is certified in family medicine by both Canadian
-                and UK medical boards. With a commitment to excellence and a
-                compassionate approach to patient care, he provides
-                comprehensive medical services for patients of all ages.
+              <p className="text-gray-500 text-sm mb-1">{t("about_dr_role")}</p>
+              <p className="text-gray-400 text-xs mb-4">{t("about_dr_credentials")}</p>
+            </div>
+
+            <div className="text-left max-w-2xl mx-auto space-y-4">
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                {t("about_dr_bio_1")}
+              </p>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                {t("about_dr_bio_2")}
+              </p>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                {t("about_dr_bio_3")}
+              </p>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                {t("about_dr_bio_4")}
+              </p>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                {t("about_dr_bio_5")}
+              </p>
+              <p className="text-gray-500 text-sm italic mt-2">
+                {t("about_dr_location")}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-6 pt-6 border-t border-gray-100">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 pt-6 border-t border-gray-100">
               {credentials.map((credential, index) => (
                 <div key={index} className="text-center">
                   <div className="w-12 h-12 bg-cyan-30-100 rounded-xl flex items-center justify-center mx-auto mb-3">
@@ -151,7 +170,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Our Practice Philosophy */}
       <section className="bg-white py-16 sm:py-20">
