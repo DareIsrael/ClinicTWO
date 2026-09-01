@@ -6,12 +6,12 @@ import { sanitizeSearchInput } from "@/utils/sanitize";
 // Get clinic schedule (static for display)
 const getClinicSchedule = () => {
   return [
-    { day: "Monday", hours: "By Appointment Only", isOpen: true },
-    { day: "Tuesday", hours: "By Appointment Only", isOpen: true },
-    { day: "Wednesday", hours: "By Appointment Only", isOpen: true },
-    { day: "Thursday", hours: "By Appointment Only", isOpen: true },
-    { day: "Friday", hours: "By Appointment Only", isOpen: true },
-    { day: "Saturday", hours: "By Appointment Only", isOpen: true },
+    { day: "Monday", hours: "9:00 AM - 5:00 PM", isOpen: true },
+    { day: "Tuesday", hours: "9:00 AM - 5:00 PM", isOpen: true },
+    { day: "Wednesday", hours: "9:00 AM - 5:00 PM", isOpen: true },
+    { day: "Thursday", hours: "9:00 AM - 5:00 PM", isOpen: true },
+    { day: "Friday", hours: "Closed", isOpen: false },
+    { day: "Saturday", hours: "Closed", isOpen: false },
     { day: "Sunday", hours: "Closed", isOpen: false },
   ];
 };

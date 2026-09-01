@@ -63,6 +63,8 @@ export default function WaitlistPage() {
     address: "",
     country: "",
     postalCode: "",
+    howDidYouHearAboutUs: "",
+    howDidYouHearAboutUsOther: "",
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -84,9 +86,26 @@ export default function WaitlistPage() {
     { value: "Australia", label: t("country_australia") },
   ];
 
+  const referralOptions = [
+    { value: "", label: "Select an option" },
+    { value: "Canada Post flyer", label: "Flyer delivered by Canada Post" },
+    { value: "Door-delivered flyer", label: "Flyer delivered to my door" },
+    { value: "Google", label: "Google" },
+    { value: "Instagram/Facebook", label: "Instagram/Facebook" },
+    { value: "Friend or family", label: "Friend or family" },
+    { value: "Referred", label: "Referred" },
+    { value: "Other", label: "Other" },
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [name]: value,
+      ...(name === "howDidYouHearAboutUs" && value !== "Other"
+        ? { howDidYouHearAboutUsOther: "" }
+        : {}),
+    });
     if (errors[name]) setErrors({ ...errors, [name]: "" });
     if (successMessage) setSuccessMessage("");
   };
@@ -107,6 +126,13 @@ export default function WaitlistPage() {
     if (!formData.address.trim()) newErrors.address = t("err_address_req");
     if (!formData.country) newErrors.country = t("err_country_req");
     if (!formData.postalCode.trim()) newErrors.postalCode = t("err_postal_req");
+    if (!formData.howDidYouHearAboutUs)
+      newErrors.howDidYouHearAboutUs = "Please select how you heard about us";
+    if (
+      formData.howDidYouHearAboutUs === "Other" &&
+      !formData.howDidYouHearAboutUsOther.trim()
+    )
+      newErrors.howDidYouHearAboutUsOther = "Please specify how you heard about us";
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formData.email && !emailRegex.test(formData.email))
@@ -413,6 +439,35 @@ export default function WaitlistPage() {
                       placeholder="1234 567 890 AB"
                     />
                   </div>
+                </div>
+
+                {/* Referral Information */}
+                <div className="pt-2">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                    How did you hear about Trim Medical Centre?
+                  </h3>
+                  <InputField
+                    label="How did you hear about us?"
+                    type="select"
+                    name="howDidYouHearAboutUs"
+                    value={formData.howDidYouHearAboutUs}
+                    onChange={handleChange}
+                    error={errors.howDidYouHearAboutUs}
+                    required
+                    options={referralOptions}
+                  />
+                  {formData.howDidYouHearAboutUs === "Other" && (
+                    <InputField
+                      label="Please specify"
+                      type="text"
+                      name="howDidYouHearAboutUsOther"
+                      value={formData.howDidYouHearAboutUsOther}
+                      onChange={handleChange}
+                      error={errors.howDidYouHearAboutUsOther}
+                      required
+                      placeholder="Please tell us how you heard about us"
+                    />
+                  )}
                 </div>
               </div>
 

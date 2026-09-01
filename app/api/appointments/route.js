@@ -147,6 +147,7 @@ export async function POST(request) {
       "address",
       "country",
       "postalCode",
+      "howDidYouHearAboutUs",
       "appointmentDate",
       "appointmentTime",
       "reason",
@@ -160,6 +161,16 @@ export async function POST(request) {
           success: false,
           message: `Missing required fields: ${missingFields.join(", ")}`,
         },
+        { status: 400 },
+      );
+    }
+
+    if (
+      data.howDidYouHearAboutUs === "Other" &&
+      !data.howDidYouHearAboutUsOther?.trim()
+    ) {
+      return NextResponse.json(
+        { success: false, message: "Please specify how you heard about us" },
         { status: 400 },
       );
     }

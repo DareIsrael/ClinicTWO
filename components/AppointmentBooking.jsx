@@ -34,7 +34,9 @@ export default function AppointmentBooking() {
     appointmentTime: '',
     reason: '',
     notes: '',
-    urgency: 'medium'
+    urgency: 'medium',
+    howDidYouHearAboutUs: '',
+    howDidYouHearAboutUsOther: ''
   });
 
   const canadianProvinces = [
@@ -111,7 +113,13 @@ export default function AppointmentBooking() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+      ...(name === 'howDidYouHearAboutUs' && value !== 'Other'
+        ? { howDidYouHearAboutUsOther: '' }
+        : {})
+    }));
   };
 
   const handleHealthcareProvinceChange = (e) => {
@@ -153,7 +161,8 @@ export default function AppointmentBooking() {
           firstName: '', lastName: '', email: '', gender: '', healthcareProvince: '',
           healthcareNumber: '', dateOfBirth: '', cellPhone: '', address: '',
           country: 'Canada', postalCode: '', appointmentDate: '', appointmentTime: '',
-          reason: '', notes: '', urgency: 'medium'
+          reason: '', notes: '', urgency: 'medium', howDidYouHearAboutUs: '',
+          howDidYouHearAboutUsOther: ''
         });
         setOtherProvince('');
         setSelectedDate('');
@@ -213,7 +222,7 @@ export default function AppointmentBooking() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-2 text-xs text-gray-500">
+        <div className="flex justify-center mt-2 text-xs font-medium text-gray-600">
           <span className="w-16 sm:w-24 text-center">Date</span>
           <span className="w-16 sm:w-24 text-center">Time</span>
           <span className="w-16 sm:w-24 text-center">Details</span>
@@ -247,10 +256,10 @@ export default function AppointmentBooking() {
                           : 'bg-white border border-gray-200 hover:border-gray-300'
                       }`}
                     >
-                      <div className="text-2xl font-light">
+                      <div className="text-2xl font-semibold text-gray-800">
                         {new Date(dateInfo.date).getDate()}
                       </div>
-                      <div className={`text-sm mt-1 ${selectedDate === dateInfo.date ? 'text-gray-300' : 'text-gray-500'}`}>
+                      <div className={`text-sm font-medium mt-1 ${selectedDate === dateInfo.date ? 'text-gray-200' : 'text-gray-700'}`}>
                         {new Date(dateInfo.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short' })}
                       </div>
                       {dateInfo.isToday && (
@@ -260,7 +269,7 @@ export default function AppointmentBooking() {
                           Today
                         </span>
                       )}
-                      <div className={`mt-3 pt-2 text-xs ${selectedDate === dateInfo.date ? 'text-gray-400' : 'text-gray-400'}`}>
+                      <div className={`mt-3 pt-2 text-xs font-semibold ${selectedDate === dateInfo.date ? 'text-gray-200' : 'text-gray-600'}`}>
                         {dateInfo.availableSlots || 0} slots
                       </div>
                     </button>
@@ -289,8 +298,8 @@ export default function AppointmentBooking() {
             <div className="p-6">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                 <div>
-                  <p className="text-sm text-gray-500">Selected Date</p>
-                  <p className="font-medium text-gray-700">{selectedDate && formatDateDisplay(selectedDate)}</p>
+                  <p className="text-sm font-medium text-gray-600">Selected Date</p>
+                  <p className="font-semibold text-gray-800">{selectedDate && formatDateDisplay(selectedDate)}</p>
                 </div>
                 <button
                   onClick={() => setStep(1)}
@@ -314,11 +323,11 @@ export default function AppointmentBooking() {
                         onClick={() => handleTimeSelect(slot.time)}
                         disabled={!slot.available}
                         className={`
-                          py-3 rounded-xl text-center font-medium transition-all duration-200
+                          py-3 rounded-xl text-center font-semibold transition-all duration-200
                           ${selectedTime === slot.time
                             ? 'bg-cyan-30-800 text-white shadow-md'
                             : slot.available
-                            ? 'bg-white border border-gray-200 text-gray-700 hover:border-gray-400 hover:bg-cyan-30'
+                            ? 'bg-white border border-gray-200 text-gray-800 hover:border-gray-400 hover:bg-cyan-30'
                             : 'bg-cyan-30 border border-gray-100 text-gray-400 cursor-not-allowed line-through'
                           }
                         `}
@@ -372,16 +381,16 @@ export default function AppointmentBooking() {
                 <h3 className="font-medium text-gray-700 mb-4">Appointment Summary</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Date</span>
-                    <span className="font-medium text-gray-700">{selectedDate && formatDateDisplay(selectedDate)}</span>
+                    <span className="font-medium text-gray-600">Date</span>
+                    <span className="font-semibold text-gray-800">{selectedDate && formatDateDisplay(selectedDate)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Time</span>
-                    <span className="font-medium text-gray-700">{selectedTime}</span>
+                    <span className="font-medium text-gray-600">Time</span>
+                    <span className="font-semibold text-gray-800">{selectedTime}</span>
                   </div>
                   <div className="pt-3 border-t border-gray-200">
-                    <p className="text-gray-500 text-xs">Location</p>
-                    <p className="text-gray-700 text-sm mt-1">Trim Medical Centre<br />1282 Trim Rd, Unit B, Orleans, ON</p>
+                    <p className="text-gray-600 text-xs font-medium">Location</p>
+                    <p className="text-gray-800 text-sm font-medium mt-1">Trim Medical Centre<br />1282 Trim Rd, Unit B, Orleans, ON</p>
                   </div>
                 </div>
               </div>
@@ -478,6 +487,28 @@ export default function AppointmentBooking() {
                           className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700 resize-none"
                           placeholder="Please describe the reason for your visit..." />
                       </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">How did you hear about Trim Medical Centre? *</label>
+                        <select name="howDidYouHearAboutUs" value={formData.howDidYouHearAboutUs} onChange={handleInputChange} required
+                          className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700">
+                          <option value="">Select an option</option>
+                          <option value="Canada Post flyer">Flyer delivered by Canada Post</option>
+                          <option value="Door-delivered flyer">Flyer delivered to my door</option>
+                          <option value="Google">Google</option>
+                          <option value="Instagram/Facebook">Instagram/Facebook</option>
+                          <option value="Friend or family">Friend or family</option>
+                          <option value="Referred">Referred</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      {formData.howDidYouHearAboutUs === 'Other' && (
+                        <div className="sm:col-span-2">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Please specify *</label>
+                          <input type="text" name="howDidYouHearAboutUsOther" value={formData.howDidYouHearAboutUsOther} onChange={handleInputChange} required
+                            className="w-full px-4 py-2.5 bg-cyan-30 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 transition-all text-gray-700"
+                            placeholder="Please tell us how you heard about us" />
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6 pt-4 border-t border-gray-100">

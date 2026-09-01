@@ -250,6 +250,9 @@ export default function WaitlistTab() {
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Phone
                     </th>
+                    {/* <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      How They Heard About Us
+                    </th> */}
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
                     </th>
@@ -281,6 +284,7 @@ export default function WaitlistTab() {
                       <td className="px-4 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-700">{entry.cellPhone || 'N/A'}</div>
                        </td>
+
                       <td className="px-4 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                         <WaitlistStatusDropdown 
                           waitlistEntry={entry} 
@@ -296,7 +300,7 @@ export default function WaitlistTab() {
                   ))}
                   {waitlist.length === 0 && (
                     <tr>
-                      <td colSpan="6" className="px-4 py-8 text-center text-gray-500">
+                      <td colSpan="7" className="px-4 py-8 text-center text-gray-500">
                         {searchQuery || searchStatus !== 'all' 
                           ? 'No waitlist entries found matching your search criteria.'
                           : 'No waitlist entries found'}

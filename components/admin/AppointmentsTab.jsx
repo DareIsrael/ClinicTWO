@@ -311,6 +311,7 @@ export default function AppointmentsTab() {
                 <th className="px-4 py-3 text-left font-medium text-gray-700">No</th>
                 <th className="px-4 py-3 text-left font-medium text-gray-700">Patient</th>
                 <th className="px-4 py-3 text-left font-medium text-gray-700">Date & Time</th>
+              {/* <th className="px-4 py-3 text-left font-medium text-gray-700">How They Heard About Us</th> */}
                 <th className="px-4 py-3 text-left font-medium text-gray-700">Status</th>
                 <th className="px-4 py-3 text-left font-medium text-gray-700">Actions</th>
               </tr>
@@ -335,6 +336,7 @@ export default function AppointmentsTab() {
                       <div className="text-gray-400">{formatDateString(appointmentDate)}</div>
                       <div className="text-gray-500">{appointment.appointmentTime}</div>
                     </td>
+
                     <td className="px-4 py-3">
                       <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(appointment.status)}`}>
                         {appointment.status}

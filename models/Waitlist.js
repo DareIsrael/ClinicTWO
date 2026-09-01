@@ -58,6 +58,23 @@ const waitlistSchema = new mongoose.Schema(
       required: [true, "Postal code is required"],
       trim: true,
     },
+    howDidYouHearAboutUs: {
+      type: String,
+      required: [true, "Please tell us how you heard about us"],
+      enum: [
+        "Canada Post flyer",
+        "Door-delivered flyer",
+        "Google",
+        "Instagram/Facebook",
+        "Friend or family",
+        "Referred",
+        "Other",
+      ],
+    },
+    howDidYouHearAboutUsOther: {
+      type: String,
+      trim: true,
+    },
     // FIXED: Updated enum values to match what you're using
     status: {
       type: String,

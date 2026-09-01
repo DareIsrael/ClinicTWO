@@ -296,6 +296,16 @@ const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
                       </p>
                     </div>
                   )}
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      How They Heard About Us
+                    </label>
+                    <p className="text-sm text-slate-800 bg-slate-50 border-l-4 border-slate-400 p-3 rounded-r-lg font-medium leading-relaxed">
+                      {appointment.howDidYouHearAboutUs === 'Other'
+                        ? `Other: ${appointment.howDidYouHearAboutUsOther || 'Not specified'}`
+                        : appointment.howDidYouHearAboutUs || 'Not provided'}
+                    </p>
+                  </div>
                 </div>
               </div>
 

@@ -212,6 +212,16 @@ const WaitlistDetailModal = ({ entry, onClose, onStatusChange }) => {
                 </label>
                 <p className="text-sm font-mono text-slate-500">{entry._id}</p>
               </div>
+              <div>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  How They Heard About Us
+                </label>
+                <p className="text-sm font-semibold text-slate-700">
+                  {entry.howDidYouHearAboutUs === 'Other'
+                    ? `Other: ${entry.howDidYouHearAboutUsOther || 'Not specified'}`
+                    : entry.howDidYouHearAboutUs || 'Not provided'}
+                </p>
+              </div>
             </div>
           </div>
 

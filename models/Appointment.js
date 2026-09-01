@@ -56,6 +56,23 @@ const appointmentSchema = new mongoose.Schema(
       required: [true, "Postal code is required"],
       trim: true,
     },
+    howDidYouHearAboutUs: {
+      type: String,
+      required: [true, "Please tell us how you heard about us"],
+      enum: [
+        "Canada Post flyer",
+        "Door-delivered flyer",
+        "Google",
+        "Instagram/Facebook",
+        "Friend or family",
+        "Referred",
+        "Other",
+      ],
+    },
+    howDidYouHearAboutUsOther: {
+      type: String,
+      trim: true,
+    },
     appointmentDate: {
       type: String,
       required: [true, "Appointment date is required"],

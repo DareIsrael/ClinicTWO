@@ -295,15 +295,24 @@ export async function POST(request) {
       address,
       country,
       postalCode,
+      howDidYouHearAboutUs,
+      howDidYouHearAboutUsOther,
     } = body;
 
     // Basic validation
-    if (!firstName || !lastName || !email) {
+    if (!firstName || !lastName || !email || !howDidYouHearAboutUs) {
       return NextResponse.json(
         {
           success: false,
-          message: "First name, last name, and email are required",
+          message: "First name, last name, email, and referral source are required",
         },
+        { status: 400 },
+      );
+    }
+
+    if (howDidYouHearAboutUs === "Other" && !howDidYouHearAboutUsOther?.trim()) {
+      return NextResponse.json(
+        { success: false, message: "Please specify how you heard about us" },
         { status: 400 },
       );
     }
@@ -353,6 +362,9 @@ export async function POST(request) {
       address,
       country,
       postalCode,
+      howDidYouHearAboutUs,
+      howDidYouHearAboutUsOther:
+        howDidYouHearAboutUs === "Other" ? howDidYouHearAboutUsOther.trim() : "",
       status: "Active",
       // No position field - removed
     });
