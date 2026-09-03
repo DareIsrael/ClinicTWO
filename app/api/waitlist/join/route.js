@@ -318,30 +318,24 @@ export async function POST(request) {
     }
 
     const userEmail = email.toLowerCase().trim();
+    const userFirstName = firstName.trim();
+    const userLastName = lastName.trim();
 
-    // Check if email already exists in waitlist
-    const existingWaitlist = await Waitlist.findOne({ email: userEmail }).sort({
-      createdAt: -1,
-    }); // Get most recent entry
+    // Check for duplicate: same firstName + lastName + email (case-insensitive)
+    const existingEntry = await Waitlist.findOne({
+      firstName: { $regex: new RegExp(`^${userFirstName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
+      lastName: { $regex: new RegExp(`^${userLastName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
+      email: userEmail,
+    });
 
-    if (existingWaitlist) {
-      // Calculate if 30 days have passed since last join
-      const lastJoinDate = new Date(existingWaitlist.createdAt);
-      const currentDate = new Date();
-      const daysSinceLastJoin = Math.floor(
-        (currentDate - lastJoinDate) / (1000 * 60 * 60 * 24),
+    if (existingEntry) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: `${userFirstName} ${userLastName} is already on our waitlist with this email address.`,
+        },
+        { status: 400 },
       );
-
-      if (daysSinceLastJoin < 30) {
-        const daysLeft = 30 - daysSinceLastJoin;
-        return NextResponse.json(
-          {
-            success: false,
-            message: `You can only join the waitlist once per month. Please try again in ${daysLeft} day${daysLeft !== 1 ? "s" : ""}.`,
-          },
-          { status: 400 },
-        );
-      }
     }
 
     // Get total count of people in waitlist (for informational purposes)
@@ -351,8 +345,8 @@ export async function POST(request) {
 
     // Create waitlist entry (no position field)
     const waitlistEntry = await Waitlist.create({
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
+      firstName: userFirstName,
+      lastName: userLastName,
       email: userEmail,
       gender,
       healthcareProvince,
@@ -366,26 +360,19 @@ export async function POST(request) {
       howDidYouHearAboutUsOther:
         howDidYouHearAboutUs === "Other" ? howDidYouHearAboutUsOther.trim() : "",
       status: "Active",
-      // No position field - removed
     });
 
-    const isReturningUser = !!existingWaitlist;
-
-    // ✅ FIXED: Send welcome email with proper await and error handling
+    // Send welcome email with proper await and error handling
     try {
-      await sendWaitlistWelcomeEmail(waitlistEntry, isReturningUser);
-      // console.log('Waitlist welcome email sent successfully to:', waitlistEntry.email);
+      await sendWaitlistWelcomeEmail(waitlistEntry);
     } catch (emailError) {
       console.error("Failed to send waitlist welcome email:", emailError);
       // Don't fail the entire request if email fails, just log it
-      // The user is still successfully added to waitlist
     }
 
     return NextResponse.json({
       success: true,
-      message: isReturningUser
-        ? "Welcome back! You have been added to the waitlist again."
-        : "Successfully joined waitlist! We will contact you when spots become available.",
+      message: "Successfully joined waitlist! We will contact you when spots become available.",
       data: {
         id: waitlistEntry._id,
         firstName: waitlistEntry.firstName,
@@ -395,10 +382,10 @@ export async function POST(request) {
   } catch (error) {
     console.error("Waitlist join error:", error);
 
-    // Handle duplicate email error (shouldn't happen with our logic, but just in case)
+    // Handle duplicate key error from DB compound index
     if (error.code === 11000) {
       return NextResponse.json(
-        { success: false, message: "This email is already on our waitlist!" },
+        { success: false, message: "This person is already on our waitlist with this email address." },
         { status: 400 },
       );
     }
@@ -410,34 +397,21 @@ export async function POST(request) {
   }
 }
 
-// Updated email function - removed waitlistCount parameter and references
-async function sendWaitlistWelcomeEmail(
-  waitlistEntry,
-  isReturningUser = false,
-) {
+// Welcome email function
+async function sendWaitlistWelcomeEmail(waitlistEntry) {
   try {
-    const subject = isReturningUser
-      ? `Welcome back to Trim Medical Centre Waitlist, ${waitlistEntry.firstName}!`
-      : `Welcome to Trim Medical Centre Waitlist, ${waitlistEntry.firstName}!`;
-
-    const greeting = isReturningUser
-      ? `Welcome back, ${waitlistEntry.firstName}!`
-      : `Thank you for joining our waitlist, ${waitlistEntry.firstName}!`;
-
-    const mainMessage = isReturningUser
-      ? `We've added you to our waitlist again. Our team will contact you when spots become available.`
-      : `We have received your information and you have been added to our waitlist.`;
+    const subject = `Welcome to Trim Medical Centre Waitlist, ${waitlistEntry.firstName}!`;
 
     const welcomeEmailContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
         <div style="background: linear-gradient(135deg, #0369a1, #0ea5e9); padding: 30px; text-align: center;">
-          <h1 style="color: white; margin: 0; font-size: 28px;">${isReturningUser ? "Welcome Back!" : "Welcome to Trim Medical Centre Waitlist!"}</h1>
+          <h1 style="color: white; margin: 0; font-size: 28px;">Welcome to Trim Medical Centre Waitlist!</h1>
         </div>
         
         <div style="padding: 30px; background: #f8fafc;">
           <p>Dear <strong>${waitlistEntry.firstName} ${waitlistEntry.lastName}</strong>,</p>
           
-          <p>${greeting}</p>
+          <p>Thank you for joining our waitlist, ${waitlistEntry.firstName}!</p>
           
           <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #0369a1; margin: 20px 0;">
             <h3 style="color: #0369a1; margin-top: 0;">Your Waitlist Details:</h3>
@@ -447,17 +421,7 @@ async function sendWaitlistWelcomeEmail(
             <p><strong>Status:</strong> Active</p>
           </div>
           
-          <p>${mainMessage}</p>
-          
-          ${
-            isReturningUser
-              ? `
-          <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin: 20px 0;">
-            <p style="margin: 0; color: #856404;"><strong>Note:</strong> You can join our waitlist once every 30 days. This helps us manage our queue fairly for all patients.</p>
-          </div>
-          `
-              : ""
-          }
+          <p>We have received your information and you have been added to our waitlist.</p>
           
           <p><strong>What happens next?</strong></p>
           <ul>
@@ -488,7 +452,6 @@ async function sendWaitlistWelcomeEmail(
       </div>
     `;
 
-    // ✅ FIXED: Return the promise from sendEmail
     return await sendEmail({
       to: waitlistEntry.email,
       subject: subject,
@@ -496,6 +459,7 @@ async function sendWaitlistWelcomeEmail(
     });
   } catch (error) {
     console.error("Error sending waitlist welcome email:", error);
-    throw error; // Re-throw to be caught by the caller
+    throw error;
   }
 }
+

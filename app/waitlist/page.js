@@ -174,8 +174,7 @@ export default function WaitlistPage() {
           result.message?.includes("duplicate")
         ) {
           setErrors({
-            submit:
-              "This email is already on our waitlist. Please use a different email.",
+            submit: result.message,
           });
         } else {
           setErrors({
