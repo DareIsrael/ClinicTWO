@@ -97,7 +97,17 @@ const waitlistSchema = new mongoose.Schema(
 // Add index for better query performance
 waitlistSchema.index({ createdAt: 1 });
 waitlistSchema.index({ status: 1 });
-// waitlistSchema.index({ email: 1 });
+waitlistSchema.index({ email: 1 }); // Non-unique index for query performance
 
-export default mongoose.models.Waitlist ||
+const Waitlist = mongoose.models.Waitlist ||
   mongoose.model("Waitlist", waitlistSchema);
+
+// Drop stale indexes (e.g. old unique email index) that no longer match the schema
+if (typeof window === 'undefined') {
+  Waitlist.syncIndexes().catch((err) => {
+    console.error('Error syncing Waitlist indexes:', err);
+  });
+}
+
+export default Waitlist;
+
