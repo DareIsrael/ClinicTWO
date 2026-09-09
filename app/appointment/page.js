@@ -12,7 +12,7 @@ export default function BookAppointment() {
         "For patients already registered with our clinic for ongoing care.",
       note: "Existing patients only",
       buttonText: "Book as Existing Patient",
-      link: "https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554",
+      link: "",
       icon: (
         <svg
           className="w-7 h-7"
@@ -34,7 +34,7 @@ export default function BookAppointment() {
       title: "Walk-In Care",
       description:
         "For new or unregistered patients who need to be seen today.",
-      note: "Urgent or one-time visits",
+      note: "Urgent or one time visits",
       buttonText: "Book Walk-In Appointment",
       link: "/book-appointment",
       icon: (
@@ -58,7 +58,7 @@ export default function BookAppointment() {
       title: "Register as New Patient",
       description:
         "Join the list to become a permanent patient for long-term care.",
-      note: "Not for same-day visits",
+      note: "Not for same day visits",
       buttonText: "Join Waitlist",
       link: "/waitlist",
       icon: (

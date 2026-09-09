@@ -954,15 +954,14 @@ export default function Home() {
             </span>
           </h1>
 
-          {/* BUTTON ROWS */}
-          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 mb-4 sm:mb-6">
+          {/* Big Book Appointment Button */}
+          <div className="flex justify-center mb-5 sm:mb-7">
             <Link
-              href="https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554"
-              className="inline-flex w-40 sm:w-auto items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-white text-gray-700 font-semibold text-sm sm:text-base border border-cyan-400 hover:bg-cyan-50 transition-all duration-200"
+              href="/appointment"
+              className="inline-flex items-center justify-center px-10 sm:px-14 py-3.5 sm:py-4 rounded-xl bg-white text-gray-800 font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 gap-2 sm:gap-3"
             >
-              {t("hero_rostered_btn")}
               <svg
-                className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -971,51 +970,10 @@ export default function Home() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M9 5l7 7-7 7"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
-            </Link>
-
-            <Link
-              href="/waitlist"
-              className="inline-flex w-48 sm:w-auto items-center justify-center px-5 sm:px-8 py-2 sm:py-3 rounded-xl bg-transparent border border-cyan-400 text-white font-semibold text-sm sm:text-base hover:bg-cyan-500/10 transition-all duration-200"
-            >
-              <svg
-                className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13-5.197a6 6 0 00-9 5.197"
-                />
-              </svg>
-              {t("hero_join_waitlist")}
-            </Link>
-          </div>
-
-          <div className="flex justify-center">
-            <Link
-              href="/book-appointment"
-              className="inline-flex w-56 sm:w-auto items-center justify-center px-6 sm:px-10 py-2 sm:py-3 rounded-xl bg-transparent border border-cyan-400 text-white font-semibold text-sm sm:text-base hover:bg-cyan-500/10 transition-all duration-200"
-            >
-              <svg
-                className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-              {t("hero_book_walkin")}
+              Book Appointment
             </Link>
           </div>
         </div>

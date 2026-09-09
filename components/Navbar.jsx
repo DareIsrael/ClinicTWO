@@ -215,7 +215,7 @@ export default function Navbar() {
                   </div>
                   
                   <Link
-                    href="https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554"
+                    href=""
                     className="flex items-center space-x-2 px-3 py-2.5 hover:bg-cyan-50 transition-all duration-200 group"
                     onClick={() => setIsOnlineBookingDropdownOpen(false)}
                   >
@@ -343,7 +343,7 @@ export default function Navbar() {
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 mb-2">{t('nav_book_online')}</p>
                 
                 <Link
-                  href="https://ocean.cognisantmd.com/online-booking/7b15e604-ee55-4d68-909f-a6b8d6039554"
+                  href=""
                   className="flex items-center space-x-3 px-3 py-3 rounded-lg mx-1 text-base font-medium bg-cyan-50 text-cyan-600 hover:bg-cyan-100 transition-all duration-200 mb-2"
                   onClick={closeMobileMenu}
                 >
