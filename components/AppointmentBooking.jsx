@@ -257,10 +257,10 @@ export default function AppointmentBooking() {
                       }`}
                     >
                       <div className="text-2xl font-semibold text-gray-800">
-                        {new Date(dateInfo.date).getDate()}
+                        {(() => { const [y, m, d] = dateInfo.date.split('-'); return new Date(y, m - 1, d).getDate(); })()}
                       </div>
                       <div className={`text-sm font-medium mt-1 ${selectedDate === dateInfo.date ? 'text-gray-200' : 'text-gray-700'}`}>
-                        {new Date(dateInfo.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short' })}
+                        {(() => { const [y, m, d] = dateInfo.date.split('-'); return new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'short', month: 'short' }); })()}
                       </div>
                       {dateInfo.isToday && (
                         <span className={`absolute -top-2 -right-2 text-xs px-1.5 py-0.5 rounded-full ${
