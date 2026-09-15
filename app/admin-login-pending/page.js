@@ -12,39 +12,33 @@ function AdminLoginPendingContent() {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-          {/* Email icon */}
-          <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg
-              className="w-10 h-10 bg-cyan-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 text-center">
+          {/* Clinic Logo */}
+          <div className="flex items-center justify-center mx-auto mb-6">
+            <img 
+              src="/TrimLOGO11.svg" 
+              alt="Trim Medical Centre Logo" 
+              className="h-16 w-auto object-contain"
+            />
           </div>
 
-          <h1 className="text-2xl font-bold text-gray-700 mb-3">
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">
             Check Your Email
           </h1>
 
-          <p className="text-gray-600 mb-2">
+          <p className="text-gray-500 mb-4">
             A confirmation link has been sent to
           </p>
 
           {email && (
-            <p className="bg-cyan-600 font-semibold mb-4 break-all">{email}</p>
+            <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 mb-5 inline-block">
+              <p className="text-gray-800 font-semibold text-sm break-all">{email}</p>
+            </div>
           )}
 
-          <p className="text-gray-500 text-sm mb-6">
+          <p className="text-gray-500 text-sm mb-6 leading-relaxed">
             Click the link in your email to complete your admin login. The link
-            will expire in <strong>15 minutes</strong>.
+            will expire in <strong className="text-gray-700">15 minutes</strong>.
           </p>
 
           <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
@@ -62,7 +56,7 @@ function AdminLoginPendingContent() {
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
                 />
               </svg>
-              <p className="text-amber-800 text-sm">
+              <p className="text-amber-800 text-sm text-left">
                 Don&apos;t see the email? Check your spam folder or try logging
                 in again.
               </p>
@@ -70,7 +64,7 @@ function AdminLoginPendingContent() {
           </div>
 
           {error && (
-            <div className="bg-cyan-30 border border-cyan-200 bg-cyan-600 px-4 py-3 rounded-lg mb-4 text-sm">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
               {error}
             </div>
           )}
@@ -91,7 +85,7 @@ function AdminLoginPendingContent() {
 
             <Link
               href="/"
-              className="block text-gray-500 hover:text-gray-700 text-sm transition-colors"
+              className="block text-gray-400 hover:text-gray-600 text-sm transition-colors"
             >
               Go to Homepage
             </Link>
@@ -108,11 +102,15 @@ export default function AdminLoginPending() {
       fallback={
         <div className="min-h-screen bg-white flex items-center justify-center p-4">
           <div className="max-w-md w-full">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-cyan-600"></div>
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 text-center">
+              <div className="flex items-center justify-center mx-auto mb-6">
+                <img 
+                  src="/TrimLOGO11.svg" 
+                  alt="Trim Medical Centre Logo" 
+                  className="h-16 w-auto object-contain"
+                />
               </div>
-              <h1 className="text-2xl font-bold text-gray-700 mb-3">
+              <h1 className="text-2xl font-bold text-gray-800 mb-3">
                 Loading...
               </h1>
             </div>

@@ -17,7 +17,7 @@ const AppointmentStatusDropdown = ({ appointment, onStatusChange }) => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'scheduled': return 'bg-cyan-100 text-red-800 border-cyan-200';
+      case 'scheduled': return 'bg-cyan-100 text-blue-800 border-cyan-200';
       case 'confirmed': return 'bg-green-100 text-green-800 border-green-200';
       case 'completed': return 'bg-purple-100 text-purple-800 border-purple-200';
       case 'cancelled': return 'bg-cyan-100 text-red-800 border-cyan-200';

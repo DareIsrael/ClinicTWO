@@ -37,7 +37,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Light translucent overlay matching original design */}
       <div 
-        className="absolute inset-0 bg-black bg-opacity-10 backdrop-blur-sm transition-opacity duration-200"
+        className="absolute inset-0 bg-white/75 backdrop-blur-md transition-opacity duration-200"
         onClick={onClose}
       ></div>
       
@@ -45,7 +45,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onStatusChange }) => {
       <div className="bg-white rounded-xl max-w-4xl w-full max-h-[92vh] overflow-y-auto relative shadow-2xl border border-slate-200 flex flex-col z-10">
         
         {/* Letterhead Header Section */}
-        <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-cyan-900 text-white p-6 md:p-8 relative border-b border-blue-950">
+        <div className="bg-[#0891b2] text-white p-6 md:p-8 relative border-b border-[#0891b2]">
           
           {/* Top row: Hospital Logo + Clinic name & Close button */}
           <div className="flex justify-between items-start mb-6">
