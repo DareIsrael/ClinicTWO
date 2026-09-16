@@ -16,7 +16,7 @@ export const translations = {
     nav_walkin: "Walk-In Care",
     nav_walkin_sub: "For walk-in patients",
     nav_registered_patients: "Registered Patients",
-    nav_admin: "Admin Dashboard",
+    nav_admin: "Admin",
     nav_signout: "Sign Out",
     nav_book_online: "Book Online",
     footer_rights: "Trim Medical Centre. All rights reserved.",

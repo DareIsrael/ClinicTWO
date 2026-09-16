@@ -1292,7 +1292,7 @@ export default function Home() {
                     <div>
                       <a
                         href="mailto:contact@trimmedicalcentre.ca"
-                        className="text-gray-700 font-medium hover:text-cyan-600 transition-colors text-xs break-all"
+                        className="text-gray-700 font-medium hover:text-cyan-600 transition-colors text-sm break-all"
                       >
                         {t("email")}
                       </a>
