@@ -187,7 +187,7 @@ export default function TeaserTab() {
               </span>
             </div>
           </div>
-          <div className="p-5 bg-gradient-to-r from-cyan-600 to-teal-600 text-white">
+          <div className="p-5 bg-cyan-600 text-white">
             <h3 className="text-xl font-bold mb-2">{publishedTeaser.headline}</h3>
             <p className="text-cyan-100 text-sm mb-3">{publishedTeaser.message}</p>
             {publishedTeaser.buttonText && (

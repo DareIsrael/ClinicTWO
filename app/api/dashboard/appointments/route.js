@@ -25,7 +25,7 @@ export async function GET(req) {
     let appointments;
     let total;
 
-    if (session.user.role === "admin") {
+    if (session.user.role === "admin" || session.user.role === "doctor") {
       // Admin gets all appointments
       appointments = await Appointment.find()
         .populate("user", "firstName lastName email")

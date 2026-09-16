@@ -40,8 +40,8 @@ const TeaserBanner = () => {
 
   return (
     <div className="relative overflow-hidden rounded-xl shadow-lg border border-cyan-200">
-      {/* Gradient background */}
-      <div className="bg-gradient-to-r from-cyan-600 via-teal-600 to-cyan-700 px-5 py-5 sm:px-8 sm:py-6">
+      {/* Solid cyan background */}
+      <div className="bg-cyan-600 px-5 py-5 sm:px-8 sm:py-6">
         {/* Subtle decorative elements */}
         <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>

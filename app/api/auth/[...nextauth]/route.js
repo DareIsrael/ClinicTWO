@@ -86,7 +86,7 @@ export const authOptions = {
               throw new Error("Invalid login token");
             }
             const user = await User.findById(decoded.userId);
-            if (!user || user.role !== "admin") {
+            if (!user || (user.role !== "admin" && user.role !== "doctor")) {
               throw new Error("Invalid login token");
             }
             return {

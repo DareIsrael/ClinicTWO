@@ -37,7 +37,8 @@ export async function DELETE(req, { params }) {
     // Use session.user.id instead of user._id
     if (
       appointment.user.toString() !== session.user.id &&
-      session.user.role !== "admin"
+      session.user.role !== "admin" &&
+      session.user.role !== "doctor"
     ) {
       return NextResponse.json(
         {
@@ -76,7 +77,7 @@ export async function PUT(req, { params }) {
     }
 
     // Check if user is admin
-    if (session.user.role !== "admin") {
+    if (session.user.role !== "admin" && session.user.role !== "doctor") {
       return NextResponse.json(
         { success: false, message: "Admin access required" },
         { status: 403 },

@@ -58,7 +58,7 @@ export default function ProtectedRoute({ children, requireAdmin = false }) {
       return;
     }
 
-    if (!loading && isAuthenticated && requireAdmin && user?.role !== 'admin') {
+    if (!loading && isAuthenticated && requireAdmin && user?.role !== 'admin' && user?.role !== 'doctor') {
       router.push('/dashboard');
       return;
     }
@@ -79,7 +79,7 @@ export default function ProtectedRoute({ children, requireAdmin = false }) {
     return null;
   }
 
-  if (requireAdmin && user?.role !== 'admin') {
+  if (requireAdmin && user?.role !== 'admin' && user?.role !== 'doctor') {
     return null;
   }
 

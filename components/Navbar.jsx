@@ -253,7 +253,7 @@ export default function Navbar() {
 
             {isAuthenticated ? (
               <>
-                {user?.role === 'admin' && (
+                {(user?.role === 'admin' || user?.role === 'doctor') && (
                   <Link 
                     href="/admin" 
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActiveLink('/admin')} whitespace-nowrap`}
@@ -361,7 +361,7 @@ export default function Navbar() {
               
               {isAuthenticated && (
                 <>
-                  {user?.role === 'admin' && (
+                  {(user?.role === 'admin' || user?.role === 'doctor') && (
                     <Link
                       href="/admin"
                       className={`flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium transition-all duration-200 ${isActiveLink('/admin')}`}

@@ -16,7 +16,7 @@ export async function GET(request) {
       );
     }
 
-    if (session.user.role !== "admin") {
+    if (session.user.role !== "admin" && session.user.role !== "doctor") {
       return NextResponse.json(
         { success: false, message: "Admin access required" },
         { status: 403 },
@@ -29,14 +29,20 @@ export async function GET(request) {
     const limit = parseInt(searchParams.get("limit")) || 10;
     const page = parseInt(searchParams.get("page")) || 1;
 
+    // For doctors, show all non-doctor users (patients + admins)
+    // For admins, show only patients (original behavior)
+    const query = session.user.role === "doctor"
+      ? { role: { $in: ["patient", "admin"] } }
+      : { role: "patient" };
+
     // Select ALL user fields except password
-    const users = await User.find({ role: "patient" })
+    const users = await User.find(query)
       .select("-password") // Exclude password field
       .sort({ createdAt: -1 })
       .limit(limit)
       .skip((page - 1) * limit);
 
-    const total = await User.countDocuments({ role: "patient" });
+    const total = await User.countDocuments(query);
 
     return NextResponse.json({
       success: true,

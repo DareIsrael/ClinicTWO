@@ -18,7 +18,7 @@ const WaitlistStatusDropdown = ({ waitlistEntry, onStatusChange }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'Active': return 'bg-green-100 text-green-800 border-green-200';
-      case 'Booked': return 'bg-cyan-100 text-red-800 border-cyan-200';
+      case 'Booked': return 'bg-cyan-100 text-blue-800 border-cyan-200';
       case 'Accepted': return 'bg-purple-100 text-purple-800 border-purple-200';
       case 'Rejected': return 'bg-cyan-100 text-red-800 border-cyan-200';
       default: return 'bg-cyan-30-100 text-gray-800 border-gray-200';

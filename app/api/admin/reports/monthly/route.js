@@ -266,7 +266,7 @@ export async function GET(request) {
       );
     }
 
-    if (session.user.role !== "admin") {
+    if (session.user.role !== "admin" && session.user.role !== "doctor") {
       return NextResponse.json(
         { success: false, message: "Admin access required" },
         { status: 403 },

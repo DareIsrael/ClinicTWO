@@ -137,7 +137,7 @@ export async function GET() {
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session || session.user.role !== "admin") {
+    if (!session || (session.user.role !== "admin" && session.user.role !== "doctor")) {
       return NextResponse.json(
         { success: false, message: "Admin access required" },
         { status: 403 },

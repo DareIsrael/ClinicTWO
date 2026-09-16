@@ -18,7 +18,7 @@ export async function PUT(request, { params }) {
     }
 
     // Check admin role
-    if (session.user.role !== "admin") {
+    if (session.user.role !== "admin" && session.user.role !== "doctor") {
       return NextResponse.json(
         { success: false, message: "Admin access required" },
         { status: 403 },
@@ -77,7 +77,7 @@ export async function DELETE(request, { params }) {
     }
 
     // Check admin role
-    if (session.user.role !== "admin") {
+    if (session.user.role !== "admin" && session.user.role !== "doctor") {
       return NextResponse.json(
         { success: false, message: "Admin access required" },
         { status: 403 },
