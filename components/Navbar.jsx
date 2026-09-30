@@ -232,6 +232,7 @@ export default function Navbar() {
                   
                   <div className="border-t border-gray-100 my-1"></div>
                   
+                  {/* Walk-In Care link temporarily hidden while physician coverage is being expanded
                   <Link
                     href="/book-appointment"
                     className="flex items-center space-x-2 px-3 py-2.5 hover:bg-cyan-50 transition-all duration-200 group"
@@ -247,6 +248,7 @@ export default function Navbar() {
                       <div className="text-xs text-gray-500 mt-0.5">{t('nav_walkin_sub')}</div>
                     </div>
                   </Link>
+                  */}
                 </div>
               )}
             </div>
@@ -350,6 +352,7 @@ export default function Navbar() {
                   <span>{t('nav_rostered')}</span>
                 </Link>
                 
+                {/* Walk-In Care mobile link temporarily hidden while physician coverage is being expanded
                 <Link
                   href="/book-appointment"
                   className="flex items-center space-x-3 px-3 py-3 rounded-lg mx-1 text-base font-medium bg-cyan-50 text-cyan-600 hover:bg-cyan-100 transition-all duration-200"
@@ -357,6 +360,7 @@ export default function Navbar() {
                 >
                   <span>{t('nav_walkin')}</span>
                 </Link>
+                */}
               </div>
               
               {isAuthenticated && (

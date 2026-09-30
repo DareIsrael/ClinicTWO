@@ -91,7 +91,7 @@ const UninsuredServicesPage = () => {
       id: 'questions',
       title: 'Questions About Fees?',
       icon: <AlertCircle className="w-6 h-6" />,
-      content: `If you're unsure whether something is covered by OHIP or subject to an uninsured fee, please ask our team. We're happy to explain what is insured, what isn't, and how the fees are calculated.`,
+      content: `If you're unsure whether something is covered by OHIP or subject to an uninsured fee, please ask our team.`,
     },
   ];
 
@@ -275,10 +275,10 @@ const UninsuredServicesPage = () => {
                 Ask About Fees
               </a>
               <a
-                href="/appointments"
+                href="/contact"
                 className="px-6 py-3 bg-transparent border-2 border-white rounded-lg hover:bg-white/10 transition-colors duration-200 font-medium"
               >
-                Book Appointment
+                Contact Us
               </a>
             </div>
           </div>

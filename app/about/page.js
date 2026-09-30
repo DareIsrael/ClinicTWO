@@ -49,10 +49,6 @@ export default function AboutPage() {
 
   const practiceFeatures = [
     {
-      title: t("feat_sameday"),
-      description: t("feat_sameday_desc"),
-    },
-    {
       title: t("feat_ohip"),
       description: t("feat_ohip_desc"),
     },
@@ -63,6 +59,10 @@ export default function AboutPage() {
     {
       title: t("feat_welcoming"),
       description: t("feat_welcoming_desc"),
+    },
+    {
+      title: t("feat_sameday"),
+      description: t("feat_sameday_desc"),
     },
   ];
 
@@ -88,7 +88,8 @@ export default function AboutPage() {
 
 
 
-      {/* Meet Our Physician Section */}
+      {/* Meet Our Physician Section - hidden when no physician name is set */}
+      {Boolean(t("about_dr_name")) && (
       <section className="bg-cyan-30 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12">
@@ -171,6 +172,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Our Practice Philosophy */}
       <section className="bg-white py-16 sm:py-20">
@@ -389,18 +391,17 @@ export default function AboutPage() {
       <section className=" py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-light  mb-3">
-            Ready to become a patient?
+            Ready to join our practice?
           </h2>
           <p className="text-gray-500 text-sm mb-6 max-w-md mx-auto">
-            Join our family of satisfied patients and experience compassionate
-            care.
+            Our family practice waitlist is open. Register your interest today.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/appointment"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-cyan-600 text-white font-medium hover:bg-cyan-30-100 transition-all duration-200 text-sm"
+              href="/waitlist"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-cyan-600 text-white font-medium hover:bg-cyan-700 transition-all duration-200 text-sm"
             >
-              Book Appointment
+              Join Waitlist
               <svg
                 className="w-4 h-4 ml-2"
                 fill="none"

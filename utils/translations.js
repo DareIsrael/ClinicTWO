@@ -23,7 +23,7 @@ export const translations = {
     footer_tagline: "Committed to your health and wellbeing",
 
     // Home Page
-    hero_badge: "Accepting New Patients",
+    hero_badge: "Family Practice Waitlist Open",
     hero_title: "Comprehensive Medical Care",
     hero_subtitle: "Accessible. Reliable. Patient-focused.",
     hero_rostered_btn: "Rostered Patients",
@@ -32,8 +32,8 @@ export const translations = {
 
     features_title: "Practice Features",
     features_subtitle: "Designed with your comfort and convenience in mind",
-    feat_sameday: "Same-Day Appointments",
-    feat_sameday_desc: "Urgent care needs addressed promptly",
+    feat_sameday: "Scheduled Appointments",
+    feat_sameday_desc: "Appointments available for registered patients",
     feat_ohip: "OHIP Billed Services",
     feat_ohip_desc: "Most medical services covered by Ontario Health Insurance",
     feat_comprehensive: "Comprehensive Care",
@@ -54,13 +54,13 @@ export const translations = {
     service_preventive_desc:
       "Regular check-ups, vaccinations and health screenings",
     service_sick_notes: "Sick Notes",
-    service_sick_notes_desc: "Same-day school, university and work sick notes",
+    service_sick_notes_desc: "School, university and work sick notes",
     service_sti: "STI Screening",
     service_sti_desc: "Confidential and accurate testing",
     service_wsib: "WSIB Forms",
     service_wsib_desc: "WSIB medical assessments and form 8 completion",
     service_drivers: "Driver's Medicals",
-    service_drivers_desc: "Same-day MTO drivers medical exam",
+    service_drivers_desc: "MTO drivers medical exam",
     service_counselling: "Counselling",
     service_counselling_desc: "Professional health counselling services",
     service_treatments: "Treatments",
@@ -82,7 +82,7 @@ export const translations = {
     val_compassionate_desc:
       "Healthcare delivered with empathy, respect, and understanding.",
 
-    hours_title: "Hours of Operation",
+    hours_title: "Clinic / Administrative Hours",
     day_monday: "Monday",
     day_tuesday: "Tuesday",
     day_wednesday: "Wednesday",
@@ -107,21 +107,16 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Providing compassionate, comprehensive family medicine to the Orleans community with personalized care from experienced physicians.",
-    about_meet_physician: "Meet Our Physician",
-    about_dr_name: "Dr. Fatima Ahmad",
-    about_dr_role: "Family Physician",
-    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
-    about_dr_bio_1:
-      "Dr. Fatima Ahmad is a UK-trained Family Physician with broad international experience in Family Medicine, Emergency Medicine, General Surgery, Obstetrics & Gynaecology and Public Health.",
-    about_dr_bio_2:
-      "She obtained her medical degree in Sudan and has practised medicine in Sudan, Nigeria and the United Kingdom. She later completed a Master's in Public Health in the UK before completing her specialist training in Family Medicine/General Practice.",
-    about_dr_bio_3:
-      "Dr. Ahmad chose Family Medicine because she values building lasting relationships with her patients and caring for individuals and families throughout every stage of life. Her broad medical background allows her to provide comprehensive care to children, adolescents, adults and older patients, with interests spanning preventative care, chronic disease management, mental health, men's and women's health, and health promotion.",
-    about_dr_bio_4:
-      "Having lived and worked across different countries and cultures, Dr. Ahmad brings a warm, culturally sensitive approach to her practice. She speaks five languages, including English and Arabic.",
-    about_dr_bio_5:
-      "Now certified by the College of Family Physicians of Canada (CCFP), Dr. Ahmad is delighted to call Ottawa home and looks forward to welcoming patients and families of all ages and backgrounds.",
-    about_dr_location: "Trim Medical Centre, Ottawa",
+    about_meet_physician: "Our Medical Team",
+    about_dr_name: "",
+    about_dr_role: "",
+    about_dr_credentials: "",
+    about_dr_bio_1: "",
+    about_dr_bio_2: "",
+    about_dr_bio_3: "",
+    about_dr_bio_4: "",
+    about_dr_bio_5: "",
+    about_dr_location: "",
     about_cred_medical_degree: "Medical Degree",
     about_cred_medical_degree_val: "MBBS - Bachelor of Medicine, Bachelor of Surgery",
     about_cred_public_health: "Public Health",
@@ -201,10 +196,10 @@ export const translations = {
       "Some clinical visits are uninsured because of the reason for the visit, such as: Travel health consultations, Non-insured vaccines, and certain employment-related assessments.",
     uninsured_questions_title: "Questions About Fees?",
     uninsured_questions_content:
-      "If you're unsure whether something is covered by OHIP or subject to an uninsured fee, please ask our team. We're happy to explain what is insured, what isn't, and how the fees are calculated.",
+      "If you're unsure whether something is covered by OHIP or subject to an uninsured fee, please ask our team.",
     uninsured_cta_title: "Need Clarification About Fees?",
     uninsured_cta_text:
-      "We're happy to explain what is insured, what isn't, and how the fees are calculated.",
+      "",
 
     // Waitlist Page
     waitlist_title: "Join Our Waitlist",
@@ -253,9 +248,9 @@ export const translations = {
     err_password_match: "Passwords do not match",
 
     // Book Appointment Page
-    book_title: "Book a Walk-In Care Appointment",
+    book_title: "Book an Appointment",
     book_subtitle:
-      "Schedule a visit with our healthcare team at your convenience",
+      "Schedule a visit with our healthcare team",
     step_select_slot: "1. Select Date & Time",
     step_patient_info: "2. Patient Information",
     step_confirmation: "3. Confirmation",
@@ -355,7 +350,7 @@ export const translations = {
     footer_tagline: "Engagés envers votre santé et votre bien-être",
 
     // Home Page
-    hero_badge: "Accepte de nouveaux patients",
+    hero_badge: "Liste d'attente ouverte — Médecine familiale",
     hero_title: "Soins médicaux complets",
     hero_subtitle: "Accessibles. Fiables. Axés sur le patient.",
     hero_rostered_btn: "Patients inscrits",
@@ -364,8 +359,8 @@ export const translations = {
 
     features_title: "Caractéristiques du cabinet",
     features_subtitle: "Conçues pour votre confort et votre commodité",
-    feat_sameday: "Rendez-vous le jour même",
-    feat_sameday_desc: "Besoins de soins urgents traités rapidement",
+    feat_sameday: "Rendez-vous planifiés",
+    feat_sameday_desc: "Rendez-vous disponibles pour les patients inscrits",
     feat_ohip: "Services facturés à l'OHIP",
     feat_ohip_desc:
       "La plupart des services médicaux couverte par l'Assurance-santé de l'Ontario",
@@ -389,13 +384,13 @@ export const translations = {
       "Examens réguliers, vaccinations et dépistages de santé",
     service_sick_notes: "Billets médicaux",
     service_sick_notes_desc:
-      "Billets de maladie le jour même pour école, université et travail",
+      "Billets de maladie pour école, université et travail",
     service_sti: "Dépistage ITSS",
     service_sti_desc: "Tests confidentiels et précis",
     service_wsib: "Formulaires CSPAAT (WSIB)",
     service_wsib_desc: "Évaluations médicales et formulaires CSPAAT",
     service_drivers: "Examens médicaux de conduite",
-    service_drivers_desc: "Examen médical du MTO le jour même",
+    service_drivers_desc: "Examen médical du MTO",
     service_counselling: "Counselling",
     service_counselling_desc: "Services professionnels de conseils en santé",
     service_treatments: "Traitements",
@@ -417,7 +412,7 @@ export const translations = {
     val_compassionate_desc:
       "Des soins prodigués avec empathie, respect et compréhension.",
 
-    hours_title: "Heures d'ouverture",
+    hours_title: "Heures de la clinique / administratives",
     day_monday: "Lundi",
     day_tuesday: "Mardi",
     day_wednesday: "Mercredi",
@@ -442,21 +437,16 @@ export const translations = {
     about_title: "Centre Médical Trim",
     about_subtitle:
       "Offrir des soins familiaux attentionnés et complets à la communauté d'Orleans avec une prise en charge personnalisée.",
-    about_meet_physician: "Rencontrez notre médecin",
-    about_dr_name: "Dre Fatima Ahmad",
-    about_dr_role: "Médecin de famille",
-    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
-    about_dr_bio_1:
-      "La Dre Fatima Ahmad est médecin de famille formée au Royaume-Uni, dotée d'une vaste expérience internationale en médecine familiale, médecine d'urgence, chirurgie générale, obstétrique et gynécologie ainsi qu'en santé publique.",
-    about_dr_bio_2:
-      "Elle a obtenu son diplôme de médecine au Soudan et a exercé la médecine au Soudan, au Nigeria et au Royaume-Uni. Elle a ensuite complété une maîtrise en santé publique au Royaume-Uni avant de terminer sa formation spécialisée en médecine familiale/médecine générale.",
-    about_dr_bio_3:
-      "La Dre Ahmad a choisi la médecine familiale parce qu'elle accorde une grande importance à l'établissement de relations durables avec ses patients et aux soins prodigués aux individus et aux familles à chaque étape de la vie. Sa vaste formation médicale lui permet d'offrir des soins complets aux enfants, aux adolescents, aux adultes et aux personnes âgées, avec des intérêts couvrant la prévention, la gestion des maladies chroniques, la santé mentale, la santé des hommes et des femmes, et la promotion de la santé.",
-    about_dr_bio_4:
-      "Ayant vécu et travaillé dans différents pays et cultures, la Dre Ahmad apporte une approche chaleureuse et culturellement sensible à sa pratique. Elle parle cinq langues, dont l'anglais et l'arabe.",
-    about_dr_bio_5:
-      "Désormais certifiée par le Collège des médecins de famille du Canada (CCMF), la Dre Ahmad est ravie de s'établir à Ottawa et a hâte d'accueillir des patients et des familles de tous âges et de toutes origines.",
-    about_dr_location: "Centre Médical Trim, Ottawa",
+    about_meet_physician: "Notre équipe médicale",
+    about_dr_name: "",
+    about_dr_role: "",
+    about_dr_credentials: "",
+    about_dr_bio_1: "",
+    about_dr_bio_2: "",
+    about_dr_bio_3: "",
+    about_dr_bio_4: "",
+    about_dr_bio_5: "",
+    about_dr_location: "",
     about_cred_medical_degree: "Diplôme de médecine",
     about_cred_medical_degree_val: "MBBS - Baccalauréat en médecine et en chirurgie",
     about_cred_public_health: "Santé publique",
@@ -693,7 +683,7 @@ export const translations = {
     footer_tagline: "Ihrer Gesundheit und Ihrem Wohlbefinden verpflichtet",
 
     // Home Page
-    hero_badge: "Aufnahme neuer Patienten",
+    hero_badge: "Warteliste offen — Hausarztpraxis",
     hero_title: "Umfassende medizinische Versorgung",
     hero_subtitle: "Zugänglich. Zuverlässig. Patientenzentriert.",
     hero_rostered_btn: "Registrierte Patienten",
@@ -702,8 +692,8 @@ export const translations = {
 
     features_title: "Praxismerkmale",
     features_subtitle: "Entworfen für Ihren Komfort und Ihre Bequemlichkeit",
-    feat_sameday: "Termine am selben Tag",
-    feat_sameday_desc: "Dringende Anliegen werden umgehend behandelt",
+    feat_sameday: "Geplante Termine",
+    feat_sameday_desc: "Termine für registrierte Patienten verfügbar",
     feat_ohip: "OHIP-Abrechnungsleistungen",
     feat_ohip_desc:
       "Die meisten Leistungen durch Ontario Health Insurance abgedeckt",
@@ -725,13 +715,13 @@ export const translations = {
       "Regelmäßige Untersuchungen, Impfungen und Gesundheits-Screenings",
     service_sick_notes: "Atteste & Krankmeldungen",
     service_sick_notes_desc:
-      "Atteste am selben Tag für Schule, Universität und Arbeit",
+      "Atteste für Schule, Universität und Arbeit",
     service_sti: "STI-Tests",
     service_sti_desc: "Vertrauliche und präzise Tests",
     service_wsib: "WSIB-Formulare",
     service_wsib_desc: "Medizinische WSIB-Bewertungen und Formularausfüllung",
     service_drivers: "Führerscheinuntersuchung",
-    service_drivers_desc: "MTO-Führerscheinuntersuchung am selben Tag",
+    service_drivers_desc: "MTO-Führerscheinuntersuchung",
     service_counselling: "Beratung",
     service_counselling_desc: "Professionelle Gesundheitsberatungsdienste",
     service_treatments: "Behandlungen",
@@ -753,7 +743,7 @@ export const translations = {
     val_compassionate_desc:
       "Gesundheitsversorgung mit Empathie, Respekt und Verständnis.",
 
-    hours_title: "Öffnungszeiten",
+    hours_title: "Klinik- / Verwaltungszeiten",
     day_monday: "Montag",
     day_tuesday: "Dienstag",
     day_wednesday: "Mittwoch",
@@ -778,21 +768,16 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Einfühlsame und umfassende Allgemeinmedizin für die Gemeinschaft in Orleans.",
-    about_meet_physician: "Lernen Sie unsere Ärztin kennen",
-    about_dr_name: "Dr. Fatima Ahmad",
-    about_dr_role: "Hausärztin",
-    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
-    about_dr_bio_1:
-      "Dr. Fatima Ahmad ist eine in Großbritannien ausgebildete Hausärztin mit breiter internationaler Erfahrung in Allgemeinmedizin, Notfallmedizin, Allgemeinchirurgie, Geburtshilfe und Gynäkologie sowie öffentlicher Gesundheit.",
-    about_dr_bio_2:
-      "Sie erwarb ihren Abschluss in Medizin im Sudan und praktizierte in Sudan, Nigeria und im Vereinigten Königreich. Anschließend absolvierte sie einen Master in Public Health im Vereinigten Königreich, bevor sie ihre Facharztausbildung in Allgemeinmedizin abschloss.",
-    about_dr_bio_3:
-      "Dr. Ahmad wählte die Allgemeinmedizin, weil sie den Aufbau dauerhafter Beziehungen zu ihren Patienten schätzt und Einzelpersonen sowie Familien in jeder Lebensphase betreut. Ihre breite medizinische Ausbildung ermöglicht es ihr, umfassende Versorgung für Kinder, Jugendliche, Erwachsene und ältere Patienten zu bieten, mit Schwerpunkten in Prävention, Management chronischer Erkrankungen, psychischer Gesundheit, Männer- und Frauengesundheit sowie Gesundheitsförderung.",
-    about_dr_bio_4:
-      "Da sie in verschiedenen Ländern und Kulturen gelebt und gearbeitet hat, bringt Dr. Ahmad einen warmherzigen, kultursensiblen Ansatz in ihre Praxis ein. Sie spricht fünf Sprachen, darunter Englisch und Arabisch.",
-    about_dr_bio_5:
-      "Nun zertifiziert durch das College of Family Physicians of Canada (CCFP), freut sich Dr. Ahmad, Ottawa ihr Zuhause zu nennen, und heißt Patienten und Familien aller Altersgruppen und Herkunft herzlich willkommen.",
-    about_dr_location: "Trim Medical Centre, Ottawa",
+    about_meet_physician: "Unser medizinisches Team",
+    about_dr_name: "",
+    about_dr_role: "",
+    about_dr_credentials: "",
+    about_dr_bio_1: "",
+    about_dr_bio_2: "",
+    about_dr_bio_3: "",
+    about_dr_bio_4: "",
+    about_dr_bio_5: "",
+    about_dr_location: "",
     about_cred_medical_degree: "Medizinischer Abschluss",
     about_cred_medical_degree_val: "MBBS - Bachelor der Medizin und Chirurgie",
     about_cred_public_health: "Öffentliche Gesundheit",
@@ -1024,7 +1009,7 @@ export const translations = {
     footer_tagline: "Comprometidos con su salud y bienestar",
 
     // Home Page
-    hero_badge: "Aceptando nuevos pacientes",
+    hero_badge: "Lista de espera abierta — Medicina Familiar",
     hero_title: "Atención Médica Integral",
     hero_subtitle: "Accesible. Confiable. Centrada en el paciente.",
     hero_rostered_btn: "Pacientes Registrados",
@@ -1033,8 +1018,8 @@ export const translations = {
 
     features_title: "Características del Centro",
     features_subtitle: "Diseñado pensando en su comodidad y conveniencia",
-    feat_sameday: "Citas el Mismo Día",
-    feat_sameday_desc: "Atención oportuna para necesidades urgentes",
+    feat_sameday: "Citas Programadas",
+    feat_sameday_desc: "Citas disponibles para pacientes registrados",
     feat_ohip: "Servicios Cubiertos por OHIP",
     feat_ohip_desc:
       "La mayoría de los servicios cubiertos por el seguro público de Ontario",
@@ -1057,13 +1042,13 @@ export const translations = {
       "Chequeos periódicos, vacunas y exámenes preventivos",
     service_sick_notes: "Certificados Médicos",
     service_sick_notes_desc:
-      "Justificantes médicos el mismo día para escuela, universidad y trabajo",
+      "Justificantes médicos para escuela, universidad y trabajo",
     service_sti: "Pruebas de ITS",
     service_sti_desc: "Pruebas confidenciales y precisas",
     service_wsib: "Formularios WSIB",
     service_wsib_desc: "Evaluaciones médicas WSIB y llenado de formularios",
     service_drivers: "Examen Médicos de Conducir",
-    service_drivers_desc: "Examen médico de conducir del MTO el mismo día",
+    service_drivers_desc: "Examen médico de conducir del MTO",
     service_counselling: "Orientación y Asesoramiento",
     service_counselling_desc:
       "Servicios profesionales de asesoramiento en salud",
@@ -1086,7 +1071,7 @@ export const translations = {
     val_compassionate_desc:
       "Atención médica brindada con empatía, respeto y comprensión.",
 
-    hours_title: "Horarios de Atención",
+    hours_title: "Horarios de la Clínica / Administrativos",
     day_monday: "Lunes",
     day_tuesday: "Martes",
     day_wednesday: "Miércoles",
@@ -1111,21 +1096,16 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Brindando atención médica familiar compasiva e integral a la comunidad de Orleans.",
-    about_meet_physician: "Conozca a nuestra médica",
-    about_dr_name: "Dra. Fatima Ahmad",
-    about_dr_role: "Médica de Familia",
-    about_dr_credentials: "MBBS, MPH, MRCGP, CCFP",
-    about_dr_bio_1:
-      "La Dra. Fatima Ahmad es médica de familia formada en el Reino Unido, con amplia experiencia internacional en medicina familiar, medicina de emergencia, cirugía general, obstetricia y ginecología y salud pública.",
-    about_dr_bio_2:
-      "Obtuvo su título de medicina en Sudán y ha ejercido la medicina en Sudán, Nigeria y el Reino Unido. Posteriormente completó una Maestría en Salud Pública en el Reino Unido antes de completar su formación especializada en medicina familiar/medicina general.",
-    about_dr_bio_3:
-      "La Dra. Ahmad eligió la medicina familiar porque valora la construcción de relaciones duraderas con sus pacientes y el cuidado de personas y familias en cada etapa de la vida. Su amplia formación médica le permite brindar atención integral a niños, adolescentes, adultos y personas mayores, con intereses que abarcan la atención preventiva, el manejo de enfermedades crónicas, la salud mental, la salud masculina y femenina, y la promoción de la salud.",
-    about_dr_bio_4:
-      "Habiendo vivido y trabajado en diferentes países y culturas, la Dra. Ahmad aporta un enfoque cálido y culturalmente sensible a su práctica. Habla cinco idiomas, incluyendo inglés y árabe.",
-    about_dr_bio_5:
-      "Ahora certificada por el Colegio de Médicos de Familia de Canadá (CCFP), la Dra. Ahmad está encantada de llamar a Ottawa su hogar y espera dar la bienvenida a pacientes y familias de todas las edades y orígenes.",
-    about_dr_location: "Trim Medical Centre, Ottawa",
+    about_meet_physician: "Nuestro equipo médico",
+    about_dr_name: "",
+    about_dr_role: "",
+    about_dr_credentials: "",
+    about_dr_bio_1: "",
+    about_dr_bio_2: "",
+    about_dr_bio_3: "",
+    about_dr_bio_4: "",
+    about_dr_bio_5: "",
+    about_dr_location: "",
     about_cred_medical_degree: "Título de Medicina",
     about_cred_medical_degree_val: "MBBS - Licenciatura en Medicina y Cirugía",
     about_cred_public_health: "Salud Pública",

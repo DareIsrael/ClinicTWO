@@ -29,6 +29,7 @@ export default function BookAppointment() {
         </svg>
       ),
     },
+    /* Walk-In Care option temporarily hidden while physician coverage is being expanded
     {
       id: 2,
       title: "Walk-In Care",
@@ -53,12 +54,13 @@ export default function BookAppointment() {
         </svg>
       ),
     },
+    */
     {
       id: 3,
-      title: "Register as New Patient",
+      title: "Join Family Practice Waitlist",
       description:
-        "Join the list to become a permanent patient for long-term care.",
-      note: "Not for same day visits",
+        "Register your interest for long-term family physician care.",
+      note: "Waitlist currently open",
       buttonText: "Join Waitlist",
       link: "/waitlist",
       icon: (
@@ -72,7 +74,7 @@ export default function BookAppointment() {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.5}
-            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+            d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
           />
         </svg>
       ),
@@ -94,16 +96,45 @@ export default function BookAppointment() {
             Book an Appointment
           </h1>
           <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
-            Select the option that best fits your needs. Same-day appointments
-            available for urgent care.
+            Select the option that best fits your needs.
           </p>
+        </div>
+      </div>
+
+      {/* Appointment Availability Notice */}
+      <div className="bg-amber-50 border-b border-amber-200 py-6 sm:py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="flex-shrink-0 w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mt-0.5">
+              <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
+                Appointment Availability Update
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
+                We are currently adjusting our appointment availability as we work to expand physician coverage at Trim Medical Centre.
+              </p>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
+                Walk-in appointments are not currently available.
+              </p>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
+                Our family practice waitlist remains open, and patients already registered on the waitlist do not need to register again. We will contact patients as appointments become available.
+              </p>
+              <p className="text-sm sm:text-base text-gray-600 italic">
+                Thank you for your patience and continued trust in Trim Medical Centre.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Main Content - Booking Options */}
       <main className="py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {options.map((option) => (
               <div
                 key={option.id}
@@ -174,7 +205,7 @@ export default function BookAppointment() {
                     />
                   </svg>
                   <span className="text-sm text-gray-600">
-                    Need help choosing?
+                    Need help or have questions?
                   </span>
                 </div>
 
@@ -199,87 +230,7 @@ export default function BookAppointment() {
                 </a>
               </div>
               <p className="text-xs text-gray-500 mt-3">
-                Our staff is available to help you choose the right appointment
-                type
-              </p>
-            </div>
-          </div>
-
-          {/* Additional Info Section */}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div className="text-center p-3">
-              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <svg
-                  className="w-5 h-5 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h4 className="font-medium text-gray-800 text-sm mb-0.5">
-                Same-Day Appointments
-              </h4>
-              <p className="text-xs text-gray-500">
-                Available for urgent care needs
-              </p>
-            </div>
-            <div className="text-center p-3">
-              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <svg
-                  className="w-5 h-5 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h4 className="font-medium text-gray-800 text-sm mb-0.5">
-                OHIP Covered
-              </h4>
-              <p className="text-xs text-gray-500">
-                Most services are covered by OHIP
-              </p>
-            </div>
-            <div className="text-center p-3">
-              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <svg
-                  className="w-5 h-5 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <h4 className="font-medium text-gray-800 text-sm mb-0.5">
-                Central Location
-              </h4>
-              <p className="text-xs text-gray-500">
-                1282 Trim Rd, Unit B, Orleans
+                Our administrative team is available to assist with existing patient matters and general enquiries
               </p>
             </div>
           </div>
@@ -289,17 +240,16 @@ export default function BookAppointment() {
       {/* CTA Section */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-light  mb-3">
-            Need Immediate Medical Attention?
+          <h2 className="text-2xl sm:text-3xl font-light mb-3">
+            Have Questions About Your Care?
           </h2>
           <p className="text-gray-500 text-sm mb-6">
-            For urgent medical concerns, please call us or visit our clinic
-            directly.
+            Our administrative team is here to help with existing patient matters and general enquiries.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:+13438873470"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-white text-gray-700 font-medium hover:bg-gray-100 transition-all duration-200 text-sm"
+              href="tel:+13432244070"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-white text-gray-700 font-medium hover:bg-gray-100 transition-all duration-200 text-sm border border-gray-200"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -318,9 +268,9 @@ export default function BookAppointment() {
             </a>
             <Link
               href="/contact"
-              className="bg-cyan-600 inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-600 text-white font-medium hover:bg-gray-800 transition-all duration-200 text-sm"
+              className="bg-cyan-600 inline-flex items-center justify-center px-6 py-2.5 rounded-lg text-white font-medium hover:bg-cyan-700 transition-all duration-200 text-sm"
             >
-              View Location
+              Contact Us
               <svg
                 className="w-4 h-4 ml-2"
                 fill="none"
@@ -331,13 +281,7 @@ export default function BookAppointment() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
             </Link>

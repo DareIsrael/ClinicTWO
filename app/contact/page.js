@@ -139,7 +139,7 @@ export default function ContactPage() {
           />
         </svg>
       ),
-      title: t("contact_hours"),
+      title: t("hours_title"),
       details: [
         `Mon-Thu: ${t("hours_mon_thu")}`,
         `Friday: ${t("hours_fri")}`,

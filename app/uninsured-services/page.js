@@ -254,7 +254,7 @@ export default function UninsuredServicesPage() {
             {t("uninsured_cta_title")}
           </h2>
           <p className="text-gray-500 text-sm mb-6 max-w-md mx-auto">
-            {t("uninsured_cta_text")}
+            {t("")}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
@@ -277,10 +277,10 @@ export default function UninsuredServicesPage() {
               </svg>
             </a>
             <a
-              href="/book-appointment"
+              href="/contact"
               className="bg-cyan-800 inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-600 text-white font-medium hover:bg-cyan-700 transition-all duration-200 text-sm"
             >
-              {t("nav_book")}
+              {t("nav_contact")}
             </a>
           </div>
         </div>

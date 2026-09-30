@@ -23,7 +23,9 @@ export function LanguageProvider({ children }) {
 
   const t = (key) => {
     const langDict = translations[language] || translations.en;
-    return langDict[key] || translations.en[key] || key;
+    if (langDict && key in langDict) return langDict[key];
+    if (translations.en && key in translations.en) return translations.en[key];
+    return key;
   };
 
   return (
@@ -40,7 +42,7 @@ export function useLanguage() {
     return {
       language: 'en',
       setLanguage: () => {},
-      t: (key) => translations.en[key] || key
+      t: (key) => (key in translations.en ? translations.en[key] : key)
     };
   }
   return context;

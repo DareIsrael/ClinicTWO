@@ -99,7 +99,7 @@ export default function PoliciesPage() {
         },
         { content: "Allow 3–5 business days for processing." },
         { content: "Urgent renewals may not be guaranteed." },
-        { content: "Walk-in renewals are not always possible." },
+        { content: "Please contact the clinic for renewal enquiries." },
       ],
     },
     {
