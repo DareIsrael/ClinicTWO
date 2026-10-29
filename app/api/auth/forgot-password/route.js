@@ -3,6 +3,7 @@ import crypto from "crypto";
 import dbConnect from "@/utils/db";
 import User from "@/models/User";
 import { sendEmail } from "@/utils/emailService";
+import { getAppUrl } from "@/utils/appUrl";
 
 export async function POST(req) {
   try {
@@ -39,7 +40,7 @@ export async function POST(req) {
     await user.save();
 
     // Create reset URL
-    const resetUrl = `${process.env.NEXTAUTH_URL}/reset-password?token=${resetToken}`;
+    const resetUrl = `${getAppUrl()}/reset-password?token=${resetToken}`;
 
     // Send email
     try {

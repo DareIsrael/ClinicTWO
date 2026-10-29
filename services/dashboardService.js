@@ -220,7 +220,7 @@ export const dashboardService = {
 
   // Broadcast email to waitlist
   broadcastToWaitlist: async (data) => {
-    const response = await api.post('/admin/broadcast/waitlist', data);
+    const response = await api.post('/admin/broadcast/campaigns', { ...data, type: 'waitlist' });
     return response.data;
   },
 
@@ -234,7 +234,7 @@ export const dashboardService = {
 
   // Broadcast email to appointment holders
   broadcastToAppointments: async (data) => {
-    const response = await api.post('/admin/broadcast/appointments', data);
+    const response = await api.post('/admin/broadcast/campaigns', { ...data, type: 'appointment' });
     return response.data;
   },
 
@@ -248,9 +248,15 @@ export const dashboardService = {
 
   // Fetch broadcast message history
   getBroadcastHistory: async (page = 1, limit = 15, type = 'all') => {
-    const response = await api.get('/admin/broadcast/history', {
+    const response = await api.get('/admin/broadcast/campaigns', {
       params: { page, limit, type },
     });
+    return response.data;
+  },
+
+  // Send the next chunk of emails for a queued campaign; returns progress
+  sendCampaignChunk: async (campaignId) => {
+    const response = await api.post(`/admin/broadcast/campaigns/${campaignId}/send`, {}, { timeout: 90000 });
     return response.data;
   },
 

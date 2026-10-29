@@ -1,6 +1,8 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { dashboardService } from '@/services/dashboardService';
+import { useCampaignSender } from '@/hooks/useCampaignSender';
+import CampaignProgress from '@/components/admin/CampaignProgress';
 
 export default function BroadcastHistoryTab() {
     const [messages, setMessages] = useState([]);
@@ -8,25 +10,42 @@ export default function BroadcastHistoryTab() {
     const [typeFilter, setTypeFilter] = useState('all');
     const [loading, setLoading] = useState(true);
     const [expandedId, setExpandedId] = useState(null);
+    const [resumingId, setResumingId] = useState(null);
+    const sender = useCampaignSender();
+    const currentPage = useRef(1);
 
-    useEffect(() => {
-        fetchHistory(1);
-    }, [typeFilter]);
-
-    const fetchHistory = async (page = 1) => {
+    const fetchHistory = useCallback(async (page = 1, { silent = false } = {}) => {
         try {
-            setLoading(true);
+            if (!silent) setLoading(true);
             const response = await dashboardService.getBroadcastHistory(page, 15, typeFilter);
             if (response.success) {
-                setMessages(response.messages || []);
+                currentPage.current = page;
+                setMessages(response.campaigns || []);
                 setPagination(response.pagination);
             }
         } catch (err) {
             console.error('History error:', err);
         } finally {
-            setLoading(false);
+            if (!silent) setLoading(false);
         }
+    }, [typeFilter]);
+
+    const handleResume = async (campaignId) => {
+        setResumingId(campaignId);
+        sender.reset();
+        await sender.run(campaignId);
+        fetchHistory(currentPage.current, { silent: true });
     };
+
+    useEffect(() => {
+        const initialFetch = setTimeout(() => fetchHistory(1), 0);
+        // Background refresh keeps the current page and does not flash the spinner.
+        const refresh = setInterval(() => fetchHistory(currentPage.current, { silent: true }), 10000);
+        return () => {
+            clearTimeout(initialFetch);
+            clearInterval(refresh);
+        };
+    }, [fetchHistory]);
 
     const formatDate = (dateStr) => {
         return new Date(dateStr).toLocaleString('en-US', {
@@ -44,7 +63,7 @@ export default function BroadcastHistoryTab() {
                 <div>
                     <h2 className="text-lg font-semibold text-gray-700">Broadcast History</h2>
                     <p className="text-sm text-gray-600 mt-1">
-                        {pagination.total} message{pagination.total !== 1 ? 's' : ''} sent
+                        {pagination.total} campaign{pagination.total !== 1 ? 's' : ''}
                     </p>
                 </div>
                 <select
@@ -69,7 +88,7 @@ export default function BroadcastHistoryTab() {
             ) : messages.length === 0 ? (
                 <div className="text-center py-12 text-gray-500">
                     <p className="text-lg font-medium">No broadcasts sent yet</p>
-                    <p className="text-sm mt-1">Messages you send will appear here for reference.</p>
+                    <p className="text-sm mt-1">Queued campaigns and delivery progress appear here.</p>
                 </div>
             ) : (
                 <>
@@ -103,9 +122,12 @@ export default function BroadcastHistoryTab() {
                                             {formatDate(msg.createdAt)}
                                         </span>
                                         <div className="flex items-center gap-2 text-xs">
-                                            <span className="text-green-600 font-medium">{msg.sent} sent</span>
-                                            {msg.failed > 0 && (
-                                                <span className="bg-cyan-600 font-medium">{msg.failed} failed</span>
+                                            <span className="text-green-600 font-medium">{msg.sentCount} sent</span>
+                                            {msg.failedCount > 0 && (
+                                                <span className="bg-cyan-600 font-medium">{msg.failedCount} failed</span>
+                                            )}
+                                            {msg.pendingCount > 0 && (
+                                                <span className="text-amber-600 font-medium">{msg.pendingCount} pending</span>
                                             )}
                                         </div>
                                         <svg
@@ -130,7 +152,7 @@ export default function BroadcastHistoryTab() {
                                             </div>
                                             <div>
                                                 <span className="font-medium text-gray-500 block">Recipients</span>
-                                                {msg.recipientCount}
+                                                {msg.totalRecipients}
                                             </div>
                                             <div>
                                                 <span className="font-medium text-gray-500 block">Filter</span>
@@ -144,7 +166,33 @@ export default function BroadcastHistoryTab() {
                                                 <span className="font-medium text-gray-500 block">Type</span>
                                                 {msg.type === 'waitlist' ? 'Waitlist' : 'Appointment'}
                                             </div>
+                                            <div>
+                                                <span className="font-medium text-gray-500 block">Status</span>
+                                                {msg.status}
+                                            </div>
                                         </div>
+                                        {resumingId === msg._id && (
+                                            <CampaignProgress
+                                                progress={sender.progress}
+                                                sending={sender.sending}
+                                                waitingUntil={sender.waitingUntil}
+                                                error={sender.error}
+                                            />
+                                        )}
+                                        {['pending', 'processing'].includes(msg.status) && msg.pendingCount > 0 && (
+                                            <div className="mb-4">
+                                                <button
+                                                    onClick={() => handleResume(msg._id)}
+                                                    disabled={sender.sending}
+                                                    className="px-4 py-2 text-sm font-medium text-white bg-cyan-600 rounded-lg hover:bg-cyan-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                                >
+                                                    {sender.sending && resumingId === msg._id ? 'Sending...' : 'Resume sending'}
+                                                </button>
+                                                <span className="ml-3 text-xs text-gray-500">
+                                                    {msg.pendingCount} email(s) not yet delivered.
+                                                </span>
+                                            </div>
+                                        )}
                                         <div>
                                             <span className="font-medium text-gray-500 text-xs block mb-1">Message</span>
                                             <div className="bg-white border border-gray-200 rounded-lg p-3 text-sm text-gray-700 whitespace-pre-wrap max-h-60 overflow-y-auto">

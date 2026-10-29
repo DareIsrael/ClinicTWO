@@ -3,6 +3,7 @@ import crypto from "crypto";
 import dbConnect from "@/utils/db";
 import User from "@/models/User";
 import { sendEmail } from "@/utils/emailService";
+import { getAppUrl } from "@/utils/appUrl";
 import { createRateLimiter, getClientIp } from "@/utils/rateLimiter";
 
 // 3 attempts per 15 minutes per IP (same policy as the main login)
@@ -85,7 +86,7 @@ export async function POST(request) {
     await user.save({ validateBeforeSave: false });
 
     // Build confirmation URL
-    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    const baseUrl = getAppUrl();
     const confirmUrl = `${baseUrl}/admin-login-confirm?token=${rawToken}&email=${encodeURIComponent(trimmedEmail)}`;
 
     // Send confirmation email

@@ -42,7 +42,7 @@ const Announcements = () => {
       case "update":
         return "bg-cyan-600";
       default:
-        return "bg-white-800";
+        return "bg-cyan-800";
     }
   };
 

@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { dashboardService } from '@/services/dashboardService';
+import { useCampaignSender } from '@/hooks/useCampaignSender';
+import CampaignProgress from '@/components/admin/CampaignProgress';
 
 export default function AppointmentBroadcastTab() {
     const [subject, setSubject] = useState('');
@@ -13,6 +15,7 @@ export default function AppointmentBroadcastTab() {
     const [result, setResult] = useState(null);
     const [error, setError] = useState('');
     const [showConfirm, setShowConfirm] = useState(false);
+    const sender = useCampaignSender();
 
     // Fetch recipient count when statusFilter changes (and no targetEmail)
     useEffect(() => {
@@ -40,6 +43,7 @@ export default function AppointmentBroadcastTab() {
         setLoading(true);
         setError('');
         setResult(null);
+        sender.reset();
 
         try {
             const payload = { subject, message };
@@ -55,6 +59,9 @@ export default function AppointmentBroadcastTab() {
                 setSubject('');
                 setMessage('');
                 setTargetEmail('');
+                // Campaign is saved; now deliver it chunk by chunk from this page.
+                setLoading(false);
+                await sender.run(response.campaign._id);
             } else {
                 setError(response.message || 'Failed to send emails');
             }
@@ -76,17 +83,13 @@ export default function AppointmentBroadcastTab() {
                 </p>
             </div>
 
-            {/* Success result */}
-            {result && (
-                <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
-                    <div className="flex items-center">
-                        <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="font-medium">{result.message}</span>
-                    </div>
-                </div>
-            )}
+            {/* Delivery progress */}
+            <CampaignProgress
+                progress={sender.progress}
+                sending={sender.sending}
+                waitingUntil={sender.waitingUntil}
+                error={sender.error}
+            />
 
             {/* Error */}
             {error && (
@@ -165,16 +168,16 @@ export default function AppointmentBroadcastTab() {
             <div className="flex justify-end">
                 <button
                     onClick={() => setShowConfirm(true)}
-                    disabled={!canSend || loading}
+                    disabled={!canSend || loading || sender.sending}
                     className="bg-cyan-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-cyan-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    {loading ? (
+                    {loading || sender.sending ? (
                         <span className="flex items-center">
                             <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                             </svg>
-                            Sending...
+                            {loading ? 'Preparing...' : 'Sending...'}
                         </span>
                     ) : (
                         'Send Email'
