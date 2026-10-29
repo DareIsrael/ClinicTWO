@@ -905,11 +905,11 @@ export default function Home() {
             preload="auto"
           >
             <source
-              src="https://res.cloudinary.com/dveill0ji/video/upload/v1778781972/TrimV_udy9pt.mp4"
+              src="/TrimV.mp4"
               type="video/mp4"
             />
             <source
-              src="https://res.cloudinary.com/dveill0ji/video/upload/v1778781972/TrimV_udy9pt.webm"
+              src="/TrimV.mp4"
               type="video/webm"
             />
           </video>
@@ -954,14 +954,38 @@ export default function Home() {
             </span>
           </h1>
 
-          {/* Big Join Waitlist Button */}
-          <div className="flex justify-center mb-5 sm:mb-7">
+          {/* BUTTON ROWS */}
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 mb-4 sm:mb-6">
+  {/* ROSTERED */}
+  <Link
+    href="/waitlist"
+    className="inline-flex w-auto sm:w-auto items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-white text-gray-700 font-semibold text-sm sm:text-sm md:text-base tracking-wide whitespace-nowrap border border-cyan-400 hover:bg-cyan-50 hover:border-cyan-500 transition-all duration-200 shadow-sm hover:shadow-md"
+  >
+    JOIN FAMILY PRACTICE WAITLIST
+    <svg
+      className="w-4 h-4 flex-shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  </Link>
+</div>
+
+          {/* BOOK WALK-IN CARE */}
+          <div className="flex justify-center">
             <Link
-              href="/waitlist"
-              className="inline-flex items-center justify-center px-10 sm:px-14 py-3.5 sm:py-4 rounded-xl bg-white text-gray-800 font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 gap-2 sm:gap-3"
+              href="/book-appointment"
+              className="inline-flex w-56 sm:w-auto items-center justify-center px-6 sm:px-10 py-2 sm:py-3 rounded-xl bg-transparent border border-cyan-400 text-white font-semibold text-sm sm:text-base hover:bg-cyan-500/10 transition-all duration-200"
             >
               <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600"
+                className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -970,44 +994,17 @@ export default function Home() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
                 />
               </svg>
-              JOIN FAMILY PRACTICE WAITLIST
+              Book Walk-In Care
             </Link>
           </div>
+
         </div>
       </section>
 
-      {/* Appointment Availability Notice */}
-      <section className="bg-amber-50 border-y border-amber-200 py-6 sm:py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start gap-3 sm:gap-4">
-            <div className="flex-shrink-0 w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mt-0.5">
-              <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
-                Appointment Availability Update
-              </h3>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
-                We are currently adjusting our appointment availability as we work to expand physician coverage at Trim Medical Centre.
-              </p>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
-                Walk-in appointments are not currently available.
-              </p>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
-                Our family practice waitlist remains open, and patients already registered on the waitlist do not need to register again. We will contact patients as appointments become available.
-              </p>
-              <p className="text-sm sm:text-base text-gray-600 italic">
-                Thank you for your patience and continued trust in Trim Medical Centre.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Practice Features Section */}
       <section className="bg-white py-12 sm:py-20">

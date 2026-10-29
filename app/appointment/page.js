@@ -29,7 +29,7 @@ export default function BookAppointment() {
         </svg>
       ),
     },
-    /* Walk-In Care option temporarily hidden while physician coverage is being expanded
+    
     {
       id: 2,
       title: "Walk-In Care",
@@ -54,7 +54,7 @@ export default function BookAppointment() {
         </svg>
       ),
     },
-    */
+    
     {
       id: 3,
       title: "Join Family Practice Waitlist",

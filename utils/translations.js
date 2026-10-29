@@ -280,7 +280,7 @@ export const translations = {
       "If you need to cancel, please call at least 24 hours in advance.",
 
     // Auth Pages (Login & Signup & Reset)
-    login_title: "Patient Portal Login",
+    login_title: "Admin Portal Login",
     login_email_label: "Email Address",
     login_email_placeholder: "Enter your email address",
     login_password_label: "Password",
