@@ -20,7 +20,7 @@ function authorized(request) {
  * /api/admin/broadcast/campaigns/:id/send. If you also want unfinished
  * campaigns (e.g. browser tab closed) to continue automatically, set
  * CRON_SECRET in your hosting environment and have a scheduler (the GitHub
- * Action in .github/workflows/process-campaigns.yml, Vercel Cron, etc.) call
+ * Vercel Cron, a GitHub Action, etc.) call
  * this endpoint with "Authorization: Bearer <CRON_SECRET>". MongoDB claims
  * recipients atomically, so it is safe to run alongside the admin page.
  */

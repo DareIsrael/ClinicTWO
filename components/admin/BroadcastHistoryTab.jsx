@@ -177,6 +177,7 @@ export default function BroadcastHistoryTab() {
                                                 sending={sender.sending}
                                                 waitingUntil={sender.waitingUntil}
                                                 error={sender.error}
+                                                notice={sender.notice}
                                             />
                                         )}
                                         {['pending', 'processing'].includes(msg.status) && msg.pendingCount > 0 && (

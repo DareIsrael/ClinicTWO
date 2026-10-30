@@ -16,13 +16,21 @@ export default function WaitlistBroadcastTab() {
     const [error, setError] = useState('');
     const [showConfirm, setShowConfirm] = useState(false);
     const sender = useCampaignSender();
+    const [quota, setQuota] = useState(null);
 
-    // Fetch recipient count when statusFilter changes (and no targetEmail)
+    // Load the daily email allowance on open, and refresh it after each send.
     useEffect(() => {
-        if (!targetEmail) {
-            fetchPreview();
-        }
-    }, [statusFilter]);
+        if (sender.sending) return;
+        let active = true;
+        dashboardService.getBroadcastQuota()
+            .then((res) => {
+                if (active && res.success) setQuota(res.quota);
+            })
+            .catch(() => {});
+        return () => {
+            active = false;
+        };
+    }, [sender.sending]);
 
     const fetchPreview = async () => {
         try {
@@ -37,6 +45,14 @@ export default function WaitlistBroadcastTab() {
             setPreviewLoading(false);
         }
     };
+
+    // Fetch recipient count when statusFilter changes (and no targetEmail)
+    useEffect(() => {
+        if (targetEmail) return undefined;
+        const timer = setTimeout(fetchPreview, 0);
+        return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [statusFilter]);
 
     const handleSend = async () => {
         setShowConfirm(false);
@@ -89,6 +105,7 @@ export default function WaitlistBroadcastTab() {
                 sending={sender.sending}
                 waitingUntil={sender.waitingUntil}
                 error={sender.error}
+                notice={sender.notice}
             />
 
             {/* Error */}
@@ -166,6 +183,14 @@ export default function WaitlistBroadcastTab() {
                 />
             </div>
 
+            {/* Daily allowance */}
+            {quota && (
+                <p className="mb-4 text-xs text-gray-500">
+                    Daily email allowance: <strong>{quota.remaining}</strong> of {quota.budget} broadcast emails left in the last 24 hours
+                    {' '}({quota.reserve} kept in reserve for appointment and contact emails).
+                </p>
+            )}
+
             {/* Send button */}
             <div className="flex justify-end">
                 <button
@@ -202,6 +227,12 @@ export default function WaitlistBroadcastTab() {
                                 ? targetEmail
                                 : `${recipientCount} waitlist member${recipientCount !== 1 ? 's' : ''} (${statusFilter === 'all' ? 'all statuses' : statusFilter})`}
                         </p>
+                        {quota && (targetEmail ? 1 : recipientCount || 0) > quota.remaining && (
+                            <p className="mb-4 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                                Only {quota.remaining} email(s) can be sent right now because of the daily limit.
+                                The rest will be saved and paused — you can resume them later from Broadcast History.
+                            </p>
+                        )}
                         <div className="flex justify-end gap-3">
                             <button
                                 onClick={() => setShowConfirm(false)}

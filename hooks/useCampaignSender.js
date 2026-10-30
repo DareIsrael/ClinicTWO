@@ -6,6 +6,24 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // If the next retry is further away than this, stop and let the admin resume later.
 const MAX_WAIT_MS = 6 * 60 * 1000;
 
+function formatTime(value) {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' });
+}
+
+function quotaPauseMessage(res) {
+    const { progress, quota, providerLimitHit } = res;
+    const pending = progress?.pendingCount ?? 0;
+    const when = formatTime(quota?.resetsAt);
+    const head = providerLimitHit
+        ? 'The email provider (Hostinger) has reached its daily sending limit.'
+        : `Daily broadcast limit reached (${quota?.budget ?? ''} emails per 24 hours, keeping ${quota?.reserve ?? ''} for appointment and contact emails).`;
+    return `${head} Sending is paused — the remaining ${pending} email(s) are saved, not lost. ` +
+        `Click "Resume sending" in Broadcast History${when && !providerLimitHit ? ` after ${when}` : ' later'} to continue.`;
+}
+
 /**
  * Drives delivery of a queued campaign from the browser: it keeps asking the
  * server to "send the next chunk" until every recipient is sent or failed.
@@ -15,6 +33,7 @@ export function useCampaignSender() {
     const [sending, setSending] = useState(false);
     const [waitingUntil, setWaitingUntil] = useState(null);
     const [error, setError] = useState('');
+    const [notice, setNotice] = useState('');
     const stopped = useRef(false);
 
     // Stop the loop if the component unmounts.
@@ -39,6 +58,7 @@ export function useCampaignSender() {
     const run = useCallback(async (campaignId) => {
         setSending(true);
         setError('');
+        setNotice('');
         setWaitingUntil(null);
         let consecutiveErrors = 0;
         let latest = null;
@@ -52,6 +72,10 @@ export function useCampaignSender() {
                     setProgress(res.progress);
                     setWaitingUntil(null);
                     if (res.progress.done) break;
+                    if (res.pausedForQuota) {
+                        setNotice(quotaPauseMessage(res));
+                        break;
+                    }
 
                     if (res.processed === 0) {
                         // Nothing ready right now — remaining emails are waiting to be retried
@@ -93,8 +117,9 @@ export function useCampaignSender() {
     const reset = useCallback(() => {
         setProgress(null);
         setError('');
+        setNotice('');
     }, []);
 
-    return { run, reset, progress, sending, waitingUntil, error };
+    return { run, reset, progress, sending, waitingUntil, error, notice };
 }
 

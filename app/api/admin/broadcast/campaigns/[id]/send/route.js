@@ -31,11 +31,11 @@ export async function POST(request, { params }) {
 
   try {
     await dbConnect();
-    const { processed, progress } = await processCampaignChunk(id);
+    const { processed, progress, quota, pausedForQuota, providerLimitHit } = await processCampaignChunk(id);
     if (!progress) {
       return NextResponse.json({ success: false, message: "Campaign not found" }, { status: 404 });
     }
-    return NextResponse.json({ success: true, processed, progress });
+    return NextResponse.json({ success: true, processed, progress, quota, pausedForQuota, providerLimitHit });
   } catch (error) {
     console.error("Campaign send error:", error);
     const message = error?.isSmtpConfigError

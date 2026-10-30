@@ -260,6 +260,12 @@ export const dashboardService = {
     return response.data;
   },
 
+  // Daily broadcast email allowance (Hostinger daily limit minus reserve)
+  getBroadcastQuota: async () => {
+    const response = await api.get('/admin/broadcast/quota');
+    return response.data;
+  },
+
   // Teaser functions
   // Get teasers (admin=true for admin view, false for public view)
   getTeasers: async (isAdmin = false) => {

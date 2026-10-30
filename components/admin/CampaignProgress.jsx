@@ -1,8 +1,8 @@
 'use client';
 
 /** Progress bar + summary for a campaign being delivered. */
-export default function CampaignProgress({ progress, sending, waitingUntil, error }) {
-    if (!progress && !error) return null;
+export default function CampaignProgress({ progress, sending, waitingUntil, error, notice }) {
+    if (!progress && !error && !notice) return null;
 
     const total = progress?.totalRecipients || 0;
     const sent = progress?.sentCount || 0;
@@ -25,7 +25,7 @@ export default function CampaignProgress({ progress, sending, waitingUntil, erro
         }
     }
 
-    const tone = error
+    const tone = error || notice
         ? 'bg-amber-50 border-amber-200 text-amber-800'
         : progress?.done && failed === 0
             ? 'bg-green-50 border-green-200 text-green-800'
@@ -44,6 +44,7 @@ export default function CampaignProgress({ progress, sending, waitingUntil, erro
                     />
                 </div>
             )}
+            {notice && <p className="text-sm mt-2">{notice}</p>}
             {error && <p className="text-sm mt-2">{error}</p>}
             {progress?.done && progress.failures?.length > 0 && (
                 <details className="mt-2 text-xs">
