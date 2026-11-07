@@ -1,13 +1,25 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import dbConnect from "@/utils/db";
 import AvailableSlot from "@/models/AvailableSlot";
 import Appointment from "@/models/Appointment";
 
 export async function DELETE(request, { params }) {
   try {
+    // Only logged-in admins/doctors may delete slots.
+    const session = await getServerSession(authOptions);
+    if (!session || (session.user.role !== "admin" && session.user.role !== "doctor")) {
+      return NextResponse.json(
+        { success: false, message: "Admin access required" },
+        { status: 403 },
+      );
+    }
+
     await dbConnect();
 
-    const { id } = params;
+    // Next.js 15+ passes params as a Promise.
+    const { id } = await params;
 
     if (!id) {
       return NextResponse.json(

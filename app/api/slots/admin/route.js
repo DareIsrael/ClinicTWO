@@ -1,32 +1,90 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import dbConnect from "@/utils/db";
 import AvailableSlot from "@/models/AvailableSlot";
 import Appointment from "@/models/Appointment";
 
-// GET - Get all slots within a date range
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+// Largest range that can be loaded at once (keeps responses fast).
+const MAX_RANGE_DAYS = 366;
+
+// Only logged-in admins/doctors may view or delete slots.
+async function requireAdmin() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json(
+      { success: false, message: "Authentication required" },
+      { status: 401 },
+    );
+  }
+  if (session.user.role !== "admin" && session.user.role !== "doctor") {
+    return NextResponse.json(
+      { success: false, message: "Admin access required" },
+      { status: 403 },
+    );
+  }
+  return null;
+}
+
+function isValidDateString(value) {
+  if (!DATE_REGEX.test(value)) return false;
+  const [y, m, d] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return date.getUTCFullYear() === y && date.getUTCMonth() === m - 1 && date.getUTCDate() === d;
+}
+
+function daysBetween(start, end) {
+  const [y1, m1, d1] = start.split("-").map(Number);
+  const [y2, m2, d2] = end.split("-").map(Number);
+  return Math.round((Date.UTC(y2, m2 - 1, d2) - Date.UTC(y1, m1 - 1, d1)) / 86400000);
+}
+
+// GET - Get all slots within a date range (past, present or future)
 export async function GET(request) {
   try {
+    const authError = await requireAdmin();
+    if (authError) return authError;
+
     await dbConnect();
 
     const { searchParams } = new URL(request.url);
     const startDate = searchParams.get("startDate");
     const endDate = searchParams.get("endDate");
+    const order = searchParams.get("order") === "desc" ? -1 : 1;
 
-    // console.log('GET /api/slots/admin called with:', { startDate, endDate });
-
-    let query = {};
-
-    if (startDate && endDate) {
-      // SIMPLE: Just use date strings directly
-      query.date = {
-        $gte: startDate,
-        $lte: endDate,
-      };
+    if (!startDate || !endDate) {
+      return NextResponse.json(
+        { success: false, message: "startDate and endDate are required" },
+        { status: 400 },
+      );
+    }
+    if (!isValidDateString(startDate) || !isValidDateString(endDate)) {
+      return NextResponse.json(
+        { success: false, message: "Dates must be valid and in YYYY-MM-DD format" },
+        { status: 400 },
+      );
+    }
+    if (startDate > endDate) {
+      return NextResponse.json(
+        { success: false, message: "Start date must be before or equal to end date" },
+        { status: 400 },
+      );
+    }
+    if (daysBetween(startDate, endDate) > MAX_RANGE_DAYS) {
+      return NextResponse.json(
+        { success: false, message: `Please choose a range of ${MAX_RANGE_DAYS} days or less` },
+        { status: 400 },
+      );
     }
 
+    // Dates are stored as YYYY-MM-DD strings, so string comparison is correct.
+    const query = { date: { $gte: startDate, $lte: endDate } };
+
     const slots = await AvailableSlot.find(query)
-      .populate("bookedBy", "firstName lastName email")
-      .sort({ date: 1, time: 1 });
+      .populate("bookedBy", "firstName lastName email status")
+      .sort({ date: order, time: 1 })
+      .lean();
 
     // console.log(`Found ${slots.length} slots in database`);
 
@@ -48,6 +106,9 @@ export async function GET(request) {
 // DELETE - Simple version
 export async function DELETE(request) {
   try {
+    const authError = await requireAdmin();
+    if (authError) return authError;
+
     await dbConnect();
 
     const { searchParams } = new URL(request.url);
