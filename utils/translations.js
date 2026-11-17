@@ -254,7 +254,7 @@ export const translations = {
     err_password_match: "Passwords do not match",
 
     // Book Appointment Page
-    book_title: "Book an Appointment",
+    book_title: "Book Appointment",
     book_subtitle:
       "Schedule a visit with our healthcare team",
     step_select_slot: "1. Select Date & Time",

@@ -104,29 +104,42 @@ export default function BookAppointment() {
       {/* Appointment Availability Notice */}
       <div className="bg-cyan-50 border-b border-cyan-100 py-6 sm:py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start gap-3.5 sm:gap-4">
-            <div className="flex-shrink-0 w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center mt-0.5 border border-cyan-200">
-              <svg className="w-5 h-5 text-cyan-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div className="flex items-start gap-3.5 sm:gap-4 flex-1">
+              <div className="flex-shrink-0 w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center mt-0.5 border border-cyan-200">
+                <svg className="w-5 h-5 text-cyan-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div className="space-y-2.5">
+                <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-100 text-cyan-800 uppercase tracking-wider">
+                  Meet & Greet Availability
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-gray-800">
+                  Dr. Bayaa Meet-and-Greet Availability
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Dr. Ahmad Bayaa is available for meet-and-greet appointments starting from <strong>November 23</strong>.
+                </p>
+                <div className="bg-white border-l-3 border-cyan-600 p-3 sm:p-3.5 rounded-r-lg text-xs sm:text-sm text-gray-700 shadow-xs">
+                  <strong className="text-gray-900 block mb-0.5">Waitlist Notice:</strong>
+                  Our team is currently contacting people on the waitlist to arrange appointments. If you are already registered on the waitlist, you do not need to register again—we will be in touch with you directly.
+                </div>
+                <p className="text-xs sm:text-sm text-gray-500 italic pt-0.5">
+                  Thank you for your patience and continued trust in Trim Medical Centre.
+                </p>
+              </div>
             </div>
-            <div className="space-y-2.5">
-              <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-100 text-cyan-800 uppercase tracking-wider">
-                Appointment Update
-              </div>
-              <h3 className="text-base sm:text-lg font-bold text-gray-800">
-                Dr. Bayaa Meet-and-Greet Availability
-              </h3>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Dr. Ahmad Bayaa is available for meet-and-greet appointments starting from <strong>November 23</strong>.
-              </p>
-              <div className="bg-white border-l-3 border-cyan-600 p-3 sm:p-3.5 rounded-r-lg text-xs sm:text-sm text-gray-700 shadow-xs">
-                <strong className="text-gray-900 block mb-0.5">Waitlist Notice:</strong>
-                Our team is currently contacting people on the waitlist to arrange appointments. If you are already registered on the waitlist, you do not need to register again—we will be in touch with you directly.
-              </div>
-              <p className="text-xs sm:text-sm text-gray-500 italic pt-0.5">
-                Thank you for your patience and continued trust in Trim Medical Centre.
-              </p>
+            <div className="flex-shrink-0 w-full md:w-auto self-stretch md:self-center">
+              <Link
+                href="/waitlist"
+                className="inline-flex items-center justify-center w-full md:w-auto px-5 py-3 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors gap-2 whitespace-nowrap"
+              >
+                <span>Register with Us</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
@@ -135,7 +148,15 @@ export default function BookAppointment() {
       {/* Main Content - Booking Options */}
       <main className="py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 tracking-tight mb-2">
+              Walk-In & Appointment Options
+            </h2>
+            <p className="text-sm sm:text-base text-gray-500">
+              Select an option below to view open walk-in booking slots or register with our clinic.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {options.map((option) => (
               <div
                 key={option.id}
