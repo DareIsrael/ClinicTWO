@@ -46,14 +46,6 @@ export default function AppointmentBooking() {
     'Saskatchewan', 'Yukon'
   ];
 
-  useEffect(() => {
-    fetchClinicData();
-  }, []);
-
-  useEffect(() => {
-    if (selectedDate) fetchAvailableSlots(selectedDate);
-  }, [selectedDate]);
-
   const formatDateDisplay = (dateString) => {
     if (!dateString) return '';
     if (typeof dateString === 'string' && dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
@@ -97,6 +89,16 @@ export default function AppointmentBooking() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchClinicData();
+  }, []);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (selectedDate) fetchAvailableSlots(selectedDate);
+  }, [selectedDate]);
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
@@ -188,20 +190,49 @@ export default function AppointmentBooking() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section - Minimal */}
       <div className="bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
-            <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
-            <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">{t("nav_book")}</span>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 text-center">
+          <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-100 px-3.5 py-1.5 rounded-full mb-3">
+            <div className="w-2 h-2 bg-cyan-600 rounded-full"></div>
+            <span className="text-xs font-semibold text-cyan-800 uppercase tracking-wider">{t("nav_book")}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
             {t("book_title")}
           </h1>
-          <p className="text-gray-500 text-base max-w-md mx-auto">
+          <p className="text-gray-500 text-sm sm:text-base max-w-md mx-auto">
             {t("book_subtitle")}
           </p>
+        </div>
+      </div>
+
+      {/* Meet-and-Greet & Waitlist Notification Banner */}
+      <div className="bg-white border-b border-cyan-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+          <div className="bg-cyan-50/70 border border-cyan-200/80 rounded-xl p-4 sm:p-5 flex items-start gap-3.5">
+            <div className="flex-shrink-0 w-9 h-9 bg-cyan-600 text-white rounded-lg flex items-center justify-center mt-0.5 shadow-xs">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="text-[11px] font-bold uppercase tracking-wider bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded">
+                  Meet & Greet Availability
+                </span>
+                <span className="text-xs sm:text-sm font-semibold text-gray-800">
+                  Dr. Ahmad Bayaa • Starting November 23
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-2">
+                Dr. Bayaa is available for meet-and-greet appointments from <strong>November 23</strong>.
+              </p>
+              <div className="bg-white/90 border border-cyan-100 rounded-lg p-2.5 text-xs text-gray-600 leading-relaxed">
+                <strong className="text-cyan-900 font-semibold">Waitlist Note:</strong> Our team is currently contacting people on the waitlist to arrange appointments.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

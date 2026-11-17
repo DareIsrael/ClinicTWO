@@ -11,22 +11,27 @@ const TeaserBanner = () => {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    fetchTeaser();
-  }, []);
+    let isMounted = true;
+    dashboardService
+      .getTeasers(false)
+      .then((response) => {
+        if (isMounted && response.success && response.teasers?.length > 0) {
+          setTeaser(response.teasers[0]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching teaser:", error);
+      })
+      .finally(() => {
+        if (isMounted) {
+          setLoading(false);
+        }
+      });
 
-  const fetchTeaser = async () => {
-    try {
-      setLoading(true);
-      const response = await dashboardService.getTeasers(false);
-      if (response.success && response.teasers && response.teasers.length > 0) {
-        setTeaser(response.teasers[0]);
-      }
-    } catch (error) {
-      console.error("Error fetching teaser:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   if (loading || !teaser || dismissed) {
     return null;
@@ -39,17 +44,12 @@ const TeaserBanner = () => {
       teaser.buttonLink.startsWith("https://"));
 
   return (
-    <div className="relative overflow-hidden rounded-xl shadow-lg border border-cyan-200">
-      {/* Solid cyan background */}
-      <div className="bg-cyan-600 px-5 py-5 sm:px-8 sm:py-6">
-        {/* Subtle decorative elements */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
-
+    <div className="relative overflow-hidden rounded-xl shadow-md border border-cyan-700 bg-cyan-600 text-white">
+      <div className="relative px-5 py-4 sm:px-6 sm:py-4.5 pr-11 sm:pr-14">
         {/* Dismiss button */}
         <button
           onClick={() => setDismissed(true)}
-          className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 transition-colors text-white/70 hover:text-white"
+          className="absolute top-3 right-3 sm:top-3.5 sm:right-3.5 w-7 h-7 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/25 active:scale-95 transition-all text-white/80 hover:text-white"
           aria-label="Dismiss teaser"
         >
           <svg
@@ -67,49 +67,57 @@ const TeaserBanner = () => {
           </svg>
         </button>
 
-        <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          {/* Icon */}
-          <div className="flex-shrink-0">
-            <div className="w-11 h-11 bg-white/15 rounded-full flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
-                />
-              </svg>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          {/* Left: Icon & Text content aligned */}
+          <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0 flex-1">
+            <div className="flex-shrink-0 mt-0.5 sm:mt-0">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 bg-white/15 rounded-xl flex items-center justify-center border border-white/20">
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-white/20 text-white border border-white/30">
+                  Announcement
+                </span>
+                {teaser.headline && (
+                  <h3 className="text-white text-base sm:text-lg font-bold tracking-tight">
+                    {teaser.headline}
+                  </h3>
+                )}
+              </div>
+              <p className="text-cyan-50 text-sm sm:text-base font-medium leading-relaxed">
+                {teaser.message}
+              </p>
             </div>
           </div>
 
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <h3 className="text-white text-lg sm:text-3xl font-bold leading-tight mb-1">
-              {teaser.headline}
-            </h3>
-            <p className="text-cyan-100 text-xl sm:text-2xl font-bold leading-relaxed">
-  {teaser.message}
-</p>
-          </div>
-
-          {/* CTA Button */}
+          {/* Right: CTA Button */}
           {hasButton && (
-            <div className="flex-shrink-0 sm:ml-4">
+            <div className="flex-shrink-0 sm:self-center">
               {isExternalLink ? (
                 <a
                   href={teaser.buttonLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-cyan-700 px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:shadow-lg hover:bg-cyan-50 transition-all duration-200 whitespace-nowrap"
+                  className="inline-flex items-center gap-2 bg-white text-cyan-800 hover:text-cyan-900 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-sm sm:text-base font-bold shadow-xs hover:shadow hover:bg-cyan-50 transition-all duration-150 whitespace-nowrap"
                 >
                   {teaser.buttonText}
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -118,18 +126,18 @@ const TeaserBanner = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
                     />
                   </svg>
                 </a>
               ) : (
                 <Link
                   href={teaser.buttonLink || "#"}
-                  className="inline-flex items-center gap-2 bg-white text-cyan-700 px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:shadow-lg hover:bg-cyan-50 transition-all duration-200 whitespace-nowrap"
+                  className="inline-flex items-center gap-2 bg-white text-cyan-800 hover:text-cyan-900 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-sm sm:text-base font-bold shadow-xs hover:shadow hover:bg-cyan-50 transition-all duration-150 whitespace-nowrap"
                 >
                   {teaser.buttonText}
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -138,7 +146,7 @@ const TeaserBanner = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
                     />
                   </svg>
                 </Link>

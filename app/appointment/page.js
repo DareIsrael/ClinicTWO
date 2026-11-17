@@ -102,28 +102,29 @@ export default function BookAppointment() {
       </div>
 
       {/* Appointment Availability Notice */}
-      <div className="bg-amber-50 border-b border-amber-200 py-6 sm:py-8">
+      <div className="bg-cyan-50 border-b border-cyan-100 py-6 sm:py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start gap-3 sm:gap-4">
-            <div className="flex-shrink-0 w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mt-0.5">
-              <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div className="flex items-start gap-3.5 sm:gap-4">
+            <div className="flex-shrink-0 w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center mt-0.5 border border-cyan-200">
+              <svg className="w-5 h-5 text-cyan-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
-            <div>
-              <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
-                Appointment Availability Update
+            <div className="space-y-2.5">
+              <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-100 text-cyan-800 uppercase tracking-wider">
+                Appointment Update
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-gray-800">
+                Dr. Bayaa Meet-and-Greet Availability
               </h3>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
-                We are currently adjusting our appointment availability as we work to expand physician coverage at Trim Medical Centre.
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                Dr. Ahmad Bayaa is available for meet-and-greet appointments starting from <strong>November 23</strong>.
               </p>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
-                Walk-in appointments are not currently available.
-              </p>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
-                Our family practice waitlist remains open, and patients already registered on the waitlist do not need to register again. We will contact patients as appointments become available.
-              </p>
-              <p className="text-sm sm:text-base text-gray-600 italic">
+              <div className="bg-white border-l-3 border-cyan-600 p-3 sm:p-3.5 rounded-r-lg text-xs sm:text-sm text-gray-700 shadow-xs">
+                <strong className="text-gray-900 block mb-0.5">Waitlist Notice:</strong>
+                Our team is currently contacting people on the waitlist to arrange appointments. If you are already registered on the waitlist, you do not need to register again—we will be in touch with you directly.
+              </div>
+              <p className="text-xs sm:text-sm text-gray-500 italic pt-0.5">
                 Thank you for your patience and continued trust in Trim Medical Centre.
               </p>
             </div>

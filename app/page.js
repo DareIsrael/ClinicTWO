@@ -1410,6 +1410,156 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Important Patient Notice: Use of AI */}
+      <section className="bg-white py-8 sm:py-12 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-cyan-45 rounded-2xl p-5 sm:p-8 border border-cyan-100 shadow-xs">
+            {/* Header Badge, Title, and Intro */}
+            <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-cyan-50 text-cyan-800 uppercase tracking-wider mb-2.5">
+                Important Patient Notice
+              </span>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight">
+                Use of Artificial Intelligence (AI) During Consultations
+              </h2>
+              <div className="w-12 h-0.5 bg-cyan-500 rounded-full mx-auto mt-2.5 mb-3"></div>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                We may use AI-assisted documentation during medical consultations to help our physicians prepare clinical notes.
+              </p>
+            </div>
+
+            {/* 3-Column Balanced Layout (No blank spaces, equal height cards) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 items-stretch mb-6">
+              {/* Column 1: Why Do We Use AI? */}
+              <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-100 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-9 h-9 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="text-base font-bold text-gray-800 uppercase tracking-wide">
+                      Why Do We Use AI?
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                    This technology helps reduce time spent typing notes so your physician can focus more fully on listening to you, understanding your concerns and providing care.
+                  </p>
+                </div>
+                <div className="bg-cyan-50/70 border border-cyan-100 rounded-lg p-3 text-xs text-cyan-800">
+                  <span className="font-semibold block mb-0.5">Focused Care:</span>
+                  More face-to-face attention, less computer screen time during your visit.
+                </div>
+              </div>
+
+              {/* Column 2: Your Choice Matters */}
+              <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-100 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-9 h-9 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="text-base font-bold text-gray-800 uppercase tracking-wide">
+                      Your Choice Matters
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                    Your participation is voluntary, and you have the right to decline the use of AI during your consultation.
+                  </p>
+                  <div className="bg-cyan-50 border-l-3 border-cyan-500 p-2.5 rounded-r-lg text-xs text-cyan-900 mb-3">
+                    <strong>If you do not want AI used:</strong> please tell your physician before the consultation begins.
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  You may also withdraw consent at any time. Your decision will be respected and will not affect your care.
+                </p>
+              </div>
+
+              {/* Column 3: Your Privacy and Care */}
+              <div className="bg-white rounded-xl p-5 sm:p-6 border border-gray-100 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-9 h-9 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="text-base font-bold text-gray-800 uppercase tracking-wide">
+                      Your Privacy & Care
+                    </h3>
+                  </div>
+                  <ul className="space-y-2 text-xs text-gray-600">
+                    <li className="flex items-start">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-1.5 mr-2 flex-shrink-0"></span>
+                      <span>AI supports documentation; it does not replace your physician&apos;s professional judgment.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-1.5 mr-2 flex-shrink-0"></span>
+                      <span>Your physician reviews and verifies AI-generated notes and remains responsible for your care.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-1.5 mr-2 flex-shrink-0"></span>
+                      <span>Your health information is managed in accordance with Ontario&apos;s privacy law (PHIPA).</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-1.5 mr-2 flex-shrink-0"></span>
+                      <span>You may ask how the AI tool processes, stores or shares information before consenting.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Compact Bottom Bar: Thank You + Tagline */}
+            <div className="border-t border-cyan-100/80 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-600 font-medium">
+                Thank you for helping us provide thoughtful, efficient and patient-centred care.
+              </p>
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-cyan-800 bg-cyan-100/80 px-3.5 py-1.5 rounded-full tracking-wider uppercase flex-shrink-0">
+                <span>YOUR CARE</span>
+                <span className="text-cyan-400">•</span>
+                <span>YOUR CHOICE</span>
+                <span className="text-cyan-400">•</span>
+                <span>YOUR PRIVACY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Emergency Info */}
       <section className="bg-gray-50 py-6 sm:py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">

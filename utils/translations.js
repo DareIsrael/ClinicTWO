@@ -91,7 +91,8 @@ export const translations = {
     day_saturday: "Saturday",
     day_sunday: "Sunday",
     hours_mon_thu: "9:00 AM - 5:00 PM",
-    hours_fri: "Closed",
+    hours_mon_fri: "9:00 AM - 5:00 PM",
+    hours_fri: "9:00 AM - 5:00 PM",
     hours_sat: "Closed",
     hours_closed: "Closed",
 
@@ -107,15 +108,20 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Providing compassionate, comprehensive family medicine to the Orleans community with personalized care from experienced physicians.",
-    about_meet_physician: "Our Medical Team",
-    about_dr_name: "",
-    about_dr_role: "",
+    about_meet_physician: "Meet Dr. Ahmad Bayaa",
+    about_dr_name: "Dr. Ahmad Bayaa",
+    about_dr_role: "Family Physician",
     about_dr_credentials: "",
-    about_dr_bio_1: "",
-    about_dr_bio_2: "",
-    about_dr_bio_3: "",
-    about_dr_bio_4: "",
-    about_dr_bio_5: "",
+    about_dr_bio_1:
+      "Dr. Ahmad Bayaa is a family physician who recently returned to Canada after spending several years practising medicine in Australia, where he gained extensive experience in family medicine, rural healthcare, and emergency medicine.",
+    about_dr_bio_2:
+      "He enjoys all aspects of family medicine, with particular interests in preventative healthcare, chronic disease management, and musculoskeletal medicine. During his time in Australia, he also developed a strong interest and extensive experience in skin cancer screening, dermoscopy, and minor surgical procedures.",
+    about_dr_bio_3:
+      "Dr. Bayaa believes in taking a practical, patient-centred approach to healthcare, focusing on building long-term relationships with his patients and working together to achieve better health outcomes.",
+    about_dr_bio_4:
+      "He is fluent in both English and Arabic and welcomes patients from diverse backgrounds.",
+    about_dr_bio_5:
+      "Outside of medicine, he enjoys spending time with his family, strength training, cycling, and maintaining an active lifestyle.",
     about_dr_location: "",
     about_cred_medical_degree: "Medical Degree",
     about_cred_medical_degree_val: "MBBS - Bachelor of Medicine, Bachelor of Surgery",
@@ -421,7 +427,8 @@ export const translations = {
     day_saturday: "Samedi",
     day_sunday: "Dimanche",
     hours_mon_thu: "9 h 00 - 17 h 00",
-    hours_fri: "Fermé",
+    hours_mon_fri: "9 h 00 - 17 h 00",
+    hours_fri: "9 h 00 - 17 h 00",
     hours_sat: "Fermé",
     hours_closed: "Fermé",
 
@@ -437,15 +444,20 @@ export const translations = {
     about_title: "Centre Médical Trim",
     about_subtitle:
       "Offrir des soins familiaux attentionnés et complets à la communauté d'Orleans avec une prise en charge personnalisée.",
-    about_meet_physician: "Notre équipe médicale",
-    about_dr_name: "",
-    about_dr_role: "",
+    about_meet_physician: "Faites la connaissance du Dr Ahmad Bayaa",
+    about_dr_name: "Dr Ahmad Bayaa",
+    about_dr_role: "Médecin de famille",
     about_dr_credentials: "",
-    about_dr_bio_1: "",
-    about_dr_bio_2: "",
-    about_dr_bio_3: "",
-    about_dr_bio_4: "",
-    about_dr_bio_5: "",
+    about_dr_bio_1:
+      "Le Dr Ahmad Bayaa est un médecin de famille récemment revenu au Canada après avoir exercé plusieurs années en Australie, où il a acquis une vaste expérience en médecine familiale, en soins de santé en milieu rural et en médecine d'urgence.",
+    about_dr_bio_2:
+      "Il apprécie tous les aspects de la médecine familiale, avec un intérêt particulier pour les soins préventifs, la gestion des maladies chroniques et la médecine musculo-squelettique. Durant son séjour en Australie, il a également développé une solide expertise en dépistage du cancer de la peau, en dermoscopie et en interventions chirurgicales mineures.",
+    about_dr_bio_3:
+      "Le Dr Bayaa privilégie une approche pratique et axée sur le patient, en mettant l'accent sur l'établissement de relations durables avec ses patients et sur une collaboration étroite pour obtenir de meilleurs résultats sur le plan de la santé.",
+    about_dr_bio_4:
+      "Il parle couramment l'anglais et l'arabe et accueille chaleureusement les patients de tous horizons.",
+    about_dr_bio_5:
+      "En dehors de la médecine, il aime passer du temps avec sa famille, pratiquer l'entraînement musculaire, le cyclisme et maintenir un mode de vie actif.",
     about_dr_location: "",
     about_cred_medical_degree: "Diplôme de médecine",
     about_cred_medical_degree_val: "MBBS - Baccalauréat en médecine et en chirurgie",
@@ -752,7 +764,8 @@ export const translations = {
     day_saturday: "Samstag",
     day_sunday: "Sonntag",
     hours_mon_thu: "09:00 - 17:00 Uhr",
-    hours_fri: "Geschlossen",
+    hours_mon_fri: "09:00 - 17:00 Uhr",
+    hours_fri: "09:00 - 17:00 Uhr",
     hours_sat: "Geschlossen",
     hours_closed: "Geschlossen",
 
@@ -768,15 +781,20 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Einfühlsame und umfassende Allgemeinmedizin für die Gemeinschaft in Orleans.",
-    about_meet_physician: "Unser medizinisches Team",
-    about_dr_name: "",
-    about_dr_role: "",
+    about_meet_physician: "Dr. Ahmad Bayaa kennenlernen",
+    about_dr_name: "Dr. Ahmad Bayaa",
+    about_dr_role: "Hausarzt",
     about_dr_credentials: "",
-    about_dr_bio_1: "",
-    about_dr_bio_2: "",
-    about_dr_bio_3: "",
-    about_dr_bio_4: "",
-    about_dr_bio_5: "",
+    about_dr_bio_1:
+      "Dr. Ahmad Bayaa ist ein Hausarzt, der kürzlich nach Kanada zurückgekehrt ist, nachdem er mehrere Jahre in Australien praktiziert hat, wo er umfassende Erfahrungen in der Allgemeinmedizin, der ländlichen Gesundheitsversorgung und der Notfallmedizin gesammelt hat.",
+    about_dr_bio_2:
+      "Er schätzt alle Bereiche der Allgemeinmedizin, mit besonderem Interesse an präventiver Gesundheitsfürsorge, dem Management chronischer Krankheiten und der muskuloskelettalen Medizin. Während seiner Zeit in Australien entwickelte er zudem fundierte Kenntnisse und Erfahrungen im Hautkrebsscreening, in der Dermatoskopie und in kleineren chirurgischen Eingriffen.",
+    about_dr_bio_3:
+      "Dr. Bayaa legt großen Wert auf einen praxisnahen, patientenzentrierten Ansatz in der Gesundheitsversorgung, wobei der Aufbau langfristiger Beziehungen zu seinen Patienten und die gemeinsame Arbeit an besseren Gesundheitsergebnissen im Mittelpunkt stehen.",
+    about_dr_bio_4:
+      "Er spricht fließend Englisch und Arabisch und heißt Patienten aller Hintergründe herzlich willkommen.",
+    about_dr_bio_5:
+      "Außerhalb der Medizin verbringt er gerne Zeit mit seiner Familie, widmet sich dem Krafttraining und Radfahren und pflegt einen aktiven Lebensstil.",
     about_dr_location: "",
     about_cred_medical_degree: "Medizinischer Abschluss",
     about_cred_medical_degree_val: "MBBS - Bachelor der Medizin und Chirurgie",
@@ -1080,7 +1098,8 @@ export const translations = {
     day_saturday: "Sábado",
     day_sunday: "Domingo",
     hours_mon_thu: "9:00 AM - 5:00 PM",
-    hours_fri: "Cerrado",
+    hours_mon_fri: "9:00 AM - 5:00 PM",
+    hours_fri: "9:00 AM - 5:00 PM",
     hours_sat: "Cerrado",
     hours_closed: "Cerrado",
 
@@ -1096,15 +1115,20 @@ export const translations = {
     about_title: "Trim Medical Centre",
     about_subtitle:
       "Brindando atención médica familiar compasiva e integral a la comunidad de Orleans.",
-    about_meet_physician: "Nuestro equipo médico",
-    about_dr_name: "",
-    about_dr_role: "",
+    about_meet_physician: "Conozca al Dr. Ahmad Bayaa",
+    about_dr_name: "Dr. Ahmad Bayaa",
+    about_dr_role: "Médico de Familia",
     about_dr_credentials: "",
-    about_dr_bio_1: "",
-    about_dr_bio_2: "",
-    about_dr_bio_3: "",
-    about_dr_bio_4: "",
-    about_dr_bio_5: "",
+    about_dr_bio_1:
+      "El Dr. Ahmad Bayaa es un médico de familia que regresó recientemente a Canadá después de varios años ejerciendo la medicina en Australia, donde adquirió una amplia experiencia en medicina familiar, atención médica rural y medicina de emergencias.",
+    about_dr_bio_2:
+      "Disfruta de todos los aspectos de la medicina familiar, con especial interés en la atención preventiva, el manejo de enfermedades crónicas y la medicina musculoesquelética. Durante su tiempo en Australia, también desarrolló un gran interés y amplia experiencia en detección de cáncer de piel, dermatoscopia y procedimientos quirúrgicos menores.",
+    about_dr_bio_3:
+      "El Dr. Bayaa cree en un enfoque práctico y centrado en el paciente para la atención médica, enfocándose en construir relaciones a largo plazo con sus pacientes y trabajar juntos para lograr mejores resultados de salud.",
+    about_dr_bio_4:
+      "Habla con fluidez inglés y árabe y da una cálida bienvenida a pacientes de diversos orígenes.",
+    about_dr_bio_5:
+      "Fuera de la medicina, disfruta pasar tiempo con su familia, el entrenamiento de fuerza, el ciclismo y mantener un estilo de vida activo.",
     about_dr_location: "",
     about_cred_medical_degree: "Título de Medicina",
     about_cred_medical_degree_val: "MBBS - Licenciatura en Medicina y Cirugía",

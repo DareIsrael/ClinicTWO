@@ -70,14 +70,14 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section - Minimal */}
       <div className="bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 text-center">
+          <div className="inline-flex items-center gap-2 bg-cyan-30-100 px-4 py-2 rounded-full mb-2">
             <div className="w-2 h-2 bg-cyan-30-600 rounded-full"></div>
             <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
               {t("about_badge")}
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-3 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-700 mb-2 tracking-tight">
             {t("about_title")}
           </h1>
           <p className="text-gray-500 text-base max-w-2xl mx-auto">
@@ -90,18 +90,18 @@ export default function AboutPage() {
 
       {/* Meet Our Physician Section - hidden when no physician name is set */}
       {Boolean(t("about_dr_name")) && (
-      <section className="bg-cyan-30 py-16 sm:py-20">
+      <section className="bg-cyan-30 py-8 sm:py-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="text-center mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl font-light text-gray-700 mb-3">
               {t("about_meet_physician")}
             </h2>
             <div className="w-12 h-0.5 bg-cyan-30-300 rounded-full mx-auto"></div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 max-w-4xl mx-auto">
             <div className="text-center mb-6">
-              <div className="w-20 h-20 bg-cyan-30-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-cyan-30-100 rounded-full flex items-center justify-center mx-auto mb-2">
                 <svg
                   className="w-10 h-10 text-cyan-500"
                   fill="none"
@@ -120,64 +120,82 @@ export default function AboutPage() {
                 {t("about_dr_name")}
               </h3>
               <p className="text-gray-500 text-sm mb-1">{t("about_dr_role")}</p>
-              <p className="text-gray-400 text-xs mb-4">{t("about_dr_credentials")}</p>
+              {Boolean(t("about_dr_credentials")) && (
+                <p className="text-gray-400 text-xs mb-2">{t("about_dr_credentials")}</p>
+              )}
             </div>
 
             <div className="text-left max-w-2xl mx-auto space-y-4">
-              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                {t("about_dr_bio_1")}
-              </p>
-              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                {t("about_dr_bio_2")}
-              </p>
-              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                {t("about_dr_bio_3")}
-              </p>
-              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                {t("about_dr_bio_4")}
-              </p>
-              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                {t("about_dr_bio_5")}
-              </p>
-              <p className="text-gray-500 text-sm italic mt-2">
-                {t("about_dr_location")}
-              </p>
+              {Boolean(t("about_dr_bio_1")) && (
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  {t("about_dr_bio_1")}
+                </p>
+              )}
+              {Boolean(t("about_dr_bio_2")) && (
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  {t("about_dr_bio_2")}
+                </p>
+              )}
+              {Boolean(t("about_dr_bio_3")) && (
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  {t("about_dr_bio_3")}
+                </p>
+              )}
+              {Boolean(t("about_dr_bio_4")) && (
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  {t("about_dr_bio_4")}
+                </p>
+              )}
+              {Boolean(t("about_dr_bio_5")) && (
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  {t("about_dr_bio_5")}
+                </p>
+              )}
+              {Boolean(t("about_dr_location")) && (
+                <p className="text-gray-500 text-sm italic mt-2">
+                  {t("about_dr_location")}
+                </p>
+              )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 pt-6 border-t border-gray-100">
-              {credentials.map((credential, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-cyan-30-100 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <svg
-                      className="w-6 h-6 text-cyan-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 14l9-5-9-5-9 5 9 5z"
-                      />
-                    </svg>
-                  </div>
-                  <h4 className="font-medium text-gray-700 text-xs uppercase tracking-wide">
-                    {credential.title}
-                  </h4>
-                  <p className="text-gray-500 text-xs">{credential.value}</p>
-                </div>
-              ))}
-            </div>
+            {credentials.some((c) => Boolean(c.title && c.value)) && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 pt-6 border-t border-gray-100">
+                {credentials
+                  .filter((c) => Boolean(c.title && c.value))
+                  .map((credential, index) => (
+                    <div key={index} className="text-center">
+                      <div className="w-12 h-12 bg-cyan-30-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                        <svg
+                          className="w-6 h-6 text-cyan-500"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M12 14l9-5-9-5-9 5 9 5z"
+                          />
+                        </svg>
+                      </div>
+                      <h4 className="font-medium text-gray-700 text-xs uppercase tracking-wide">
+                        {credential.title}
+                      </h4>
+                      <p className="text-gray-500 text-xs">{credential.value}</p>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
       )}
 
       {/* Our Practice Philosophy */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-8 sm:py-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="text-center mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl font-light text-gray-700 mb-3">
               Our Practice Philosophy
             </h2>
@@ -190,7 +208,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <div key={index} className="text-center p-5">
-                <div className="w-14 h-14 bg-cyan-30-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 bg-cyan-30-100 rounded-full flex items-center justify-center mx-auto mb-2">
                   <svg
                     className="w-7 h-7 text-cyan-500"
                     fill="none"
@@ -216,9 +234,9 @@ export default function AboutPage() {
       </section>
 
       {/* Practice Features */}
-      <section className="bg-cyan-30 py-16 sm:py-20">
+      <section className="bg-cyan-30 py-8 sm:py-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="text-center mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl font-light text-gray-700 mb-3">
               Practice Features
             </h2>
@@ -234,7 +252,7 @@ export default function AboutPage() {
                 key={index}
                 className="bg-white rounded-xl p-6 text-center border border-gray-100 hover:shadow-md transition-shadow"
               >
-                <div className="w-14 h-14 bg-cyan-30-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 bg-cyan-30-100 rounded-xl flex items-center justify-center mx-auto mb-2">
                   <svg
                     className="w-7 h-7 text-cyan-500"
                     fill="none"
@@ -260,12 +278,12 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-8 sm:py-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Mission */}
             <div className="bg-cyan-30 rounded-2xl p-6 sm:p-8">
-              <div className="w-12 h-12 bg-cyan-30-200 rounded-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-cyan-30-200 rounded-xl flex items-center justify-center mb-2">
                 <svg
                   className="w-6 h-6 text-cyan-600"
                   fill="none"
@@ -344,7 +362,7 @@ export default function AboutPage() {
 
             {/* Vision */}
             <div className="bg-cyan-30 rounded-2xl p-6 sm:p-8">
-              <div className="w-12 h-12 bg-cyan-30-200 rounded-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-cyan-30-200 rounded-xl flex items-center justify-center mb-2">
                 <svg
                   className="w-6 h-6 text-cyan-600"
                   fill="none"
@@ -378,8 +396,8 @@ export default function AboutPage() {
               </p>
               <div className="border-l-3 border-gray-400 pl-5">
                 <p className="text-gray-700 italic text-sm sm:text-base">
-                  "Building healthier families through dedicated, personalized
-                  medical care."
+                  &ldquo;Building healthier families through dedicated, personalized
+                  medical care.&rdquo;
                 </p>
               </div>
             </div>
@@ -388,7 +406,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section - Minimal */}
-      <section className=" py-12 sm:py-16">
+      <section className=" py-8 sm:py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-light  mb-3">
             Ready to join our practice?
